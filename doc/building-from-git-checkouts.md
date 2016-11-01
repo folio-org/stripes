@@ -35,14 +35,14 @@ checkout:
 	$ cd stripes-loader
 	$ npm install
 	$ npm run build
-	$ cd ..
+	$ cd ../..
 
 Next, we wire the trivial module into place: so that `stripes-loader`
 (not `stripes-core`) can see it:
 
 	$ mkdir @folio-sample-modules
 	$ cd @folio-sample-modules
-	$ ln -s ../../../stripes-experiments/trivial
+	$ ln -s ../../examples/trivial
 	$ cd ../..
 
 You don't need to build the trivial modules, as it gets pulled into the
