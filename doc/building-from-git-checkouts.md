@@ -13,7 +13,7 @@ We assume here that you have the
 `stripes-loader`
 and
 `stripes-experiments`
-git modules all checked out next to each other. 
+git modules all checked out next to each other.
 
 First, remove any NPM configuration you may already have which tells where
 to download the production versions of these packages from:
@@ -36,12 +36,20 @@ checkout:
 	$ npm install
 	$ npm run build
 
-Next, we wire the trivial module into place: so that `stripes-loader`
-(not `stripes-core`) can see it. To avoid confusion about what links
-where, we'll use the natural home of the loader checkout rather than
-the link we made to it.
+Next, we wire the trivial module into place. Two places, actually:
+`stripes-loader` and `stripes-core` both need to be able to see
+it. First we'll do `stripes-core` since we're already here:
 
-	$ cd /../../../../stripes-loader/node_modules
+	$ cd ../..
+	$ mkdir @folio-sample-modules
+	$ cd @folio-sample-modules
+	$ ln -s ../../examples/trivial
+
+Now `stripes-loader`. To avoid confusion about what links where, we'll
+use the natural home of the loader checkout rather than the link we
+made to it.
+
+	$ cd ../../../stripes-loader/node_modules
 	$ mkdir @folio-sample-modules
 	$ cd @folio-sample-modules
 	$ ln -s ../../../stripes-core/examples/trivial
