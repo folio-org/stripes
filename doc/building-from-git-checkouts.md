@@ -35,20 +35,22 @@ checkout:
 	$ cd stripes-loader
 	$ npm install
 	$ npm run build
-	$ cd ../..
 
 Next, we wire the trivial module into place: so that `stripes-loader`
-(not `stripes-core`) can see it:
+(not `stripes-core`) can see it. To avoid confusion about what links
+where, we'll use the natural home of the loader checkout rather than
+the link we made to it.
 
+	$ cd /../../../../stripes-loader/node_modules
 	$ mkdir @folio-sample-modules
 	$ cd @folio-sample-modules
-	$ ln -s ../../examples/trivial
-	$ cd ../..
+	$ ln -s ../../../stripes-core/examples/trivial
 
 You don't need to build the trivial modules, as it gets pulled into the
 Stripes UI by WebPack when it is built. So now you are ready to build
-and run the service that provides the UI:
+and run the stripes core service that provides the UI:
 
+	$ cd ../../../stripes-core
 	$ npm install
 	$ npm run start
 
