@@ -62,7 +62,13 @@ and run the stripes core service that provides the UI:
 	$ npm install
 	$ npm run start
 
-## Troubleshooting (shouldn't be needed any more)
+## Appendix: Troubleshooting transpilation
+
+> **NOTE.**
+> This section _shouldn't_ be needed any more, and ought to be removed
+> in a future version of the document if the issues it described don't
+> cause further problems. See
+> [STRIPES-32](https://issues.folio.org/browse/STRIPES-32).
 
 This may fail with:
 
