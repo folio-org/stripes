@@ -1,6 +1,6 @@
 # A component example: the **PatronEdit** component
 
-<!-- ../../../okapi/doc/md2toc -l 2 component-example.md -->
+<!-- ../../okapi/doc/md2toc -l 2 component-example.md -->
 * [Introduction](#introduction)
 * [Source code](#source-code)
 * [Explanation](#explanation)
