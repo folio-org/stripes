@@ -25,7 +25,7 @@ Module names are written in all lower-case, with words separated by
 hyphens and set in code font `like-this`. Component names are written
 in CamelCase and set in bold, **LikeThis**.
 
-<!-- ../../../okapi/doc/md2toc -l 2 component-hierarchy.md -->
+<!-- ../../okapi/doc/md2toc -l 2 component-hierarchy.md -->
 * [Introduction](#introduction)
 * [The module](#the-module)
     * [Metadata describing the module](#metadata-describing-the-module)
