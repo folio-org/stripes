@@ -1,5 +1,7 @@
 # For Stripes developers
 
+## Introduction
+
 If you are working not just on Stripes _modules_ but on Stripes
 itself, you will want to use your own git checkouts of the various
 Stripes packages (`stripes-connect`, etc.) To do this, you basically
@@ -13,17 +15,28 @@ We assume here that you have the
 `stripes-loader`
 and
 `stripes-experiments`
-git modules all checked out next to each other.
+git modules all checked out next to each other. (At present, the
+Experiments module still contains the Okapi Console and the Patrons
+module.)
 
-First, remove any NPM configuration you may already have which tells where
-to download the production versions of these packages from:
+## Avoiding uploaded NPM packages
+
+If you want to be sure that you are using only your local checkouts
+and not packages that have been uploaded to NPM, begin by removing any
+NPM configuration you may already have which tells where to download
+the production versions of these packages from:
 
 	$ npm config delete @folio:registry
 	$ npm config delete @folio-sample-modules:registry
 
-Now pre-populate the Stripes core code's `node_modules` area with symbolic
-links to the code you want to work on. Starting in the `stripes-core`
-checkout:
+## Running a minimal Stripes configuration
+
+This procedure will run a version of Stripes containing only the
+Trivial module which presents a modifiable greeting.
+
+First, pre-populate the Stripes core code's `node_modules` area with
+symbolic links to the code you want to work on. Starting in the
+`stripes-core` checkout:
 
 	$ mkdir -p node_modules/@folio
 	$ cd node_modules/@folio
