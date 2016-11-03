@@ -75,6 +75,50 @@ and run the stripes core service that provides the UI:
 	$ npm install
 	$ npm run start
 
+## Adding more modules
+
+At present, adding an extra module to your Stripes configuration is a
+three-stage process. You must instruct the Stripes Loader to include
+the module, and make it available to both Stripes Core and Stripes
+Loader.
+
+First, configure the loader. You can do this by adding the required
+module to the `stripesLoader.modules` object in
+`webpack.config.cli.js`. Or if you prefer to avoid making uncommitted
+local changes to version-controlled files, you can create a separate
+`stripes-modules.js` (see `stripes-modules.js.example` for an example)
+and add the module there. For example, that file might contain:
+
+	module.exports = {
+	  '@folio-sample-modules/trivial-okapi': {}
+	};
+
+Second, make the module available to `stripes-core`:
+
+	$ cd node_modules/@folio-sample-modules
+	// One or more of the following
+	$ ln -s ../../examples/trivial-okapi
+	$ ln -s ../../../stripes-experiments/okapi-console
+	$ ln -s ../../../stripes-experiments/patrons
+	$ cd ../..
+
+Third, make the module available to `stripes-loader`:
+
+	$ cd ../stripes-loader/node_modules/@folio-sample-modules
+	// One or more of the following
+	$ ln -s ../../../stripes-core/examples/trivial-okapi
+	$ ln -s ../../../stripes-experiments/okapi-console
+	$ ln -s ../../../stripes-experiments/patrons
+	$ cd ../../../stripes-core
+
+Now you should be able to restart the Stripes service and see the
+newly enabled modules running:
+
+	$ npm run start
+
+<br/>
+<hr/>
+
 ## Appendix: Troubleshooting transpilation
 
 > **NOTE.**
