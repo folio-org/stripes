@@ -1,4 +1,4 @@
-# For Stripes developers
+# Building and running Stripes from git checkouts
 
 ## Introduction
 
