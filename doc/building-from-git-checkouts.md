@@ -1,5 +1,12 @@
 # Building and running Stripes from git checkouts
 
+<!-- ../../okapi/doc/md2toc -l 2 building-from-git-checkouts.md -->
+* [Introduction](#introduction)
+* [Avoiding uploaded NPM packages](#avoiding-uploaded-npm-packages)
+* [Running a minimal Stripes configuration](#running-a-minimal-stripes-configuration)
+* [Adding more modules](#adding-more-modules)
+* [Appendix: Troubleshooting transpilation](#appendix-troubleshooting-transpilation)
+
 ## Introduction
 
 If you are working not just on Stripes _modules_ but on Stripes
