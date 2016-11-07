@@ -19,7 +19,8 @@ instead of from the package repository. You do this by subverting the
 We assume here that you have the
 `stripes-core`,
 `stripes-connect`,
-`stripes-loader`
+`stripes-components`
+`stripes-loader`,
 and
 `stripes-experiments`
 git modules all checked out next to each other. (At present, the
@@ -49,6 +50,10 @@ symbolic links to the code you want to work on. Starting in the
 	$ cd node_modules/@folio
 	$ ln -s ../../../stripes-connect
 	$ cd stripes-connect
+	$ npm install
+	$ cd ..
+	$ ln -s ../../../stripes-components
+	$ cd stripes-components
 	$ npm install
 	$ cd ..
 	$ ln -s ../../../stripes-loader
