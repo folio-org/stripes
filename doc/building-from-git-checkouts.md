@@ -5,7 +5,6 @@
 * [Avoiding uploaded NPM packages](#avoiding-uploaded-npm-packages)
 * [Running a minimal Stripes configuration](#running-a-minimal-stripes-configuration)
 * [Adding more modules](#adding-more-modules)
-* [Appendix: Troubleshooting transpilation](#appendix-troubleshooting-transpilation)
 
 ## Introduction
 
@@ -127,43 +126,4 @@ Now you should be able to restart the Stripes service and see the
 newly enabled modules running:
 
 	$ npm run start
-
-<br/>
-<hr/>
-
-## Appendix: Troubleshooting transpilation
-
-> **NOTE.**
-> This section _shouldn't_ be needed any more, and ought to be removed
-> in a future version of the document if the issues it described don't
-> cause further problems. See
-> [STRIPES-32](https://issues.folio.org/browse/STRIPES-32).
-
-This may fail with:
-
-	ERROR in ../trivial/About.js
-	Module parse failed: /home/mike/git/work/stripes-experiments/trivial/About.js Unexpected token (4:18)
-	You may need an appropriate loader to handle this file type.
-
-This is because Babel is not translating the trivial module from JS6. The
-rules that tell WebPack which files to transpile are found in
-`webpack.config.base.js`, These rules do say to transpile files
-within the `@folio` area. Unfortunately, WebPack resolves symbolic
-links before making this check, so the modules that we linked into
-`@folio` are instead seen as being in their physical location, and
-transpilation is skipped.
-
-The fix is to edit `webpack.config.base.js`, commenting out the
-`include:` line and uncommenting the `exclude:` line that follows it,
-thus:
-
-	//include:  [path.join(__dirname, 'src'), /@folio/, path.join(__dirname, '../dev')]
-	exclude: [/node_modules/]
-
-**WARNING: do not commit this change**. If it gets pushed into the
-master repo, it will prevent modules from the NPM registry from
-working correctly.
-
-Once this change has been made, `npm run start` will finally work, and
-you can view the running UI on `http://localhost:3000/`.
 
