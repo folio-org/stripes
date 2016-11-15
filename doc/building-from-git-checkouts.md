@@ -20,8 +20,9 @@ We assume here that you have the
 `stripes-connect`,
 `stripes-components`
 `stripes-loader`,
+`stripes-experiments`,
 and
-`stripes-experiments`
+`ui-okapi-console`
 git modules all checked out next to each other. (At present, the
 Experiments module still contains the Okapi Console and the Patrons
 module.)
@@ -109,7 +110,7 @@ Second, make the module available to `stripes-core`:
 	$ cd node_modules/@folio-sample-modules
 	// One or more of the following
 	$ ln -s ../../examples/trivial-okapi
-	$ ln -s ../../../stripes-experiments/okapi-console
+	$ ln -s ../../../ui-okapi-console
 	$ ln -s ../../../stripes-experiments/patrons
 	$ cd ../..
 
@@ -118,7 +119,7 @@ Third, make the module available to `stripes-loader`:
 	$ cd ../stripes-loader/node_modules/@folio-sample-modules
 	// One or more of the following
 	$ ln -s ../../../stripes-core/examples/trivial-okapi
-	$ ln -s ../../../stripes-experiments/okapi-console
+	$ ln -s ../../../ui-okapi-console
 	$ ln -s ../../../stripes-experiments/patrons
 	$ cd ../../../stripes-core
 
