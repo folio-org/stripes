@@ -24,8 +24,7 @@ We assume here that you have the
 and
 `ui-okapi-console`
 git modules all checked out next to each other. (At present, the
-Experiments module still contains the Okapi Console and the Patrons
-module.)
+Experiments module still contains the Patrons module.)
 
 ## Avoiding uploaded NPM packages
 
