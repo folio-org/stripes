@@ -97,7 +97,7 @@ First, configure the loader. You can do this by adding the required
 module to the `stripesLoader.modules` object in
 `webpack.config.cli.js`. Or if you prefer to avoid making uncommitted
 local changes to version-controlled files, you can create a separate
-`stripes-modules.js` (see `stripes-modules.js.example` for an example)
+`stripes.config.js` (see `stripes.config.js.example` for an example)
 and add the module there. For example, that file might contain:
 
 	module.exports = {
