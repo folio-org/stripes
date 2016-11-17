@@ -94,16 +94,10 @@ three-stage process. You must instruct the Stripes Loader to include
 the module, and make it available to both Stripes Core and Stripes
 Loader.
 
-First, configure the loader. You can do this by adding the required
-module to the `stripesLoader.modules` object in
-`webpack.config.cli.js`. Or if you prefer to avoid making uncommitted
-local changes to version-controlled files, you can create a separate
-`stripes-modules.js` (see `stripes-modules.js.example` for an example)
-and add the module there. For example, that file might contain:
-
-	module.exports = {
-	  '@folio-sample-modules/trivial-okapi': {}
-	};
+First, configure the loader. You can do this by listing the required
+modules in `stripes.config.js`, along with other configuration
+information such as the Okapi URL. See `stripes.config.js.example` for
+an example.
 
 Second, make the module available to `stripes-core`:
 
