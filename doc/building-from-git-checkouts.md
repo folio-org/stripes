@@ -20,11 +20,10 @@ We assume here that you have the
 `stripes-connect`,
 `stripes-components`
 `stripes-loader`,
-`stripes-experiments`,
-and
 `ui-okapi-console`
-git modules all checked out next to each other. (At present, the
-Experiments module still contains the Users module.)
+and
+`ui-users`
+git modules all checked out next to each other.
 
 ## Avoiding uploaded NPM packages
 
@@ -104,7 +103,7 @@ Second, make the module available to `stripes-core`:
 	// One or more of the following
 	$ ln -s ../../examples/trivial-okapi
 	$ ln -s ../../../ui-okapi-console
-	$ ln -s ../../../stripes-experiments/users
+	$ ln -s ../../../ui-users
 	$ cd ../..
 
 Third, make the module available to `stripes-loader`:
@@ -113,7 +112,7 @@ Third, make the module available to `stripes-loader`:
 	// One or more of the following
 	$ ln -s ../../../stripes-core/examples/trivial-okapi
 	$ ln -s ../../../ui-okapi-console
-	$ ln -s ../../../stripes-experiments/users
+	$ ln -s ../../../ui-users
 	$ cd ../../../stripes-core
 
 Now you should be able to restart the Stripes service and see the
