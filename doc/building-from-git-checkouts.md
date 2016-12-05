@@ -23,7 +23,8 @@ We assume here that you have the
 `ui-okapi-console`
 and
 `ui-users`
-git modules all checked out next to each other.
+git modules all checked out together in a directory that we will
+designate `$ROOT`.
 
 ## Avoiding uploaded NPM packages
 
@@ -41,9 +42,9 @@ This procedure will run a version of Stripes containing only the
 Trivial module which presents a modifiable greeting.
 
 First, pre-populate the Stripes core code's `node_modules` area with
-symbolic links to the code you want to work on. Starting in the
-`stripes-core` checkout:
+symbolic links to the code you want to work on, and build that code:
 
+	$ cd $ROOT/stripes-core
 	$ mkdir -p node_modules/@folio
 	$ cd node_modules/@folio
 	$ ln -s ../../../stripes-connect
@@ -59,20 +60,18 @@ symbolic links to the code you want to work on. Starting in the
 	$ npm install
 	$ npm run build
 
-Next, we wire the trivial module into place. Two places, actually:
+Next, wire the trivial module into place. Two places, actually:
 `stripes-loader` and `stripes-core` both need to be able to see
-it. First we'll do `stripes-core` since we're already here:
+it. First, `stripes-core`:
 
-	$ cd ../..
+	$ cd $ROOT/stripes-core/node_modules
 	$ mkdir @folio-sample-modules
 	$ cd @folio-sample-modules
 	$ ln -s ../../examples/trivial
 
-Now `stripes-loader`. To avoid confusion about what links where, we'll
-use the natural home of the loader checkout rather than the link we
-made to it.
+Now `stripes-loader`:
 
-	$ cd ../../../stripes-loader/node_modules
+	$ cd $ROOT/stripes-loader/node_modules
 	$ mkdir @folio-sample-modules
 	$ cd @folio-sample-modules
 	$ ln -s ../../../stripes-core/examples/trivial
@@ -81,7 +80,7 @@ You don't need to build the trivial modules, as it gets pulled into the
 Stripes UI by WebPack when it is built. So now you are ready to build
 and run the stripes core service that provides the UI:
 
-	$ cd ../../../stripes-core
+	$ cd $ROOT/stripes-core
 	$ npm install
 	$ npm run start
 
@@ -109,7 +108,7 @@ See `stripes.config.js.example` for an example.
 
 Second, make the module available to `stripes-core`:
 
-	$ cd node_modules/@folio-sample-modules
+	$ cd $ROOT/stripes-core/node_modules/@folio-sample-modules
 	// One or more of the following
 	$ ln -s ../../examples/trivial-okapi
 	$ ln -s ../../../ui-okapi-console
@@ -118,7 +117,7 @@ Second, make the module available to `stripes-core`:
 
 Third, make the module available to `stripes-loader`:
 
-	$ cd ../stripes-loader/node_modules/@folio-sample-modules
+	$ cd $ROOT/stripes-loader/node_modules/@folio-sample-modules
 	// One or more of the following
 	$ ln -s ../../../stripes-core/examples/trivial-okapi
 	$ ln -s ../../../ui-okapi-console
