@@ -94,8 +94,18 @@ Loader.
 
 First, configure the loader. You can do this by listing the required
 modules in `stripes.config.js`, along with other configuration
-information such as the Okapi URL. See `stripes.config.js.example` for
-an example.
+information such as the Okapi URL. For example:
+
+	module.exports = {
+	  okapi: { 'url':'http://localhost:9130', 'tenant':'diku' },
+	  modules: {
+	    '@folio-sample-modules/trivial': {},
+	    '@folio-sample-modules/ui-okapi-console': {},
+	    '@folio-sample-modules/ui-users': {}
+	  }
+	};
+
+See `stripes.config.js.example` for an example.
 
 Second, make the module available to `stripes-core`:
 
