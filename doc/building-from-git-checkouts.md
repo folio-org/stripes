@@ -42,7 +42,8 @@ This procedure will run a version of Stripes containing only the
 Trivial module which presents a modifiable greeting.
 
 First, pre-populate the Stripes core code's `node_modules` area with
-symbolic links to the code you want to work on, and build that code:
+symbolic links to the code you want to work on, and build that
+code.
 
 	$ cd $ROOT/stripes-core
 	$ mkdir -p node_modules/@folio
@@ -59,6 +60,12 @@ symbolic links to the code you want to work on, and build that code:
 	$ cd stripes-loader
 	$ npm install
 	$ npm run build
+
+(If you previously installed any of these modules from the NPM
+respository using
+[the "Quick start" method](../README.md),
+then downloaded copies will be in place, and you will need to remove
+them before making the symbolic links.)
 
 (Note that NPM often emits numerous warnings, such as
 `npm WARN eslint-config-airbnb@12.0.0 requires a peer of
