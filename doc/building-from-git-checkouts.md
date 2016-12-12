@@ -60,6 +60,12 @@ symbolic links to the code you want to work on, and build that code:
 	$ npm install
 	$ npm run build
 
+(Note that NPM often emits numerous warnings, such as
+`npm WARN eslint-config-airbnb@12.0.0 requires a peer of
+eslint-plugin-import@^1.16.0 but none was installed`. These are
+annoying, but can be safely ignored. Actual errors are signalled by
+`ERROR` rather than `WARN`, and should be investigated.)
+
 Next, wire the trivial module into place. Two places, actually:
 `stripes-loader` and `stripes-core` both need to be able to see
 it. First, `stripes-core`:
