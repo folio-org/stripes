@@ -1,4 +1,4 @@
-## <a name="quick-start">Quick start</a>
+# Stripes: quick start
 
 To run Stripes, you'll need to have [Node.js](https://nodejs.org/) 6.x installed.
 ```
@@ -18,6 +18,8 @@ npm start
 ```
 
 ## Some details
+
+Here is what the steps above do.
 
 Add the FOLIO NPM registry to your local NPM configuration:
 ```
