@@ -54,7 +54,7 @@ Install the demo module:
 ```
 npm install @folio-sample-modules/trivial-okapi
 ```
-After following build instructions in the [Okapi repository](https://github.com/folio-org/okapi) to get the service running, you can activate module `trivial-okapi` module by editing `stripes.config.js` before starting the dev server or building a bundle. If you have yet to create this file, copy `stripes.config.js.example` as a base.
+After following build instructions in the [Okapi repository](https://github.com/folio-org/okapi) to get the service running, you can activate the `trivial-okapi` module by editing `stripes.config.js` before starting the dev server or building a bundle. If you have yet to create this file, copy `stripes.config.js.example` as a base.
 
 ## Including a module under development
 
