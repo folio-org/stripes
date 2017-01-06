@@ -126,7 +126,6 @@ Second, make the module available to `stripes-core`:
 	$ ln -s ../../examples/trivial-okapi
 	$ ln -s ../../../ui-okapi-console
 	$ ln -s ../../../ui-users
-	$ cd ../..
 
 Third, make the module available to `stripes-loader`:
 
@@ -135,10 +134,10 @@ Third, make the module available to `stripes-loader`:
 	$ ln -s ../../../stripes-core/examples/trivial-okapi
 	$ ln -s ../../../ui-okapi-console
 	$ ln -s ../../../ui-users
-	$ cd ../../../stripes-core
 
 Now you should be able to restart the Stripes service and see the
 newly enabled modules running:
 
+	$ cd $ROOT/stripes-core
 	$ npm run start
 
