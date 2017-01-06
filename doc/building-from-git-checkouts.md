@@ -89,7 +89,7 @@ Now `stripes-loader`:
 	$ cd @folio-sample-modules
 	$ ln -s ../../../stripes-core/examples/trivial
 
-You don't need to build the trivial modules, as it gets pulled into the
+You don't need to build the trivial module (or indeed any Stripes module), as it gets pulled into the
 Stripes UI by WebPack when it is built. So now you are ready to build
 and run the stripes core service that provides the UI:
 
