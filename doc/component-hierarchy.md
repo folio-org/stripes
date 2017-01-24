@@ -77,7 +77,7 @@ route that uses it.)
 ### State within the module
 
 Each stripes module maintains all of its state in a single pool. (See
-[**How state is stored**](../../stripes-connect/api.md#how-state-is-stored)
+[**How state is stored**](../../stripes-connect/doc/api.md#how-state-is-stored)
 for details).
 Each piece of state has a name, and may be accessed by multiple
 components. Often, only one component will be responsible for making
