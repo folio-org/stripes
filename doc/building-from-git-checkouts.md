@@ -63,7 +63,7 @@ code.
 
 (If you previously installed any of these modules from the NPM
 respository using
-[the "Quick start" method](../README.md#quick-start),
+[the "Quick start" method](quick-start.md),
 then downloaded copies will be in place, and you will need to remove
 them before making the symbolic links.)
 
