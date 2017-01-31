@@ -27,7 +27,7 @@ component from its own 400-line file, which is also used by
 **PatronAdd**. Despite its length, **PatronForm** is very simple:
 essentially all it does is create an HTML form wired into Redux's
 form-handling machinery. Crucially, it is not a
-[connected component](../../stripes-connect/doc/api.md#introduction),
+[connected component](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md#introduction),
 so it uses no Stripes machinery: it is pure React.
 
 **PatronEdit** itself _is_ a connected component, and serves as a
@@ -142,7 +142,7 @@ The data manifest describes the data resources that the component
 wants to use, and how they are connected to Okapi services (if they
 are -- some data may be purely on the client side.) Data manifests are
 described in detail in [The Stripes Connect API
-documentation](../../stripes-connect/doc/api.md)
+documentation](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md)
 
 In this case, only a single resource is needed: `patrons`. This is
 connected to Okapi; the primary key of the records is `_id` (rather
@@ -182,7 +182,7 @@ things.
    through to the persistence mechanism (Okapi in this case). It does
    this using the _mutator_ for the `patrons` resource. As described
    in
-   [the Stripes Connect API documentation](../../stripes-connect/doc/api.md),
+   [the Stripes Connect API documentation](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md),
    a mutator is an object, provided by stripes-connect, which maps
    each of the HTTP method names (GET, POST, PUT, DELETE) to a
    function that implements that method for the relevant resource.
