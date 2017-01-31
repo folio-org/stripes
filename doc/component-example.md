@@ -18,7 +18,7 @@
 ## Introduction
 
 The **PatronEdit** component is defined in the source file
-[`patrons/PatronEdit.js`](../../patrons/PatronEdit.js).
+[`patrons/PatronEdit.js`](https://github.com/folio-org/stripes-experiments/blob/master/patrons/PatronEdit.js).
 As is conventional, the filename is the same as that of the component.
 
 The **PatronEdit** source code is quite short (44 lines including
