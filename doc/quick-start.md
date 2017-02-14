@@ -21,7 +21,7 @@ At this point, you can choose some modules to enable in `stripes.config.js` and 
 yarn start
 ```
 
-Voilà! A development server should be running at http://localhost:9130
+Voilà! A development server should be running at http://localhost:3000
 
 ## Using local code
 
