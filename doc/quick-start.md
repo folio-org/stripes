@@ -11,7 +11,7 @@ yarn config set @folio:registry https://repository.folio.org/repository/npm-foli
 
 ## Platform
 
-Next you'll need a Stripes "platform". It consists simply of an NPM [`package.json`](https://docs.npmjs.com/files/package.json) that specifies the version of `@folio/stripes-core` and of any Stripes modules you wish to make available to generate client bundles. As a starting point, you might want to check out a [sample platform]. From the platform directory you can then install everything with:
+Next you'll need a Stripes "platform". It consists simply of an NPM [`package.json`](https://docs.npmjs.com/files/package.json) that specifies the version of `@folio/stripes-core` and of any Stripes modules you wish to make available to generate client bundles. As a starting point, you might want to check out a [sample platform](https://github.com/folio-org/stripes-sample-platform). From the platform directory you can then install everything with:
 ```
 yarn install
 ```
