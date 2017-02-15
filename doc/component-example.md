@@ -71,12 +71,12 @@ This is the code as of git commit
     28	    this.context.router.push('/patrons/list');
     29	  }
     30	
-    31	  render() { 
+    31	  render() {
     32	      const { data: { patrons }, params: { patronid } } = this.props;
     33	
     34	      let patron = patrons.find((patron) =>  { return patron._id === patronid });
     35	
-    36	      return <PatronForm onSubmit={this.updatePatron.bind(this)} 
+    36	      return <PatronForm onSubmit={this.updatePatron.bind(this)}
     37	        cancelForm={this.cancel.bind(this)}
     38	        action={actionTypes['update']}
     39	        initialValues={patron} />

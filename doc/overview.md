@@ -2,7 +2,7 @@
 
 The promise of FOLIO lies in its inclusiveness: we want to deliver a platform that invites participation not only from software vendors integrating their product and full time programmers at large institutions but also from librarians who happen to code on the side and would like to implement something to address their immediate needs.
 
-Such goals are very much in line with the process of developing FOLIO in the open with a diverse community of stakeholders and so our decisions about the front-end architecture and toolkit are primarily focused on: 
+Such goals are very much in line with the process of developing FOLIO in the open with a diverse community of stakeholders and so our decisions about the front-end architecture and toolkit are primarily focused on:
 
 * Keeping things decoupled where possible so that many teams can work in parallel without stepping on each others' toes and anyone is free to modify part of the system without needing to rewrite huge swathes of it.
 
@@ -14,7 +14,7 @@ With that in mind, our front-end toolkit "Stripes" has been taking shape.
 
 ## Single-page application
 
-While we want UI modules to form an integrated and consistent whole, we also know this won't be the only interface to the web services that comprise FOLIO. And, since front-end tools tend to have a shorter lifespan, it is likely we will see redevelopment here while the FOLIO services running behind Okapi retain largely the same interfaces. 
+While we want UI modules to form an integrated and consistent whole, we also know this won't be the only interface to the web services that comprise FOLIO. And, since front-end tools tend to have a shorter lifespan, it is likely we will see redevelopment here while the FOLIO services running behind Okapi retain largely the same interfaces.
 
 For these reasons, we've chosen to make Stripes a client-side only tool -- it runs entirely in the user's browser and consumes FOLIO services directly.
 

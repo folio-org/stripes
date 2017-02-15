@@ -32,7 +32,7 @@ For example, to link the Users module you would change to the directory you chec
 yarn link
 ```
 
-And then change to your platform directory and run: 
+And then change to your platform directory and run:
 ```
 yarn link @folio/users
 ```
