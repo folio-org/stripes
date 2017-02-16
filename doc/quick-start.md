@@ -11,7 +11,9 @@ yarn config set @folio:registry https://repository.folio.org/repository/npm-foli
 
 ## Platform
 
-Next you'll need a Stripes "platform". It consists simply of an NPM [`package.json`](https://docs.npmjs.com/files/package.json) that specifies the version of `@folio/stripes-core` and of any Stripes modules you wish to make available to generate client bundles. As a starting point, you might want to check out a [sample platform](https://github.com/folio-org/stripes-sample-platform). From the platform directory you can then install everything with:
+Next you'll need a Stripes "platform". It consists simply of an NPM [`package.json`](https://docs.npmjs.com/files/package.json) that specifies the version of `@folio/stripes-core` and of any Stripes modules you wish to make available to generate client bundles. As a starting point, you might want to check out a [sample platform](https://github.com/folio-org/stripes-sample-platform).
+
+From that platform directory you can then install everything with:
 ```
 yarn install
 ```
@@ -27,7 +29,7 @@ Voilà! A development server should be running at http://localhost:3000
 
 Module developers and those wanting to use a local checkout of core Stripes components can use the convenient [`yarn link`](https://yarnpkg.com/en/docs/cli/link) command to set their platform to use the local copy. Simply run `yarn link` in your `somemodule` directory and then run `yarn link somemodule` in the platform's directory and repeat for each local dependency you wish to create symlinks for.
 
-For example, to link the Users module you would change to the directory you checked out of git and run:
+For example, to link the Users module you would change to the directory you checked out of git (ui-users) and run:
 ```
 yarn link
 ```
@@ -35,6 +37,8 @@ yarn link
 And then change to your platform directory and run:
 ```
 yarn link @folio/users
+yarn install
+yarn start
 ```
 
 N.B. The `stripes-loader` module does not currently support being included via link.
