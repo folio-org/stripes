@@ -25,6 +25,10 @@ yarn start
 
 Voilà! A development server should be running at http://localhost:3000
 
+The default "Trivial" example will work, as it is independent of Okapi.
+However the "Users" example will not yet. One way to configure that is to use the "Okapi Console".
+Follow the instructions in [ui-users/README.md](https://github.com/folio-org/ui-users) and its linked documents.
+
 ## Using local code
 
 Module developers and those wanting to use a local checkout of core Stripes components can use the convenient [`yarn link`](https://yarnpkg.com/en/docs/cli/link) command to set their platform to use the local copy. Simply run `yarn link` in your `somemodule` directory and then run `yarn link somemodule` in the platform's directory and repeat for each local dependency you wish to create symlinks for.
