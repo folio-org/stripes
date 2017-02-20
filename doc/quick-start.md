@@ -46,4 +46,7 @@ yarn install
 yarn start
 ```
 
-N.B. The `stripes-loader` module does not currently support being included via link.
+**Note 1.** The `stripes-loader` module does not currently support being included via link.
+
+**Note 2.** As of 20 February 2017, yarn cannot find `yarn link`ed nodules unless they _also_ have been published in the repository. This is [a recognised bug, issue 2611](https://github.com/yarnpkg/yarn/issues/2611) and should soon be fixed.
+
