@@ -26,8 +26,9 @@ yarn start
 Voilà! A development server should be running at http://localhost:3000
 
 The default "Trivial" example will work, as it is independent of Okapi.
-However the "Users" example will not yet. One way to configure that is to use the "Okapi Console".
-Follow the instructions in [ui-users/README.md](https://github.com/folio-org/ui-users) and its linked documents.
+However the "Users" example requires Okapi and the back-end services of various modules and sample data.
+The simplest way to achieve that is using one of the provided
+[virtual machines](https://github.com/folio-org/folio-ansible/blob/master/README.md).
 
 ## Using local code
 
