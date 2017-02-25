@@ -12,7 +12,7 @@ For new major and minor releases, we make a branch, whose name begins with `b` -
 * Make a release branch, named with `b` followed by the version of the new release -- for example, `b2.3`. Version 2.3.0 -- and versions 2.3.1, 2.3.2, etc. if needed -- will be made from this branch.
 * If any changes specific to this release are needed, make them in the branch.
 * Create a tag for the specific version to be released -- for example, `v2.3.0`.
-* Publish the package to the npm repository using `yarn publish`. (You will need credentials to do this: get them from an administrator.)
+* Publish the package to the npm repository using `yarn publish`. (You will need credentials to do this: see below.)
 * Each stripes platform depends directly on stripes-core and a set of application modules.
 * Each application module has stripes-core as a peer-dependency.
 * stripes-core depends directly on stripes-connect, stripes-components, etc.
@@ -24,3 +24,31 @@ See http://dev.folio.org/doc/automation
 
 Note on the version number within the `master` branch. After making a release, the version number in `package.json` should be incremented ready for the next version. Initially, the minor version should be bumped. At this point, any number of non-breaking changes may be made before the next release. If in this process a non-breaking change is made, the major version should be bumped; thereafter, any number of breaking changes may be made before the next release.
 
+
+## Access to the NPM repository
+
+Before you can do `yarn publish`, you will need access to the Index Data/FOLIO NPM repository at `folio-nexus.indexdata.com`. Get these credentials from an administrator.
+
+Then you can log in:
+
+```
+$ npm login --registry=https://folio-nexus.indexdata.com/repository/npm-folio
+Username: mike
+Password: ********
+Email: (this IS public) mike@indexdata.com
+Logged in as mike on https://folio-nexus.indexdata.com/repository/npm-folio.
+```
+But this does not seem sufficient for uploading the package:
+```
+$ npm publish --registry=https://folio-nexus.indexdata.com/repository/npm-folio
+npm ERR! Darwin 16.4.0
+npm ERR! argv "/usr/local/Cellar/node/7.5.0/bin/node" "/usr/local/bin/npm" "publish" "--registry=https://folio-nexus.indexdata.com/repository/npm-folio"
+npm ERR! node v7.5.0
+npm ERR! npm  v4.1.2
+npm ERR! code ENEEDAUTH
+
+npm ERR! need auth auth required for publishing
+npm ERR! need auth You need to authorize this machine using `npm adduser`
+
+npm ERR! Please include the following file with any support request:
+```
