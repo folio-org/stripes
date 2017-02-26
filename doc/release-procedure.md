@@ -52,3 +52,5 @@ npm ERR! need auth You need to authorize this machine using `npm adduser`
 
 npm ERR! Please include the following file with any support request:
 ```
+
+See [STRIPES-217](https://issues.folio.org/browse/STRIPES-217) for details.
