@@ -17,6 +17,8 @@ For new major and minor releases, we make a branch, whose name begins with `b` -
 * If any changes specific to this release are needed, make them in the branch.
 * Create a tag for the specific version to be released -- for example, `v2.3.0`.
 * Publish the package to the npm repository using `npm publish`. (You will need credentials to do this: see note below.)
+* Push the changed module back to git (`git push`).
+* Push the new release tag back to git (`git push origin tag v2.3.0`).
 
 ## Notes on dependencies
 
