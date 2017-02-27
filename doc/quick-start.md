@@ -38,12 +38,12 @@ Module developers and those wanting to use a local checkout of core Stripes comp
 For example, to link the Users module, change to the directory you checked out of git (ui-users) and run:
 ```
 yarn link
+yarn upgrade
 ```
 
 And then change to your platform directory and run:
 ```
 yarn link @folio/users
-yarn install
 yarn start
 ```
 
