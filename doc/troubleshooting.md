@@ -31,3 +31,16 @@ We do not yet know how to resolve this:
 See [STRIPES-218](https://issues.folio.org/browse/STRIPES-218).
 
 
+## Uncaught TypeError: Cannot read property 'reducersFor' of undefined
+
+Under certain circumstances, the JavaScript console will report
+
+```
+Uncaught TypeError: Cannot read property 'reducersFor' of undefined (bundle.js:77392)
+    at OkapiResource.RESTResource (bundle.js:77392)
+    at new OkapiResource (bundle.js:119656)
+```
+(I am seeing bundle.js rather then proper file line numbers because I am presently unable to `yarn link` Stripes Core -- see above -- so I am getting the released Stripes Core that does not do line-number mapping.)
+
+Several different people have encountered this at various times, and all of them have made it go away somehow -- but so far, we don't really know _why_. Further bulletins as events warrant.
+
