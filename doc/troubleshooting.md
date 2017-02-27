@@ -48,9 +48,10 @@ Uncaught TypeError: Cannot read property 'reducersFor' of undefined (bundle.js:7
 ```
 (I am seeing bundle.js rather then proper file line numbers because I am presently unable to `yarn link` Stripes Core -- see above -- so I am getting the released Stripes Core that does not do line-number mapping.)
 
-Several different people have encountered this at various times, and all of them have made it go away somehow -- but so far, we don't really know _why_. Further bulletins as events warrant.
+This is caused by having a stale v1.x of `react-redux` hanging around somewhere in one of the projects' `node_modules` directory. (We don't know why that gets used rather than the one in `stripes-sample-platform`'s Node Modules, but it does.)
 
-We do not yet know how to resolve this:
-See [STRIPES-219](https://issues.folio.org/browse/STRIPES-219).
+The fix is to re-run `yarn install` in the package that has the stale `react-redux`. If you're not sure which package that is, re-run it in all of them to be sure.
+
+(More discussion in [STRIPES-219](https://issues.folio.org/browse/STRIPES-219).)
 
 
