@@ -1,6 +1,7 @@
 # Stripes troubleshooting
 
 <!-- ../../okapi/doc/md2toc -l 2 troubleshooting.md -->
+* [addComponentAsRefTo(...): Only a ReactOwner can have refs.](#addcomponentasrefto-only-a-reactowner-can-have-refs)
 * [Warning: Invalid context `storeSubscription` of type `Subscription` ... expected instance of `Subscription`.](#warning-invalid-context-storesubscription-of-type-subscription--expected-instance-of-subscription)
 * [Warning: Cannot update during an existing state transition](#warning-cannot-update-during-an-existing-state-transition)
 * [EACCES: permission denied, symlink '../../home/mike/git/work/stripes-core/stripes.js' -> '/usr/bin/stripes'](#eacces-permission-denied-symlink-homemikegitworkstripes-corestripesjs---usrbinstripes)
