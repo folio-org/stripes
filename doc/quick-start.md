@@ -25,7 +25,11 @@ yarn start
 
 Voilà! A development server should be running at http://localhost:3000
 
-The default "Trivial" example will work, as it is independent of Okapi.
+The default configuration has two UI modules configured in `stripes.config.js`:
+"trivial" (whose code is in [stripes-core/examples/trivial](../examples/trivial))
+and "users" (whose code is in the separate [ui-users](https://github.com/folio-org/ui-users) repository).
+
+The "Trivial" example will work, as it is independent of Okapi.
 However the "Users" example requires Okapi and the back-end services of various modules and sample data.
 The simplest way to achieve that is using one of the provided
 [virtual machines](https://github.com/folio-org/folio-ansible/blob/master/README.md) (e.g. folio-backend).
