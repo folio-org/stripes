@@ -6,7 +6,28 @@
 * [EACCES: permission denied, symlink '../../home/mike/git/work/stripes-core/stripes.js' -> '/usr/bin/stripes'](#eacces-permission-denied-symlink-homemikegitworkstripes-corestripesjs---usrbinstripes)
 * [Uncaught TypeError: Cannot read property 'reducersFor' of undefined](#uncaught-typeerror-cannot-read-property-reducersfor-of-undefined)
 
-In no particular order, here are some things that can go wrong when building or running Stripes, and some hints on how to fix them.
+In the order we ran into them, here are some things that can go wrong when building or running Stripes, and some hints on how to fix them.
+
+
+## addComponentAsRefTo(...): Only a ReactOwner can have refs.
+
+Under certain circumstances, Stripes will fail to run and the JavaScript console will report
+
+```
+Uncaught Error: addComponentAsRefTo(...): Only a ReactOwner can have refs. You might be adding a ref to a component that was not created inside a component's `render` method, or you have multiple copies of React loaded (details: https://fb.me/react-refs-must-have-owner).
+    at invariant (bundle.js:1509)
+    at Object.addComponentAsRefTo (bundle.js:116958)
+```
+
+As the error message helpfully suggests, this is caused by the system picking up multiple copies of the React library from the `node_modules` directories of multiple Stripes-related packages, such as `stripes-core` and `ui-users`.
+
+The fix, ridiculously, is to manually remove all copies of React from every `node_modules` directory but one -- canonically, that of `stripes-sample-platform`. So:
+
+```
+find stripes-* ui-* -name react | grep -v '^stripes-sample-platform' | xargs rm -r 
+```
+
+(More discussion in [STRIPES-220](https://issues.folio.org/browse/STRIPES-220).)
 
 
 ## Warning: Invalid context `storeSubscription` of type `Subscription` ... expected instance of `Subscription`.
@@ -39,7 +60,7 @@ See [STRIPES-218](https://issues.folio.org/browse/STRIPES-218).
 
 ## Uncaught TypeError: Cannot read property 'reducersFor' of undefined
 
-Under certain circumstances, the JavaScript console will report
+Under certain circumstances, Stripes will fail to run and the JavaScript console will report
 
 ```
 Uncaught TypeError: Cannot read property 'reducersFor' of undefined (bundle.js:77392)
