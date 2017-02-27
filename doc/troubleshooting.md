@@ -50,3 +50,7 @@ Uncaught TypeError: Cannot read property 'reducersFor' of undefined (bundle.js:7
 
 Several different people have encountered this at various times, and all of them have made it go away somehow -- but so far, we don't really know _why_. Further bulletins as events warrant.
 
+We do not yet know how to resolve this:
+See [STRIPES-219](https://issues.folio.org/browse/STRIPES-219).
+
+
