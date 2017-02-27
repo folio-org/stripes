@@ -74,6 +74,7 @@ Uncaught TypeError: Cannot read property 'reducersFor' of undefined (bundle.js:7
     at OkapiResource.RESTResource (bundle.js:77392)
     at new OkapiResource (bundle.js:119656)
 ```
+
 (I am seeing bundle.js rather then proper file line numbers because I am presently unable to `yarn link` Stripes Core -- see above -- so I am getting the released Stripes Core that does not do line-number mapping.)
 
 This is caused by having a stale v1.x of `react-redux` hanging around somewhere in one of the projects' `node_modules` directory. (We don't know why that gets used rather than the one in `stripes-sample-platform`'s Node Modules, but it does.)
