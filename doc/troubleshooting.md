@@ -18,6 +18,16 @@ Under certain circumstances -- the details are not clear -- the following warnin
 
 > Warning: setState(...): Cannot update during an existing state transition (such as within `render` or another component's constructor). Render methods should be a pure function of props and state; constructor side-effects are an anti-pattern, but can be moved to `componentWillMount`.
 
-See [STRIPES-2016](https://issues.folio.org/browse/STRIPES-216) for details.
+See [STRIPES-216](https://issues.folio.org/browse/STRIPES-216) for details.
+
+
+## EACCES: permission denied, symlink '../../home/mike/git/work/stripes-core/stripes.js' -> '/usr/bin/stripes'
+
+On some platforms (e.g. Ubuntu 16.04.2 LTS, using Yarn and Node installed from packages), `yarn link` will fail in the `stripes-core` directory, reporting:
+
+> error An unexpected error occurred: "EACCES: permission denied, symlink '../../home/mike/git/work/stripes-core/stripes.js' -> '/usr/bin/stripes'".
+
+We do not yet know how to resolve this:
+See [STRIPES-218](https://issues.folio.org/browse/STRIPES-218).
 
 
