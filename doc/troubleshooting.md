@@ -61,8 +61,19 @@ On some platforms (e.g. Ubuntu 16.04.2 LTS, using Yarn and Node installed from p
 error An unexpected error occurred: "EACCES: permission denied, symlink '../../home/mike/git/work/stripes-core/stripes.js' -> '/usr/bin/stripes'".
 ```
 
-We do not yet know how to resolve this:
-See [STRIPES-218](https://issues.folio.org/browse/STRIPES-218).
+The problem here is that, depending on whether NPM and/or Yarn was installed using operating-system packages (`apt-get` or Debian or Ubuntu systems), third-party packages (such as those provided by [Homebrew](https://brew.sh/) on a Mac), using NPM itself or by other means, it may end up with a different idea of where "global" installs should be. In some cases, its guess is OK; in others, it chooses somewhere where you don't have write permission.
+
+The fix is to explicitly define where to do "global" installs. In the `.npmrc` file in your home directory, add a `prefix` setting, pointing to a directory that you own:
+
+```
+prefix=/home/mike/lib/npm
+```
+
+And ensure that this directory both exists and contains a `bin` subdirectory (initially empty).
+
+It should then be possible to `yarn link`.
+
+See [STRIPES-218](https://issues.folio.org/browse/STRIPES-218) for details.
 
 
 ## Uncaught TypeError: Cannot read property 'reducersFor' of undefined
