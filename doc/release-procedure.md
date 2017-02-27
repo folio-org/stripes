@@ -51,7 +51,7 @@ After making a release, the version number in the `master` branch's `package.jso
 
 ## Note on access to the NPM repository
 
-Before you can do `yarn publish`, you will need access to the Index Data/FOLIO NPM repository at `folio-nexus.indexdata.com`. Get these credentials from an administrator. Once you have them, login as follows:
+Before you can do `yarn publish`, you will need access to the Index Data/FOLIO NPM repository at `repository.folio.org`. Get these credentials from an administrator. Once you have them, login as follows:
 ```
 $ npm config set @folio:registry https://repository.folio.org/repository/npm-folio/
 $ npm adduser --registry=https://repository.folio.org/repository/npm-folio/
