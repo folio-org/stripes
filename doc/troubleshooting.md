@@ -35,7 +35,9 @@ find stripes-* ui-* -name react | grep -v '^stripes-sample-platform' | xargs rm 
 
 Sometimes, when loading a React component for the first time, the JavaScript console will display the rather incoherent message:
 
-> "Warning: Failed context type: Invalid context `storeSubscription` of type `Subscription` supplied to `Connect(Form(UserForm))`, expected instance of `Subscription`."
+```
+"Warning: Failed context type: Invalid context `storeSubscription` of type `Subscription` supplied to `Connect(Form(UserForm))`, expected instance of `Subscription`."
+```
 
 According to comments on [Redux issue 534](https://github.com/reactjs/react-redux/issues/534), this is caused by having two copies of `react-redux` running at once, most likely due to multiple packages requiring it. The simple fix is to remove the `node_modules/react-redux` directories from all Stripes packages except `stripes-core`.
 
@@ -44,7 +46,9 @@ According to comments on [Redux issue 534](https://github.com/reactjs/react-redu
 
 Under certain circumstances -- the details are not clear -- the following warning appears in the JavaScript console:
 
-> Warning: setState(...): Cannot update during an existing state transition (such as within `render` or another component's constructor). Render methods should be a pure function of props and state; constructor side-effects are an anti-pattern, but can be moved to `componentWillMount`.
+```
+Warning: setState(...): Cannot update during an existing state transition (such as within `render` or another component's constructor). Render methods should be a pure function of props and state; constructor side-effects are an anti-pattern, but can be moved to `componentWillMount`.
+```
 
 See [STRIPES-216](https://issues.folio.org/browse/STRIPES-216) for details.
 
@@ -53,7 +57,9 @@ See [STRIPES-216](https://issues.folio.org/browse/STRIPES-216) for details.
 
 On some platforms (e.g. Ubuntu 16.04.2 LTS, using Yarn and Node installed from packages), `yarn link` will fail in the `stripes-core` directory, reporting:
 
-> error An unexpected error occurred: "EACCES: permission denied, symlink '../../home/mike/git/work/stripes-core/stripes.js' -> '/usr/bin/stripes'".
+```
+error An unexpected error occurred: "EACCES: permission denied, symlink '../../home/mike/git/work/stripes-core/stripes.js' -> '/usr/bin/stripes'".
+```
 
 We do not yet know how to resolve this:
 See [STRIPES-218](https://issues.folio.org/browse/STRIPES-218).
