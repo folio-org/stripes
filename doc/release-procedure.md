@@ -22,7 +22,7 @@ For new major and minor releases, we make a branch, whose name begins with `b` -
 ## Release procedure
 
 * Increment the version number in `package.json`, if this has not already been done -- bumping the major version if there are backwards-incompatible changes, and the minor version if all changes are backwards-compatible.
-* Add an entry to the project's `CHANGELOG.md` decribing how the new release differs from the previous one.
+* Add an entry to the project's `CHANGELOG.md` describing how the new release differs from the previous one.
 * Make a release branch, named with `b` followed by the version of the new release -- for example, `b2.3`. Version 2.3.0 -- and versions 2.3.1, 2.3.2, etc. if needed -- will be made from this branch.
 * If any changes specific to this release are needed, make them in the branch.
 * Create a tag for the specific version to be released -- for example, `v2.3.0`.
