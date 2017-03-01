@@ -58,3 +58,6 @@ Bringing machine 'default' up with 'virtualbox' provider...
 ```
 
 You will then be able to contact Okapi on port 9130, and ask it what modules it is running on http://localhost:9130/_/proxy/modules
+
+If you need to log into the virtual machine that is running Okapi and the modules, use `vagrant ssh`.
+
