@@ -8,6 +8,7 @@ In the order we ran into them, here are some things that can go wrong when build
 * [Warning: Cannot update during an existing state transition](#warning-cannot-update-during-an-existing-state-transition)
 * [EACCES: permission denied, symlink '../../home/mike/git/work/stripes-core/stripes.js' -> '/usr/bin/stripes'](#eacces-permission-denied-symlink-homemikegitworkstripes-corestripesjs---usrbinstripes)
 * [Uncaught TypeError: Cannot read property 'reducersFor' of undefined](#uncaught-typeerror-cannot-read-property-reducersfor-of-undefined)
+* [Editing some source files does not cause `yarn start` to rebuild](#editing-some-source-files-does-not-cause-yarn-start-to-rebuild)
 
 
 ## addComponentAsRefTo(...): Only a ReactOwner can have refs.
@@ -93,5 +94,30 @@ This is caused by having a stale v1.x of `react-redux` hanging around somewhere 
 The fix is to re-run `yarn install` in the package that has the stale `react-redux`. If you're not sure which package that is, re-run it in all of them to be sure.
 
 (More discussion in [STRIPES-219](https://issues.folio.org/browse/STRIPES-219).)
+
+
+## Editing some source files does not cause `yarn start` to rebuild
+
+In general, if a Stripes development server is already running when you edit one of the source files of Stripes or any included module, the server will emit a message `webpack building...`, then shortly afterwards `webpack built 2e44cab1ab6c516e60e7 in 1658ms`. So it's not necessary to restart the development server every time you make a change (though in general you do need to refresh the browser).
+
+But sometimes, editing certain source files will _not_ make this happen, and a clumsy, time-consuming manual restart is necessary.
+
+Internally, WebPack uses [`inotify`](http://man7.org/linux/man-pages/man7/inotify.7.html) to be informed when a source file has changed. Linux supports only a limited number of watches. Annoyingly, if WebPack exceeds this number, it doesn't inform the developer but just proceeds blindly.
+
+You can increase the limit on the number of watches by writing to the special file `/proc/sys/fs/inotify/max_user_watches`. You will need to become root to do this:
+
+```
+$ cat /proc/sys/fs/inotify/max_user_watches 
+8192
+$ sudo bash
+[sudo] password for mike: 
+# echo 524288 > /proc/sys/fs/inotify/max_user_watches 
+# exit
+$ cat /proc/sys/fs/inotify/max_user_watches 
+524288
+$ 
+```
+
+Once the limit is high enough, you can restart the server (e.g. `yarn start`) and it will re-scan the source tree, so that it is subsequently able to recognise changes in any source file.
 
 
