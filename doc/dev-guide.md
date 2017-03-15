@@ -1,26 +1,34 @@
 # The Stripes Module Developer's Guide
 
 <!-- ../../okapi/doc/md2toc -l 2 dev-guide.md -->
-* [Status](#status)
-* [Scope](#scope)
+* [Status and Scope](#status-and-scope)
+* [Code quality](#code-quality)
 * [Specifying dependencies](#specifying-dependencies)
 * [Logging](#logging)
-* [Styling](#styling)
+    * [Configuring the logger](#configuring-the-logger)
+    * [Using the logger](#using-the-logger)
+* [Styling HTML](#styling-html)
 
 
-## Status
+## Status and Scope
 
-This document is in progress and incomplete. In time, it will  an introduction and overview, and form a coherent narratvie. For the moment, it's just a holding place for information that needs to be in the documentation somewhere, but does not yet have an obvious home.
+**This document is in progress and incomplete.** In time, it will  an introduction and overview, and form a coherent narrative. For the moment, it's just a holding place for information that needs to be in the documentation somewhere, but does not yet have an obvious home.
+
+This document is aimed at those writing application modules for Stripes -- such as the Users module, the Items module and the Scan module. Those working on the packages that make up Stripes itself (such as `stripes-connect` and `stripes-components`) must follow rather different conventions.
 
 
-## Scope
+## Code quality
 
-This document is aimed at those writing application modules for Stripes -- such as the Users module, the Items module and the Scan module. Those working on the packages that make up Stripes itself (such as stripes-connect and stripes-components) mus follow rather different conventions.
+In general, we expect every module to pass [ESLint](http://eslint.org/) with no errors.
+
+We aim to write tests (generally using [Mocha](https://mochajs.org/), though at present we are not as far along with this as we might wish. Over time, we will develop coventions for how best to mock parts of FOLIO for testing purposes.
+
+If you are not sure about some code you have written, ask for a code review from another member of the team. We do _not_, as a matter of course, review all code: our judgement at present is that doing so would cost us more than it bought us.
 
 
 ## Specifying dependencies
 
-In general, we expect every module to pass [ESLint](http://eslint.org/) with no errors. This means, among other things, that every package that a module uses must be listed as a dependency in its `package.json`. Modules may not blindly rely on the provision of facilities such as React and Redux via Stripes Core, but must specify for themselves what they use, and what version they require.
+ESLint cleanliness means, among other things, that every package that a module uses must be listed as a dependency in its `package.json`. Modules may not blindly rely on the provision of facilities such as React and Redux via Stripes Core, but must specify for themselves what they use, and what version they require.
 
 Specifically:
 
@@ -56,7 +64,7 @@ The configured logger object is furnished as the `logger` property to the top-le
 In addition, the logger is passed as the fourth argument into stripes-connect path functions.
 
 
-## Styling
+## Styling HTML
 
 In general, modules should not use CSS directly, nor rely on styling libraries such as Bootstrap, but should use low-lever components from `stripes-components`, which are pre-styled according to Stripes conventions.
 
