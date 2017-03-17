@@ -4,6 +4,9 @@
 * [Status and Scope](#status-and-scope)
 * [Code quality](#code-quality)
 * [Specifying dependencies](#specifying-dependencies)
+* [Enforcing permissions](#enforcing-permissions)
+    * [The permissions structure](#the-permissions-structure)
+    * [Testing for permission](#testing-for-permission)
 * [Logging](#logging)
     * [Configuring the logger](#configuring-the-logger)
     * [Using the logger](#using-the-logger)
@@ -35,6 +38,35 @@ Specifically:
 * Every package that a module imports (`react`, `react-router`, `stripes-components`, etc.) should be declared as a dependency in `package.json` -- most easily added using `yarn add` _packageName_.
 
 * When `stripes-connect` is used -- even when it's not imported, but the curried `connect` function from the props of the top-level component is used -- it should be declared as a peer-dependency. (This is essentially specifying what version of the stripes-connect API we are relying on).
+
+
+## Enforcing permissions
+
+Users in the FOLIO system have a set of permissions assigned to them. These are named by short strings such as `users.read`, `users.edit`, `perms.permissions.create`, etc. Operations are allowed or prohibited by server-side modules according as the logged-in user does or does not have the corresponding permissions.
+
+However, in order to prevent misleading the user, or provoking inevitable authorization errors, good UI code also checks the available permissions, and does not provide the option of attempting operations that are doomed to fail. It does this by consulting the user's list of permissions and checking to see whether they include the one necessary for the operation in question.
+
+### The permissions structure
+
+The permissions are provided to the top-level component of each module as the `currentPerms` property; it is the responsibility of that component to make it available to other components -- either by passing it as a property (`<SubComponent ... currentPerms={this.props.currentPerms}>` or by installing it in the React context.
+
+The `currentPerms` structure is a JavaScript object whose keys are the names of the permissions that the user has, and whose keys are the corresponding human-readable descriptions. For example, the `users.read` permission might have the descriptions "Can search users and view brief profiles".
+
+### Testing for permission
+
+Generally, code should not assume that the `currentPerms` property exists, since the initial render of some components may happen before a user has logged in. So a permission such as `this.props.currentPerms['users.read']` should be checked only after the existence of the permissionss strucure has been verified. One easy way to do this us using [Lodash](https://lodash.com/)'s `get` function:
+
+```
+if (_.get(this.props, ['currentPerms', 'users.read])) ...
+```
+
+When guarding small element, such as an "New user" button that should appear only when when the `users.create` permission is present, the helper component [`<IfPermission>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfPermission/readme.md) can be used:
+
+```
+<IfPermission {...this.props} perm="users.create">
+  <Button fullWidth onClick={this.onClickAddNewUser}>New user</Button>
+</IfPermission>
+```
 
 
 ## Logging
