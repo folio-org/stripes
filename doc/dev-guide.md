@@ -54,7 +54,7 @@ The `currentPerms` structure is a JavaScript object whose keys are the names of 
 
 ### Testing for permission
 
-Generally, code should not assume that the `currentPerms` property exists, since the initial render of some components may happen before a user has logged in. So a permission such as `this.props.currentPerms['users.read']` should be checked only after the existence of the permissionss strucure has been verified. One easy way to do this us using [Lodash](https://lodash.com/)'s `get` function:
+Generally, code should not assume that the `currentPerms` property exists, since the initial render of some components may happen before a user has logged in. So a permission such as `this.props.currentPerms['users.read']` should be checked only after the existence of the permissions structure has been verified. One easy way to do this us using [Lodash](https://lodash.com/)'s `get` function:
 
 ```
 if (_.get(this.props, ['currentPerms', 'users.read])) ...
