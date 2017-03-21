@@ -48,19 +48,19 @@ However, in order to prevent misleading the user, or provoking inevitable author
 
 ### The permissions structure
 
-The permissions are provided to the top-level component of each module as the `currentPerms` property; it is the responsibility of that component to make it available to other components -- either by passing it as a property (`<SubComponent ... currentPerms={this.props.currentPerms}>` or by installing it in the React context.
+The permissions are provided to the top-level component of each module as the `users.perms` element of the `stripes` property; it is the responsibility of that component to make the `stripes` object available to other components -- either by passing it as a property (`<SubComponent ... stripes={this.props.stripes}>` or by installing it in the React context.
 
-The `currentPerms` structure is a JavaScript object whose keys are the names of the permissions that the user has, and whose keys are the corresponding human-readable descriptions. For example, the `users.read` permission might have the descriptions "Can search users and view brief profiles".
+The `perms` structure is a JavaScript object whose keys are the names of the permissions that the user has, and whose keys are the corresponding human-readable descriptions. For example, the `users.read` permission might have the descriptions "Can search users and view brief profiles".
 
 ### Testing for permission
 
-Generally, code should not assume that the `currentPerms` property exists, since the initial render of some components may happen before a user has logged in. So a permission such as `this.props.currentPerms['users.read']` should be checked only after the existence of the permissions structure has been verified. One easy way to do this us using [Lodash](https://lodash.com/)'s `get` function:
+Generally, code should not assume that the `user.perms` element of the `stripes` component exists, since the initial render of some components may happen before a user has logged in. So a permission such as `this.props.stripes.user.perms['users.read']` should be checked only after the existence of the permissions structure has been verified. The easiest way to do this is using the `stripes` object's `hasPerm` method:
 
 ```
-if (_.get(this.props, ['currentPerms', 'users.read])) ...
+if (this.props.stripes.hasPerm('users.read')) ...
 ```
 
-When guarding small element, such as an "New user" button that should appear only when when the `users.create` permission is present, the helper component [`<IfPermission>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfPermission/readme.md) can be used:
+When guarding small elements, such as an "New user" button that should appear only when when the `users.create` permission is present, the helper component [`<IfPermission>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfPermission/readme.md) can be used:
 
 ```
 <IfPermission {...this.props} perm="users.create">
