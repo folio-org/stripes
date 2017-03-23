@@ -4,6 +4,7 @@
 * [Status and Scope](#status-and-scope)
 * [Code quality](#code-quality)
 * [Specifying dependencies](#specifying-dependencies)
+* [The Stripes object](#the-stripes-object)
 * [Enforcing permissions](#enforcing-permissions)
     * [The permissions structure](#the-permissions-structure)
     * [Testing for permission](#testing-for-permission)
@@ -38,6 +39,35 @@ Specifically:
 * Every package that a module imports (`react`, `react-router`, `stripes-components`, etc.) should be declared as a dependency in `package.json` -- most easily added using `yarn add` _packageName_.
 
 * When `stripes-connect` is used -- even when it's not imported, but the curried `connect` function from the props of the top-level component is used -- it should be declared as a peer-dependency. (This is essentially specifying what version of the stripes-connect API we are relying on).
+
+
+## The Stripes object
+
+Programming in Stripes is essentially [programming in React](https://facebook.github.io/react/docs/thinking-in-react.html), with one big difference: the provision of the Stripes object. As with regular React, data flows down through components (as props) and actions flow up.
+
+The Stripes object is provided as the `stripes` property to the top-level component of each module (and to its settings component, if it has one). It is the responsibility of that component to make it available as required elsewhere in the module -- by passing the prop down to its children, by installing it in the React context, or by some other means.
+
+The Stripes object contains the following elements:
+
+* `connect` -- a function that can be used to connect subcomponents to [stripes-connect](https://github.com/folio-org/stripes-connect), enabling that module to use [the Stripes Connect API](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md) to communicate with WSAPIs such as those provided by Okapi.
+
+* `hasPerm` -- a function that can be used for [checking whether the presently logged-in user has a specified permission](#testing-for-permission).
+
+* `logger` -- a [stripes-logger](https://github.com/folio-org/stripes-logger) object that has been configured for Stripes and can be used in the usual way: see [Logging](#logging).
+
+* `store` -- the application's [Redux](https://github.com/reactjs/redux) store. **In general, you should not use this**, relying instead on the Stripes Connect facilities; but it is provided as a backdoor which developers can use with discretion.
+
+* `okapi` -- a structure containing configuration information about the connection of Okapi:
+
+  * `url` -- the base URL used in communication with Okapi. **In general, you should not use this** but there may be times when it is necessary to make an out-of-band call using [`fetch`](https://github.com/matthew-andrews/isomorphic-fetch) rather then have Stripes Connect handle communication.
+
+  * `tenant` -- the unique ID of the FOLIO tenant that is being accessed.
+
+* `user` -- a structure containing configuration information about the presently logged-in user:
+
+  * `perms` -- the set of permissions associated with the logged-in user, as described [below](#the-permissions-structure).
+
+  * `user` --- an object containing metadata about the logged-in user, with felds such as `email`, `first_name`, and `last_name`.
 
 
 ## Enforcing permissions
