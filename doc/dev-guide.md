@@ -67,7 +67,7 @@ The Stripes object contains the following elements:
 
   * `perms` -- the set of permissions associated with the logged-in user, as described [below](#the-permissions-structure).
 
-  * `user` --- an object containing metadata about the logged-in user, with felds such as `email`, `first_name`, and `last_name`.
+  * `user` -- an object containing metadata about the logged-in user, with fields such as `email`, `first_name`, and `last_name`.
 
 * `config` -- a structure containing misleading configuration information, including:
 
@@ -98,7 +98,7 @@ Generally, code should not assume that the `user.perms` element of the `stripes`
 if (this.props.stripes.hasPerm('users.read')) ...
 ```
 
-When guarding small elements, such as an "New user" button that should appear only when when the `users.create` permission is present, the helper component [`<IfPermission>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfPermission/readme.md) can be used:
+When guarding small elements, such as a "New user" button that should appear only when when the `users.create` permission is present, the helper component [`<IfPermission>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfPermission/readme.md) can be used:
 
 ```
 <IfPermission {...this.props} perm="users.create">
