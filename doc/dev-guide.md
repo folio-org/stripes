@@ -12,6 +12,7 @@
     * [Configuring the logger](#configuring-the-logger)
     * [Using the logger](#using-the-logger)
 * [Styling HTML](#styling-html)
+* [Other (XXX to be integrated)](#other-xxx-to-be-integrated)
 
 
 ## Status and Scope
@@ -140,4 +141,8 @@ In addition, the logger is passed as the fourth argument into stripes-connect pa
 
 In general, modules should not use CSS directly, nor rely on styling libraries such as Bootstrap, but should use low-lever components from `stripes-components`, which are pre-styled according to Stripes conventions.
 
+
+## Other (XXX to be integrated)
+
+Beware of re-using resource names in multiple components within a single module.
 
