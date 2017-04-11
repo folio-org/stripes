@@ -41,3 +41,25 @@ Stripes components extend the functionality of raw React components in several w
 * Re-rendering is possible because all relevant state is stored with Stripes or Okapi and managed outside of the component.
 
 * This approach enables us to set up test harnesses where components can be fed stock data from their chosen Okapi web services (we will build on things like [Enzyme](http://airbnb.io/enzyme/) that do this more generically for React components).
+
+## NPM packages
+
+The whole Stripes framework consists of the following set of git modules -- all of them also represented as NPM packages in the `@folio` namespace. Higher modules have dependencies on lower modules.
+
+```
+
+                           stripes-sample-platform
+                                      |
+                                      |
+                                      |
+                                      |
+                                stripes-core
+                                /   /   \   \
+                 ______________/   /     \   \______________
+                /                 /       \                 \
+               /                 /         \                 \
+   stripes-components    stripes-connect   stripes-loader   stripes-logger
+
+```
+`stripes-components` has a peer-dependency on `stripes-core`.
+`stripes-connect`, `stripes-loader`, and `stripes-logger` do not.
