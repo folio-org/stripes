@@ -42,7 +42,7 @@ Stripes components extend the functionality of raw React components in several w
 
 * This approach enables us to set up test harnesses where components can be fed stock data from their chosen Okapi web services (we will build on things like [Enzyme](http://airbnb.io/enzyme/) that do this more generically for React components).
 
-## NPM packages
+## Packages and dependencies
 
 The whole Stripes framework consists of the following set of git modules -- all of them also represented as NPM packages in the `@folio` namespace. Higher modules have dependencies on lower modules.
 
@@ -61,5 +61,5 @@ The whole Stripes framework consists of the following set of git modules -- all 
    stripes-components    stripes-connect   stripes-loader   stripes-logger
 
 ```
-`stripes-components` has a peer-dependency on `stripes-core`.
-`stripes-connect`, `stripes-loader`, and `stripes-logger` do not.
+`stripes-components` has a peer-dependency on `stripes-core`, because it depends on part of the `stripes-core` API -- specifically, the provision of [the Stripes object|https://github.com/folio-org/stripes-core/blob/master/doc/dev-guide.md#the-stripes-object].
+`stripes-connect`, `stripes-loader`, and `stripes-logger` do not have a similar peer-dependency: `stripes-core` consumes their APIs rather then vice versa.
