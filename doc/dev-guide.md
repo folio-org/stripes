@@ -2,6 +2,7 @@
 
 <!-- ../../okapi/doc/md2toc -l 2 dev-guide.md -->
 * [Status and Scope](#status-and-scope)
+* [Modules](#modules)
 * [Code quality](#code-quality)
 * [Specifying dependencies](#specifying-dependencies)
 * [The Stripes object](#the-stripes-object)
@@ -20,6 +21,15 @@
 **This document is in progress and incomplete.** In time, it will be an introduction and overview, and form a coherent narrative. For the moment, it's just a holding place for information that needs to be in the documentation somewhere, but does not yet have an obvious home.
 
 This document is aimed at those writing application modules for Stripes -- such as the Users module, the Items module and the Scan module. Those working on the packages that make up Stripes itself (such as `stripes-connect` and `stripes-components`) must follow rather different conventions.
+
+
+## Modules
+
+The unit of UI development is the _module_. A Stripes UI module is a self-contained chunk of UI that can be loaded into Stripes, and which therefore must conform to various requirements. The source-code for a modules is generally held in a git project whose name begins `ui-`.
+
+XXX describe requirements.
+
+In its early stages, the Organization module, [`ui-organization`](https://github.com/folio-org/ui-organization), provided a good example of what it required. If you are looking for a template on which to base your own module, [commit 98cdfee0](https://github.com/folio-org/ui-organization/tree/98cdfee0fab4f74b9dc3e412b81a433121de5631) is a good place to start.
 
 
 ## Code quality
