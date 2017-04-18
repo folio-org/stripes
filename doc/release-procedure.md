@@ -24,7 +24,7 @@ Patch releases can be done on a branch whose name begins with `b` and is followe
 ## Release procedure
 
 * Increment the version number in `package.json`, if this has not already been done -- bumping the major version if there are backwards-incompatible changes, and the minor version if all changes are backwards-compatible.
-* Add an entry to the project's `CHANGELOG.md` describing how the new release differs from the previous one. The purpose of the change-log to allow a module developer to answer the question "Do I need to upgrade to the new version of this package?", so aim for a high-level overview rather than enumerating every change, and concentrate on API-visible rather then internal changes.
+* Add an entry to the project's `CHANGELOG.md` describing how the new release differs from the previous one. The purpose of the change-log is to allow a module developer to answer the question "Do I need to upgrade to the new version of this package?", so aim for a high-level overview rather than enumerating every change, and concentrate on API-visible rather then internal changes.
 * Commit the `package.json` and `CHANGELOG.md` changes with the message "Release v2.3.0".
 * Create a tag for the specific version to be released -- for example, `v2.3.0`.
 * Publish the package to the npm repository using `npm publish`. (You will need credentials to do this: see note below.)
