@@ -32,7 +32,7 @@ This document is aimed at those writing application modules for Stripes -- such 
 
 ### Modules
 
-The unit of UI development is the _module_. A Stripes UI module is a self-contained chunk of UI that can be loaded into Stripes, and which therefore must conform to various requirements. The source-code for a modules is generally held in a git project whose name begins `ui-`.
+The unit of UI development is the _module_. A Stripes UI module is a self-contained chunk of UI that can be loaded into Stripes, and which therefore must conform to various requirements. The source-code for a module is generally held in a git project whose name begins `ui-`.
 
 XXX describe requirements.
 
