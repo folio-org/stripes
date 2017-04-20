@@ -4,6 +4,7 @@
 * [Status and Scope](#status-and-scope)
 * [Overview](#overview)
     * [Modules](#modules)
+        * [Sample module](#sample-module)
     * [Code quality](#code-quality)
     * [Specifying dependencies](#specifying-dependencies)
 * [Development](#development)
@@ -34,7 +35,24 @@ This document is aimed at those writing application modules for Stripes -- such 
 
 The unit of UI development is the _module_. A Stripes UI module is a self-contained chunk of UI that can be loaded into Stripes, and which therefore must conform to various requirements. The source-code for a module is generally held in a git project whose name begins `ui-`.
 
-XXX describe requirements.
+A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(software)). In addition to [the usual information in its `package.json`](https://docs.npmjs.com/files/package.json), a Stripes module must provide a `stripes` entry containing the following information:
+
+* `type` -- a short string indicating what the type of the module is, and how it therefore behaves within the Stripes application. Acceptable values are:
+  * `app` -- a regular application, which is listed among those available and which when activated uses essentially the whole screen.
+  * `settings` -- a settings pane that is listed in the settings menu but does not present a full-page application.
+
+* `displayName` -- the name of the module as it should be viewed by human users -- e.g. "Okapi Console".
+
+* `route` -- the route (partial URL) by which an application module is addressed: for example, the Okapi Console module might be addressed at `/console`. The same route is used as a subroute within `/settings` to present the module's settings, if any.
+
+* `home` -- the first page of the module that should be presented to users, if this is different from the `route`. (It may be different because of default options being selected: for example, the Users module might be set up so that by default it limits its user-list to active users@ this could be expressed with a `home` setting of `/users?filters=active.Active`.)
+
+* `hasSettings` -- for "app" modules, if this is true then a settings pane is also provided, and a link will be listed in the Settings area. If this is false (the default) no settings are shown for the module.
+
+When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever is exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
+
+
+#### Sample module
 
 In its early stages, the Organization module, [`ui-organization`](https://github.com/folio-org/ui-organization), provided a good example of what it required. If you are looking for a template on which to base your own module, [commit 98cdfee0](https://github.com/folio-org/ui-organization/tree/98cdfee0fab4f74b9dc3e412b81a433121de5631) is a good place to start.
 
