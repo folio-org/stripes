@@ -328,9 +328,36 @@ The Redux community leans towards fewer connected components where possible, as 
 XXX but note the implications when avoid permission errors from WSAPIs.
 
 
-## Appendix: escaping to redux
+## Appendix: escaping to Redux
 
-XXX
+**WARNING.** Do not do this.
+
+In general, Stripes modules should never need to access the Redux store that is used internally. However, in some unusual circumstances, this may be necessary. For example, then the Users module creates a new user, it then goes on to post the user's credentials (username and password) to a different WSAPI endpoint and the user's initial set of permissions to a third endpoint. Rather then using stripes-connect for these operations, it uses low-level [`fetch`](https://github.com/matthew-andrews/isomorphic-fetch) calls; and in order to obtain the current session's authentication token to include in the HTTP calls, it looks inside the state of the Redux store.
+
+This store is available as `store` on the Stripes object, and its state is available via the `getState` method. So:
+
+```
+class Users extends React.Component {
+  static contextTypes = {
+    store: PropTypes.object,
+  };
+
+  postCreds(username, creds) {
+    const okapi = context.store.getState().okapi;
+    fetch(url, {
+      method: 'POST',
+      headers: Object.assign({}, {
+        'X-Okapi-Tenant': okapi.tenant,
+        'X-Okapi-Token': okapi.token,
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(creds),
+    });
+  }
+}
+```
+
+Note that this code does _not_ access the stripes-connect data within the Redux store: so far, no situation has been found where thar is necessary or desirable. Instead, it accesses internal data about the present session. (Arguably, that data should be made available in the Stripes object; but really, module code should not need to use this at all.)
 
 
 ## Other (XXX to be integrated)
