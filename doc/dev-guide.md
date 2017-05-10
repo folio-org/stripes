@@ -141,9 +141,11 @@ Specifically:
 
 Programming in Stripes is essentially [programming in React](https://facebook.github.io/react/docs/thinking-in-react.html), with one big difference: the provision of the Stripes object. As with regular React, data flows down through components (as props) and actions flow up.
 
-The Stripes object is provided as the `stripes` property to the top-level component of each module (and to its settings component, if it has one). It is the responsibility of that component to make it available as required elsewhere in the module -- by passing the prop down to its children, by installing it in the React context, or by some other means.
+The Stripes object is provided as the `stripes` property to the top-level component of each module. It is the responsibility of that component to make it available as required elsewhere in the module -- by passing the prop down to its children, by installing it in the React context, or by some other means.
 
 The Stripes object contains the following elements:
+
+* `locale` -- a short string specifying the prevailing locale, e.g. `en-US`. This should be consulted when rendering dates with `toLocaleDateString`, etc.
 
 * `connect` -- a function that can be used to connect subcomponents to [stripes-connect](https://github.com/folio-org/stripes-connect), enabling that module to use [the Stripes Connect API](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md) to communicate with WSAPIs such as those provided by Okapi.
 
@@ -151,7 +153,7 @@ The Stripes object contains the following elements:
 
 * `logger` -- a [stripes-logger](https://github.com/folio-org/stripes-logger) object that has been configured for Stripes and can be used in the usual way: see [Logging](#logging).
 
-* `store` -- the application's [Redux](https://github.com/reactjs/redux) store. **In general, you should not use this**, relying instead on the Stripes Connect facilities; but it is provided as a backdoor which developers can use with discretion.
+* `store` -- the application's [Redux](https://github.com/reactjs/redux) store. **In general, you should not use this**, relying instead on the Stripes Connect facilities; but it is provided as a backdoor which developers can use with discretion. See [the Appendix](#appendix-escaping-to-redux).
 
 * `okapi` -- a structure containing configuration information about the connection of Okapi:
 
