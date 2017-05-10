@@ -8,6 +8,10 @@
     * [Modules](#modules)
         * [Skeleton module](#skeleton-module)
     * [Code quality](#code-quality)
+        * [ESLint](#eslint)
+        * [Use of the JavaScript console.](#use-of-the-javascript-console)
+        * [Unit-testing](#unit-testing)
+        * [Code-review](#code-review)
     * [Specifying dependencies](#specifying-dependencies)
 * [Development](#development)
     * [The Stripes object](#the-stripes-object)
@@ -99,9 +103,21 @@ In its early stages, the Organization module, [`ui-organization`](https://github
 
 ### Code quality
 
-In general, we expect every module to pass [ESLint](http://eslint.org/) with no errors.
+#### ESLint
 
-We aim to write tests (generally using [Mocha](https://mochajs.org/), though at present we are not as far along with this as we might wish. Over time, we will develop conventions for how best to mock parts of FOLIO for testing purposes.
+In general, we expect every module to pass [ESLint](http://eslint.org/) without errors. (Run `yarn lint` in the project directory to check: new modules should be set up so that this works.) This does not necessarily mean that you must slavishly obey every order of ESLint: you may judge that one of its rules is foolish, and configure it not to apply -- for example, sometimes [`no-nested-ternary`](http://eslint.org/docs/rules/no-nested-ternary) impedes the most natural way to express an idea. But use [`eslint-disable` comments](http://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments) judiciously, only after carefully considering whether the code really could be rewritten in a clearer way.
+
+#### Use of the JavaScript console.
+
+All module code should run without leaving warnings in the JavaScript console. If you find a warning, hunt it down and fix it. Some warnings, especially from React, presage very bad and unpredictable things.
+
+In checked-in code, modules should not emit console message using `console.log` and similar -- although it can be useful to add such lines on a temporary basis during development. ESLint will help you find any stray logging commands. All console output should be generated using stripes-logger, as described [below](#logging).
+
+#### Unit-testing
+
+We aim to write unit tests (generally using [Mocha](https://mochajs.org/), though at present we are not as far along with this as we might wish. Over time, we will develop conventions for how best to mock parts of FOLIO for testing purposes.
+
+#### Code-review
 
 If you are not sure about some code you have written, ask for a code review from another member of the team. We do _not_, as a matter of course, review all code: our judgement at present is that doing so would cost us more than it bought us.
 
