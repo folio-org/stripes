@@ -2,9 +2,11 @@
 
 <!-- ../../okapi/doc/md2toc -l 2 dev-guide.md -->
 * [Status and Scope](#status-and-scope)
-* [Overview](#overview)
+* [Introduction](#introduction)
+    * [How Stripes fits together](#how-stripes-fits-together)
+    * [Underlying technology](#underlying-technology)
     * [Modules](#modules)
-        * [Sample module](#sample-module)
+        * [Skeleton module](#skeleton-module)
     * [Code quality](#code-quality)
     * [Specifying dependencies](#specifying-dependencies)
 * [Development](#development)
@@ -17,9 +19,6 @@
         * [Using the logger](#using-the-logger)
     * [Styling HTML](#styling-html)
 * [Thinking in Stripes](#thinking-in-stripes)
-    * [Introduction](#introduction)
-    * [How Stripes fits together](#how-stripes-fits-together)
-    * [Underlying technology](#underlying-technology)
     * [Principles of stripes-connect](#principles-of-stripes-connect)
         * [Overview](#overview)
         * [Declarative, immutable data manifest](#declarative-immutable-data-manifest)
@@ -33,13 +32,44 @@
 
 ## Status and Scope
 
-**This document is in progress and incomplete.** In time, it will be an introduction and overview, and form a coherent narrative. For the moment, it's just a holding place for information that needs to be in the documentation somewhere, but does not yet have an obvious home.
+**This document is in progress.** We endeavour to ensure that all the information here is correct, but we make no promises that is complete. (In this respect, it resembles a formal system of number theory.)
 
-This document is aimed at those writing application modules for Stripes -- such as the Users module, the Items module and the Scan module. Those working on the packages that make up Stripes itself (such as `stripes-connect` and `stripes-components`) must follow rather different conventions.
+This document is aimed at those writing UI modules for Stripes -- such as the Users module, the Items module and the Scan module. Those working on the packages that make up Stripes itself (such as `stripes-connect` and `stripes-components`) must follow rather different conventions.
 
 
 
-## Overview
+## Introduction
+
+The Stripes toolkit aims to make it as easy as possible to write UI modules that communicate with RESTful Web services. Most importantly, it is the toolkit used to write UI modules for [the FOLIO library services platform](https://www.folio.org/).
+
+This document aims to bring new UI module developers up to speed with the concepts behind Stripes (especially stripes-connect), so that they are have a context in which to understand [The Stripes Connect API](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md) reference guide.
+
+
+### How Stripes fits together
+
+Stripes consists of several separate JavaScript libraries that work together. The good news is that you don't need to think about most of them in order to create Stripes-based UI modules. They are:
+
+* [**stripes-connect**](https://github.com/folio-org/stripes-connect) -- provides the connection to FOLIO's services.
+* [**stripes-components**](https://github.com/folio-org/stripes-components) -- provides re-usable UI components such as checkboxes, search forms and multi-pane layouts.
+* [**stripes-loader**](https://github.com/folio-org/stripes-loader) -- low-level machinery that pulls a set of Stripes Modules into a web application.
+* [**stripes-logger**](https://github.com/folio-org/stripes-logger) -- simple facilities logging. 
+* [**stripes-core**](https://github.com/folio-org/stripes-core) -- a web application that controls a set of UI modules and helps them to work together.
+
+In general, stripes-core is configured by a list of UI modules to include, and it uses stripes-loader to pull them all into a 
+bundle of HTML/CSS/JS resources. Each of those modules composes UI elements from stripes-components (and other sources as needed), and these use stripes-connect to search, view, edit and manage data maintained by the FOLIO web-services, logging information with stripes-logger as desired.
+
+
+### Underlying technology
+
+Stripes UI modules are written in **JavaScript** -- specifically, in [ECMAScript 6 (ES6)](http://es6-features.org/), a modern version of JavaScript that fixes many of the problems that made the earlier version of the language difficult to work with.
+
+The Stripes UI is built using [**React**](https://facebook.github.io/react/), a library that provides an elegant component-based approach that can provide a very responsive user experience. The promise of React is that it "will efficiently update and render just the right components when your data changes." And the goal of stripes-connect is to ensure that your a module's React components are given the right data.
+
+React works best when used with [**JSX**](https://jsx.github.io/), a simple syntax for embedding XML (including HTML) into JavaScript. You don't need to use JSX,  but it's easy to learn and very expressive.
+
+As a module author, you need to know JavaScript (specifically ES6), React and ideally JSX; and be familiar with UI components (including those available from stripes-components) and understand how to connect to FOLIO web-services.
+
+(Under the hood, stripes-connect uses [Redux](https://github.com/reactjs/redux) to manage its state. But UI module authors should not need to use Redux directly. See [the appendix](#appendix-escaping-to-redux) if for some reason you do need access to the underlying Redux store.)
 
 
 ### Modules
@@ -56,16 +86,15 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 
 * `route` -- the route (partial URL) by which an application module is addressed: for example, the Okapi Console module might be addressed at `/console`. The same route is used as a subroute within `/settings` to present the module's settings, if any.
 
-* `home` -- the first page of the module that should be presented to users, if this is different from the `route`. (It may be different because of default options being selected: for example, the Users module might be set up so that by default it limits its user-list to active users@ this could be expressed with a `home` setting of `/users?filters=active.Active`.)
+* `home` -- the first page of the module that should be presented to users, if this is different from the `route`. (It may be different because of default options being selected: for example, the Users module might be set up so that by default it limits its user-list to active users: this could be expressed with a `home` setting of `/users?filters=active.Active`.)
 
-* `hasSettings` -- for "app" modules, if this is true then a settings pane is also provided, and a link will be listed in the Settings area. If this is false (the default) no settings are shown for the module.
+* `hasSettings` -- for "app" modules, if this is true then a settings pane is also provided, and a link will be listed in the Settings area. If this is false (the default) no settings are shown for the module. This is ignored for "settings" modules.
 
-When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever is exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
+When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
 
+#### Skeleton module
 
-#### Sample module
-
-In its early stages, the Organization module, [`ui-organization`](https://github.com/folio-org/ui-organization), provided a good example of what it required. If you are looking for a template on which to base your own module, [commit 98cdfee0](https://github.com/folio-org/ui-organization/tree/98cdfee0fab4f74b9dc3e412b81a433121de5631) is a good place to start.
+In its early stages, the Organization module, [`ui-organization`](https://github.com/folio-org/ui-organization), provided a good example of what is required. If you are looking for a template on which to base your own module, [commit 98cdfee0](https://github.com/folio-org/ui-organization/tree/98cdfee0fab4f74b9dc3e412b81a433121de5631) is a good place to start.
 
 
 ### Code quality
@@ -192,40 +221,6 @@ In general, modules should not use CSS directly, nor rely on styling libraries s
 
 
 ## Thinking in Stripes
-
-### Introduction
-
-[The Stripes toolkit](https://github.com/folio-org/stripes-core) aims to make it as easy as possible to write UI modules that communicate with RESTful Web services. Most importantly, it is the toolkit used to write UI modules for [the FOLIO library services platform](https://www.folio.org/).
-
-This document aims to bring new UI module developers up to speed with the concepts behind Stripes (especially stripes-connect), so that they are have a context in which to understand [The Stripes Connect API](api.md) reference guide.
-
-
-### How Stripes fits together
-
-Stripes consists of several separate JavaScript libraries that work together. The good news is that you don't need to think about most of them in order to create Stripes-based UI modules. They are:
-
-* **stripes-connect** -- provides the connection to FOLIO's services.
-* **stripes-components** -- provides re-usable UI components such as checkboxes, search forms and multi-pane layouts.
-* **stripes-loader** -- low-level machinery that pulls a set of Stripes Modules into a web application.
-* **stripes-core** -- a web application that controls a set of UI modules and helps them to work together.
-
-In general, Stripes Core is configured by a list of UI modules to include, and it uses stripes-loader to pull them all into a bundle of HTML/CSS/JS resources. Each of those modules composes UI elements from stripes-components (and other sources as needed) to search, view, edit and manage data maintained by the FOLIO web-services.
-
-As a module author, you need to know JavaScript, be familiar with UI components (including those available from stripes-components) and understand how to connect to FOLIO web-services.
-
-
-### Underlying technology
-
-Stripes UI modules are written in **JavaScript** -- specifically, in [ECMAScript 6 (ES6)](http://es6-features.org/), a modern version of JavaScript that fixes many of the problems that made the earlier version of the language difficult to work with.
-
-The Stripes UI is built using [**React**](https://facebook.github.io/react/), a library that provides an elegant component-based approach that can provide a very responsive user experience. The promise of React is that it "will efficiently update and render just the right components when your data changes." And that is also the goal of stripes-connect.
-
-React works best when used with [**JSX**](https://jsx.github.io/), a simple syntax for embedding XML (including HTML) into JavaScript. You don't need to use JSX,  but it's easy to learn and very expressive.
-
-So you should consider ES6, React and JSX the prerequisites for writing Stripes UI components.
-
-(Under the hood, stripes-connect uses [Redux](https://github.com/reactjs/redux) to manage its state. But UI module authors do not need to use Redux directly.)
-
 
 ### Principles of stripes-connect
 
