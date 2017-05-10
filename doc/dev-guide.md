@@ -25,11 +25,10 @@
     * [Styling HTML](#styling-html)
 * [Thinking in Stripes](#thinking-in-stripes)
     * [Principles of stripes-connect](#principles-of-stripes-connect)
-        * [Overview](#overview)
-        * [Declarative, immutable data manifest](#declarative-immutable-data-manifest)
-        * [Modifying local state](#modifying-local-state)
-        * [Firing actions](#firing-actions)
-    * [Principles for designing Stripes UI modules](#principles-for-designing-stripes-ui-modules)
+    * [Declarative, immutable data manifest](#declarative-immutable-data-manifest)
+    * [Modifiable local state](#modifiable-local-state)
+    * [Firing actions](#firing-actions)
+* [Component structure in Stripes UI modules](#component-structure-in-stripes-ui-modules)
 * [Appendix: escaping to redux](#appendix-escaping-to-redux)
 * [Other (XXX to be integrated)](#other-xxx-to-be-integrated)
 
@@ -274,8 +273,6 @@ In general, modules should not use CSS directly, nor rely on styling libraries s
 
 ### Principles of stripes-connect
 
-#### Overview
-
 When programming with stripes-connect, you do not directly interact with the back-end web-services. There is no sending of requests or handling of responses -- the stripes-connect library deals with all that. Instead, UI components do three things:
 
 1. They make a declarative statement of what back-end information they are interested, in the form of a _manifest_. The manifest provides information about a number of _resources_, each of which corresponds to data available from the back-end. Most importantly, each resource's `path` specifies how various parts of state -- URL path components and query parameters, local state such as form values, etc. -- is composed into a web-service URL used to access the back-end web-service. XXX note that other parameter, such as `query`, now also come into play. Update needed here.
@@ -286,7 +283,7 @@ When programming with stripes-connect, you do not directly interact with the bac
 
 That is all. The stripes-connect library issues the necessary requests, handles the responses, and updates the component's properties; and React then ensures that components whose contents have changed are re-rendered.
 
-#### Declarative, immutable data manifest
+### Declarative, immutable data manifest
 
 A manifest is provided by each connected component class in a UI module. It is a class-level static constant. For example:
 
@@ -301,7 +298,7 @@ A manifest is provided by each connected component class in a UI module. It is a
 
 The manifest is constant, immutable, and identical across all instances of a class -- something that is conventionally indicated in code by freezing the object with `Object.freeze()`. It can be thought of as constituting a set of instructions for transforming local state into remote operations.
 
-#### Modifying local state
+### Modifiable local state
 
 The manifest is immutable, and shared between all instances of a component. By contrast, each instance of a component has its own local state, and may change it at any time.
 
@@ -317,12 +314,12 @@ State is of several kinds:
 
 Stripes-connect detects changes to the state, and issues whatever requests are necessary to obtain relevant data. For example, if the URL changes from `/users/123?query=smith&sort=username` to `/users/123?query=smith&sort=email`, it will issue a new search request with the sort-order modified accordingly.
 
-#### Firing actions
+### Firing actions
 
 Every connected component is given, in its properties, a _mutator_, which is an object containing functions XXX
 
 
-### Principles for designing Stripes UI modules
+## Component structure in Stripes UI modules
 
 At least two "styles" are possible when designing the set of components that will make up a Stripes UI modules. It's possible to build modules where one big component does most or all of the stripes-connecting, and drives many much simpler unconnected subcomponents; or a module may consist of many small components that are each stripes-connected to obtain the data they display. Which is better?
 
