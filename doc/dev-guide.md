@@ -34,6 +34,7 @@
 
 
 
+
 ## Status and Scope
 
 **This document is in progress.** We endeavour to ensure that all the information here is correct, but we make no promises that is complete. (In this respect, it resembles a formal system of number theory.)
@@ -42,11 +43,13 @@ This document is aimed at those writing UI modules for Stripes -- such as the Us
 
 
 
+
 ## Introduction
 
 The Stripes toolkit aims to make it as easy as possible to write UI modules that communicate with RESTful Web services. Most importantly, it is the toolkit used to write UI modules for [the FOLIO library services platform](https://www.folio.org/).
 
 This document aims to bring new UI module developers up to speed with the concepts behind Stripes (especially stripes-connect), so that they are have a context in which to understand [The Stripes Connect API](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md) reference guide.
+
 
 
 ### How Stripes fits together
@@ -63,6 +66,7 @@ In general, stripes-core is configured by a list of UI modules to include, and i
 bundle of HTML/CSS/JS resources. Each of those modules composes UI elements from stripes-components (and other sources as needed), and these use stripes-connect to search, view, edit and manage data maintained by the FOLIO web-services, logging information with stripes-logger as desired.
 
 
+
 ### Underlying technology
 
 Stripes UI modules are written in **JavaScript** -- specifically, in [ECMAScript 6 (ES6)](http://es6-features.org/), a modern version of JavaScript that fixes many of the problems that made the earlier version of the language difficult to work with.
@@ -74,6 +78,7 @@ React works best when used with [**JSX**](https://jsx.github.io/), a simple synt
 As a module author, you need to know JavaScript (specifically ES6), React and ideally JSX; and be familiar with UI components (including those available from stripes-components) and understand how to connect to FOLIO web-services.
 
 (Under the hood, stripes-connect uses [Redux](https://github.com/reactjs/redux) to manage its state. But UI module authors should not need to use Redux directly. See [the appendix](#appendix-escaping-to-redux) if for some reason you do need access to the underlying Redux store.)
+
 
 
 ### Modules
@@ -96,16 +101,20 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 
 When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
 
+
 #### Skeleton module
 
 In its early stages, the Organization module, [`ui-organization`](https://github.com/folio-org/ui-organization), provided a good example of what is required. If you are looking for a template on which to base your own module, [commit 98cdfee0](https://github.com/folio-org/ui-organization/tree/98cdfee0fab4f74b9dc3e412b81a433121de5631) is a good place to start.
 
 
+
 ### Code quality
+
 
 #### ESLint
 
 In general, we expect every module to pass [ESLint](http://eslint.org/) without errors. (Run `yarn lint` in the project directory to check: new modules should be set up so that this works.) This does not necessarily mean that you must slavishly obey every order of ESLint: you may judge that one of its rules is foolish, and configure it not to apply -- for example, sometimes [`no-nested-ternary`](http://eslint.org/docs/rules/no-nested-ternary) impedes the most natural way to express an idea. But use [`eslint-disable` comments](http://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments) judiciously, only after carefully considering whether the code really could be rewritten in a clearer way.
+
 
 #### Use of the JavaScript console.
 
@@ -113,13 +122,16 @@ All module code should run without leaving warnings in the JavaScript console. I
 
 In checked-in code, modules should not emit console message using `console.log` and similar -- although it can be useful to add such lines on a temporary basis during development. ESLint will help you find any stray logging commands. All console output should be generated using stripes-logger, as described [below](#logging).
 
+
 #### Unit-testing
 
 We aim to write unit tests (generally using [Mocha](https://mochajs.org/), though at present we are not as far along with this as we might wish. Over time, we will develop conventions for how best to mock parts of FOLIO for testing purposes.
 
+
 #### Code-review
 
 If you are not sure about some code you have written, ask for a code review from another member of the team. We do _not_, as a matter of course, review all code: our judgement at present is that doing so would cost us more than it bought us.
+
 
 
 ### Specifying dependencies
@@ -134,7 +146,9 @@ Specifically:
 
 
 
+
 ## Development
+
 
 
 ### The Stripes object
@@ -176,6 +190,7 @@ The Stripes object contains the following elements:
   * `hasAllPerms` -- a boolean indicating whether to assume that the user has all permissions. Obviously this should usually be false (the default); setting it to true can be useful in development, but does not grant any real escalation in privilege, since server-side permission checks cannot be bypassed.
 
 
+
 ### Connecting a component
 
 The top-level component of each module is automatically connected, so that it can use the stripes-connect facilities. However, components included within this top-level one, whether directly or indirectly, must be connected using the curried-connect function provided in the Stripes object.
@@ -206,17 +221,20 @@ export default Parent;
 ```
 
 
+
 ### Enforcing permissions
 
 Users in the FOLIO system have a set of permissions assigned to them. These are named by short strings such as `users.read`, `users.edit`, `perms.permissions.create`, etc. Operations are allowed or prohibited by server-side modules according as the logged-in user does or does not have the corresponding permissions.
 
 However, in order to prevent misleading the user, or provoking inevitable authorization errors, good UI code also checks the available permissions, and does not provide the option of attempting operations that are doomed to fail. It does this by consulting the user's list of permissions and checking to see whether they include the one necessary for the operation in question.
 
+
 #### The permissions structure
 
 The permissions are provided to the top-level component of each module as the `users.perms` element of the `stripes` property; it is the responsibility of that component to make the `stripes` object available to other components -- either by passing it as a property (`<SubComponent ... stripes={this.props.stripes}>` or by installing it in the React context.
 
 The `perms` structure is a JavaScript object whose keys are the names of the permissions that the user has, and whose keys are the corresponding human-readable descriptions. For example, the `users.read` permission might have the descriptions "Can search users and view brief profiles".
+
 
 #### Testing for permission
 
@@ -235,9 +253,11 @@ When guarding small elements, such as a "New user" button that should appear onl
 ```
 
 
+
 ### Logging
 
 Logging in Stripes is done using [stripes-logger](https://github.com/folio-org/stripes-logger), a simple generalisation of `console.log` where each message is assigned to a category, and the developer can decide at run-time which categories should be emitted and which ignored. In this way, it's possible to see (for example) only logging of how stripes-connect paths are resolved.
+
 
 #### Configuring the logger
 
@@ -257,6 +277,7 @@ The stripes-core library lets you make up categories on the fly -- so, for examp
 * `perm` -- emits a message whenever a permission is checked, whether successfully or not.
 * `xhr` -- conventionally used by application modules if for some reason they have to execute their own XML HTTP Request (or more often, these days, JSON HTTP Request). Note that in general, **modules should not do this** but should use the facilities provided by stripes-core.
 
+
 #### Using the logger
 
 The configured logger object is furnished as the `logger` element of the `stripes` property to the top-level component of each UI module. It is the responsibility of that component to ensure it is passed down to any subcomponents that need to use it. Logging can therefore be invoked using `this.props.stripes.logger.log('cat', args)`.
@@ -264,12 +285,17 @@ The configured logger object is furnished as the `logger` element of the `stripe
 In addition, the logger is passed as the fourth argument into stripes-connect path functions.
 
 
+
 ### Styling HTML
 
 In general, modules should not use CSS directly, nor rely on styling libraries such as Bootstrap, but should use low-lever components from `stripes-components`, which are pre-styled according to Stripes conventions.
 
 
+
+
 ## Thinking in Stripes
+
+
 
 ### Principles of stripes-connect
 
@@ -282,6 +308,8 @@ When programming with stripes-connect, you do not directly interact with the bac
 3. They modify local state, through the use of _mutators_, to reflect users' actions, such as searching, sorting, selecting and editing records.
 
 That is all. The stripes-connect library issues the necessary requests, handles the responses, and updates the component's properties; and React then ensures that components whose contents have changed are re-rendered.
+
+
 
 ### Declarative, immutable data manifest
 
@@ -298,6 +326,8 @@ A manifest is provided by each connected component class in a UI module. It is a
 
 The manifest is constant, immutable, and identical across all instances of a class -- something that is conventionally indicated in code by freezing the object with `Object.freeze()`. It can be thought of as constituting a set of instructions for transforming local state into remote operations.
 
+
+
 ### Modifiable local state
 
 The manifest is immutable, and shared between all instances of a component. By contrast, each instance of a component has its own local state, and may change it at any time.
@@ -313,6 +343,8 @@ State is of several kinds:
   (At present, the URL is changed using the standard React Router method, `this.props.history.push(newUrl)`, or more often the stripes-components utility function `transitionToParams`. In future, this will probably done instead using mutators -- concerning which, see below.)
 
 Stripes-connect detects changes to the state, and issues whatever requests are necessary to obtain relevant data. For example, if the URL changes from `/users/123?query=smith&sort=username` to `/users/123?query=smith&sort=email`, it will issue a new search request with the sort-order modified accordingly.
+
+
 
 ### Firing actions
 
@@ -332,6 +364,8 @@ For remote resource (of type `rest` and `okpai`) there are three functions, name
 For these mutator functions, the argument represents a record being CRUDded to the service. Note that by design _there is no GET mutator_: applications should never need to fetch their own data, but always get it implicitly, passed into props.
 
 
+
+
 ## Component structure in Stripes UI modules
 
 At least two "styles" are possible when designing the set of components that will make up a Stripes UI modules. It's possible to build modules where one big component does most or all of the stripes-connecting, and drives many much simpler unconnected subcomponents; or a module may consist of many small components that are each stripes-connected to obtain the data they display. Which is better?
@@ -339,6 +373,8 @@ At least two "styles" are possible when designing the set of components that wil
 The Redux community leans towards fewer connected components where possible, as components that are purely functions of their props are easiest to debug, test and maintain. This is a good rule of thumb for stripes-connected components, too: aim for fewer connected components except where doing that means going more than a little bit out of the way and creating convoluted code.
 
 XXX but note the implications when avoid permission errors from WSAPIs.
+
+
 
 
 ## Appendix: escaping to Redux
@@ -371,6 +407,8 @@ class Users extends React.Component {
 ```
 
 Note that this code does _not_ access the stripes-connect data within the Redux store: so far, no situation has been found where thar is necessary or desirable. Instead, it accesses internal data about the present session. (Arguably, that data should be made available in the Stripes object; but really, module code should not need to use this at all.)
+
+
 
 
 ## Other (XXX to be integrated)
