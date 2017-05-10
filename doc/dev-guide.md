@@ -29,7 +29,7 @@
     * [Modifiable local state](#modifiable-local-state)
     * [Firing actions](#firing-actions)
 * [Component structure in Stripes UI modules](#component-structure-in-stripes-ui-modules)
-* [Appendix: escaping to redux](#appendix-escaping-to-redux)
+* [Appendix: escaping to Redux](#appendix-escaping-to-redux)
 * [Other (XXX to be integrated)](#other-xxx-to-be-integrated)
 
 
