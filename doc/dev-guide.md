@@ -316,7 +316,20 @@ Stripes-connect detects changes to the state, and issues whatever requests are n
 
 ### Firing actions
 
-Every connected component is given, in its properties, a _mutator_, which is an object containing functions XXX
+Every connected component is given a property called `mutator`. This is an object whose keys are the names of the resources specified in the manifest, and whose values are objects containing functions that can act upon those resources. These fucntions each taking a single argument that is an object of _key_:_value_ pairs.
+
+For local resources, there are two functions in the mutator:
+
+* `replace`: replaces the resources current set of values with the new set.
+* `update`: merges the new set of values into the old.
+
+For remote resource (of type `rest` and `okpai`) there are three functions, named after the HTTP methods:
+
+* `POST`: creates a new record on the remote service.
+* `PUT`: updates an existing record on the remote service.
+* `DELETE`: deletes an old record on the remote services.
+
+For these mutator functions, the argument represents a record being CRUDded to the service. Note that by design _there is no GET mutator_: applications should never need to fetch their own data, but always get it implicitly, passed into props.
 
 
 ## Component structure in Stripes UI modules
