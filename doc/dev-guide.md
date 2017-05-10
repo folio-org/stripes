@@ -26,11 +26,11 @@
 * [Thinking in Stripes](#thinking-in-stripes)
     * [Principles of stripes-connect](#principles-of-stripes-connect)
     * [Declarative, immutable data manifest](#declarative-immutable-data-manifest)
+        * [Note on sharing resources between components](#note-on-sharing-resources-between-components)
     * [Modifiable local state](#modifiable-local-state)
     * [Firing actions](#firing-actions)
 * [Component structure in Stripes UI modules](#component-structure-in-stripes-ui-modules)
 * [Appendix: escaping to Redux](#appendix-escaping-to-redux)
-* [Other (XXX to be integrated)](#other-xxx-to-be-integrated)
 
 
 
@@ -329,6 +329,11 @@ A manifest is provided by each connected component class in a UI module. It is a
 The manifest is constant, immutable, and identical across all instances of a class -- something that is conventionally indicated in code by freezing the object with `Object.freeze()`. It can be thought of as constituting a set of instructions for transforming local state into remote operations.
 
 
+#### Note on sharing resources between components
+
+XXX Beware of re-using resource names in multiple components within a single module.
+
+
 
 ### Modifiable local state
 
@@ -409,11 +414,4 @@ class Users extends React.Component {
 ```
 
 Note that this code does _not_ access the stripes-connect data within the Redux store: so far, no situation has been found where thar is necessary or desirable. Instead, it accesses internal data about the present session. (Arguably, that data should be made available in the Stripes object; but really, module code should not need to use this at all.)
-
-
-
-
-## Other (XXX to be integrated)
-
-Beware of re-using resource names in multiple components within a single module.
 
