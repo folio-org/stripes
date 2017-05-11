@@ -379,7 +379,22 @@ At least two "styles" are possible when designing the set of components that wil
 
 The Redux community leans towards fewer connected components where possible, as components that are purely functions of their props are easiest to debug, test and maintain. This is a good rule of thumb for stripes-connected components, too: aim for fewer connected components except where doing that means going more than a little bit out of the way and creating convoluted code.
 
-XXX but note the implications when avoid permission errors from WSAPIs.
+However, when using connected components, another consideration comes into play. A connected component will fetch data when it's instantiated as specified by its manifest -- and if the user does not have the necessary permissions, this will result in a WSAPI error. A good strategy to avoid this is to break a large component with serveral stripes-connect resources into several smaller components with one resource each; and have a master component include each of them only if the relevant permission is in place:
+
+```
+class ViewUser extends Component {
+  // ...
+  render() {
+    return (
+      <IfPermission {...this.props} perm="perms.users.get">
+        <this.connectedUserPermissions {...this.props} />
+      </IfPermission>
+    }
+  }
+}
+```
+
+So our experience at this stage is that it may be better to err on the side of many small components than a few large ones. But "There are no 'cookbook' methods that can replace intelligence, experience and good taste in design and programming" -- Bjarne Stroustrup.
 
 
 
