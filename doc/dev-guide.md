@@ -30,7 +30,7 @@
     * [Modifiable local state](#modifiable-local-state)
     * [Firing actions](#firing-actions)
 * [Component structure in Stripes UI modules](#component-structure-in-stripes-ui-modules)
-* [Appendix: escaping to Redux](#appendix-escaping-to-redux)
+* [Appendix A: Escaping to Redux](#appendix-a-escaping-to-redux)
 
 
 
@@ -77,7 +77,7 @@ React works best when used with [**JSX**](https://jsx.github.io/), a simple synt
 
 As a module author, you need to know JavaScript (specifically ES6), React and ideally JSX; and be familiar with UI components (including those available from stripes-components) and understand how to connect to FOLIO web-services.
 
-(Under the hood, stripes-connect uses [Redux](https://github.com/reactjs/redux) to manage its state. But UI module authors should not need to use Redux directly. See [the appendix](#appendix-escaping-to-redux) if for some reason you do need access to the underlying Redux store.)
+(Under the hood, stripes-connect uses [Redux](https://github.com/reactjs/redux) to manage its state. But UI module authors should not need to use Redux directly. See [Appendix A](#appendix-a-escaping-to-redux) if for some reason you do need access to the underlying Redux store.)
 
 
 
@@ -167,7 +167,7 @@ The Stripes object contains the following elements:
 
 * `logger` -- a [stripes-logger](https://github.com/folio-org/stripes-logger) object that has been configured for Stripes and can be used in the usual way: see [Logging](#logging).
 
-* `store` -- the application's [Redux](https://github.com/reactjs/redux) store. **In general, you should not use this**, relying instead on the Stripes Connect facilities; but it is provided as a backdoor which developers can use with discretion. See [the Appendix](#appendix-escaping-to-redux).
+* `store` -- the application's [Redux](https://github.com/reactjs/redux) store. **In general, you should not use this**, relying instead on the Stripes Connect facilities; but it is provided as a backdoor which developers can use with discretion. See [Appendix A](#appendix-a-escaping-to-redux).
 
 * `okapi` -- a structure containing configuration information about the connection of Okapi:
 
@@ -397,7 +397,7 @@ So our experience at this stage is that it may be better to err on the side of m
 
 
 
-## Appendix: escaping to Redux
+## Appendix A: Escaping to Redux
 
 **WARNING.** Do not do this.
 
