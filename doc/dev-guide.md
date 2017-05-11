@@ -329,7 +329,13 @@ The manifest is constant, immutable, and identical across all instances of a cla
 
 #### Note on sharing resources between components
 
-XXX Beware of re-using resource names in multiple components within a single module.
+Manifests are declared on the component level; however, resources are maintained at the module level. This means that same-named resources in two components that are part of the same module actually refer to the same resource.
+
+This has the benefit that it provides a way for multiple components to share information. For example, a SearchPreferences component might set a local resource `sortOrder` which is subsequently used by the Search component when formulating queries.
+
+However, it's also a trap for the unwary: _inadvertently_ re-using a resource name in separate components of a module can have confusing results. So when thinking about your manifests, take a whole-module approach rather than thinking only about the component in hand.
+
+(Of course, it's easy to make component-specific resource names that are unique module-wide, by combining the name of the component with that of the resource: `SearchPreferences_sortOrder` vs. `Search_sortOrder`, for example, if for some reason you wanted to keep these two resources separate.)
 
 
 
