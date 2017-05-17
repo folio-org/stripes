@@ -6,8 +6,9 @@ _A proposal from a Dublin breakout group._
 
 There is a universe of NPM modules.
 
-Some of these are Stripes modules. (See dev-guide for the
-prerequisites that make an NPM module a Stripes modules.)
+Some of these are Stripes modules. (See [The Module Developer's
+Guide](https://github.com/folio-org/stripes-core/blob/master/doc/dev-guide.md#modules)
+for the prerequisites that make an NPM module a Stripes modules.)
 
 All Stripes modules have a type, such as "app" or "settings", which is
 specified in their `package.json`. So Stripes apps are a subset of
