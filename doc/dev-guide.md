@@ -22,6 +22,7 @@
     * [Logging](#logging)
         * [Configuring the logger](#configuring-the-logger)
         * [Using the logger](#using-the-logger)
+    * [Plugins](#plugins)
     * [Styling HTML](#styling-html)
 * [Thinking in Stripes](#thinking-in-stripes)
     * [Principles of stripes-connect](#principles-of-stripes-connect)
@@ -285,6 +286,12 @@ The stripes-core library lets you make up categories on the fly -- so, for examp
 The configured logger object is furnished as the `logger` element of the `stripes` property to the top-level component of each UI module. It is the responsibility of that component to ensure it is passed down to any subcomponents that need to use it. Logging can therefore be invoked using `this.props.stripes.logger.log('cat', args)`.
 
 In addition, the logger is passed as the fourth argument into stripes-connect path functions.
+
+
+
+### Plugins
+
+XXX document this
 
 
 
