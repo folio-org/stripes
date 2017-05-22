@@ -91,6 +91,9 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 * `type` -- a short string indicating what the type of the module is, and how it therefore behaves within the Stripes application. Acceptable values are:
   * `app` -- a regular application, which is listed among those available and which when activated uses essentially the whole screen.
   * `settings` -- a settings pane that is listed in the settings menu but does not present a full-page application.
+  * `plugin` -- a plugin module that can be included by a component any other module, whether app, settings or anothe plugin. See [below](#plugins).
+
+* `pluginType` (only for modules of type `plugin`) -- an indication of which pluggable surface the module can be mounted on. See [below](#plugins).
 
 * `displayName` -- the name of the module as it should be viewed by human users -- e.g. "Okapi Console".
 
@@ -291,7 +294,21 @@ In addition, the logger is passed as the fourth argument into stripes-connect pa
 
 ### Plugins
 
-XXX document this
+Any component may be subtituted by a plugin. This is simply a module whose type is `plugin`. Plugin modules have a lower-level type, represented by a `pluginType` field in the `package.json`. Plugin types might be "markdownEditor", "MARCViewer", etc.
+
+Other kinds of module have hardwired locations: `app` modules get rendered into the main area; `settings` modules get rendered into the settings area. But `plugin` modules don't get rendered at all by default -- only when called on by a pluggable surface in another module.
+
+This is done by means of the `<Pluggable>` component. It must be passed two props: the Stripes object, and a `type` -- a short string which is matched againt the `pluginType` of the available plugins. It contains as children a default set of components to be rendered if no plugin is available:
+
+```
+<Pluggable stripes={this.props.stripes} type="markdown-editor">
+  <div style={{ background: 'red' }}>Markdown editor goes here</div>
+</Pluggable>
+```
+
+This renders the red "Markdown editor goes here" message by default; but if there is an available plugin module whose plugin-type is `markdown-Editor` then its top-level component is rendered instead.
+
+There may be multiple plugins of the same plugin type; in this case, a setting in the database indictes which of the extant plugins is to be used. (The Preferred Plugins section of the Organization settings allows this to be configured.)
 
 
 
