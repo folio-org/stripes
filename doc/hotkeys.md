@@ -95,5 +95,6 @@ But we can then also wrap each individual module in its own `<HotKeys map={modul
 
 * We will need to omit user-specific configuration for now, as we have done for locale and plugin preferences -- not least, because mod-configuration's data-model doesn't seem to have a slot for username.
 * We do not need to make a GUI editor for key mappings: it will suffice for now to provide a text-area, and compile that into a key-map structure. Later, we can refine this is all sorts of ways.
+* Since gathering action-names from the modules is of value only to the key-mapping editor, we don't need that part of the infrastructure at this point. The supported action names will be whatever a user types into the text-area.
 
 
