@@ -191,6 +191,8 @@ The Stripes object contains the following elements:
 
   * `disableAuth` -- whether authentication is disabled. **NOTE.** This is deprecated. Support for it will probably be removed, since an unauthenticated session is increasingly useless.
 
+  * `autoLogin` -- if provided, an object containing `username` and `password` members which are used to automatically log the user in when Stripes starts up. **Think carefully before using this**. It is a boon during rapid development when many reloads are needed, but has the obvious security implication of storing a server-side password in clear text on the client side.
+
   * `logCategories`, `logPrefix`, `logTimestamp` -- see [Configuring the logger](#configuring-the-logger) below.
 
   * `showPerms` -- a boolean indicating whether the user menu at top right should display a list of the logged-in user's permissions. This is useful in development, but distracting in production.
