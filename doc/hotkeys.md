@@ -51,11 +51,11 @@ Evidently there are three kinds of thing involved in the configuration:
 
 Where do these things come from?
 
-#3 are of coourse provided by the actual modules that interpret the keys: for example, the Users module will provide a function that opens the edit page.
+#1 are of course provided by the actual modules that interpret the keys: for example, the Users module will provide a function that opens the edit page.
 
-#2 are the responsibility of the module to provide: doing so is part of the module API, and it will then for the invoking component (most often ultimately in stripes-core) to provide a map that associates them with the key specifications #1.
+#2 are the responsibility of the module to provide: doing so is part of the module API, and it will then be up to the invoking component (most often ultimately in stripes-core) to provide a map that associates them with the key specifications #1.
 
-#3 are configuration that may be provided as part of FOLIO's code, or overridden by tenant-level configuration, or futher overridden by user-level configuration. It will be the job of stripes-core to obtain these and provide them to the modules.
+#3 are configuration that may be provided as part of FOLIO's code, or overridden by tenant-level configuration, or further overridden by user-level configuration. It will be the job of stripes-core to obtain these and provide them to the modules.
 
 
 ## How this can work in Stripes
@@ -94,7 +94,7 @@ But we can then also wrap each individual module in its own `<HotKeys map={modul
 ## Simplifications for v1
 
 * We will need to omit user-specific configuration for now, as we have done for locale and plugin preferences -- not least, because mod-configuration's data-model doesn't seem to have a slot for username.
-* We do not need to make a GUI editor for key mappings: it will suffice for now to provide a text-area, and compile that into a key-map structure. Later, we can refine this is all sorts of ways.
+* We do not need to make a GUI editor for key mappings: it will suffice for now to provide a text-area, and compile that into a key-map structure. Later, we can refine this in all sorts of ways.
 * Since gathering action-names from the modules is of value only to the key-mapping editor, we don't need that part of the infrastructure at this point. The supported action names will be whatever a user types into the text-area.
 
 
