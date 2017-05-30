@@ -2,28 +2,13 @@
 
 ## Introduction
 
-Building a Stripes application consists of plugging Stripes modules
-together. Creating modules is the core development activity in
-Stripes: most UI developers will spend most of their time putting
-together modules that provide an interface to some functionality
-provided on the server-side.
+Building a Stripes application consists of plugging Stripes modules together. Creating modules is the core development activity in Stripes: most UI developers will spend most of their time putting together modules that provide an interface to some functionality provided on the server-side.
 
-Stripes modules are composed of components. Stripes components are
-[React](https://facebook.github.io/react/) components, wrapped in some
-additional functionality. Most importantly, a _connected component_ is
-one that uses the services of the stripes-connect library to connect
-it to data -- most usually, data maintained via an Okapi-mediated
-FOLIO module, but potentially also other RESTful web-services or even
-purely local (non-persistent) data.
+Stripes modules are composed of components. Stripes components are [React](https://facebook.github.io/react/) components, wrapped in some additional functionality. Most importantly, a _connected component_ is one that uses the services of the stripes-connect library to connect it to data -- most usually, data maintained via an Okapi-mediated FOLIO module, but potentially also other RESTful web-services or even purely local (non-persistent) data.
 
-This document illustrates how components can work together as a
-module: in particular, it discusses how the components of a
-hypothetical `patrons` fullpage module that support search and display
-of patron records and associated data such as holds and loans.
+This document illustrates how components can work together as a module: in particular, it discusses how the components of a hypothetical `patrons` fullpage module that support search and display of patron records and associated data such as holds and loans.
 
-Module names are written in all lower-case, with words separated by
-hyphens and set in code font `like-this`. Component names are written
-in CamelCase and set in bold, **LikeThis**.
+Module names are written in all lower-case, with words separated by hyphens and set in code font `like-this`. Component names are written in CamelCase and set in bold, **LikeThis**.
 
 <!-- ../../okapi/doc/md2toc -l 2 component-hierarchy.md -->
 * [Introduction](#introduction)
