@@ -182,37 +182,11 @@ In either case, the data is sent using tha _mutator_ for the `setting` resource.
 
 As with most React components, the `render` method is at the heart of how it works. Unlike the handler function `changeSetting`, which we wired into the form, `render` is called by React itself: it is one of the React ["lifecycle methods"](https://facebook.github.io/react/docs/component-specs.html). Its job is simply to return an HTML element to be rendered: often, as in this case, that element will contain other React components, which will in turn be rendered.
 
-The first thing this renderer does is extract information from the React properties to determine whether there is an existing configured preference for which plugin to use for the present type.
+The first thing this renderer does (lines 70-71) is extract information from the React properties to determine whether there is an existing configured preference for which plugin to use for the present type.
 
-The name of the data element `patrons` is taken from the data
-manifest. It is an array containing a set of patron methods.
+Then it constructs the set of options that will be available in the dropdown (lines 73-76).
 
-If **PluginType** were the only component to include `patrons` in its
-manifest, then it would be safe to assume that the only element of the
-list would be the patron identified by the `:patronid` element in the
-URL path. However, other components may also use the same resource:
-for example, **PatronList** populates it with multiple records.
-
-For this reason, it is necessary to pick out the correct relevant
-record to display as part of the edit form. This is done by line 34,
-which uses
-[the standard array method `find()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
-to pick out the element whose `_id` field matches the `patronid` we
-earlier extracted from the parameters.
-
-Finally, lines 36-39 return the rendered HTML, which in this case is
-an invocation of the **PatronForm** React component that we imported
-at the top of this source file. That component is defined to take
-several parameters:
-
-* `onSubmit` and `cancelForm` indicate which handler functions to
-  use when the form is submitted or cancelled.
-* `action` is a small package of configuration appropriate for either
-  adding a new patron or editing an existing one: it must be one of
-  the values from the `actionTypes` object that we imported from
-  **PatronForm**.
-* `initialValues` is an object containing the data of the existing
-  patron record, which is used to prepopulate the form.
+Finally, lines 78-90 return the rendered HTML, which in this case is a **div** containing a plugin-type label and [a **Select** subcomponent](https://github.com/folio-org/stripes-components/blob/master/lib/Select/Select.js). The set of options, the present value, and the change-handler function are all passed into **Select**.
 
 ### Exporting the component (line 94)
 
