@@ -135,13 +135,13 @@ The source-code below therefore includes some idioms that will not be familiar t
 
 ES6 `import` syntax is used to pull in objects from two other modules. The first is inherent to writing Stripes components; the second provides formatting.
 
-First we import two things from from React:
+First we import two things from React:
 * The `React` object itself, which is needed by [JSX](https://jsx.github.io/), the syntax that allows us to embed HTML/XML directly into JavaScript.
 * The `PropTypes` object, which we will later use to declare what properties this component requires.
 
 (Annoyingly, a quirk of NPM and React means that we can't have multiple copies of the React library visible when the application is built, so we have to remove every copy except the one that belongs to `stripes-core`. As a result, running ESLint on the present source file will report that the required library is missing. So we disable the relevant warning for that line, hence the cryptic comment.)
 
-Then We bring in the **Select** component, which will be used to render the drop-down list of available plugins of the appropriate type, 
+Then we bring in the **Select** component, which will be used to render the drop-down list of available plugins of the appropriate type. 
 
 ### Definition of class **PluginType** (lines 6-94)
 
@@ -149,7 +149,7 @@ A Stripes component is a special kind of React component. We create it by first 
 
 ### Property-type validation (lines 7-27)
 
-React components [may optionally specify what properties they expect to have passed to them](https://facebook.github.io/react/docs/typechecking-with-proptypes.html), by providing a static member called `propTypes` that describes the properties and their types and structures. When this is done, run-time code validates each invocation of the component to ensure that it is correct. We provide property-type validation in this component, alhough it is rather verbose. This is more useful in general-purpose components that are re-used in many places, such as the **Select** component that we will use from the `stripes-components` library.
+React components [may optionally specify what properties they expect to have passed to them](https://facebook.github.io/react/docs/typechecking-with-proptypes.html), by providing a static member called `propTypes` that describes the properties and their types and structures. When this is done, run-time code validates each invocation of the component to ensure that it is correct. We provide property-type validation in this component, although it is rather verbose. This is more useful in general-purpose components that are re-used in many places, such as the **Select** component that we will use from the `stripes-components` library.
 
 In this case, the component expects to be passed:
 * [the Stripes object](https://github.com/folio-org/stripes-core/blob/master/doc/dev-guide.md#the-stripes-object), which in this case is used only for logging;
@@ -161,9 +161,9 @@ In this case, the component expects to be passed:
 ### The data manifest (lines 29-42)
 
 The data manifest describes the data resources that the component wants to use, and how they are connected to Okapi services (if they
-are -- some data may be purely on the client side.) Data manifests are described in detail in [The Stripes Connect API documentation](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md)
+are -- some data may be purely on the client side). Data manifests are described in detail in [The Stripes Connect API documentation](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md)
 
-In this case, two resources is needed: `recordId` is a local resource that contains the ID of the configuration record responsible for storing the setting of the favoured plugin for the present type. `setting` is the setting itself, a record that is read from and persisted to Okapi. The WSAPI path where the configuration objects are stored is `configurations/entries`, and new entries are created by POSTing to that path. However, when overwriting an existing configuration record, its full address must be specified, including the recordId. This is done using the syntax `${recordId}`, which the value of the same-named local resource into the PUT path.
+In this case, two resources are needed. The `recordId` is a local resource that contains the ID of the configuration record responsible for storing the setting of the favoured plugin for the present type. The `setting` is the setting itself, a record that is read from and persisted to Okapi. The WSAPI path where the configuration objects are stored is `configurations/entries`, and new entries are created by POSTing to that path. However, when overwriting an existing configuration record, its full address must be specified, including the recordId. This is done using the syntax `${recordId}`, which the value of the same-named local resource into the PUT path.
 
 ### The constructor (lines 44-47)
 
@@ -176,7 +176,7 @@ done by the **Select** subcomponent.
 
 Most handlers are simple functions, but this one is more complex than most because it has to deal with two separate situations: if the plugin-type under consideration as yet has no configuration record specifying its favoured plugin, then a new record must be created as POSTed; but if a record already exists, it needs to be modified and PUT. The decision is made on the basis of whether a record was returned in the `data.setting` value provided by Stripes Connect.
 
-In either case, the data is sent using tha _mutator_ for the `setting` resource. As described in [the Stripes Connect API documentation](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md), a mutator is an object, provided by stripes-connect, which maps each of the HTTP method names (GET, POST, PUT, DELETE) to a function that implements that method for the relevant resource.
+In either case, the data is sent using the _mutator_ for the `setting` resource. As described in [the Stripes Connect API documentation](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md), a mutator is an object, provided by stripes-connect, which maps each of the HTTP method names (GET, POST, PUT, DELETE) to a function that implements that method for the relevant resource.
 
 ### Rendering the component (lines 69-91)
 
