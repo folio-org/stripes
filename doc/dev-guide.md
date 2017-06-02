@@ -259,7 +259,7 @@ if (this.props.stripes.hasPerm('users.read')) ...
 When guarding small elements, such as a "New user" button that should appear only when when the `users.create` permission is present, the helper component [`<IfPermission>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfPermission/readme.md) can be used:
 
 ```js
-<IfPermission {...this.props} perm="users.create">
+<IfPermission perm="users.create">
   <Button fullWidth onClick={this.onClickAddNewUser}>New user</Button>
 </IfPermission>
 ```
