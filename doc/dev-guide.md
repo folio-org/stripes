@@ -307,7 +307,7 @@ Other kinds of module have hardwired locations: `app` modules get rendered into 
 This is done by means of the `<Pluggable>` component. It must be passed a single prop, `type` -- a short string which is matched against the `pluginType` of the available plugins. It contains as children a default set of components to be rendered if no plugin is available:
 
 ```
-<Pluggable stripes={this.props.stripes} type="markdown-editor">
+<Pluggable type="markdown-editor">
   <div style={{ background: 'red' }}>Markdown editor goes here</div>
 </Pluggable>
 ```
