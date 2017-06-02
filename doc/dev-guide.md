@@ -422,7 +422,7 @@ class ViewUser extends Component {
   // ...
   render() {
     return (
-      <IfPermission {...this.props} perm="perms.users.get">
+      <IfPermission perm="perms.users.get">
         <this.connectedUserPermissions {...this.props} />
       </IfPermission>
     }
