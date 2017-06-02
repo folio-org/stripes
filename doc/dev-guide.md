@@ -304,7 +304,7 @@ Any component may be substituted by a plugin. This is simply a module whose type
 
 Other kinds of module have hardwired locations: `app` modules get rendered into the main area; `settings` modules get rendered into the settings area. But `plugin` modules don't get rendered at all by default -- only when called on by a pluggable surface in another module.
 
-This is done by means of the `<Pluggable>` component. It must be passed two props: the Stripes object, and a `type` -- a short string which is matched against the `pluginType` of the available plugins. It contains as children a default set of components to be rendered if no plugin is available:
+This is done by means of the `<Pluggable>` component. It must be passed a single prop, `type` -- a short string which is matched against the `pluginType` of the available plugins. It contains as children a default set of components to be rendered if no plugin is available:
 
 ```
 <Pluggable stripes={this.props.stripes} type="markdown-editor">
