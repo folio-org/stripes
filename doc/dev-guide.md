@@ -178,6 +178,8 @@ The Stripes object contains the following elements:
 
 * `logger` -- a [stripes-logger](https://github.com/folio-org/stripes-logger) object that has been configured for Stripes and can be used in the usual way: see [Logging](#logging).
 
+* `discovery` -- a structure describing the modules and interfaces provided by Okapi, as described [below](#the-discovery-structure).
+
 * `store` -- the application's [Redux](https://github.com/reactjs/redux) store. **In general, you should not use this**, relying instead on the Stripes Connect facilities; but it is provided as a backdoor which developers can use with discretion. See [Appendix A](#appendix-a-escaping-to-redux).
 
 * `okapi` -- a structure containing configuration information about the connection of Okapi:
