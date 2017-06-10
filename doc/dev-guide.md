@@ -19,6 +19,9 @@
     * [Enforcing permissions](#enforcing-permissions)
         * [The permissions structure](#the-permissions-structure)
         * [Testing for permission](#testing-for-permission)
+    * [Checking interfaces](#checking-interfaces)
+        * [The discovery structure](#the-discovery-structure)
+        * [Testing for interfaces](#testing-for-interfaces)
     * [Logging](#logging)
         * [Configuring the logger](#configuring-the-logger)
         * [Using the logger](#using-the-logger)
@@ -171,6 +174,8 @@ The Stripes object contains the following elements:
 
 * `hasPerm` -- a function that can be used for [checking whether the presently logged-in user has a specified permission](#testing-for-permission).
 
+* `hasInterface` -- a function that can be used for [checking whether the connected Okapi instance supports [a specified interface at a compatible version](#testing-for-interfaces).
+
 * `logger` -- a [stripes-logger](https://github.com/folio-org/stripes-logger) object that has been configured for Stripes and can be used in the usual way: see [Logging](#logging).
 
 * `store` -- the application's [Redux](https://github.com/reactjs/redux) store. **In general, you should not use this**, relying instead on the Stripes Connect facilities; but it is provided as a backdoor which developers can use with discretion. See [Appendix A](#appendix-a-escaping-to-redux).
@@ -262,6 +267,42 @@ When guarding small elements, such as a "New user" button that should appear onl
 <IfPermission perm="users.create">
   <Button fullWidth onClick={this.onClickAddNewUser}>New user</Button>
 </IfPermission>
+```
+
+
+
+### Checking interfaces
+
+A Stripes application is dependent on the Okapi instance that it is connected to. Different Okapi instances have different sets of modules running. Each Okapi module implements one of more named interfaces at a specified version: for example, the module with the identifier `users-module` may provide the `users` interface at version 10.0 and the `_tenant` interface at version 1.0.0.
+
+A well-behaved Stripes appliction will avoid making requests of back-end modules that are not available. Stripes provides facilities making this possible.
+
+
+#### The discovery structure
+
+At startup time, Stripes probes its Okapi instance to discover what modules it is providing access to, and what interfaces they provide. The resulting information is made available as an object in the Stripes module, accessible as `stripes.discovery`. It contains two elements:
+
+* `modules` is a map whose keys are module identifiers such as `inventory-storage`, with corresponding values that are human-readable names such as "Inventory Storage Module".
+
+* `interfaces` is a map whose keys are interface identifiers such as `loan-storage`, with corresponding values that are two-faceted (_major_._minor_) version numbers such as 1.2. see the _Okapi Guide_'s [section on interface versions](https://github.com/folio-org/okapi/blob/master/doc/guide.md#versioning-and-dependencies).
+
+
+#### Testing for interfaces
+
+The easiest way to check that an interface is supported is using the `stripes` object's `hasInterface` method:
+
+```
+if (this.props.stripes.hasInterface('loan-storage', '1.0')) ...
+```
+If the interface is supported at a compatible level (same major version number, same or higher minor version number), then it return the supported version number. The required-version number may be omitted from the call (`hasInterface('loan-storage')`). In this case, it returns `true` if the named interface is supported at any level.
+
+
+When guarding small elements, such as the invocation of a component that will display user loans that should appear only when when the loans insterface is present, the helper component [`<IfInterface>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfInterface/readme.md) can be used:
+
+```js
+<IfInterface name="loan-storage" version="1.0">
+  <ViewUserLoans />
+</IfInterface>
 ```
 
 
