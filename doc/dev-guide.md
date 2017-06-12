@@ -283,7 +283,9 @@ A well-behaved Stripes application will avoid making requests of back-end module
 
 #### The discovery structure
 
-At startup time, Stripes probes its Okapi instance to discover what modules it is providing access to, and what interfaces they provide. The resulting information is made available as an object in the Stripes module, accessible as `stripes.discovery`. It contains two elements:
+At startup time, Stripes probes its Okapi instance to discover what modules it is providing access to, and what interfaces they provide. The resulting information is made available as an object in the Stripes module, accessible as `stripes.discovery`. It contains three elements:
+
+* `version` contains the version number of Okapi itself.
 
 * `modules` is a map whose keys are module identifiers such as `inventory-storage`, with corresponding values that are human-readable names such as "Inventory Storage Module".
 
