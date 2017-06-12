@@ -275,9 +275,9 @@ When guarding small elements, such as a "New user" button that should appear onl
 
 ### Checking interfaces
 
-A Stripes application is dependent on the Okapi instance that it is connected to. Different Okapi instances have different sets of modules running. Each Okapi module implements one of more named interfaces at a specified version: for example, the module with the identifier `users-module` may provide the `users` interface at version 10.0 and the `_tenant` interface at version 1.0.0.
+A Stripes application is dependent on the Okapi instance that it is connected to. Different Okapi instances have different sets of modules running. Each Okapi module implements one or more named interfaces at a specified version: for example, the module with the identifier `users-module` may provide the `users` interface at version 10.0 and the `_tenant` interface at version 1.0.0.
 
-A well-behaved Stripes appliction will avoid making requests of back-end modules that are not available. Stripes provides facilities making this possible.
+A well-behaved Stripes application will avoid making requests of back-end modules that are not available. Stripes provides facilities making this possible.
 
 
 #### The discovery structure
@@ -286,20 +286,20 @@ At startup time, Stripes probes its Okapi instance to discover what modules it i
 
 * `modules` is a map whose keys are module identifiers such as `inventory-storage`, with corresponding values that are human-readable names such as "Inventory Storage Module".
 
-* `interfaces` is a map whose keys are interface identifiers such as `loan-storage`, with corresponding values that are two-faceted (_major_._minor_) version numbers such as 1.2. see the _Okapi Guide_'s [section on interface versions](https://github.com/folio-org/okapi/blob/master/doc/guide.md#versioning-and-dependencies).
+* `interfaces` is a map whose keys are interface identifiers such as `loan-storage`, with corresponding values that are two-faceted (_major_._minor_) version numbers such as 1.2 (see the _Okapi Guide_'s [section on interface versions](https://github.com/folio-org/okapi/blob/master/doc/guide.md#versioning-and-dependencies)).
 
 
 #### Testing for interfaces
 
-The easiest way to check that an interface is supported is using the `stripes` object's `hasInterface` method:
+The easiest way to check that an interface is supported, is by using the `stripes` object's `hasInterface` method:
 
 ```
 if (this.props.stripes.hasInterface('loan-storage', '1.0')) ...
 ```
-If the interface is supported at a compatible level (same major version number, same or higher minor version number), then it return the supported version number. The required-version number may be omitted from the call (`hasInterface('loan-storage')`). In this case, it returns `true` if the named interface is supported at any level.
+If the interface is supported at a compatible level (same major version number, same or higher minor version number), then it returns the supported version number. The required-version number may be omitted from the call (`hasInterface('loan-storage')`). In this case, it returns `true` if the named interface is supported at any level.
 
 
-When guarding small elements, such as the invocation of a component that will display user loans that should appear only when when the loans insterface is present, the helper component [`<IfInterface>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfInterface/readme.md) can be used:
+When guarding small elements, such as the invocation of a component that will display user loans that should appear only when when the loans interface is present, the helper component [`<IfInterface>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfInterface/readme.md) can be used:
 
 ```js
 <IfInterface name="loan-storage" version="1.0">
