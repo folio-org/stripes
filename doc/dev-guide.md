@@ -367,6 +367,12 @@ In general, modules should not use CSS directly, nor rely on styling libraries s
 
 
 
+### Network tab in Google Chrome
+
+When using the network tab in Google Chrome to watch the requests and responses you may put `-method:OPTIONS` in the filter at top left to suppress non-relevant traffic.
+
+
+
 
 ## Thinking in Stripes
 
