@@ -27,6 +27,7 @@
         * [Using the logger](#using-the-logger)
     * [Plugins](#plugins)
     * [Styling HTML](#styling-html)
+    * [Network tab in Google Chrome](#network-tab-in-google-chrome)
 * [Thinking in Stripes](#thinking-in-stripes)
     * [Principles of stripes-connect](#principles-of-stripes-connect)
     * [Declarative, immutable data manifest](#declarative-immutable-data-manifest)
