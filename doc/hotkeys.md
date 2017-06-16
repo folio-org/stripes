@@ -41,21 +41,21 @@ const handlers = {
 </Hotkeys>
 ```
 
-This is rather odd: two maps, both of them with the same set of keys. The first one, `keymap`, seems to be reversed. But no matter -- react-hotkeys will take care of interpreting this. We just need to generate it.
+(This is rather odd: two maps, both of them with the same set of keys. The first one, `keymap`, seems to be reversed. But no matter -- react-hotkeys will take care of interpreting this. We just need to generate it.)
 
 Evidently there are three kinds of thing involved in the configuration:
 
-1. **action names** such as `deleteNode` and `snapLeft`. These are small strings with a meaning that is defined within the application. Stripes-relevant examples might be `gotoUsers`, `gotoSettins`, `clearSearch`, `nextRecord`, `edit`.
+1. **action names** such as `deleteNode` and `snapLeft`. These are short strings with a meaning that is defined within the application. Stripes-relevant examples might be `gotoUsers`, `gotoSettings`, `clearSearch`, `nextRecord`, `edit`.
 2. **key specifiers** such as `['del', 'backspace']` and `'ctrl+left'`. The acceptable forms are those of [the Mousetrap library](https://craig.is/killing/mice) and need not concern us at this stage.
-3. **actual actions** such as `this.snap.bind(this, SNAP.LEFT)` are JavaScript fragments such as might be bound to event handlers.
+3. **actual actions** such as `this.snap.bind(this, SNAP.LEFT)`. These are JavaScript fragments such as might be bound to event handlers.
 
 Where do these things come from?
 
-#1 are of course provided by the actual modules that interpret the keys: for example, the Users module will provide a function that opens the edit page.
+#3 are of course provided by the actual modules that interpret the keys: for example, the Users module will provide the function that opens the edit-user page.
 
-#2 are the responsibility of the module to provide: doing so is part of the module API, and it will then be up to the invoking component (most often ultimately in stripes-core) to provide a map that associates them with the key specifications #1.
+#1 are the responsibility of the module to provide: doing so is part of the module API, and it will then be up to the invoking component (most often ultimately in stripes-core) to provide a map that associates them with the key specifications #2.
 
-#3 are configuration that may be provided as part of FOLIO's code, or overridden by tenant-level configuration, or further overridden by user-level configuration. It will be the job of stripes-core to obtain these and provide them to the modules.
+#2 are configuration that may be provided as part of FOLIO's code, or overridden by tenant-level configuration, or further overridden by user-level configuration. It will be the job of stripes-core to obtain these and provide them to the modules.
 
 
 ## How this can work in Stripes
