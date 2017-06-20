@@ -22,6 +22,7 @@
     * [Checking interfaces](#checking-interfaces)
         * [The discovery structure](#the-discovery-structure)
         * [Testing for interfaces](#testing-for-interfaces)
+    * [Enabling hot-keys](#enabling-hot-keys)
     * [Logging](#logging)
         * [Configuring the logger](#configuring-the-logger)
         * [Using the logger](#using-the-logger)
@@ -107,7 +108,13 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 
 * `hasSettings` -- for "app" modules, if this is true then a settings pane is also provided, and a link will be listed in the Settings area. If this is false (the default) no settings are shown for the module. This is ignored for "settings" modules.
 
+* XXX okapiInterfaces
+
+* XXX permissions
+
 When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
+
+The class exported by a module may also have a static data member, `actionNames`. If provided, this must be an array of strings, each of them the name of an action that can be invoked by hot-keys (see [below](XXX)). Stripes will aggregate the action-names exposed by the available modules and provide a combined list as [the `actionNames` member](XXX) of the Stripes object.
 
 
 #### Skeleton module
@@ -168,6 +175,14 @@ The Stripes object is provided as the `stripes` property to the top-level compon
 The Stripes object contains the following elements:
 
 * `locale` -- a short string specifying the prevailing locale, e.g. `en-US`. This should be consulted when rendering dates with `toLocaleDateString`, etc.
+
+* `setLocale` -- XXX
+
+* `bindings` -- XXX
+
+* `setBindings` -- XXX
+
+* `actionNames` -- XXX
 
 * `plugins` -- an indication of which plugins are preferred for each plugin type. Represented as a map from plugin-type to the module name of the preferred implementation. **Application code should not need to consult this: it is used by the `<Pluggable>` component.**
 
@@ -309,6 +324,12 @@ When guarding small elements, such as the invocation of a component that will di
   <ViewUserLoans />
 </IfInterface>
 ```
+
+
+
+### Enabling hot-keys
+
+
 
 
 
