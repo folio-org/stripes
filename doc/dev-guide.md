@@ -176,7 +176,7 @@ The Stripes object contains the following elements:
 
 * `locale` -- a short string specifying the prevailing locale, e.g. `en-US`. This should be consulted when rendering dates with `toLocaleDateString`, etc.
 
-* `bindings` -- an object specifying key-bindings for actions that can be activated by hot-keys. The keys of the object are action names such as `stripesHome` and `pageDown`, and the corresponding values are key-combination specifications as defined by [the Mousetrap library](XXX), such as `command+up`. At startup, Stripes loads these bindings from the configuration module and applies them to all components making up the Stripes application: it is up to the individual modules to link the action-names with actual code using a `<HotKeys handlers={someObject}>` wrapper -- see [react-hotkeys[(XXX).
+* `bindings` -- an object specifying key-bindings for actions that can be activated by hot-keys. The keys of the object are action names such as `stripesHome` and `pageDown`, and the corresponding values are key-combination specifications as defined by [the Mousetrap library](XXX), such as `command+up`. At startup, Stripes loads these bindings from the configuration module and applies them to all components making up the Stripes application: it is up to the individual modules to link the action-names with actual code using a `<HotKeys handlers={someObject}>` wrapper -- see [below](#enabling-hot-keys).
 
 * `setLocale` -- a function by which client code can change the prevailing locale: `stripes.setLocale('en-US')`. (Simply assigning to `stripes.locale` will not work.)
 
@@ -329,7 +329,27 @@ When guarding small elements, such as the invocation of a component that will di
 
 ### Enabling hot-keys
 
+Stripes itself manages the mapping of key-combinations such as `command+up` and named actions such as `stripesHome`. Action names can be any short string, but by convention we use camel-case.
 
+This mapping can most easily be managed by means of the editor in the `ui-organization` module; more sophisticated facilities may follow.
+
+In ordee to actually use the mapped keys, the action-names must be mapped to code fragments, and this is the responsibility of the individual modules. Mappings are passed as the `handlers` argument to a `<HotKeys>` wrapper componnt, which is provided by [the `react-hotkey` library](XXX). For example, consider this code from the hot-keys testing page in `ui-developer`:
+```
+import { HotKeys } from '@folio/stripes-components/lib/HotKeys';
+// ...
+const handlers = {
+  stripesHome: () => { props.history.push('/'); },
+  stripesAbout: () => { props.history.push('/about'); },
+};
+// ...
+<HotKeys handlers={handlers} noWrapper>
+  // ... elements which, when focussed, support the hot-keys
+</HotKeys>
+```
+
+This maps the two action-names `stripesHome` and `stripesAbout` to JavaScript fragments that navigate directly to the home-page and the About page respectively. Stripes itself supplies the bindings that specify what particular key-combinations invoke these actions.
+
+Finally, a wrinkle: in some circumstances, inserting a `<HotKeys>` wrapper around other elements interferes with the application of CSS styles. In this case, the `nowrapper` property can be used to circumvent this. But the property is not yet supported by the master distribution of `react-hotkeys`, so it's necessary to use the forked copy that is part of `stripes-components`.
 
 
 
