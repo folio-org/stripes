@@ -108,13 +108,13 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 
 * `hasSettings` -- for "app" modules, if this is true then a settings pane is also provided, and a link will be listed in the Settings area. If this is false (the default) no settings are shown for the module. This is ignored for "settings" modules.
 
-* XXX okapiInterfaces
+* `okapiInterfaces` -- an optional object containing dependencies on back-end modules provided via Okapi. Each dependency is expressed by an entry whose key is a FOLIO interface name such as `users` or `circulation`, and whose corresponding value is a two-faceted [interface-version number](XXX). Each entry expresses a dependency on the specified Okapi interface at the indicated version or higher (but within the same major version).
 
-* XXX permissions
+* `permissionsets` -- an optional list of permission-sets describing access to parts of the user-facing application that the module implements. These will typically be very high-level permissions, most likely defined as the union of several high-level permissions provided by back-end modules. They are provided in exactly the same format as those in [a back-end module's `ModuleDescriptor.json`](XXX).
 
 When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
 
-The class exported by a module may also have a static data member, `actionNames`. If provided, this must be an array of strings, each of them the name of an action that can be invoked by hot-keys (see [below](XXX)). Stripes will aggregate the action-names exposed by the available modules and provide a combined list as [the `actionNames` member](XXX) of the Stripes object.
+The class exported by a module may also have a static data member, `actionNames`. If provided, this must be an array of strings, each of them the name of an action that can be invoked by hot-keys (see [below](#enabling-hot-keys)). Stripes will aggregate the action-names exposed by the available modules and provide a combined list as [the `actionNames` member](#actionNames) of the Stripes object.
 
 
 #### Skeleton module
@@ -176,13 +176,13 @@ The Stripes object contains the following elements:
 
 * `locale` -- a short string specifying the prevailing locale, e.g. `en-US`. This should be consulted when rendering dates with `toLocaleDateString`, etc.
 
-* `setLocale` -- XXX
+* `bindings` -- an object specifying key-bindings for actions that can be activated by hot-keys. The keys of the object are action names such as `stripesHome` and `pageDown`, and the corresponding values are key-combination specifications as defined by [the Mousetrap library](XXX), such as `command+up`. At startup, Stripes loads these bindings from the configuration module and applies them to all components making up the Stripes application: it is up to the individual modules to link the action-names with actual code using a `<HotKeys handlers={someObject}>` wrapper -- see [react-hotkeys[(XXX).
 
-* `bindings` -- XXX
+* `setLocale` -- a function by which client code can change the prevailing locale: `stripes.setLocale('en-US')`. (Simply assigning to `stripes.locale` will not work.)
 
-* `setBindings` -- XXX
+* `setBindings` -- a function by which client code can change the prevailing key bindings: `stripes.setLocale(someObject)`. This is provided for the use of key-bindings editors such as the one provided in the **Key bindings** settings of the `ui-organization` module.
 
-* `actionNames` -- XXX
+* <a name="actionNames">`actionNames`</a> -- an aggregated list of all the action names declared by the loaded modules. This is of use to key-bindings editors which need to know what actions to define key-combinations for.
 
 * `plugins` -- an indication of which plugins are preferred for each plugin type. Represented as a map from plugin-type to the module name of the preferred implementation. **Application code should not need to consult this: it is used by the `<Pluggable>` component.**
 
