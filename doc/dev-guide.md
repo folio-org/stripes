@@ -108,9 +108,9 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 
 * `hasSettings` -- for "app" modules, if this is true then a settings pane is also provided, and a link will be listed in the Settings area. If this is false (the default) no settings are shown for the module. This is ignored for "settings" modules.
 
-* `okapiInterfaces` -- an optional object containing dependencies on back-end modules provided via Okapi. Each dependency is expressed by an entry whose key is a FOLIO interface name such as `users` or `circulation`, and whose corresponding value is a two-faceted [interface-version number](XXX). Each entry expresses a dependency on the specified Okapi interface at the indicated version or higher (but within the same major version).
+* `okapiInterfaces` -- an optional object containing dependencies on back-end modules provided via Okapi. Each dependency is expressed by an entry whose key is a FOLIO interface name such as `users` or `circulation`, and whose corresponding value is a two-faceted [interface-version number](https://github.com/folio-org/okapi/blob/master/doc/guide.md#versioning-and-dependencies). Each entry expresses a dependency on the specified Okapi interface at the indicated version or higher (but within the same major version).
 
-* `permissionsets` -- an optional list of permission-sets describing access to parts of the user-facing application that the module implements. These will typically be very high-level permissions, most likely defined as the union of several high-level permissions provided by back-end modules. They are provided in exactly the same format as those in [a back-end module's `ModuleDescriptor.json`](XXX).
+* `permissionsets` -- an optional list of permission-sets describing access to parts of the user-facing application that the module implements. These will typically be very high-level permissions, most likely defined as the union of several high-level permissions provided by back-end modules. They are provided in exactly the same format as those in [a back-end module's `ModuleDescriptor.json`](https://github.com/folio-org/okapi/blob/master/doc/guide.md#example-4-complete-moduledescriptor).
 
 When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
 
@@ -176,7 +176,7 @@ The Stripes object contains the following elements:
 
 * `locale` -- a short string specifying the prevailing locale, e.g. `en-US`. This should be consulted when rendering dates with `toLocaleDateString`, etc.
 
-* `bindings` -- an object specifying key-bindings for actions that can be activated by hot-keys. The keys of the object are action names such as `stripesHome` and `pageDown`, and the corresponding values are key-combination specifications as defined by [the Mousetrap library](XXX), such as `command+up`. At startup, Stripes loads these bindings from the configuration module and applies them to all components making up the Stripes application: it is up to the individual modules to link the action-names with actual code using a `<HotKeys handlers={someObject}>` wrapper -- see [below](#enabling-hot-keys).
+* `bindings` -- an object specifying key-bindings for actions that can be activated by hot-keys. The keys of the object are action names such as `stripesHome` and `pageDown`, and the corresponding values are key-combination specifications as defined by [the Mousetrap library](https://github.com/ccampbell/mousetrap), such as `command+up`. At startup, Stripes loads these bindings from the configuration module and applies them to all components making up the Stripes application: it is up to the individual modules to link the action-names with actual code using a `<HotKeys handlers={someObject}>` wrapper -- see [below](#enabling-hot-keys).
 
 * `setLocale` -- a function by which client code can change the prevailing locale: `stripes.setLocale('en-US')`. (Simply assigning to `stripes.locale` will not work.)
 
@@ -333,7 +333,7 @@ Stripes itself manages the mapping of key-combinations such as `command+up` and 
 
 This mapping can most easily be managed by means of the editor in the `ui-organization` module; more sophisticated facilities may follow.
 
-In ordee to actually use the mapped keys, the action-names must be mapped to code fragments, and this is the responsibility of the individual modules. Mappings are passed as the `handlers` argument to a `<HotKeys>` wrapper componnt, which is provided by [the `react-hotkey` library](XXX). For example, consider this code from the hot-keys testing page in `ui-developer`:
+In ordee to actually use the mapped keys, the action-names must be mapped to code fragments, and this is the responsibility of the individual modules. Mappings are passed as the `handlers` argument to a `<HotKeys>` wrapper componnt, which is provided by [the `react-hotkey` library](https://github.com/chrisui/react-hotkeys). For example, consider this code from the hot-keys testing page in `ui-developer`:
 ```
 import { HotKeys } from '@folio/stripes-components/lib/HotKeys';
 // ...
