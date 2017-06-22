@@ -333,7 +333,7 @@ Stripes itself manages the mapping of key-combinations such as `command+up` and 
 
 This mapping can most easily be managed by means of the editor in the `ui-organization` module; more sophisticated facilities may follow.
 
-In ordee to actually use the mapped keys, the action-names must be mapped to code fragments, and this is the responsibility of the individual modules. Mappings are passed as the `handlers` argument to a `<HotKeys>` wrapper componnt, which is provided by [the `react-hotkey` library](https://github.com/chrisui/react-hotkeys). For example, consider this code from the hot-keys testing page in `ui-developer`:
+In order to actually use the mapped keys, the action-names must be mapped to code fragments, and this is the responsibility of the individual modules. Mappings are passed as the `handlers` argument to a `<HotKeys>` wrapper component, which is provided by [the `react-hotkey` library](https://github.com/chrisui/react-hotkeys). For example, consider this code from the hot-keys testing page in `ui-developer`:
 ```
 import { HotKeys } from '@folio/stripes-components/lib/HotKeys';
 // ...
