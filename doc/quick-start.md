@@ -32,7 +32,7 @@ and "users" (whose code is in the separate [ui-users](https://github.com/folio-o
 The "Trivial" example will work, as it is independent of Okapi.
 However the "Users" example requires Okapi and the back-end services of various modules and sample data.
 The simplest way to achieve that is using one of the provided
-[virtual machines](https://github.com/folio-org/folio-ansible/blob/master/README.md) (e.g. folio-backend).
+[virtual machines](https://github.com/folio-org/folio-ansible/blob/master/README.md).
 Other ways are also [explained](https://github.com/folio-org/ui-okapi-console/blob/master/doc/running-a-complete-system.md).
 
 ## Using local code
