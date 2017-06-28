@@ -1,6 +1,7 @@
 # Stripes release procedure
 
 <!-- ../../okapi/doc/md2toc -l 2 release-procedure.md -->
+* [Before you release](#before-you-release)
 * [Version numbers, branches and tags](#version-numbers-branches-and-tags)
 * [Release procedure](#release-procedure)
 * [Notes on dependencies](#notes-on-dependencies)
@@ -9,6 +10,14 @@
 * [Note on access to the NPM repository](#note-on-access-to-the-npm-repository)
 
 NOTE. This document is subject to revision.
+
+
+## Before you release
+
+Please make sure that your code runs clean. Specifically:
+
+* It should pass `yarn lint` with no errors.
+* It should not emit any warnings on the JavaScript console.
 
 
 ## Version numbers, branches and tags
