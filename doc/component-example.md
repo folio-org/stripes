@@ -65,7 +65,7 @@ This is the code as of git commit [26b1c0ab5970fbfb8d1a2c52f6190d2029c9401b](htt
     36          path: 'configurations/entries',
     37        },
     38        PUT: {
-    39          path: 'configurations/entries/${recordId}', // eslint-disable-line no-template-curly-in-string
+    39          path: 'configurations/entries/%{recordId}',
     40        },
     41      },
     42    });
