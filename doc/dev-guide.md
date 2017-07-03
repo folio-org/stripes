@@ -180,6 +180,8 @@ The Stripes object contains the following elements:
 
 * `setLocale` -- a function by which client code can change the prevailing locale: `stripes.setLocale('en-US')`. (Simply assigning to `stripes.locale` will not work.)
 
+* `setSinglePlugin` -- a function by which client code can change the preferred module used to satisfy a specified plugin type: `stripes.setSinglePlugin('markdown-editor', '@folio/plugin-markdown-better')`.
+
 * `setBindings` -- a function by which client code can change the prevailing key bindings: `stripes.setLocale(someObject)`. This is provided for the use of key-bindings editors such as the one provided in the **Key bindings** settings of the `ui-organization` module.
 
 * <a name="actionNames">`actionNames`</a> -- an aggregated list of all the action names declared by the loaded modules. This is of use to key-bindings editors which need to know what actions to define key-combinations for.
