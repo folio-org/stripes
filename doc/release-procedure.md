@@ -34,13 +34,14 @@ Make sure that your repository's `CHANGELOG.md` is up to date:
 * Bullet point for each bug fixed/new feature added/etc.
 * Each bullet point ends by stating the ID of the Jira issue, when there is one. If there is not, consider creating one and referencing it, but there is no need to make a religion out of this.
 
+Ensure that each of the Jira issues listed in the change-log is tagged to the number of the release that it's going to be a paet of. Issues are generally tagged to the minor release following the most recently released versions, but will need to be retargeted to the next _major_ release if a backwards-incompaptible change is to be included.
 
 ## Release procedure
 
 * Increment the version number in `package.json`, if this has not already been done -- bumping the major version if there are backwards-incompatible changes, and the minor version if all changes are backwards-compatible.
-* Add an entry to the project's `CHANGELOG.md` describing how the new release differs from the previous one. The purpose of the change-log is to allow a module developer to answer the question "Do I need to upgrade to the new version of this package?", so aim for a high-level overview rather than enumerating every change, and concentrate on API-visible rather then internal changes.
-* Commit the `package.json` and `CHANGELOG.md` changes with the message "Release v2.3.0".
-* Create a tag for the specific version to be released -- for example, `v2.3.0`.
+* Make any necesary additions to the project's `CHANGELOG.md` describing how the new release differs from the previous one. The purpose of the change-log is to allow a module developer to answer the question "Do I need to upgrade to the new version of this package?", so aim for a high-level overview rather than enumerating every change, and concentrate on API-visible rather then internal changes.
+* Commit the `package.json` and `CHANGELOG.md` changes with the message "Release vVERSION". For example, `git commit -m "Release v2.3.0" .`
+* Create a tag for the specific version to be released (`git tag v2.3.0`).
 * Publish the package to the npm repository using `npm publish`. (You will need credentials to do this: see note below.)
 * Push the changed module back to git (`git push`).
 * Push the new release tag back to git (`git push origin tag v2.3.0`).
