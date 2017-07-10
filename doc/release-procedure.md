@@ -4,9 +4,9 @@
 * [Version numbers, branches and tags](#version-numbers-branches-and-tags)
 * [Before you release](#before-you-release)
 * [Release procedure](#release-procedure)
+* [Working towards the next release](#working-towards-the-next-release)
 * [Notes on dependencies](#notes-on-dependencies)
 * [Notes on testing](#notes-on-testing)
-* [While working towards the next release](#while-working-towards-the-next-release)
 * [Note on access to the NPM repository](#note-on-access-to-the-npm-repository)
 
 NOTE. This document is subject to revision.
@@ -40,11 +40,21 @@ Ensure that each of the Jira issues listed in the change-log is tagged to the nu
 
 * Increment the version number in `package.json`, if this has not already been done -- bumping the major version if there are backwards-incompatible changes, and the minor version if all changes are backwards-compatible.
 * Make any necesary additions to the project's `CHANGELOG.md` describing how the new release differs from the previous one. The purpose of the change-log is to allow a module developer to answer the question "Do I need to upgrade to the new version of this package?", so aim for a high-level overview rather than enumerating every change, and concentrate on API-visible rather then internal changes.
+* Set the date of the release in the change-log, adding a link to the tag and another to the full set of differences from the previous release as tracked on GitHub: follow the formatting of earlier change-log entries.
 * Commit the `package.json` and `CHANGELOG.md` changes with the message "Release vVERSION". For example, `git commit -m "Release v2.3.0" .`
 * Create a tag for the specific version to be released (`git tag v2.3.0`).
 * Publish the package to the npm repository using `npm publish`. (You will need credentials to do this: see note below.)
 * Push the changed module back to git (`git push`).
 * Push the new release tag back to git (`git push origin tag v2.3.0`).
+
+
+## Working towards the next release
+
+Decide what the version number of the next release is likely to be -- almost always a minor-version bump from the release that has just been made.
+
+In the Jira project, create a new version with this number, so that issues can be associated with it.
+
+Create a new entry at the top of the change-log for the forthcoming version, so there is somewhere to add entries. But do not include a date for the entry: instead, mark it as "IN PROGRESS", as in [the in-progress `stripes-core` change-log from before v0.5.0](https://github.com/folio-org/stripes-core/blob/e058702cb19b32f607f7fb40b15ddf00cd6b45ad/CHANGELOG.md).
 
 
 ## Notes on dependencies
@@ -59,10 +69,6 @@ Ensure that each of the Jira issues listed in the change-log is tagged to the nu
 
 XXX to be done. See http://dev.folio.org/doc/automation
 
-
-## While working towards the next release
-
-As soon as you make API-visible changes, start adding them to a new entry in the change-log. But do not include a date for the entry: instead, mark it as "IN PROGRESS", as in [the in-progress `stripes-core` change-log from before v0.5.0](https://github.com/folio-org/stripes-core/blob/e058702cb19b32f607f7fb40b15ddf00cd6b45ad/CHANGELOG.md).
 
 ## Note on access to the NPM repository
 
