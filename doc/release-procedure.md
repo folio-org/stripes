@@ -56,8 +56,6 @@ XXX to be done. See http://dev.folio.org/doc/automation
 
 ## While working towards the next release
 
-After making a release, the version number in the `master` branch's `package.json` should be incremented ready for the next version. Initially, the minor version should be bumped. At this point, any number of non-breaking changes may be made before the next release. If in this process a breaking change is made, the major version should be bumped; thereafter, any number of breaking changes may be made before the next release.
-
 As soon as you make API-visible changes, start adding them to a new entry in the change-log. But do not include a date for the entry: instead, mark it as "IN PROGRESS", as in [the in-progress `stripes-core` change-log from before v0.5.0](https://github.com/folio-org/stripes-core/blob/e058702cb19b32f607f7fb40b15ddf00cd6b45ad/CHANGELOG.md).
 
 ## Note on access to the NPM repository
