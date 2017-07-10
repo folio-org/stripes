@@ -1,8 +1,8 @@
 # Stripes release procedure
 
 <!-- ../../okapi/doc/md2toc -l 2 release-procedure.md -->
-* [Before you release](#before-you-release)
 * [Version numbers, branches and tags](#version-numbers-branches-and-tags)
+* [Before you release](#before-you-release)
 * [Release procedure](#release-procedure)
 * [Notes on dependencies](#notes-on-dependencies)
 * [Notes on testing](#notes-on-testing)
@@ -10,6 +10,16 @@
 * [Note on access to the NPM repository](#note-on-access-to-the-npm-repository)
 
 NOTE. This document is subject to revision.
+
+
+## Version numbers, branches and tags
+
+The libraries that make up Stripes adhere to [the FOLIO
+version-numbering scheme](http://dev.folio.org/community/contrib-code#version-numbers), which is essentially identical to [Semantic Versioning](http://semver.org/). All releases are tagged in git.
+
+Each release is tagged with a name beginning with `v` and followed by the version number -- for example, `v2.3.5`.
+
+Patch releases can be done on a branch whose name begins with `b` and is followed by the major and minor version -- for example, `b2.3`. From this branch, we will make some number of tagged releases, each with a different trivial version number (one for each patch release: bug-fixes and security patch, for example, `v2.3.1`). If no such branch exists for the minor version you're seeking to patch and `master` has since moved on with commits you prefer not to include, please create a branch from the tag.
 
 
 ## Before you release
@@ -23,16 +33,6 @@ Make sure that your repository's `CHANGELOG.md` is up to date:
 
 * Bullet point for each bug fixed/new feature added/etc.
 * Each bullet point ends by stating the ID of the Jira issue, when there is one. If there is not, consider creating one and referencing it, but there is no need to make a religion out of this.
-
-
-## Version numbers, branches and tags
-
-The libraries that make up Stripes adhere to [the FOLIO
-version-numbering scheme](http://dev.folio.org/community/contrib-code#version-numbers), which is essentially identical to [Semantic Versioning](http://semver.org/). All releases are tagged in git.
-
-Each release is tagged with a name beginning with `v` and followed by the version number -- for example, `v2.3.5`.
-
-Patch releases can be done on a branch whose name begins with `b` and is followed by the major and minor version -- for example, `b2.3`. From this branch, we will make some number of tagged releases, each with a different trivial version number (one for each patch release: bug-fixes and security patch, for example, `v2.3.1`). If no such branch exists for the minor version you're seeking to patch and `master` has since moved on with commits you prefer not to include, please create a branch from the tag.
 
 
 ## Release procedure
