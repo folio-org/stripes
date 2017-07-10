@@ -19,6 +19,11 @@ Please make sure that your code runs clean. Specifically:
 * It should pass `yarn lint` with no errors.
 * It should not emit any warnings on the JavaScript console.
 
+Make sure that your repository's `CHANGELOG.md` is up to date:
+
+* Bullet point for each bug fixed/new feature added/etc.
+* Each bullet point ends by stating the ID of the Jira issue, when there is one. If there is not, consider creating one and referencing it, but there is no need to make a religion out of this.
+
 
 ## Version numbers, branches and tags
 
