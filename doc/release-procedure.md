@@ -34,6 +34,8 @@ Make sure that your repository's `CHANGELOG.md` is up to date:
 * Bullet point for each bug fixed/new feature added/etc.
 * Each bullet point ends by stating the ID of the Jira issue, when there is one. If there is not, consider creating one and referencing it, but there is no need to make a religion out of this.
 
+You may need to check the git history to ensure that all major changes are covered by the change-log entries.
+
 Ensure that each of the Jira issues listed in the change-log is tagged to the number of the release that it's going to be a paet of. Issues are generally tagged to the minor release following the most recently released versions, but will need to be retargeted to the next _major_ release if a backwards-incompaptible change is to be included.
 
 ## Release procedure
