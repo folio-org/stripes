@@ -52,7 +52,7 @@ Bringing machine 'default' up with 'virtualbox' provider...
     default: additions are required for forwarded ports, shared folders, host only
     default: networking, and more. If SSH fails on this machine, please install
     default: the guest additions and repackage the box to continue.
-    default: 
+    default:
     default: This is not an error message; everything may continue to work properly,
     default: in which case you may ignore this message.
 ```

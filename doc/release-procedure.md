@@ -82,11 +82,11 @@ Username: mike
 Password: ********
 Email: (this IS public) mike@indexdata.com
 Logged in as mike on https://repository.folio.org/repository/npm-folio/.
-$ 
+$
 ```
 You will then be able to release packages in the relevant repository:
 ```
 $ npm publish
 + @folio/stripes-components@0.0.2
-$ 
+$
 ```

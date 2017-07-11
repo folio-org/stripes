@@ -26,7 +26,7 @@ As the error message helpfully suggests, this is caused by the system picking up
 The fix, ridiculously, is to manually remove all copies of React from every `node_modules` directory but one -- canonically, that of `stripes-sample-platform`. So:
 
 ```
-find stripes-* ui-* -name react | grep -v '^stripes-sample-platform' | xargs rm -r 
+find stripes-* ui-* -name react | grep -v '^stripes-sample-platform' | xargs rm -r
 ```
 
 (More discussion in [STRIPES-220](https://issues.folio.org/browse/STRIPES-220).)
@@ -107,15 +107,15 @@ Internally, WebPack uses [`inotify`](http://man7.org/linux/man-pages/man7/inotif
 You can increase the limit on the number of watches by writing to the special file `/proc/sys/fs/inotify/max_user_watches`. You will need to become root to do this:
 
 ```
-$ cat /proc/sys/fs/inotify/max_user_watches 
+$ cat /proc/sys/fs/inotify/max_user_watches
 8192
 $ sudo bash
-[sudo] password for mike: 
-# echo 524288 > /proc/sys/fs/inotify/max_user_watches 
+[sudo] password for mike:
+# echo 524288 > /proc/sys/fs/inotify/max_user_watches
 # exit
-$ cat /proc/sys/fs/inotify/max_user_watches 
+$ cat /proc/sys/fs/inotify/max_user_watches
 524288
-$ 
+$
 ```
 
 Once the limit is high enough, you can restart the server (e.g. `yarn start`) and it will re-scan the source tree, so that it is subsequently able to recognise changes in any source file.

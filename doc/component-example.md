@@ -31,7 +31,7 @@ This is the code as of git commit [26b1c0ab5970fbfb8d1a2c52f6190d2029c9401b](htt
      2  // eslint-disable-next-line import/no-unresolved
      3  import React, { PropTypes } from 'react';
      4  import Select from '@folio/stripes-components/lib/Select';
-     5  
+     5
      6  class PluginType extends React.Component {
      7    static propTypes = {
      8      stripes: PropTypes.shape({
@@ -54,7 +54,7 @@ This is the code as of git commit [26b1c0ab5970fbfb8d1a2c52f6190d2029c9401b](htt
     25        PropTypes.shape({}),
     26      ).isRequired,
     27    };
-    28  
+    28
     29    static manifest = Object.freeze({
     30      recordId: {},
     31      setting: {
@@ -69,17 +69,17 @@ This is the code as of git commit [26b1c0ab5970fbfb8d1a2c52f6190d2029c9401b](htt
     40        },
     41      },
     42    });
-    43  
+    43
     44    constructor(props) {
     45      super(props);
     46      this.changeSetting = this.changeSetting.bind(this);
     47    }
-    48  
+    48
     49    changeSetting(e) {
     50      const value = e.target.value;
     51      this.props.stripes.logger.log('action', `changing preferred '${this.props.pluginType}' plugin to ${value}`);
     52      const record = this.props.data.setting[0];
-    53  
+    53
     54      if (record) {
     55        // Setting has been set previously: replace it
     56        this.props.mutator.recordId.replace(record.id);
@@ -94,16 +94,16 @@ This is the code as of git commit [26b1c0ab5970fbfb8d1a2c52f6190d2029c9401b](htt
     65        });
     66      }
     67    }
-    68  
+    68
     69    render() {
     70      const settings = this.props.data.setting || [];
     71      const value = (settings.length === 0) ? '' : settings[0].value;
-    72  
+    72
     73      const options = this.props.plugins.map(p => ({
     74        value: p.module,
     75        label: `${p.displayName} v${p.version}`,
     76      }));
-    77  
+    77
     78      return (
     79        <div>
     80          <b>{this.props.pluginType}</b>
@@ -119,7 +119,7 @@ This is the code as of git commit [26b1c0ab5970fbfb8d1a2c52f6190d2029c9401b](htt
     90      );
     91    }
     92  }
-    93  
+    93
     94  export default PluginType;
 ```
 
@@ -141,7 +141,7 @@ First we import two things from React:
 
 (Annoyingly, a quirk of NPM and React means that we can't have multiple copies of the React library visible when the application is built, so we have to remove every copy except the one that belongs to `stripes-core`. As a result, running ESLint on the present source file will report that the required library is missing. So we disable the relevant warning for that line, hence the cryptic comment.)
 
-Then we bring in the **Select** component, which will be used to render the drop-down list of available plugins of the appropriate type. 
+Then we bring in the **Select** component, which will be used to render the drop-down list of available plugins of the appropriate type.
 
 ### Definition of class **PluginType** (lines 6-94)
 

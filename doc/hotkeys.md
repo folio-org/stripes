@@ -24,7 +24,7 @@ We need to provide a way to supply configuration to this library in a way that c
 From [this post](http://chrispearce.co/exploring-hotkeys-and-focus-in-react/), the configuration of react-hotkeys looks like this:
 
 ```
-const keyMap = {  
+const keyMap = {
   'deleteNode': ['del', 'backspace'],
   'snapLeft': 'ctrl+left',
   // ...
