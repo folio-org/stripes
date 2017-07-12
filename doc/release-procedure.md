@@ -32,11 +32,11 @@ Please make sure that your code runs clean. Specifically:
 Make sure that your repository's `CHANGELOG.md` is up to date:
 
 * Bullet point for each bug fixed/new feature added/etc.
-* Each bullet point ends by stating the ID of the JIRA issue, when there is one. If there is not, consider creating one and referencing it, but there is no need to make a religion out of this.
+* Each bullet point ends by stating the ID of the Jira issue, when there is one. If there is not, consider creating one and referencing it, but there is no need to make a religion out of this.
 
 You may need to check the git history to ensure that all major changes are covered by the change-log entries.
 
-Ensure that each of the JIRA issues listed in the change-log is tagged to the number of the release that it's going to be a part of. Issues are generally tagged to the minor release following the most recently released versions, but will need to be re-targeted to the next _major_ release if a backwards-incompatible change is to be included.
+Ensure that each of the Jira issues listed in the change-log is tagged to the number of the release that it's going to be a part of. Issues are generally tagged to the minor release following the most recently released versions, but will need to be re-targeted to the next _major_ release if a backwards-incompatible change is to be included.
 
 ## Release procedure
 
@@ -54,7 +54,7 @@ Ensure that each of the JIRA issues listed in the change-log is tagged to the nu
 
 Decide what the version number of the next release is likely to be -- almost always a minor-version bump from the release that has just been made.
 
-In the JIRA project, create a new version with this number, so that issues can be associated with it.
+In the Jira project, create a new version with this number, so that issues can be associated with it.
 
 Create a new entry at the top of the change-log for the forthcoming version, so there is somewhere to add entries. But do not include a date for the entry: instead, mark it as "IN PROGRESS", as in [the in-progress `stripes-core` change-log from before v0.5.0](https://github.com/folio-org/stripes-core/blob/e058702cb19b32f607f7fb40b15ddf00cd6b45ad/CHANGELOG.md).
 
