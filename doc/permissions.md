@@ -48,3 +48,5 @@ Specifically, which permissions should be defined in front-end modules and which
 
 But this leaves some scope for judgement.
 
+See https://github.com/folio-org/ui-users/compare/ed07f8bcce4a8d4177c17e728729c31a60263058...STRIPES-435
+
