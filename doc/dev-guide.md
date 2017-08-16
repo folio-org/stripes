@@ -389,6 +389,8 @@ The configured logger object is furnished as the `logger` element of the `stripe
 
 In addition, the logger is passed as the fourth argument into stripes-connect path functions.
 
+#### Redux-DevTools-Extension
+ Stripes will be sending the Redux actions and state details to the  [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension) which should be installed in the browser.
 
 
 ### Plugins
