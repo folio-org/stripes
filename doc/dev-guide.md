@@ -227,6 +227,7 @@ The Stripes object contains the following elements:
 
   * `hasAllPerms` -- a boolean indicating whether to assume that the user has all permissions. Obviously this should usually be false (the default); setting it to true can be useful in development, but does not grant any real escalation in privilege, since server-side permission checks cannot be bypassed.
 
+For convenience in declaring the property-type of the Stripes object, a `stripesShape` object is provided, and can be imported from `@folio/stripes-core/src/Stripes`.
 
 
 ### Connecting a component
@@ -236,13 +237,12 @@ The top-level component of each module is automatically connected, so that it ca
 Because connecting is a non-trivial operation, it is best to do this once in the constructor of the containing component rather than inline in its `render` method where it will be activated many times. The standard idiom is:
 
 ```js
+import { stripesShape } from '@folio/stripes-core/src/Stripes';
 import Child from './Child';
 
 class Parent extends React.Component {
   static propTypes = {
-    stripes: PropTypes.shape({
-      connect: PropTypes.func.isRequired,
-    }).isRequired,
+    stripes: stripesShape.isRequired,
   };
 
   constructor(props) {
