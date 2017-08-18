@@ -2,7 +2,8 @@
 
 <!-- ../../okapi/doc/md2toc -l 2 permissions.md -->
 * [What permissions are](#what-permissions-are)
-* [Permissions enforcement by back-end modules](#permissions-enforcement-by-back-end-modules)
+* [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
+* [Atomic and compound permissions](#atomic-and-compound-permissions)
 * [Sources of permissions](#sources-of-permissions)
 * [Issue 1: which permissions defined where?](#issue-1-which-permissions-defined-where)
 
@@ -13,7 +14,7 @@ In the FOLIO system, permissions are specified by short, faceted strings such as
 Permissions get associated with users. A user is allowed to perform an operation only if they have the necessary permission.
 
 
-## Permissions enforcement by back-end modules
+## Permission enforcement on back-end and front-end
 
 Most permissions are rigorously enforced by back-end modules -- e.g. mod-users simply will not allow someone without the `users.collection.get` permission to read collections of user records. But the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail due to lack of permissions. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since the attempt to do so will be rejected by the back-end module.
 
@@ -22,9 +23,9 @@ A few permissions are checked only on the UI side: for example, the link to the 
 
 ## Atomic and compound permissions
 
-XXX
+The definition of a permission may include one or more sub-permissions. A user who has a permission automatically has all of its sub-permissions (and all their sub-permissions, and so on).
 
-XXX always check atomic
+A permission with no sub-permissions is called an _atomic permission_, and one that does have sub-permissions is called a _compound permission_. (We sometimes also use the term "permission set" for the latter; but since permission sets are permissions -- just those that happen to have sub-permissions -- the permission-vs-permission-set dichotomy is misleading.)
 
 
 ## Sources of permissions
@@ -49,4 +50,8 @@ Specifically, which permissions should be defined in front-end modules and which
 But this leaves some scope for judgement.
 
 See https://github.com/folio-org/ui-users/compare/ed07f8bcce4a8d4177c17e728729c31a60263058...STRIPES-435
+
+
+XXX always check atomic
+
 
