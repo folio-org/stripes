@@ -8,6 +8,7 @@
     * [Sources of permissions](#sources-of-permissions)
 * [Issues](#issues)
     * [How to name permissions?](#how-to-name-permissions)
+    * [Permission display-name and description](#permission-display-name-and-description)
     * [Which permissions defined where?](#which-permissions-defined-where)
     * [Which permissions to check?](#which-permissions-to-check)
 
