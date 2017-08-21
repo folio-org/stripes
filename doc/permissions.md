@@ -3,8 +3,8 @@
 <!-- ../../okapi/doc/md2toc -l 2 permissions.md -->
 * [Background](#background)
     * [What permissions are](#what-permissions-are)
-    * [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
     * [Atomic and compound permissions](#atomic-and-compound-permissions)
+    * [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
     * [Sources of permissions](#sources-of-permissions)
 * [Issues](#issues)
     * [How to name permissions?](#how-to-name-permissions)
@@ -19,14 +19,7 @@
 
 In the FOLIO system, permissions are specified by short, faceted strings such as `users.collection.get` (the permissions to read a collection of user records), `circulation.loans.item.put` (the permission to replace an existing loan) or `module.items.enabled` (the permission to use the Items UI module).
 
-Permissions get associated with users. A user is allowed to perform an operation only if they have the necessary permission.
-
-
-### Permission enforcement on back-end and front-end
-
-Most permissions are rigorously enforced by back-end modules -- e.g. mod-users simply will not allow someone without the `users.collection.get` permission to read collections of user records. But the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail due to lack of permissions. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since the attempt to do so will be rejected by the back-end module.
-
-A few permissions are checked only on the UI side: for example, the link to the Items UI module is displayed only to users who have the `module.items.enabled` permission. While a different UI could bypass such UI-only permissions, doing so would not violate security as the back-end permissions would still be checked. Omitting UI elements for which the relevant back-end features will not permit operations is a service to the user, not a security feature.
+Permissions also have a human-readable display-name such as "Get a collection of user records" or "circulation - modify loan in storage", but this only for the benefit of administrators, and does not affect how the permissions function.
 
 
 ### Atomic and compound permissions
@@ -34,6 +27,15 @@ A few permissions are checked only on the UI side: for example, the link to the 
 The definition of a permission may include one or more sub-permissions. A user who has a permission automatically has all of its sub-permissions (and all their sub-permissions, and so on).
 
 A permission with no sub-permissions is called an _atomic permission_, and one that does have sub-permissions is called a _compound permission_. (We sometimes also use the term "permission set" for the latter; but since permission sets are permissions -- just those that happen to have sub-permissions -- the permission-vs-permission-set dichotomy is misleading.)
+
+
+### Permission enforcement on back-end and front-end
+
+Permissions get associated with users. A user is allowed to perform an operation only if they have the necessary permission.
+
+Most permissions are rigorously enforced by back-end modules -- e.g. mod-users simply will not allow someone without the `users.collection.get` permission to read collections of user records. But the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail due to lack of permissions. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since the attempt to do so would be rejected by the back-end module.
+
+A few permissions are checked only on the UI side: for example, the link to the Items UI module is displayed only to users who have the `module.items.enabled` permission. While a different UI could bypass such UI-only permissions, doing so would not violate security as the back-end permissions would still be checked. Omitting UI elements for which the relevant back-end features will not permit operations is a service to the user, not a security feature.
 
 
 ### Sources of permissions
