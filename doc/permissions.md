@@ -84,9 +84,9 @@ Each `settings.NAME.enabled` permission includes `settings.enabled` as a sub-per
 
 ### Individual settings pages
 
-Each individual settings page ("Permission sets", "Patron groups". "Address Types", etc.) is guarded by a specified permission, and is made available only to users who have that permission -- for example, the "Permission sets" settings page is restricted to users who have the `perms.permissions.get` permission.
+Each individual settings page ("Permission sets", "Patron groups". "Address Types", etc.) is guarded by a specified permission, and is made available only to users who have that permission -- for example, the "Permission sets" settings page is restricted to users who have the `ui-users.editpermsets` permission.
 
-These guard-permissions should be high-level permissions defined by the UI module -- in this case, for example, `ui-users.editpermsets` rather than `perms.permissions.get`. (XXX Make this change in code.). Each such permission for a specific part of the settings should include the relevant module-wide settings permission (in this case `settings.users.enabled`).
+These guard-permissions should be high-level permissions defined by the UI module. Each such permission for a specific part of the settings should include the relevant module-wide settings permission (in this case `settings.users.enabled`).
 
 
 
