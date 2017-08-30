@@ -6,6 +6,10 @@
     * [Atomic and compound permissions](#atomic-and-compound-permissions)
     * [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
     * [Sources of permissions](#sources-of-permissions)
+* [Access to settings](#access-to-settings)
+    * [The settings menu](#the-settings-menu)
+    * [The various modules' entries](#the-various-modules-entries)
+    * [Individual settings pages](#individual-settings-pages)
 * [Issues](#issues)
     * [How to name permissions?](#how-to-name-permissions)
     * [Permission display-name and description](#permission-display-name-and-description)
@@ -51,6 +55,41 @@ In addition, high-level permission sets can be defined at run-time (using **Sett
 
 
 
+## Access to settings
+
+Settings in Stripes provide a way to change the behaviour of the application in persistent ways. In general, application modules also provide some settings pages, although not every application does; in addition, special modules of type `settings` provide _only_ settings pages -- for example, the Organization module provides settings that affect the whole applications, such as the selection of the locale and preferred plugins.
+
+Each module that supports settings provides one or more settings pages, each of which a given user may or may not have the necessary permissions to access. Our goal is to ensure that:
+* Only users with suitable permissions can see a given settings page.
+* Only usera with access to one of more settings pages within a module can see that module's settings.
+* Only users with access to one or more modules' settings can see the top-level Settings link.
+
+Here is how this is handled, from the top down. (Some parts of this are work in progress: see
+[STRIPES-468](https://issues.folio.org/browse/STRIPES-468)
+and
+[STRIPES-469](https://issues.folio.org/browse/STRIPES-469).)
+
+
+### The Settings link
+
+The top-level Settings link is displayed only if the user has the `settings.enabled` permission. This is defined in stripes-cpre itself. It is never explicitly assigned to any user, but is included as a sub-permission in all the module-level settings permissions.
+
+
+### The various modules' entries
+
+Each module defines an additional permission, `settings.NAME.enabled`, and the `<Settings>` component displays the module's entry in the permissions menu only if this is defined.
+
+Each `settings.NAME.enabled` permission includes `settings.enabled` as a sub-permission, so that a user who has any of the module-level settings permissions automatically sees the top-level Settings link.
+
+
+### Individual settings pages
+
+Each individual settings page ("Permission sets", "Patron groups". "Address Types", etc.) is guarded by a specified permission, and is made available only to users who have that permission -- for example, the "Permission sets" settings page is restricted to users who have the `perms.permissions.get` permission.
+
+These guard-permissions should be high-level permissions defined by the UI module -- in this case, for example, `ui-users.editpermsets` rather than `perms.permissions.get`. (XXX Make this change in code.). Each such permission for a specific part of the settings should include the relevant module-wide settings permission (in this case `settings.users.enabled`).
+
+
+
 ## Issues
 
 
@@ -86,7 +125,7 @@ Specifically, which permissions should be defined in front-end modules and which
 
 * Permission which are enforced only in a front-end module should be defined in the front-end. There is no need for back-end modules to be encumbered by the knowledge of such permissions.
 
-* _In general_, a permission enforced in a front-end module should be defined in that particular front-end module, and a permission enforced by Stripes itself should be defined by stripes-core. However, as a special case, stripes-core enforced the various `module.NAME.enabled` permissions provided by the modules called _NAME_.
+* _In general_, a permission enforced in a front-end module should be defined in that particular front-end module, and a permission enforced by Stripes itself should be defined by stripes-core. However, as a special case, stripes-core enforces the various `module.NAME.enabled` permissions provided by the modules called _NAME_.
 
 But this leaves some scope for judgement.
 
