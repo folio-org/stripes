@@ -26,7 +26,12 @@
     * [Logging](#logging)
         * [Configuring the logger](#configuring-the-logger)
         * [Using the logger](#using-the-logger)
+        * [Redux-DevTools-Extension](#redux-devtools-extension)
     * [Plugins](#plugins)
+    * [Internationalization](#internationalization)
+        * [Creating translations](#creating-translations)
+        * [Using translations](#using-translations)
+        * [Other uses of the locale](#other-uses-of-the-locale)
     * [Styling HTML](#styling-html)
     * [Network tab in Google Chrome](#network-tab-in-google-chrome)
 * [Thinking in Stripes](#thinking-in-stripes)
@@ -411,6 +416,65 @@ This is done by means of the `<Pluggable>` component. It must be passed a single
 This renders the red "Markdown editor goes here" message by default; but if there is an available plugin module whose plugin-type is `markdown-Editor` then its top-level component is rendered instead.
 
 There may be multiple plugins of the same plugin type; in this case, a setting in the database indicates which of the extant plugins is to be used. (The Preferred Plugins section of the Organization settings allows this to be configured.)
+
+
+
+### Internationalization
+
+Stripes contains provisions for localising a module. At any moment, there is a notion of the currently prevailable locale, which can always be obtained using `stripes.locale`, and which may be changed on the fly using the `stripes.setLocale` function. The stripes-core code itself makes some use of this locale -- for example, the front page's welcome messages are translated accordingly -- but since modules provide much more of the UI, they are largely responsibile for taking the locale into account. This is done most prominently through the provision and use of translations.
+
+
+#### Creating module translations
+
+Translations in Stripes are user-readable strings which are named with a short, faceted, machine-readable key such as `ui-users.loans.openLoans` for the Users module's "Open loans" caption on the Loans page.
+
+A module's trannslations must be provided within its package file, `package.json`, inside its `stripes` section, in a subsection named `translations`. This section itself contains subsections whose names are two-letter ISO country codes such as `en` for English or `de` for German, each such subsections providing the module's translation strings for the named language.
+
+The translations themselves, within these subsections, have short, faceted keys, and their values are the strings that are to appear in the UI. The name of the module is automatically prepended to the translation keys. For example, in the User module's `packge.json`, the section:
+
+```
+  "translations": {
+      "en": {
+        "search": "Search",
+        "loans.title": "Loans",
+        "loans.openLoans": "open loans",
+        "loans.closedLoans": "closed loans"
+      },
+      "de": {
+        "search": "Suche",
+        "loans.title": "Ausleihen",
+        "loans.openLoans": "Offene Ausleihen",
+        "loans.closedLoans": "Abgeschlossene Ausleihen"
+      }
+    }
+```
+
+provides English and German translations for four strings, whose keys are `ui-users.search`,  `loans.title`, `loans.openLoans` and `loans.closedLoans`.
+
+Translations may be provided for any number of languages.
+
+(In the future, we may introduce a facility for loading translations from their own files rather than the module's package file.)
+
+
+#### Using module translations
+
+Translations are used by referencing their keys in code, at which point the locale-appropriate translation is used. This can be done in two way.
+
+In HTML, [the React component `<FormattedMessage>`](https://github.com/yahoo/react-intl/wiki/Components#formattedmessage), which is provided by the react-intl library. The translation key must be provided as the `id` parameter: for example, `<FormattedMessage id="ui-users.loans.title" />` will render "Loans" if the prevailing locale's language is English, and "Ausleihen" if it is German.
+
+In JavaScript, the Stripes object furnishes an internationalization object as its `intl` property, and [its `formatmessage` function](https://github.com/yahoo/react-intl/wiki/API#formatmessage) can be used. It must be passed an object whose `id` property is a translation key: for example, `stripes.intl.formatMessage({ id: 'ui-users.search' })` will yield "Search" if the prevailing locale's language is English, and "Suche" if it is German.
+
+
+#### Using core translations
+
+In addition to the translations that it provides itself, a module may use translations provided by stripes-core. In particular, it provides translations for a set of common labels, which modules therefore need not translate for themsleves. The keys for these labels all begin with `common.`. The translations provided by stripes-core are provided in [language-specific translation files](https://github.com/folio-org/stripes-core/tree/master/translations).
+
+For example, if the `stripes-core/translations/*.json` files define a property as `"common.search": "Search"`, then search buttons may use `<Button label={stripes.intl.formatMessage({ id: 'stripes-core.common.search' })} />.
+
+
+#### Other uses of the locale
+
+Besides translating strings, the prevailing locale can be used to influence other aspects of the user interface. For example, it can be used to render dates in the appropriate format: using `new Date(Date.parse(dateStr)).toLocaleString(stripes.locale)`, the date 5 March 2017 appears as `3/5/2017` in the USA, `05/03/2017` in the UK and `5.3.2017` in German.
 
 
 
