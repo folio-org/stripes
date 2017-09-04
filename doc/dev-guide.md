@@ -393,6 +393,7 @@ In addition, the logger is passed as the fourth argument into stripes-connect pa
  Stripes will be sending the Redux actions and state details to the  [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension) which should be installed in the browser.
 
 
+
 ### Plugins
 
 Any component may be substituted by a plugin. This is simply a module whose type is `plugin`. Plugin modules have a lower-level type, represented by a `pluginType` field in the `package.json`. Plugin types might be "markdownEditor", "MARCViewer", etc.
