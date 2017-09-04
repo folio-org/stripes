@@ -2,12 +2,11 @@
 
 <!-- ../../okapi/doc/md2toc -l 2 permissions.md -->
 * [Background](#background)
-    * [What permissions are](#what-permissions-are)
-    * [Atomic and compound permissions](#atomic-and-compound-permissions)
-    * [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
-    * [Sources of permissions](#sources-of-permissions)
+* [Atomic and compound permissions](#atomic-and-compound-permissions)
+* [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
+* [Sources of permissions](#sources-of-permissions)
 * [Access to settings](#access-to-settings)
-    * [The settings menu](#the-settings-menu)
+    * [The Settings link](#the-settings-link)
     * [The various modules' entries](#the-various-modules-entries)
     * [Individual settings pages](#individual-settings-pages)
 * [Issues](#issues)
@@ -20,8 +19,6 @@
 
 ## Background
 
-### What permissions are
-
 In the FOLIO system, permissions are specified by short, faceted strings such as `users.collection.get` (the permissions to read a collection of user records), `circulation.loans.item.put` (the permission to replace an existing loan) or `module.items.enabled` (the permission to use the Items UI module).
 
 Permissions also have a human-readable display-name such as "Get a collection of user records" or "circulation - modify loan in storage", but this only for the benefit of administrators, and does not affect how the permissions function.
@@ -29,14 +26,16 @@ Permissions also have a human-readable display-name such as "Get a collection of
 Permissions can be associated with users. A user is then said to have those permissions.
 
 
-### Atomic and compound permissions
+
+## Atomic and compound permissions
 
 The definition of a permission may include one or more sub-permissions. A user who has a permission automatically has all of its sub-permissions (and all their sub-permissions, and so on).
 
 A permission with no sub-permissions is called an _atomic permission_, and one that does have sub-permissions is called a _compound permission_. (We sometimes also use the term "permission set" for the latter; but since permission sets _are_ permissions -- merely those that happen to have sub-permissions -- the permission-vs-permission-set dichotomy is misleading.)
 
 
-### Permission enforcement on back-end and front-end
+
+## Permission enforcement on back-end and front-end
 
 A user is allowed to perform an operation only if they have the necessary permission.
 
@@ -45,7 +44,8 @@ Most permissions are rigorously enforced by back-end modules -- e.g. mod-users s
 A few permissions are checked only on the UI side: for example, the link to the Items UI module is displayed only to users who have the `module.items.enabled` permission. While a different UI could bypass such UI-only permissions, doing so would not violate security as the back-end permissions would still be checked. Omitting UI elements for which the relevant back-end features will not permit operations is a service to the user, not a security feature.
 
 
-### Sources of permissions
+
+## Sources of permissions
 
 Permissions are defined in the module decriptors of FOLIO modules -- both back-end and front-end modules. When a module descriptor is posted to Okapi, one of the effects is that the permissions it defines are inserted into the available-permissions list. They are then available to be associated with individual users.
 
