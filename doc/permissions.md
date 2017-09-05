@@ -3,8 +3,8 @@
 <!-- ../../okapi/doc/md2toc -l 2 permissions.md -->
 * [Introduction](#introduction)
 * [Atomic and compound permissions](#atomic-and-compound-permissions)
-* [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
 * [Sources of permissions](#sources-of-permissions)
+* [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
 * [Access to settings](#access-to-settings)
     * [The Settings link](#the-settings-link)
     * [The various modules' entries](#the-various-modules-entries)
@@ -35,16 +35,6 @@ A permission with no sub-permissions is called an _atomic permission_, and one t
 
 
 
-## Permission enforcement on back-end and front-end
-
-A user is allowed to perform an operation only if they have the necessary permission.
-
-Almost all permissions are rigorously enforced by back-end modules -- e.g. mod-users simply will not allow someone without the `users.collection.get` permission to read collections of user records. In addition to this, the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail on the back-end. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since the attempt to do so would be rejected by the back-end module.
-
-A few permissions are checked only on the UI side: for example, the link to the Items UI module is displayed only to users who have the `module.items.enabled` permission. While a different UI could bypass such UI-only permissions, doing so would not violate security as the back-end permissions would still be checked. Omitting UI elements for which the relevant back-end features will not permit operations is a service to the user, not a security feature.
-
-
-
 ## Sources of permissions
 
 Permissions are defined in the module decriptors of FOLIO modules -- both back-end and front-end modules. When a module descriptor is posted to Okapi, one of the effects is that the permissions it defines are inserted into the available-permissions list. They are then available to be associated with individual users.
@@ -52,6 +42,16 @@ Permissions are defined in the module decriptors of FOLIO modules -- both back-e
 (Back in the bad old days, the ansible build scripts for FOLIO VMs used to explicitly add certain permissions to the database. That was a temporary measure: this is no longer done, and _all_ permissions are now loaded from modules' descriptors.)
 
 In addition, high-level permission sets can be defined at run-time (using **Settings > Users > Permission sets**); but since these are tenant-specific, no software may rely directly on them, and they are useful only as a particular site's aggregation for administrative purposes. As such, these permission sets are not of interest to us here.
+
+
+
+## Permission enforcement on back-end and front-end
+
+A user is allowed to perform an operation only if they have the necessary permission.
+
+Almost all permissions are rigorously enforced by back-end modules -- e.g. mod-users simply will not allow someone without the `users.collection.get` permission to read collections of user records. In addition to this, the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail on the back-end. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since the attempt to do so would be rejected by the back-end module.
+
+A few permissions are checked only on the UI side: for example, the link to the Items UI module is displayed only to users who have the `module.items.enabled` permission. While a different UI could bypass such UI-only permissions, doing so would not violate security as the back-end permissions would still be checked. Omitting UI elements for which the relevant back-end features will not permit operations is a service to the user, not a security feature.
 
 
 
