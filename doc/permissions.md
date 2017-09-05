@@ -1,7 +1,7 @@
 # Permissions in Stripes and FOLIO
 
 <!-- ../../okapi/doc/md2toc -l 2 permissions.md -->
-* [Background](#background)
+* [Introduction](#introduction)
 * [Atomic and compound permissions](#atomic-and-compound-permissions)
 * [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
 * [Sources of permissions](#sources-of-permissions)
@@ -17,13 +17,13 @@
 
 
 
-## Background
+## Introduction
 
 In the FOLIO system, permissions are specified by short, faceted strings such as `users.collection.get` (the permissions to read a collection of user records), `circulation.loans.item.put` (the permission to replace an existing loan) or `module.items.enabled` (the permission to use the Items UI module).
 
-Permissions also have a human-readable display-name such as "Get a collection of user records" or "circulation - modify loan in storage", but this only for the benefit of administrators, and does not affect how the permissions function.
+Permissions also have a human-readable display-name such as "Get a collection of user records" or "circulation - modify loan in storage", but this is only for the benefit of administrators, and does not affect how the permissions function.
 
-Permissions can be associated with users. A user is then said to have those permissions.
+Permissions can be associated with users. A user is then said to _have_ those permissions.
 
 
 
@@ -39,7 +39,7 @@ A permission with no sub-permissions is called an _atomic permission_, and one t
 
 A user is allowed to perform an operation only if they have the necessary permission.
 
-Most permissions are rigorously enforced by back-end modules -- e.g. mod-users simply will not allow someone without the `users.collection.get` permission to read collections of user records. But the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail due to lack of permissions. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since the attempt to do so would be rejected by the back-end module.
+Almost all permissions are rigorously enforced by back-end modules -- e.g. mod-users simply will not allow someone without the `users.collection.get` permission to read collections of user records. In addition to this, the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail on the back-end. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since the attempt to do so would be rejected by the back-end module.
 
 A few permissions are checked only on the UI side: for example, the link to the Items UI module is displayed only to users who have the `module.items.enabled` permission. While a different UI could bypass such UI-only permissions, doing so would not violate security as the back-end permissions would still be checked. Omitting UI elements for which the relevant back-end features will not permit operations is a service to the user, not a security feature.
 
