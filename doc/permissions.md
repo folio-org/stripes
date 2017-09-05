@@ -3,6 +3,7 @@
 <!-- ../../okapi/doc/md2toc -l 2 permissions.md -->
 * [Introduction](#introduction)
 * [Atomic and compound permissions](#atomic-and-compound-permissions)
+* [Visible and invisible permissions](#visible-and-invisible-permissions)
 * [Sources of permissions](#sources-of-permissions)
 * [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
 * [Access to settings](#access-to-settings)
@@ -32,6 +33,14 @@ Permissions can be associated with users. A user is then said to _have_ those pe
 The definition of a permission may include one or more sub-permissions. A user who has a permission automatically has all of its sub-permissions (and all their sub-permissions, and so on).
 
 A permission with no sub-permissions is called an _atomic permission_, and one that does have sub-permissions is called a _compound permission_. (We sometimes also use the term "permission set" for the latter; but since permission sets _are_ permissions -- merely those that happen to have sub-permissions -- the permission-vs-permission-set dichotomy is misleading.)
+
+
+
+## Visible and invisible permissions
+
+Also included in the definition of each permission is a single bit that determines whether or not it is visible to users of the FOLIO system: for example, whether it is listed among those that can be included in a permission set, or associated with a user. In general, low-level permissions are invisible: FOLIO administrators do not want to be concerned with details such as `users.collection.get` (the permissions to read a collection of user records), but with higher-level ideas such as `ui-users.view` (permission to view a user profile) which includes not only `users.collection.get` but also related low-level permissions such as `users-bl.item.get` (ability to fetch full user records), `usergroups.collection.get` (ability to fetch the names of all the patron-groups), etc.
+
+User stories are written entirely in terms of high-level and visible permissions (as they must be, since users are not even directly aware of the existence of invisible permissions). However, implementation of permission checks is done almost entirely using low-level and invisible permissions.
 
 
 
