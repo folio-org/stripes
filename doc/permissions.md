@@ -13,7 +13,7 @@
     * [The Settings link](#the-settings-link)
     * [The various modules' entries](#the-various-modules-entries)
     * [Individual settings pages](#individual-settings-pages)
-* [Issues](#issues)
+* [Outstanding issues](#outstanding-issues)
     * [Permission display-name and description](#permission-display-name-and-description)
 
 
@@ -100,17 +100,15 @@ A few permissions are checked only on the UI side: for example, the link to the 
 
 ## Access to settings
 
-Settings in Stripes provide a way to change the behaviour of the application in persistent ways. In general, application modules also provide some settings pages, although not every application does; in addition, special modules of type `settings` provide _only_ settings pages -- for example, the Organization module provides settings that affect the whole applications, such as the selection of the locale and preferred plugins.
+Settings in Stripes provide a way to change the behaviour of the application in persistent ways. Most application modules provide some settings pages in addition to their main application; in addition, special modules of type `settings` provide _only_ settings pages -- for example, the Organization module provides settings that affect the whole applications, such as the selection of the locale and preferred plugins.
 
-Each module that supports settings provides one or more settings pages, each of which a given user may or may not have the necessary permissions to access. Our goal is to ensure that:
+Each module that supports settings provides one or more settings pages, each of which a given user may or may not have the necessary permissions to access. Conventions in how we use permissions ensure that:
+
 * Only users with suitable permissions can see a given settings page.
 * Only users with access to one of more settings pages within a module can see that module's settings.
 * Only users with access to one or more modules' settings can see the top-level Settings link.
 
-Here is how this is handled, from the top down. (Some parts of this are work in progress: see
-[STRIPES-468](https://issues.folio.org/browse/STRIPES-468)
-and
-[STRIPES-469](https://issues.folio.org/browse/STRIPES-469).)
+Here is how this is handled, from the top down.
 
 
 ### The Settings link
@@ -120,7 +118,7 @@ The top-level Settings link is displayed only if the user has the `settings.enab
 
 ### The various modules' entries
 
-Each module defines an additional permission, `settings.NAME.enabled`, and the `<Settings>` component displays the module's entry in the permissions menu only if this is defined.
+Each module defines an additional permission, `settings.NAME.enabled`, and stripes-core displays the module's entry in the permissions menu only if this is defined.
 
 Each `settings.NAME.enabled` permission includes `settings.enabled` as a sub-permission, so that a user who has any of the module-level settings permissions automatically sees the top-level Settings link.
 
@@ -129,11 +127,11 @@ Each `settings.NAME.enabled` permission includes `settings.enabled` as a sub-per
 
 Each individual settings page ("Permission sets", "Patron groups". "Address Types", etc.) is guarded by a specified permission, and is made available only to users who have that permission -- for example, the "Permission sets" settings page is restricted to users who have the `ui-users.editpermsets` permission.
 
-These guard-permissions should be high-level permissions defined by the UI module. Each such permission for a specific part of the settings should include the relevant module-wide settings permission (in this case `settings.users.enabled`).
+These guard-permissions should be high-level permissions defined by the UI module. Each such permission for a specific part of the settings should include the relevant module-wide settings permission (in this case `settings.users.enabled`). This ensures that the module is included in the Settings menu, which in turn ensures that the Settings menu is made available.
 
 
 
-## Issues
+## Outstanding issues
 
 
 ### Permission display-name and description
