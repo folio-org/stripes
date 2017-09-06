@@ -421,16 +421,16 @@ There may be multiple plugins of the same plugin type; in this case, a setting i
 
 ### Internationalization
 
-Stripes contains provisions for localising a module. At any moment, there is a notion of the currently prevailable locale, which can always be obtained using `stripes.locale`, and which may be changed on the fly using the `stripes.setLocale` function. The stripes-core code itself makes some use of this locale -- for example, the front page's welcome messages are translated accordingly -- but since modules provide much more of the UI, they are largely responsibile for taking the locale into account. This is done most prominently through the provision and use of translations.
+Stripes contains provisions for localising a module. At any moment, there is a notion of the currently prevailable locale, which can always be obtained using `stripes.locale`, and which may be changed on the fly using the `stripes.setLocale` function. The stripes-core code itself makes some use of this locale -- for example, the front page's welcome messages are translated accordingly -- but since modules provide much more of the UI, they are largely responsible for taking the locale into account. This is done most prominently through the provision and use of translations.
 
 
 #### Creating module translations
 
 Translations in Stripes are user-readable strings which are named with a short, faceted, machine-readable key such as `ui-users.loans.openLoans` for the Users module's "Open loans" caption on the Loans page.
 
-A module's trannslations must be provided within its package file, `package.json`, inside its `stripes` section, in a subsection named `translations`. This section itself contains subsections whose names are two-letter ISO country codes such as `en` for English or `de` for German, each such subsections providing the module's translation strings for the named language.
+A module's translations must be provided within its package file, `package.json`, inside its `stripes` section, in a subsection named `translations`. This section itself contains subsections whose names are two-letter ISO country codes such as `en` for English or `de` for German, each such subsections providing the module's translation strings for the named language.
 
-The translations themselves, within these subsections, have short, faceted keys, and their values are the strings that are to appear in the UI. The name of the module is automatically prepended to the translation keys. For example, in the User module's `packge.json`, the section:
+The translations themselves, within these subsections, have short, faceted keys, and their values are the strings that are to appear in the UI. The name of the module is automatically prepended to the translation keys. For example, in the User module's `package.json`, the section:
 
 ```
   "translations": {
@@ -458,7 +458,7 @@ Translations may be provided for any number of languages.
 
 #### Using module translations
 
-Translations are used by referencing their keys in code, at which point the locale-appropriate translation is used. This can be done in two way.
+Translations are used by referencing their keys in code, at which point the locale-appropriate translation is used. This can be done in two ways:
 
 In HTML, [the React component `<FormattedMessage>`](https://github.com/yahoo/react-intl/wiki/Components#formattedmessage), which is provided by the react-intl library. The translation key must be provided as the `id` parameter: for example, `<FormattedMessage id="ui-users.loans.title" />` will render "Loans" if the prevailing locale's language is English, and "Ausleihen" if it is German.
 
@@ -467,7 +467,7 @@ In JavaScript, the Stripes object furnishes an internationalization object as it
 
 #### Using core translations
 
-In addition to the translations that it provides itself, a module may use translations provided by stripes-core. In particular, it provides translations for a set of common labels, which modules therefore need not translate for themsleves. The keys for these labels all begin with `common.`. The translations provided by stripes-core are provided in [language-specific translation files](https://github.com/folio-org/stripes-core/tree/master/translations).
+In addition to the translations that it provides itself, a module may use translations provided by stripes-core. In particular, it provides translations for a set of common labels, which modules therefore need not translate for themselves. The keys for these labels all begin with `common.`. The translations provided by stripes-core are provided in [language-specific translation files](https://github.com/folio-org/stripes-core/tree/master/translations).
 
 For example, if the `stripes-core/translations/*.json` files define a property as `"common.search": "Search"`, then search buttons may use `<Button label={stripes.intl.formatMessage({ id: 'stripes-core.common.search' })} />.
 
