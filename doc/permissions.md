@@ -47,7 +47,7 @@ A few permissions are checked only on the UI side: for example, the link to the 
 
 ### Sources of permissions
 
-Permissions are defined in the module decriptors of FOLIO modules -- both back-end and front-end modules. When a module descriptor is posted to Okapi, one of the effects is that the permissions it defines are inserted into the available-permissions list. They are then available to be associated with individual users.
+Permissions are defined in the module descriptors of FOLIO modules -- both back-end and front-end modules. When a module descriptor is posted to Okapi, one of the effects is that the permissions it defines are inserted into the available-permissions list. They are then available to be associated with individual users.
 
 (Back in the bad old days, the ansible build scripts for FOLIO VMs used to explicitly add certain permissions to the database. That was a temporary measure: this is no longer done, and _all_ permissions are now loaded from modules' descriptors.)
 
@@ -61,7 +61,7 @@ Settings in Stripes provide a way to change the behaviour of the application in 
 
 Each module that supports settings provides one or more settings pages, each of which a given user may or may not have the necessary permissions to access. Our goal is to ensure that:
 * Only users with suitable permissions can see a given settings page.
-* Only usera with access to one of more settings pages within a module can see that module's settings.
+* Only users with access to one of more settings pages within a module can see that module's settings.
 * Only users with access to one or more modules' settings can see the top-level Settings link.
 
 Here is how this is handled, from the top down. (Some parts of this are work in progress: see
@@ -72,7 +72,7 @@ and
 
 ### The Settings link
 
-The top-level Settings link is displayed only if the user has the `settings.enabled` permission. This is defined in stripes-cpre itself. It is never explicitly assigned to any user, but is included as a sub-permission in all the module-level settings permissions.
+The top-level Settings link is displayed only if the user has the `settings.enabled` permission. This is defined in stripes-core itself. It is never explicitly assigned to any user, but is included as a sub-permission in all the module-level settings permissions.
 
 
 ### The various modules' entries
@@ -95,7 +95,7 @@ These guard-permissions should be high-level permissions defined by the UI modul
 
 ### How to name permissions?
 
-Each module that defines permissions should use a unique prefix, related to the module-name, at the start of the names of permissions that it defines. For example, mod-users defines the "ability to read a collection of user records" permissin, so it has a `users` prefix at the start of its name, `users.collection.get`.
+Each module that defines permissions should use a unique prefix, related to the module-name, at the start of the names of permissions that it defines. For example, mod-users defines the "ability to read a collection of user records" permission, so it has a `users` prefix at the start of its name, `users.collection.get`.
 
 Permissions defined in front-end modules are given names whose prefixes begin with `ui-`. For example, the "can edit user profiles" permission, defined in ui-users, is named `ui-users.edit`.
 
@@ -138,4 +138,4 @@ In particular:
 
 * _back-end modules should always check atomic permissions_, since these modules know the real truth about which permissions are logically associated with which operations. Also, modules may only rely on permissions defined either by themselves or by lower-level modules whose APIs they consume -- and back-end modules generally define only atomic permissions, and have dependencies only on other back-end modules.
 
-* _front-end modules should usually check atomic permissions_, also. They can safely do so since the set of permissions published by a back-end module is part of its API. (And when we have automatic generation of API docs, the permissions should definitely be included). So as soon as a front-end module is using (say) the `users` interface v14.0, it assuming the existence not only of the `/users/ID` path, but also the `users.item.get` permission.
+* _front-end modules should usually check atomic permissions_, also. They can safely do so since the set of permissions published by a back-end module is part of its API. (And when we have automatic generation of API docs, the permissions should definitely be included.) So as soon as a front-end module is using (say) the `users` interface v14.0, it is assuming the existence not only of the `/users/ID` path, but also the `users.item.get` permission.
