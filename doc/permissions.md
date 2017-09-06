@@ -7,7 +7,7 @@
     * [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
     * [Sources of permissions](#sources-of-permissions)
 * [Access to settings](#access-to-settings)
-    * [The settings menu](#the-settings-menu)
+    * [The Settings link](#the-settings-link)
     * [The various modules' entries](#the-various-modules-entries)
     * [Individual settings pages](#individual-settings-pages)
 * [Issues](#issues)
