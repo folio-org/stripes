@@ -5,6 +5,8 @@
 * [Atomic and compound permissions](#atomic-and-compound-permissions)
 * [Visible and invisible permissions](#visible-and-invisible-permissions)
 * [Sources of permissions](#sources-of-permissions)
+    * [Which permissions defined where?](#which-permissions-defined-where)
+    * [Which permissions to check?](#which-permissions-to-check)
 * [Naming permissions](#naming-permissions)
 * [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
 * [Access to settings](#access-to-settings)
@@ -13,8 +15,6 @@
     * [Individual settings pages](#individual-settings-pages)
 * [Issues](#issues)
     * [Permission display-name and description](#permission-display-name-and-description)
-    * [Which permissions defined where?](#which-permissions-defined-where)
-    * [Which permissions to check?](#which-permissions-to-check)
 
 
 
@@ -51,6 +51,28 @@ Permissions are defined in the module descriptors of FOLIO modules -- both back-
 (Back in the bad old days, the ansible build scripts for FOLIO VMs used to explicitly add certain permissions to the database. That was a temporary measure: this is no longer done, and _all_ permissions are now loaded from modules' descriptors.)
 
 In addition, high-level permission sets can be defined at run-time (using **Settings > Users > Permission sets**); but since these are tenant-specific, no software may rely directly on them, and they are useful only as a particular site's aggregation for administrative purposes. As such, these permission sets are not of interest to us here.
+
+
+### Which permissions defined where?
+
+In determining which permissions should be defined in front-end modules and which in back-end modules, some principles are obvious:
+
+* Permissions which a back-end module checks should be defined in that back-end module. (They are part of the API it consumes, so it must define them otherwise it might run in contexts where they do not exist.)
+
+* Permission which are enforced only in a front-end module should be defined in the front-end. There is no need for back-end modules to be encumbered by the knowledge of such permissions.
+
+* _In general_, a permission enforced in a front-end module should be defined in that particular front-end module, and a permission enforced by Stripes itself should be defined by stripes-core. However, as a special case, stripes-core enforces the various `module.NAME.enabled` and `settings.NAME.enabled` permissions provided by the modules called _NAME_.
+
+
+### Which permissions to check?
+
+Our policy is that code should nearly always check atomic permissions rather than higher-level permissions that include it. This approach allows us to be maximally precise regarding what permissions are needed, and makes the checking code robust against changes in high-level permission definitions which may be enacted either due to the preferences of the SIGs, or a tenant-specific convention.
+
+In particular:
+
+* Back-end modules should _always_ check atomic permissions, since these modules know the real truth about which permissions are logically associated with which operations. Also, modules may only rely on permissions defined either by themselves or by lower-level modules whose APIs they consume -- and back-end modules generally define only atomic permissions, and have dependencies only on other back-end modules.
+
+* Front-end modules should _usually_ check atomic permissions, also. They can safely do so since the set of permissions published by a back-end module is part of its API. (And when we have automatic generation of API docs, the permissions should definitely be included.) So as soon as a front-end module is using (say) the `users` interface v14.0, it is assuming the existence not only of the `/users/ID` path, but also the `users.item.get` permission.
 
 
 
@@ -127,25 +149,3 @@ All of these approaches are inconsistent, and none of them is really satisfactor
 My suggestion: `displayName` should always be a human-readable permission name, and should be consistently capitalised across modules. It should generally begin with a category such as "Users:" or "Settings (Circ):". The `description` field should generally be left blank, but may be used for an explanatory note when the meaning of a permission is not self-evident. It should not be used for implementation notes such as the example above from ui-users.
 
 
-### Which permissions defined where?
-
-Specifically, which permissions should be defined in front-end modules and which in back-end modules? Some principles are obvious:
-
-* Permissions which a back-end module checks should be defined in that back-end module. (They are part of the API it consumes, so it must define them otherwise it might run in contexts where they do not exist.)
-
-* Permission which are enforced only in a front-end module should be defined in the front-end. There is no need for back-end modules to be encumbered by the knowledge of such permissions.
-
-* _In general_, a permission enforced in a front-end module should be defined in that particular front-end module, and a permission enforced by Stripes itself should be defined by stripes-core. However, as a special case, stripes-core enforces the various `module.NAME.enabled` permissions provided by the modules called _NAME_.
-
-But this leaves some scope for judgement.
-
-
-### Which permissions to check?
-
-Our policy is that code should nearly always check atomic permissions rather than higher-level permissions that include it. This approach allows us to be maximally precise regarding what permissions are needed.
-
-In particular:
-
-* _back-end modules should always check atomic permissions_, since these modules know the real truth about which permissions are logically associated with which operations. Also, modules may only rely on permissions defined either by themselves or by lower-level modules whose APIs they consume -- and back-end modules generally define only atomic permissions, and have dependencies only on other back-end modules.
-
-* _front-end modules should usually check atomic permissions_, also. They can safely do so since the set of permissions published by a back-end module is part of its API. (And when we have automatic generation of API docs, the permissions should definitely be included.) So as soon as a front-end module is using (say) the `users` interface v14.0, it is assuming the existence not only of the `/users/ID` path, but also the `users.item.get` permission.
