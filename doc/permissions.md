@@ -5,13 +5,13 @@
 * [Atomic and compound permissions](#atomic-and-compound-permissions)
 * [Visible and invisible permissions](#visible-and-invisible-permissions)
 * [Sources of permissions](#sources-of-permissions)
+* [Naming permissions](#naming-permissions)
 * [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
 * [Access to settings](#access-to-settings)
     * [The Settings link](#the-settings-link)
     * [The various modules' entries](#the-various-modules-entries)
     * [Individual settings pages](#individual-settings-pages)
 * [Issues](#issues)
-    * [How to name permissions?](#how-to-name-permissions)
     * [Permission display-name and description](#permission-display-name-and-description)
     * [Which permissions defined where?](#which-permissions-defined-where)
     * [Which permissions to check?](#which-permissions-to-check)
@@ -51,6 +51,16 @@ Permissions are defined in the module decriptors of FOLIO modules -- both back-e
 (Back in the bad old days, the ansible build scripts for FOLIO VMs used to explicitly add certain permissions to the database. That was a temporary measure: this is no longer done, and _all_ permissions are now loaded from modules' descriptors.)
 
 In addition, high-level permission sets can be defined at run-time (using **Settings > Users > Permission sets**); but since these are tenant-specific, no software may rely directly on them, and they are useful only as a particular site's aggregation for administrative purposes. As such, these permission sets are not of interest to us here.
+
+
+
+## Naming permissions
+
+Each module that defines permissions should use a unique prefix, related to the module-name, at the start of the names of permissions that it defines. For example, mod-users defines the "ability to read a collection of user records" permissin, so it has a `users` prefix at the start of its name, `users.collection.get`.
+
+Permissions defined in front-end modules are given names whose prefixes begin with `ui-`. For example, the "can edit user profiles" permission, defined in ui-users, is named `ui-users.edit`.
+
+(In the past, modules have sometimes defined permissions with names that belong to other modules. For example, the high-level "can edit user profiles" permissions was originally defined on the server-side "users-bl" (business logic) module and named `users-bl.edit`. When the software was enhanced so that UI modules could define permissions, this permission was moved across to ui-users, but initially retained its old name `users-bl.edit`. This is no longer done: the permission has been renamed `ui-users.edit`.)
 
 
 
@@ -100,15 +110,6 @@ These guard-permissions should be high-level permissions defined by the UI modul
 
 
 ## Issues
-
-
-### How to name permissions?
-
-Each module that defines permissions should use a unique prefix, related to the module-name, at the start of the names of permissions that it defines. For example, mod-users defines the "ability to read a collection of user records" permissin, so it has a `users` prefix at the start of its name, `users.collection.get`.
-
-Permissions defined in front-end modules are given names whose prefixes begin with `ui-`. For example, the "can edit user profiles" permission, defined in ui-users, is named `ui-users.edit`.
-
-(In the past, modules have sometimes defined permissions with names that belong to other modules. For example, the high-level "can edit user profiles" permissions was originally defined on the server-side "users-bl" (business logic) module and named `users-bl.edit`. When the software was enhanced so that UI modules could define permissions, this permission was moved across to ui-users, but initially retained its old name `users-bl.edit`. This is no longer done: the permission has been renamed `ui-users.edit`.)
 
 
 ### Permission display-name and description
