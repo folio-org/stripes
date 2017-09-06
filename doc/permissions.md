@@ -124,7 +124,7 @@ The permission fields `displayName` and `description` are both human-readable, b
 
 All of these approaches are inconsistent, and none of them is really satisfactory. I suggest that there is little real use for the `description` field, at least for most permissions, and its existence has confused matters.
 
-My suggestion: `displayName` should always be a human-readable permission name, and should be consistently capitalised across modules. It should generally begin with a category such as "Users:" or "Circulation settings:". The `description` field should generally be left blank, but may be used for an explanatory note when the meaning of a permission is not self-evident. It should not be used for implementation notes such as the example above from ui-users.
+My suggestion: `displayName` should always be a human-readable permission name, and should be consistently capitalised across modules. It should generally begin with a category such as "Users:" or "Settings (Circ):". The `description` field should generally be left blank, but may be used for an explanatory note when the meaning of a permission is not self-evident. It should not be used for implementation notes such as the example above from ui-users.
 
 
 ### Which permissions defined where?
