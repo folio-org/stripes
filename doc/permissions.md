@@ -8,7 +8,7 @@
     * [Which permissions defined where?](#which-permissions-defined-where)
     * [Which permissions to check?](#which-permissions-to-check)
 * [Naming permissions](#naming-permissions)
-* [Permission enforcement on back-end and front-end](#permission-enforcement-on-back-end-and-front-end)
+* [Permission enforcement](#permission-enforcement)
 * [Access to settings](#access-to-settings)
     * [The Settings link](#the-settings-link)
     * [The various modules' entries](#the-various-modules-entries)
@@ -20,9 +20,9 @@
 
 ## Introduction
 
-In the FOLIO system, permissions are specified by short, faceted strings such as `users.collection.get` (the permissions to read a collection of user records), `circulation.loans.item.put` (the permission to replace an existing loan) or `module.items.enabled` (the permission to use the Items UI module).
+In the FOLIO system, permissions are specified by short, faceted strings such as `users.collection.get` (the permission to read a collection of user records), `circulation.loans.item.put` (the permission to replace an existing loan) or `module.items.enabled` (the permission to use the Items UI module).
 
-Permissions also have a human-readable display-name such as "Get a collection of user records" or "circulation - modify loan in storage", but this is only for the benefit of administrators, and does not affect how the permissions function.
+Permissions also have a human-readable display-name such as "Get a collection of user records", "circulation - modify loan in storage" or "UI: Users module is enabled". But this is only for the benefit of administrators, and does not affect how the permissions function.
 
 Permissions can be associated with users. A user is then said to _have_ those permissions.
 
@@ -38,9 +38,9 @@ A permission with no sub-permissions is called an _atomic permission_, and one t
 
 ## Visible and invisible permissions
 
-Also included in the definition of each permission is a single bit that determines whether or not it is visible to users of the FOLIO system: for example, whether it is listed among those that can be included in a permission set, or associated with a user. In general, low-level permissions are invisible: FOLIO administrators do not want to be concerned with details such as `users.collection.get` (the permissions to read a collection of user records), but with higher-level ideas such as `ui-users.view` (permission to view a user profile) which includes not only `users.collection.get` but also related low-level permissions such as `users-bl.item.get` (ability to fetch full user records), `usergroups.collection.get` (ability to fetch the names of all the patron-groups), etc.
+Also included in the definition of each permission is a single bit that determines whether or not it is visible to users of the FOLIO system: that is, whether it is listed among those that can be included in a permission set, or associated with a user. In general, atomic permissions and other low-level permissions are invisible: FOLIO administrators do not want to be concerned with details such as `users.collection.get` (the permissions to read a collection of user records), but with higher-level ideas such as `ui-users.view` (permission to view a user profile) which includes not only `users.collection.get` but also related low-level permissions such as `users-bl.item.get` (ability to fetch full user records), `usergroups.collection.get` (ability to fetch the names of all the patron-groups), etc.
 
-User stories are written entirely in terms of high-level and visible permissions (as they must be, since users are not even directly aware of the existence of invisible permissions). However, implementation of permission checks is done almost entirely using low-level and invisible permissions.
+User stories are written entirely in terms of visible high-level permissions (as they must be, since users are not even directly aware of the existence of invisible permissions). However, implementation of permission checks is done almost entirely using low-level and invisible permissions -- see [below](#which-permissions-to-check).
 
 
 
@@ -57,16 +57,16 @@ In addition, high-level permission sets can be defined at run-time (using **Sett
 
 In determining which permissions should be defined in front-end modules and which in back-end modules, some principles are obvious:
 
-* Permissions which a back-end module checks should be defined in that back-end module. (They are part of the API it consumes, so it must define them otherwise it might run in contexts where they do not exist.)
+* Permissions which a back-end module checks should generally be defined in that back-end module. (Since it checks them, they are part of the API it consumes: so it must define them, otherwise it might find itself running in contexts where they do not exist.) However, one one back-end module depends on another, lower-level one -- for example, mod-users-bl depending on mod-users -- it is acceptable for the higher-level module to check for permissions defined in the lower-level module.
 
-* Permission which are enforced only in a front-end module should be defined in the front-end. There is no need for back-end modules to be encumbered by the knowledge of such permissions.
+* Permissions which are enforced only in a front-end module should be defined in the front-end. There is no need for back-end modules to be encumbered by the knowledge of such permissions.
 
-* _In general_, a permission enforced in a front-end module should be defined in that particular front-end module, and a permission enforced by Stripes itself should be defined by stripes-core. However, as a special case, stripes-core enforces the various `module.NAME.enabled` and `settings.NAME.enabled` permissions provided by the modules called _NAME_.
+* In general, a permission enforced in a front-end module should be defined in that particular front-end module, and a permission enforced by Stripes itself should be defined by stripes-core. However, as a special case, stripes-core enforces the various `module.NAME.enabled` and `settings.NAME.enabled` permissions provided by the modules called _NAME_.
 
 
 ### Which permissions to check?
 
-Our policy is that code should nearly always check atomic permissions rather than higher-level permissions that include it. This approach allows us to be maximally precise regarding what permissions are needed, and makes the checking code robust against changes in high-level permission definitions which may be enacted either due to the preferences of the SIGs, or a tenant-specific convention.
+Code should nearly always check atomic permissions rather than higher-level permissions that include them. This approach allows us to be maximally precise regarding what permissions are needed. It also makes the checking code robust against changes in high-level permission definitions which may be enacted either due to the preferences of the SIGs, or a tenant-specific convention.
 
 In particular:
 
@@ -78,19 +78,21 @@ In particular:
 
 ## Naming permissions
 
-Each module that defines permissions should use a unique prefix, related to the module-name, at the start of the names of permissions that it defines. For example, mod-users defines the "ability to read a collection of user records" permission, so it has a `users` prefix at the start of its name, `users.collection.get`.
+Each module that defines permissions should use a unique prefix, related to the module-name, at the start of the names of permissions that it defines. For example, mod-users defines the "ability to read a collection of user records" permission, so the name of that permission has a `users` prefix, yielding `users.collection.get`.
 
-Permissions defined in front-end modules are given names whose prefixes begin with `ui-`. For example, the "can edit user profiles" permission, defined in ui-users, is named `ui-users.edit`.
+Permissions defined in front-end modules are given names whose prefixes begin with `ui-`. For example, the high-level "can edit user profiles" permission, defined in ui-users, is named `ui-users.edit`.
 
 (In the past, modules have sometimes defined permissions with names that belong to other modules. For example, the high-level "can edit user profiles" permissions was originally defined on the server-side "users-bl" (business logic) module and named `users-bl.edit`. When the software was enhanced so that UI modules could define permissions, this permission was moved across to ui-users, but initially retained its old name `users-bl.edit`. This is no longer done: the permission has been renamed `ui-users.edit`.)
 
 
 
-## Permission enforcement on back-end and front-end
+## Permission enforcement
 
 A user is allowed to perform an operation only if they have the necessary permission.
 
-Almost all permissions are rigorously enforced by back-end modules -- e.g. mod-users simply will not allow someone without the `users.collection.get` permission to read collections of user records. In addition to this, the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail on the back-end. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since the attempt to do so would be rejected by the back-end module.
+Almost all permissions are rigorously enforced on the back-end by Okapi -- e.g. mod-users will simply never receive a request to read collections of user records sent by a user without the `users.collection.get` permission. (For most permissions, the back-end module itself need do no checking: it just declares in its module descriptor which permissions are required for which operations need which permissions, and Okapi takes care of it. Individual back-end modules are however responsible for checking the presence or "desired permissions" -- an esoteric concept of no direct importance to the front end.)
+
+In addition to this, the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail on the back-end. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since UI knows that the attempt to do so would be rejected by the back-end module.
 
 A few permissions are checked only on the UI side: for example, the link to the Items UI module is displayed only to users who have the `module.items.enabled` permission. While a different UI could bypass such UI-only permissions, doing so would not violate security as the back-end permissions would still be checked. Omitting UI elements for which the relevant back-end features will not permit operations is a service to the user, not a security feature.
 
