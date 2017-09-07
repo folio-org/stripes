@@ -57,7 +57,7 @@ In addition, high-level permission sets can be defined at run-time (using **Sett
 
 In determining which permissions should be defined in front-end modules and which in back-end modules, some principles are obvious:
 
-* Permissions which a back-end module checks should generally be defined in that back-end module. (Since it checks them, they are part of the API it consumes: so it must define them, otherwise it might find itself running in contexts where they do not exist.) However, one one back-end module depends on another, lower-level one -- for example, mod-users-bl depending on mod-users -- it is acceptable for the higher-level module to check for permissions defined in the lower-level module.
+* Permissions which a back-end module checks should generally be defined in that back-end module. (Since it checks them, they are part of the API it consumes: so it must define them, otherwise it might find itself running in contexts where they do not exist.) However, one back-end module depends on another, lower-level one -- for example, mod-users-bl depending on mod-users -- it is acceptable for the higher-level module to check for permissions defined in the lower-level module.
 
 * Permissions which are enforced only in a front-end module should be defined in the front-end. There is no need for back-end modules to be encumbered by the knowledge of such permissions.
 
@@ -92,7 +92,7 @@ A user is allowed to perform an operation only if they have the necessary permis
 
 Almost all permissions are rigorously enforced on the back-end by Okapi -- e.g. mod-users will simply never receive a request to read collections of user records sent by a user without the `users.collection.get` permission. (For most permissions, the back-end module itself need do no checking: it just declares in its module descriptor which permissions are required for which operations need which permissions, and Okapi takes care of it. Individual back-end modules are however responsible for checking the presence or "desired permissions" -- an esoteric concept of no direct importance to the front end.)
 
-In addition to this, the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail on the back-end. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since UI knows that the attempt to do so would be rejected by the back-end module.
+In addition to this, the UI code also checks permissions, so that it can avoid offering the user operations that it knows will fail on the back-end. For example, a user without the `circulation.loans.item.put` permission is not offered the opportunity to renew a loan, since the UI knows that the attempt to do so would be rejected by the back-end module.
 
 A few permissions are checked only on the UI side: for example, the link to the Items UI module is displayed only to users who have the `module.items.enabled` permission. While a different UI could bypass such UI-only permissions, doing so would not violate security as the back-end permissions would still be checked. Omitting UI elements for which the relevant back-end features will not permit operations is a service to the user, not a security feature.
 
@@ -125,7 +125,7 @@ Each `settings.NAME.enabled` permission includes `settings.enabled` as a sub-per
 
 ### Individual settings pages
 
-Each individual settings page ("Permission sets", "Patron groups". "Address Types", etc.) is guarded by a specified permission, and is made available only to users who have that permission -- for example, the "Permission sets" settings page is restricted to users who have the `ui-users.editpermsets` permission.
+Each individual settings page ("Permission sets", "Patron groups", "Address Types", etc.) is guarded by a specified permission, and is made available only to users who have that permission -- for example, the "Permission sets" settings page is restricted to users who have the `ui-users.editpermsets` permission.
 
 These guard-permissions should be high-level permissions defined by the UI module. Each such permission for a specific part of the settings should include the relevant module-wide settings permission (in this case `settings.users.enabled`). This ensures that the module is included in the Settings menu, which in turn ensures that the Settings menu is made available.
 
@@ -142,7 +142,7 @@ The permission fields `displayName` and `description` are both human-readable, b
 
 * In mod-users, the `displayName` is essentially a restatement of the machine-readable permission name (e.g. "users collection get" for `users.collection.get`) and the `description` is a more useful human-readable text such as "Get a collection of user records".
 
-* In mod-circulation, the `displayName` is a human-readable string such as ""circulation - modify loan in storage" and the `description` is a redundant repetition of the part of the display-name following the module name -- e.g. "modify loan in storage".
+* In mod-circulation, the `displayName` is a human-readable string such as "circulation - modify loan in storage" and the `description` is a redundant repetition of the part of the display-name following the module name -- e.g. "modify loan in storage".
 
 All of these approaches are inconsistent, and none of them is really satisfactory. I suggest that there is little real use for the `description` field, at least for most permissions, and its existence has confused matters.
 
