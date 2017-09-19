@@ -32,7 +32,7 @@ An app is a specific type of module: the kind that renders a whole-page applicat
 
 A plugin is another type of module: the kind that, depending on configuration, may or may not appear in place of some other component. Typically, the plugin provides a more sophisticated alternative to the component: for example, a WYSIYG text editor in place of a simple HTML `<textarea>`.
 
-It would be possible for the Users app's use of the Notes package to be mediated by a plugin. This plugin would delegate to smart components provided by the Notes packages; and when it is not present, nothing at all would be rendered.
+It would be possible for the Users app's use of the Notes package to be mediated by a plugin. This plugin would delegate to smart components provided by the Notes package; and when it is not present, nothing at all would be rendered.
 
 ## In summary ...
 
