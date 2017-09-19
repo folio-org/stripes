@@ -6,11 +6,11 @@ In the Stripes ecosystem, we often refer to packages, modules, apps, and other k
 
 In the context of Stripes, when we refer to a "component", we mean a [React](https://facebook.github.io/react/) component -- a special JavaScript code class that renders HTML as part of a Web application.
 
-Components often invoke other, lower level, components to render parts of thw UI element that they are responsible for.
+Components often invoke other, lower level, components to render parts of the UI element that they are responsible for.
 
 ## Smart Component
 
-A smart component is one that communicates with an Okapi web-service in order to provide the facilities that it renders. For example, the notes that appear	in the Users app are smart components, which render content fetched _from_ Okapi, and send new and modified content _to_ Okapi.
+A smart component is one that communicates with an Okapi web-service in order to provide the facilities that it renders. For example, the notes that appear in the Users app are smart components, which render content fetched _from_ Okapi, and send new and modified content _to_ Okapi.
 
 ## Package
 
@@ -32,7 +32,7 @@ An app is a specific type of module: the kind that renders a whole-page applicat
 
 A plugin is another type of module: the kind that, depending on configuration, may or may not appear in place of some other component. Typically, the plugin provides a more sophisticated alternative to the component: for example, a WYSIYG text editor in place of a simple HTML `<textarea>`.
 
-It would be possible for the Users app's use of the Notes package to be mediate by a plugin. This plugin would delegate to smart components provided by the Notes pakages; and when it is not present, nothing at all would be rendered.
+It would be possible for the Users app's use of the Notes package to be mediated by a plugin. This plugin would delegate to smart components provided by the Notes packages; and when it is not present, nothing at all would be rendered.
 
 ## In summary ...
 
