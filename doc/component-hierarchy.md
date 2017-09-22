@@ -54,7 +54,7 @@ metadata might look like this:
 ```
 
 The metadata of the various modules making up a Stripes application is
-aggregated by stripes-loader. (Code-loading is handled asynchronously
+aggregated by stripes-config-plugin. (Code-loading is handled asynchronously
 so that a module's code is sent to the browser when visiting a
 route that uses it.)
 

@@ -53,7 +53,5 @@ yarn link @folio/users
 yarn start
 ```
 
-**Note 1.** The `stripes-loader` module does not currently support being included via link.
-
-**Note 2.** As of 20 February 2017, yarn cannot find `yarn link`ed modules unless they _also_ have been published in the repository. This is [a recognised bug, issue 2611](https://github.com/yarnpkg/yarn/issues/2611) and should soon be fixed.
+**Note 1.** As of 20 February 2017, yarn cannot find `yarn link`ed modules unless they _also_ have been published in the repository. This is [a recognised bug, issue 2611](https://github.com/yarnpkg/yarn/issues/2611) and should soon be fixed.
 
