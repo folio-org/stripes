@@ -5,6 +5,7 @@
 * [Before you release](#before-you-release)
 * [Release procedure](#release-procedure)
 * [Working towards the next release](#working-towards-the-next-release)
+* [Notes on breaking changes](#notes-on-breaking-changes)
 * [Notes on dependencies](#notes-on-dependencies)
 * [Notes on testing](#notes-on-testing)
 * [Note on access to the NPM repository](#note-on-access-to-the-npm-repository)
