@@ -196,7 +196,7 @@ The Stripes object contains the following elements:
 
 * `connect` -- a function that can be used to connect subcomponents to [stripes-connect](https://github.com/folio-org/stripes-connect), enabling that module to use [the Stripes Connect API](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md) to communicate with WSAPIs such as those provided by Okapi.
 
-* `hasPerm` -- a function that can be used for [checking whether the presently logged-in user has a specified permission](#testing-for-permission).
+* `hasPerm` -- a function that can be used for [checking whether the presently logged-in user has the specified permissions](#testing-for-permission).
 
 * `hasInterface` -- a function that can be used for [checking whether the connected Okapi instance supports [a specified interface at a compatible version](#testing-for-interfaces).
 
@@ -286,6 +286,8 @@ Generally, code should not assume that the `user.perms` element of the `stripes`
 ```
 if (this.props.stripes.hasPerm('users.read')) ...
 ```
+
+The argument to this method is a comma-separated list of permissions (or, in the common degenerate case, a single permission). It returns true only if the user has _all_ the specified permissions.
 
 When guarding small elements, such as a "New user" button that should appear only when when the `users.create` permission is present, the helper component [`<IfPermission>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfPermission/readme.md) can be used:
 
