@@ -1,6 +1,6 @@
 # Adding new permissions to FOLIO UI modules
 
-We often need to add new permissions to FOLIO UI modules, then continue developing front-end code that uses those permissions. But for the permissions to become usable, they must be added to the running system. The traditional approach to solving his has been to wait for Wayne to build a new VM with the updated module descriptors. But there is an easy way to add the permissions to a local FOLIO installation.
+We often need to add new permissions to FOLIO UI modules, then continue developing front-end code that uses those permissions. But for the permissions to become usable, they must be added to the running system. The traditional approach to solving this has been to wait for Wayne to build a new VM with the updated module descriptors. But there is an easy way to add the permissions to a local FOLIO installation.
 
 ## Add the permissions to the package file.
 
@@ -69,7 +69,7 @@ $
 ```
 (If you're working on a different tenant from `diku`, be sure to modify the posting path accordingly.)
 
-> **Note.** When re-inserting a module that was already inserted, which is what we're doing here, mod-perms will notice any new permissions and insert them, which is what we want; but it will not update already-existing permissions, so changes that you make to the description, sup-permissions, etc., cannot be updated using this technique. If you wanted to do this, you would frst need to manually remove the old permissions (left as exercise for the reader) before inserting the new descriptor.
+> **Note.** When re-inserting a module that was already inserted, which is what we're doing here, mod-perms will notice any new permissions and insert them, which is what we want; but it will not update already-existing permissions, so changes that you make to the description, sup-permissions, etc., cannot be updated using this technique. If you wanted to do this, you would first need to manually remove the old permissions (left as exercise for the reader) before inserting the new descriptor.
 
 ## Use the new permissions!
 
