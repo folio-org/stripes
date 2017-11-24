@@ -1,5 +1,13 @@
 # Adding new permissions to FOLIO UI modules
 
+<!-- md2toc -l 2 adding-permissions.md -->
+* [Add the permissions to the package file.](#add-the-permissions-to-the-package-file)
+* [Generate a module descriptor](#generate-a-module-descriptor)
+* [Add the module descriptor to Okapi.](#add-the-module-descriptor-to-okapi)
+* [Associate the module with the tenant](#associate-the-module-with-the-tenant)
+* [Add a permission to a user](#add-a-permission-to-a-user)
+* [Use the new permissions!](#use-the-new-permissions)
+
 We often need to add new permissions to FOLIO UI modules, then continue developing front-end code that uses those permissions. But for the permissions to become usable, they must be added to the running system. The traditional approach to solving this has been to wait for Wayne to build a new VM with the updated module descriptors. But there is an easy way to add the permissions to a local FOLIO installation.
 
 ## Add the permissions to the package file.
@@ -70,6 +78,27 @@ $
 (If you're working on a different tenant from `diku`, be sure to modify the posting path accordingly.)
 
 > **Note.** When re-inserting a module that was already inserted, which is what we're doing here, mod-perms will notice any new permissions and insert them, which is what we want; but it will not update already-existing permissions, so changes that you make to the description, sup-permissions, etc., cannot be updated using this technique. If you wanted to do this, you would first need to manually remove the old permissions (left as exercise for the reader) before inserting the new descriptor.
+
+## Add a permission to a user
+
+Since this operation, and the related ones that precede it are performed in the context of a specific logged-in user (unlike those above), we will need to log in first. Then we can need to find the ID of the user we're interested in. Finally, we can post the permission to it.
+```
+$ okapi login
+username: diku_admin
+password: *****
+Login successful. Token saved to /Users/mike/.okapi
+$ okapi show /users?query=username=diku_admin | grep '"id":'
+      "id": "1ad737b0-d847-11e6-bf26-cec0c932ce01",
+$ okapi show /perms/users/1ad737b0-d847-11e6-bf26-cec0c932ce01/permissions?indexField=userId | grep totalRecords
+  "totalRecords": 43
+$ echo '{"permissionName": "module.search.enabled"}' | okapi --tenant diku create /perms/users/1ad737b0-d847-11e6-bf26-cec0c932ce01/permissions?indexField=userId
+Net::HTTPBadRequest: User with id 1ad737b0-d847-11e6-bf26-cec0c932ce01 does not exist
+{
+  "permissionName": "module.search.enabled"
+}
+$ okapi show /perms/users/1ad737b0-d847-11e6-bf26-cec0c932ce01/permissions?indexField=userId | grep totalRecords
+  "totalRecords": 44
+```
 
 ## Use the new permissions!
 
