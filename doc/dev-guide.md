@@ -1,6 +1,6 @@
 # The Stripes Module Developer's Guide
 
-<!-- ../../okapi/doc/md2toc -l 2 dev-guide.md -->
+<!-- md2toc -l 2 dev-guide.md -->
 * [Status and Scope](#status-and-scope)
 * [Introduction](#introduction)
     * [How Stripes fits together](#how-stripes-fits-together)
@@ -16,6 +16,7 @@
 * [Development](#development)
     * [The Stripes object](#the-stripes-object)
     * [Connecting a component](#connecting-a-component)
+    * [URL navigation](#url-navigation)
     * [Enforcing permissions](#enforcing-permissions)
         * [The permissions structure](#the-permissions-structure)
         * [Testing for permission](#testing-for-permission)
@@ -116,6 +117,8 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 * `okapiInterfaces` -- an optional object containing dependencies on back-end modules provided via Okapi. Each dependency is expressed by an entry whose key is a FOLIO interface name such as `users` or `circulation`, and whose corresponding value is a two-faceted [interface-version number](https://github.com/folio-org/okapi/blob/master/doc/guide.md#versioning-and-dependencies). Each entry expresses a dependency on the specified Okapi interface at the indicated version or higher (but within the same major version).
 
 * `permissionsets` -- an optional list of permission-sets describing access to parts of the user-facing application that the module implements. These will typically be very high-level permissions, most likely defined as the union of several high-level permissions provided by back-end modules. They are provided in exactly the same format as those in [a back-end module's `ModuleDescriptor.json`](https://github.com/folio-org/okapi/blob/master/doc/guide.md#example-4-complete-moduledescriptor).
+
+* `queryResource` -- if defined, this is the name of an anointed stripes-connect resource whose contents always reflect the query parameters of the URL, and which can be mutated to change the URL. See [URL navigation](#URL navigation) below.
 
 When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
 
@@ -265,6 +268,43 @@ export default Parent;
 
 
 
+### URL navigation
+
+Stripes modules do not need to directly manipulate the URL of the application using `history.push(newUrl)`, nor parse out the parts of the URL to access query parameters. This is all handled by means of an "anointed resource" -- a stripes-connected local resource which is nominated by the `queryResource` entry in the package file's `stripes` section. (Typically, this resource is called `query`, though it need not be.)
+
+When such a resource is declared, stripes-core ensures that it is populated with the URL query parameters -- for example, when at the URL `/users?filters=active.Active&query=ab&sort=Name`, the resource will contain three keys: `filters` with value `active.Active`, `query` with value `ab`, and `sort` with value `Name`.
+
+Assigning a value in this resource (using the `update` or `replace` mutator) will result in the URL changing accordingly: for example, starting from the state above, setting `sort` to `Email` will result in the URL changing to
+`/users?filters=active.Active&query=ab&sort=Email`. This facility frees applications from having to track the existing path and other query parameters in order to construct a new URL that is consistent with the old except for the change of a single parameter.
+
+As a special case, assigning to the parameter `_path` results in a change to the URL _path_ rather than a query parameter. (Don't write your application so that it uses a query parameter called `_path` or it won't work!)
+
+To get a sense for how this works in practice, look at [the `<SearchAndSort>` component](https://github.com/folio-org/stripes-smart-components/blob/master/lib/SearchAndSort/SearchAndSort.js). A simple `transitionToParams` utility function is trivially defined as mutating the anointed resource:
+```
+this.transitionToParams = values => this.props.parentMutator.query.update(values);
+```
+That method is used in many places, for example, to change the `sort` parameter to the value of the `sortOrder` variable:
+```
+this.transitionToParams({ sort: sortOrder });
+```
+And with the special `_path` parameter to change the path when a single record is selected for display. In this case, the base-route is taken from the component's properties (and ultimately from the `stripes.route` property of the package file), and the ID of the record to display is drawn from the event metadata:
+```
+this.transitionToParams({ _path: `${this.props.baseRoute}/view/${meta.id}` });
+```
+
+Access to the anointed resource can be obtained by declaring it in the manifest of a connected component:
+```
+static manifest = Object.freeze({
+  query: {
+    // You can declare the specific query parameters here
+  }
+});
+
+```
+More often, a high-level component will pass a reference to the resource into lower-level components that use it. In the example above, modules using the `<SearchAndSort>` utility component will pass in their stripes-connect resources and mutators as the `parentResources` and `parentMutator` properties, as seen in the definition of the `transitionToParams` utility function above.
+
+
+
 ### Enforcing permissions
 
 Users in the FOLIO system have a set of permissions assigned to them. These are named by short strings such as `users.read`, `users.edit`, `perms.permissions.create`, etc. Operations are allowed or prohibited by server-side modules according as the logged-in user does or does not have the corresponding permissions.
@@ -343,7 +383,7 @@ Stripes itself manages the mapping of key-combinations such as `command+up` and 
 
 This mapping can most easily be managed by means of the editor in the `ui-organization` module; more sophisticated facilities may follow.
 
-In order to actually use the mapped keys, the action-names must be mapped to code fragments, and this is the responsibility of the individual modules. Mappings are passed as the `handlers` argument to a `<HotKeys>` wrapper component, which is provided by [the `react-hotkey` library](https://github.com/chrisui/react-hotkeys). For example, consider this code from the hot-keys testing page in `ui-developer`:
+In order to actually use the mapped keys, the action-names must be mapped to code fragments, and this is the responsibility of the individual modules. Mappings are passed as the `handlers` argument to a `<HotKeys>` wrapper component, which is provided by [the `react-hotkeys` library](https://github.com/chrisui/react-hotkeys). For example, consider this code from the hot-keys testing page in `ui-developer`:
 ```
 import { HotKeys } from '@folio/stripes-components/lib/HotKeys';
 // ...
@@ -359,7 +399,7 @@ const handlers = {
 
 This maps the two action-names `stripesHome` and `stripesAbout` to JavaScript fragments that navigate directly to the home-page and the About page respectively. Stripes itself supplies the bindings that specify what particular key-combinations invoke these actions.
 
-Finally, a wrinkle: in some circumstances, inserting a `<HotKeys>` wrapper around other elements interferes with the application of CSS styles. In this case, the `nowrapper` property can be used to circumvent this. But the property is not yet supported by the master distribution of `react-hotkeys`, so it's necessary to use the forked copy that is part of `stripes-components`.
+Finally, a wrinkle: in some circumstances, inserting a `<HotKeys>` wrapper around other elements interferes with the application of CSS styles. In this case, the `nowrapper` property can be used to circumvent this. But the property is not yet supported by the master distribution of `react-hotkeys`, so it's necessary to use the forked copy `stripes-react-hotkeys` until the master is updated.
 
 
 
@@ -549,9 +589,7 @@ State is of several kinds:
 
 * Stripes-connect resources of type `local` (as opposed to `rest` or `okapi`). Changing these does not cause a change on a remote resource, only locally. They differ from the React state in that they are persistent across renderings of the same component: for example, if a UI module's search-term is held in a local resource rather than in React state, it will still be there on returning to that module from another one within the same Stripes application.
 
-* The present URL of the UI application, which typically carries state in both its path and its query: for example, the URL `/users/123?query=smith&sort=username` contains a user-ID `123` in its path, and a query `smith` and sort-specification `username` in query parameters `query` and `sort` respectively.
-
-  (At present, the URL is changed using the standard React Router method, `this.props.history.push(newUrl)`, or more often the stripes-components utility function `transitionToParams`. In future, this will probably be done instead using mutators -- concerning which, see below.)
+* The present URL of the UI application, which typically carries state in both its path and its query: for example, the URL `/users/123?query=smith&sort=username` contains a user-ID `123` in its path, and a query `smith` and sort-specification `username` in query parameters `query` and `sort` respectively. This state accessed and modified via the anointed stripes-connect resource -- see [above](#url-navigation).
 
 Stripes-connect detects changes to the state, and issues whatever requests are necessary to obtain relevant data. For example, if the URL changes from `/users/123?query=smith&sort=username` to `/users/123?query=smith&sort=email`, it will issue a new search request with the sort-order modified accordingly.
 
