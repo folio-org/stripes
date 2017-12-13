@@ -91,10 +91,9 @@ $ okapi show /users?query=username=diku_admin | grep '"id":'
       "id": "1ad737b0-d847-11e6-bf26-cec0c932ce01",
 $ okapi show /perms/users/1ad737b0-d847-11e6-bf26-cec0c932ce01/permissions?indexField=userId | grep totalRecords
   "totalRecords": 43
-$ echo '{"permissionName": "module.search.enabled"}' | okapi --tenant diku create /perms/users/1ad737b0-d847-11e6-bf26-cec0c932ce01/permissions?indexField=userId
-Net::HTTPBadRequest: User with id 1ad737b0-d847-11e6-bf26-cec0c932ce01 does not exist
+$ echo '{"permissionName": "test.mike"}' | okapi --tenant diku create /perms/users/1ad737b0-d847-11e6-bf26-cec0c932ce01/permissions?indexField=userId
 {
-  "permissionName": "module.search.enabled"
+  "permissionName": "test.mike"
 }
 $ okapi show /perms/users/1ad737b0-d847-11e6-bf26-cec0c932ce01/permissions?indexField=userId | grep totalRecords
   "totalRecords": 44
