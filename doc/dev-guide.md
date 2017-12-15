@@ -604,7 +604,7 @@ For local resources, there are two functions in the mutator:
 * `replace` -- replaces the resources current set of values with the new set.
 * `update` -- merges the new set of values into the old.
 
-For remote resource (of type `rest` and `okpai`) there are three functions, named after the HTTP methods:
+For remote resource (of type `rest` and `okapi`) there are three functions, named after the HTTP methods:
 
 * `POST` -- creates a new record on the remote service.
 * `PUT` -- updates an existing record on the remote service.
@@ -645,7 +645,7 @@ So our experience at this stage is that it may be better to err on the side of m
 
 **WARNING.** Do not do this.
 
-In general, Stripes modules should never need to access the Redux store that is used internally. However, in some unusual circumstances, this may be necessary. For example, when the Users module creates a new user, it then goes on to post the user's credentials (username and password) to a different WSAPI endpoint and the user's initial set of permissions to a third endpoint. Rather then using stripes-connect for these operations, it uses low-level [`fetch`](https://github.com/matthew-andrews/isomorphic-fetch) calls; and in order to obtain the current session's authentication token to include in the HTTP calls, it looks inside the state of the Redux store.
+In general, Stripes modules should never need to access the Redux store that is used internally. However, in some unusual circumstances, this may be necessary. For example, when the Users module creates a new user, it then goes on to post the user's credentials (username and password) to a different WSAPI endpoint and the user's initial set of permissions to a third endpoint. Rather than using stripes-connect for these operations, it uses low-level [`fetch`](https://github.com/matthew-andrews/isomorphic-fetch) calls; and in order to obtain the current session's authentication token to include in the HTTP calls, it looks inside the state of the Redux store.
 
 This store is available as `store` on the Stripes object, and its state is available via the `getState` method. So:
 
