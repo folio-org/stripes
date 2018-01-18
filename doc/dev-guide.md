@@ -229,6 +229,8 @@ The Stripes object contains the following elements:
 
   * `logCategories`, `logPrefix`, `logTimestamp` -- see [Configuring the logger](#configuring-the-logger) below.
 
+  * `showHomeLink` -- a boolean indicating whether the user menu at top right should include a link to the FOLIO home-page. This is useful in development, as it gives a clean state to reload, but not wanted for production.
+
   * `showPerms` -- a boolean indicating whether the user menu at top right should display a list of the logged-in user's permissions. This is useful in development, but distracting in production.
 
   * `listInvisiblePerms` -- usually, when a list of available permissions is provided from which to choose one to add, only "logical permissions" (those with `visible:true`) are listed. When `listInvisiblePerms` is set, however, low-level permissions are also included.
