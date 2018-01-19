@@ -1,10 +1,9 @@
 # Stripes application metadata bundles
 
-<!-- md2toc -l 2 app-metadata.md    -->
+<!-- md2toc -l 2 app-metadata.md -->
 * [Background](#background)
 * [Specification](#specification)
     * [Standard fields (top level)](#standard-fields-top-level)
-    * [Feedback](#feedback)
     * [Extensions](#extensions)
     * [Welcome-page entries](#welcome-page-entries)
     * [Icons](#icons)
