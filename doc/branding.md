@@ -18,7 +18,7 @@ module.exports = {
   okapi: {},
   config: {},
   modules: {},
-  
+
   branding: {
     logo: {
       src: './tenant-assets/my-logo.png',

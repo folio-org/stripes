@@ -63,7 +63,7 @@ Create a new entry at the top of the change-log for the forthcoming version, so 
 
 ## Notes on breaking changes
 
-When breaking changes have been introduced, but are not stable enough to officially release, follow Semantic Versioning's pre-release nomenclature prior to the official release. Do this with a `-pre.n` suffix where `n` represents the n-th pre-release leading up to the release. 
+When breaking changes have been introduced, but are not stable enough to officially release, follow Semantic Versioning's pre-release nomenclature prior to the official release. Do this with a `-pre.n` suffix where `n` represents the n-th pre-release leading up to the release.
 
 For example, given a current release of `1.2.3` in which breaking changes must be introduced, release these changes as `2.0.0-pre.1`.  If necessary, repeat with `2.0.0-pre.2` and so on until code is deemed stable enough to release `2.0.0`.
 
