@@ -14,7 +14,7 @@
 
 As discussed in [STCOR-117](https://issues.folio.org/browse/STCOR-117), there is a need to capture application-level metadata about the various Stripes applications -- Users, Inventory, Codex Search, etc. This includes both human-readable texts such as the full and short titles, and machine-readable files such as icons.
 
-Since some of the metadata elements that need to be specified are already present in the application modules' [NPM package files](https://docs.npmjs.com/files/package.json), it was decided to keep all of the elements in that file, rather then duplicting information. This approach also makes it easy for application code, and for Stripes itself, to access the metadata. The extension fields are all contained within the `stripes` section of the package file.
+Since some of the metadata elements that need to be specified are already present in the application modules' [NPM package files](https://docs.npmjs.com/files/package.json), it was decided to keep all of the elements in that file, rather than duplicating information. This approach also makes it easy for application code, and for Stripes itself, to access the metadata. The extension fields are all contained within the `stripes` section of the package file.
 
 
 ## Specification
@@ -25,7 +25,7 @@ of that field within the package file.
 
 ### Standard fields (top level)
 
-Apart from `stripes`, the sub-record that contains the extension fields, all of the fields at the top level of the NPM package file are standard fields interpeted in the standard way. The **[Ref]** links before point to the NPM package-file documentation for the fields.
+Apart from `stripes`, the sub-record that contains the extension fields, all of the fields at the top level of the NPM package file are standard fields interpreted in the standard way. The **[Ref]** links provide the NPM package-file documentation for the fields.
 
 Field | Location | Description and notes
 :---- | :------- | :--------------------
@@ -34,7 +34,7 @@ Version | `version` | The current version of the module, expressed as three-face
 Description | `description` | A one sentence description of what the app does. [**[Ref]**](https://docs.npmjs.com/files/package.json#description-1)
 License | `license` | A short statement of the software licence, chosen from [the SPDX controlled list](https://spdx.org/licenses/) -- for example, "Apache-2.0". [**[Ref]**](https://docs.npmjs.com/files/package.json#license)
 Feedback | `bugs` | Information on how to give feedback on the application, including but not limited to bug-reports. See below for details. [**[Ref]**](https://docs.npmjs.com/files/package.json#bugs)
-Extensions | `stripes` | Information specific to Stripes applications, not applicable to other NPM packges. See [below](#extensions).
+Extensions | `stripes` | Information specific to Stripes applications, not applicable to other NPM packages. See [below](#extensions).
 
 The `bugs` field is a structure containing two subfields:
 
@@ -49,22 +49,22 @@ The `stripes` structure contains the following extension fields:
 
 Field | Location | Description and notes
 :---- | :------- | :--------------------
-Type | `type` | The type of the module: may be `app` for a regular full-page application, `popover` for an application that can run in popover mode as well as in regular full-page mode, or `settings` for modules that only provides an entry in the Settings page.
+Type | `type` | The type of the module: may be `app` for a regular full-page application, `popover` for an application that can run in popover mode as well as in regular full-page mode, or `settings` for modules that only provide an entry in the Settings page.
 Short title | `displayName` | This is needed in the header, where, based on user preference or screen size, the names of the apps may be displayed next to their icons.
-Full title | `fullName` | The full title of the application: for example, when this is "Library Yearly Calendar", the sort title might be just "Calendar".
-Default popover size | `defaultPopoverSize` | For applications that can run in popover mode as well as in full-screen, specifiees how wide the popover should be when it first appears (subject to subsequent resizing by the user). May be specificed as a percentage (e.g. `40%`) or as a pixel width (e.g. `300px`).
-Default preview width | `defaultPreviewWidth` | Specifies how wide the preview pane should be when it first appears (subject to subsequent resizing by the user). May be specificed as a percentage (e.g. `40%`) or as a pixel width (e.g. `300px`).
+Full title | `fullName` | The full title of the application: for example, when this is "Library Yearly Calendar", the short title might be just "Calendar".
+Default popover size | `defaultPopoverSize` | For applications that can run in popover mode as well as in full-screen, specifies how wide the popover should be when it first appears (subject to subsequent resizing by the user). May be specified as a percentage (e.g. `40%`) or as a pixel width (e.g. `300px`).
+Default preview width | `defaultPreviewWidth` | Specifies how wide the preview pane should be when it first appears (subject to subsequent resizing by the user). May be specified as a percentage (e.g. `40%`) or as a pixel width (e.g. `300px`).
 Help page | `helpPage` | The URL of a page that is helpful in understanding the application. This may point to a Help app within Stripes itself, or to some outside resource such as https://wiki.folio.org/pages/viewpage.action?pageId=1415393
 Icons | `icons` | A list of zero or more icons provided and used by the application. See [below](#icons) for details.
 Welcome-page entries | `welcomePageEntries` | A list of zero or more icon-and-text entries on the welcome page. See [below](#welcome-page-entries) for details.
 
 ### Welcome-page entries
 
-The `welcomePageEntries` field specifies a set of paragraphs on the appliction's welcome page (see [mock-up](https://issues.folio.org/secure/attachment/11010/Screenshot%202017-12-05%2023.59.26.png)). It is represented by an array of structures, each of them containing three subfields:
+The `welcomePageEntries` field specifies a set of paragraphs on the application's welcome page (see [mock-up](https://issues.folio.org/secure/attachment/11010/Screenshot%202017-12-05%2023.59.26.png)). It is represented by an array of structures, each of them containing three subfields:
 
 Field | Location | Description and notes
 :---- | :------- | :--------------------
-Icon name | `iconName` | The name of an icon provided either by Stripes itself or by the appliction. This will be a short string such as `"happyFace"` rather than the path to a specific file. Typically the name will be one of those defined in the `icons` section (see [below](#icons)).
+Icon name | `iconName` | The name of an icon provided either by Stripes itself or by the application. This will be a short string such as `"happyFace"` rather than the path to a specific file. Typically the name will be one of those defined in the `icons` section (see [below](#icons)).
 Headline | `headline` | "Search local inventory and e-resources together!",
 Description | `description` | "The Codex Search application lets you search across multiple sources ..."
 
