@@ -27,7 +27,7 @@ $ mkdir stripes
 
 ## Clone stripes-core
 
-You need this first, so that you can use utility scrpts included in it to help with the rest of the process. So:
+You need this first, so that you can use utility scripts included in it to help with the rest of the process. So:
 
 ```
 $ cd stripes
@@ -99,7 +99,7 @@ info No lockfile found.
 
 ## Run your development code!
 
-This is done in the usual way: in `stripes-sample-platform`, copy `stripes.config` to `stripes.config.local`, edit the latter as reqired, and then:
+This is done in the usual way: in `stripes-sample-platform`, copy `stripes.config` to `stripes.config.local`, edit the latter as required, and then:
 
 ```
 $ yarn start
