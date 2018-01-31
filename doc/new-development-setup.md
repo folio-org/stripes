@@ -10,6 +10,9 @@
     * [Yarn linking (eek!)](#yarn-linking-eek)
     * [Yarn install](#yarn-install)
     * [Run your development code!](#run-your-development-code)
+* [Troubleshooting](#troubleshooting)
+    * [Inventory (or another module) is missing](#inventory-or-another-module-is-missing)
+    * [leveldown](#leveldown)
 * [Summary](#summary)
 
 
@@ -114,6 +117,38 @@ $ yarn start
 ```
 
 
+## Troubleshooting
+
+### Inventory (or another module) is missing
+
+```
+error An unexpected error occurred:
+"https://repository.folio.org/repository/npm-folio/@folio%2finventory: Package '@folio/inventory' not found".
+```
+
+This is due to a combination of two things: one is that [yarn-linked packages are not used if there is no already-released version](https://github.com/yarnpkg/yarn/issues/5298), a long-standing bug. The other is that, for reasons that are not clear, the Inventory UI module has yet to be released.
+
+Clearly yarn should not care whether or not it's posible to find a release of a linked module. But since it does, the simple work-around is to point to the `folioci` NPM repository instead of the regular `folio` repository. This contains releases of all the UI modules in the `folio-org` GitHub area, and allows yarn to ignore those releases and use the linked module. Before trying to `yarn install`, use:
+
+```
+$ yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
+```
+
+### leveldown
+
+```
+error /private/tmp/t/stripes-cli/node_modules/leveldown: Command failed.
+Exit code: 127
+Command: prebuild-install || node-gyp rebuild
+```
+
+We have no idea what causes this, but it seems that `node-gyp`, whatever that is, knows how to patch up the problem. So globally install that program, and things more or less work out, probably. Before trying to `yarn install`, use:
+
+```
+$ yarn global add node-gyp
+```
+
+
 ## Summary
 
 ```
@@ -125,9 +160,13 @@ $ rm -rf stripes-sample-platform
 $ ./stripes-core/util/pull-stripes -c
 $ ./stripes-core/util/link-stripes -i
 $ ./stripes-core/util/link-stripes
+$ yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
+$ yarn global add node-gyp
 $ ./stripes-core/util/pull-stripes -b
 $ cd stripes-sample-platform
 $ cp stripes.config.js stripes.config.js.local
 $ $EDITOR stripes.config.js.local
 $ yarn start
 ```
+
+
