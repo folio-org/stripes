@@ -1,17 +1,25 @@
 # Creating a new development setup for Stripes
 
 <!-- md2toc -l 2 new-development-setup.md -->
-* [Remove your old source directory](#remove-your-old-source-directory)
-* [Make a new source directory](#make-a-new-source-directory)
-* [Clone stripes-core](#clone-stripes-core)
-* [Clone all the stripes modules and apps](#clone-all-the-stripes-modules-and-apps)
-* [Yarn linking (eek!)](#yarn-linking-eek)
-* [Yarn install](#yarn-install)
-* [Run your development code!](#run-your-development-code)
+* [Introduction](#introduction)
+* [Instructions](#instructions)
+    * [Remove your old source directory](#remove-your-old-source-directory)
+    * [Make a new source directory](#make-a-new-source-directory)
+    * [Clone stripes-core](#clone-stripes-core)
+    * [Clone all the stripes modules and apps](#clone-all-the-stripes-modules-and-apps)
+    * [Yarn linking (eek!)](#yarn-linking-eek)
+    * [Yarn install](#yarn-install)
+    * [Run your development code!](#run-your-development-code)
+* [Summary](#summary)
+
+
+## Introduction
 
 Sometimes, due to the vagaries of NPM and Yarn, it becomes necessary to blow away an existing Stripes development setup and make a new one. This document walks through the steps required in this process.
 
-## Remove your old source directory
+## Instructions
+
+### Remove your old source directory
 
 First, of course, be sure that you have no uncommitted or unpushed changes. Once you have safely committed and pushed everything, you can remove the directory:
 
@@ -19,13 +27,13 @@ First, of course, be sure that you have no uncommitted or unpushed changes. Once
 $ rm -rf stripes
 ```
 
-## Make a new source directory
+### Make a new source directory
 
 ```
 $ mkdir stripes
 ```
 
-## Clone stripes-core
+### Clone stripes-core
 
 You need this first, so that you can use utility scripts included in it to help with the rest of the process. So:
 
@@ -46,7 +54,7 @@ You _may_ find that, for reasons which are completely opaque to me, a `stripes-s
 $ rm -rf stripes-sample-platform
 ```
 
-## Clone all the stripes modules and apps
+### Clone all the stripes modules and apps
 
 You can do this using the `-c` option of the ubiquitous `pull-stripes` script from stripes-core:
 
@@ -58,7 +66,7 @@ remote: Total 1540 (delta 0), reused 0 (delta 0), pack-reused 1540
 [...]
 ```
 
-## Yarn linking (eek!)
+### Yarn linking (eek!)
 
 Yarn linking is horrible and error-prone and unpredictable, and is in fact the main reason why we need a procedure for replacing decayed Stripes development environments at all. There is another utility script that helps with this.
 
@@ -81,7 +89,7 @@ $ ./stripes-core/util/link-stripes
 (Yes, that is the same utility script used for both steps. Use the `-i` option the first time, but not the second.)
 
 
-## Yarn install
+### Yarn install
 
 You need to do this in each source directory. As before, there's a script for this, and it's our old friend `pull-stripes` with the `-b` ("build") option:
 
@@ -97,7 +105,7 @@ info No lockfile found.
 
 (Note that this pulls recent changes to each package and then builds the result. Perhaps the two operations should be completely separate. Perhaps `pull-stripes -b` should be a completely different script from `pull-stripes`. Maybe `link-stripes -i` should be a different script from `link-stripes`. Maybe the two modes of `link-stripes` should be two more options to `pull-stripes`. None of this is pretty.)
 
-## Run your development code!
+### Run your development code!
 
 This is done in the usual way: in `stripes-sample-platform`, copy `stripes.config.js` to `stripes.config.js.local`, edit the latter as required, and then:
 
