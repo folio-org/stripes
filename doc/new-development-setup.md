@@ -113,6 +113,7 @@ This is done in the usual way: in `stripes-sample-platform`, copy `stripes.confi
 $ yarn start
 ```
 
+
 ## Summary
 
 ```
