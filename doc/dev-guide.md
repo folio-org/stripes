@@ -472,32 +472,32 @@ Stripes contains provisions for localising a module. At any moment, there is a n
 
 Translations in Stripes are user-readable strings which are named with a short, faceted, machine-readable key such as `ui-users.loans.openLoans` for the Users module's "Open loans" caption on the Loans page.
 
-A module's translations must be provided within its package file, `package.json`, inside its `stripes` section, in a subsection named `translations`. This section itself contains subsections whose names are two-letter ISO country codes such as `en` for English or `de` for German, each such subsections providing the module's translation strings for the named language.
+A module's translations must be provided within a `translations` directory found at the root of the module. This directory contains `.json` files whose names are two-letter ISO country codes such as `en.json` for English or `de.json` for German, each such file providing the module's translation strings for the named language.
 
-The translations themselves, within these subsections, have short, faceted keys, and their values are the strings that are to appear in the UI. The name of the module is automatically prepended to the translation keys. For example, in the User module's `package.json`, the section:
+The translations themselves, within these files, have short, faceted keys, and their values are the strings that are to appear in the UI. The name of the module is automatically prepended to the translation keys. For example, in the User module's `translations` directory, the `en.json`, file contains:
 
 ```
-  "translations": {
-      "en": {
-        "search": "Search",
-        "loans.title": "Loans",
-        "loans.openLoans": "open loans",
-        "loans.closedLoans": "closed loans"
-      },
-      "de": {
-        "search": "Suche",
-        "loans.title": "Ausleihen",
-        "loans.openLoans": "Offene Ausleihen",
-        "loans.closedLoans": "Abgeschlossene Ausleihen"
-      }
-    }
+{
+  "search": "Search",
+  "loans.title": "Loans",
+  "loans.openLoans": "open loans",
+  "loans.closedLoans": "closed loans"
+}
+```
+and the `de.json`, file contains:
+
+```
+{
+  "search": "Suche",
+  "loans.title": "Ausleihen",
+  "loans.openLoans": "Offene Ausleihen",
+  "loans.closedLoans": "Abgeschlossene Ausleihen"
+}
 ```
 
-provides English and German translations for four strings, whose keys are `ui-users.search`,  `loans.title`, `loans.openLoans` and `loans.closedLoans`.
+These files provide English and German translations for four strings, whose keys are `ui-users.search`, `ui-users.loans.title`, `ui-users.loans.openLoans` and `ui-users.loans.closedLoans`.
 
 Translations may be provided for any number of languages.
-
-(In the future, we may introduce a facility for loading translations from their own files rather than the module's package file.)
 
 
 #### Using module translations
@@ -514,6 +514,16 @@ In JavaScript, the Stripes object furnishes an internationalization object as it
 In addition to the translations that it provides itself, a module may use translations provided by stripes-core. In particular, it provides translations for a set of common labels, which modules therefore need not translate for themselves. The keys for these labels all begin with `common.`. The translations provided by stripes-core are provided in [language-specific translation files](https://github.com/folio-org/stripes-core/tree/master/translations).
 
 For example, if the `stripes-core/translations/*.json` files define a property as `"common.search": "Search"`, then search buttons may use `<Button label={stripes.intl.formatMessage({ id: 'stripes-core.common.search' })} />`.
+
+#### Filtering translations at build time
+
+By default, the build process will collect translations for all languages found in each module.  Sometimes it is desireable to build a tenant with only a specific set of languages.  To filter the languages for a tenant, set the `languages` property in the `config` section of the tenant's `stripes.config.js` file.  The value should be an array of desired two-letter codes.  For example:
+```
+config: {
+  languages: ['en', 'de'],
+},
+```
+In addition to limiting the number of translations processed during the build, specifying `languages` will also prompt the build to filter out third-party language assets for `react-intl` and `moment`.  This will reduce the quantity and size of build files emitted.
 
 
 #### Other uses of the locale
