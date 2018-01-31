@@ -495,7 +495,7 @@ and the `de.json`, file contains:
 }
 ```
 
-Each file provides English and German translations for four strings, whose keys are `ui-users.search`,  `ui-users.loans.title`, `ui-users.loans.openLoans` and `ui-users.loans.closedLoans`.
+These files provide English and German translations for four strings, whose keys are `ui-users.search`, `ui-users.loans.title`, `ui-users.loans.openLoans` and `ui-users.loans.closedLoans`.
 
 Translations may be provided for any number of languages.
 
@@ -517,13 +517,13 @@ For example, if the `stripes-core/translations/*.json` files define a property a
 
 #### Filtering translations at build time
 
-By default, stripes-core will collect translations for all languages it finds in each module.  Sometimes it is desireable to build a tenant with only a specific set of languages.  To filter the languages for a tenant, set the `languages` property in the `config` section of the tenant's `stripes.config.js` file.  The value should be an array of desired two-letter codes.  For example:
+By default, the build process will collect translations for all languages found in each module.  Sometimes it is desireable to build a tenant with only a specific set of languages.  To filter the languages for a tenant, set the `languages` property in the `config` section of the tenant's `stripes.config.js` file.  The value should be an array of desired two-letter codes.  For example:
 ```
 config: {
   languages: ['en', 'de'],
 },
 ```
-In addition to limiting the number of module translations processed during the build, specifying `languages` will also prompt the build to filter out language assets for third party libraries like `react-intl` and `moment`.  This will reduce the number of build assets and their size.
+In addition to limiting the number of translations processed during the build, specifying `languages` will also prompt the build to filter out third-party language assets for `react-intl` and `moment`.  This will reduce the quantity and size of build files emitted.
 
 
 #### Other uses of the locale
