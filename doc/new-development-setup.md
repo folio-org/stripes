@@ -99,7 +99,7 @@ info No lockfile found.
 
 ## Run your development code!
 
-This is done in the usual way: in `stripes-sample-platform`, copy `stripes.config` to `stripes.config.local`, edit the latter as required, and then:
+This is done in the usual way: in `stripes-sample-platform`, copy `stripes.config.js` to `stripes.config.js.local`, edit the latter as required, and then:
 
 ```
 $ yarn start
@@ -118,5 +118,7 @@ $ ./stripes-core/util/link-stripes -i
 $ ./stripes-core/util/link-stripes
 $ ./stripes-core/util/pull-stripes -b
 $ cd stripes-sample-platform
+$ cp stripes.config.js stripes.config.js.local
+$ $EDITOR stripes.config.js.local
 $ yarn start
 ```
