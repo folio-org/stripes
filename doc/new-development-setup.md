@@ -51,12 +51,6 @@ Receiving objects: 100% (6199/6199), 1.48 MiB | 3.02 MiB/s, done.
 Resolving deltas: 100% (4240/4240), done.
 ```
 
-You _may_ find that, for reasons which are completely opaque to me, a `stripes-sample-platform` directory also appears, empty but for a `node_modules` directory. You don't want this, as you are about to clone a proper one. So blow it away:
-
-```
-$ rm -rf stripes-sample-platform
-```
-
 ### Clone all the stripes modules and apps
 
 You can do this using the `-c` option of the ubiquitous `pull-stripes` script from stripes-core:
@@ -68,6 +62,14 @@ remote: Counting objects: 1540, done.
 remote: Total 1540 (delta 0), reused 0 (delta 0), pack-reused 1540
 [...]
 ```
+
+You _may_ find that, for reasons which are completely opaque to me, a `stripes-sample-platform` directory appears, empty but for a `node_modules` directory, at some point prior to the proper cloning of this directory. You don't want this, so blow it away and clone a real one:
+
+```
+$ rm -rf stripes-sample-platform
+$ git clone git@github.com:folio-org/stripes-sample-platform.git
+```
+
 
 ### Yarn linking (eek!)
 
@@ -156,8 +158,9 @@ $ rm -rf stripes
 $ mkdir stripes
 $ cd stripes
 $ git clone git@github.com:folio-org/stripes-core.git
-$ rm -rf stripes-sample-platform
 $ ./stripes-core/util/pull-stripes -c
+$ rm -rf stripes-sample-platform
+$ git clone git@github.com:folio-org/stripes-sample-platform.git
 $ ./stripes-core/util/link-stripes -i
 $ ./stripes-core/util/link-stripes
 $ yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
