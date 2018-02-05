@@ -161,10 +161,10 @@ $ git clone git@github.com:folio-org/stripes-core.git
 $ ./stripes-core/util/pull-stripes -c
 $ rm -rf stripes-sample-platform
 $ git clone git@github.com:folio-org/stripes-sample-platform.git
-$ ./stripes-core/util/link-stripes -i
-$ ./stripes-core/util/link-stripes
 $ yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
 $ yarn global add node-gyp
+$ ./stripes-core/util/link-stripes -i
+$ ./stripes-core/util/link-stripes
 $ ./stripes-core/util/pull-stripes -b
 $ cd stripes-sample-platform
 $ cp stripes.config.js stripes.config.js.local
