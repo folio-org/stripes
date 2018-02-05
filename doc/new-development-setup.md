@@ -7,7 +7,7 @@
     * [Make a new source directory](#make-a-new-source-directory)
     * [Clone stripes-core](#clone-stripes-core)
     * [Clone all the stripes modules and apps](#clone-all-the-stripes-modules-and-apps)
-    * [Yarn linking (eek!)](#yarn-linking-eek)
+    * [Install the Stripes CLI](#install-the-stripes-cli)
     * [Yarn install](#yarn-install)
     * [Run your development code!](#run-your-development-code)
 * [Troubleshooting](#troubleshooting)
@@ -70,29 +70,17 @@ $ rm -rf stripes-sample-platform
 $ git clone git@github.com:folio-org/stripes-sample-platform.git
 ```
 
+### Install the Stripes CLI
 
-### Yarn linking (eek!)
-
-Yarn linking is horrible and error-prone and unpredictable, and is in fact the main reason why we need a procedure for replacing decayed Stripes development environments at all. There is another utility script that helps with this.
-
-First, establish the linkability of the various Stripes packages and the UI modules:
+The Stripes CLI, among its other benefits, manages Stripes aliases. These take the place of Yarn links, poviding a much more stable and predictable devleopment environment. To make the Stripes CLI `stripescli` available:
 
 ```
-$ ./stripes-core/util/link-stripes -i
-Initialising
-* Initialising linkability for 'stripes-cli'
-yarn link v1.3.2
-success Registered "@folio/stripes-cli".
-[...]
+$ cd stripes-cli
+$ npm install -g
+$ cd ..
 ```
 
-Then set up the inter-package links:
-```
-$ ./stripes-core/util/link-stripes
-```
-
-(Yes, that is the same utility script used for both steps. Use the `-i` option the first time, but not the second.)
-
+Why are we installing with NPM instead of Yarn? Yarn is generally better (faster and more predictable), but inexplicably lacks a global install command: `yarn global install` does not exist. We we use NPM global install.
 
 ### Yarn install
 
@@ -108,20 +96,26 @@ info No lockfile found.
 [...]
 ```
 
-(Note that this pulls recent changes to each package and then builds the result. Perhaps the two operations should be completely separate. Perhaps `pull-stripes -b` should be a completely different script from `pull-stripes`. Maybe `link-stripes -i` should be a different script from `link-stripes`. Maybe the two modes of `link-stripes` should be two more options to `pull-stripes`. None of this is pretty.)
+(Note that this pulls recent changes to each package and then builds the result. Perhaps the two operations should be completely separate. Perhaps `pull-stripes -b` should be a completely different script from `pull-stripes`.)
 
 ### Run your development code!
 
-This is done in the usual way: in `stripes-sample-platform`, copy `stripes.config.js` to `stripes.config.js.local`, edit the latter as required, and then:
+In `stripes-sample-platform` (or whatever platform directory of your own you prefer to use), make a `stripes.config.js` file, or taking priority over that if present a `stripes.config.js.local`. (The simplest way to make the latter file is to copy the former from `stripes-sample-platform`, and edit it as required.)
+
+Then make a `.stripesclirc` containing whatever stripes aliases you want. (The simplest way to make this is to copy the `.stripesclirc.example` from `stripes-sample-platform`, and edit it as required.)
+
+Then you can serve your development copy of Stripes using the CLI:
 
 ```
-$ yarn start
+$ stripescli serve
 ```
 
 
 ## Troubleshooting
 
 ### Inventory (or another module) is missing
+
+> **Note. This should no longer occur, now that we are not using `yarn link`.**
 
 ```
 error An unexpected error occurred:
@@ -137,6 +131,8 @@ $ yarn config set @folio:registry https://repository.folio.org/repository/npm-fo
 ```
 
 ### leveldown
+
+This can happen when building NPM packages, notably `stripes-cli`:
 
 ```
 error /private/tmp/t/stripes-cli/node_modules/leveldown: Command failed.
@@ -161,15 +157,18 @@ $ git clone git@github.com:folio-org/stripes-core.git
 $ ./stripes-core/util/pull-stripes -c
 $ rm -rf stripes-sample-platform
 $ git clone git@github.com:folio-org/stripes-sample-platform.git
-$ yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
 $ yarn global add node-gyp
-$ ./stripes-core/util/link-stripes -i
-$ ./stripes-core/util/link-stripes
+$ cd stripes-cli
+$ npm install -g
+	should be `yarn global install` but this does not exist
+$ cd ..
 $ ./stripes-core/util/pull-stripes -b
 $ cd stripes-sample-platform
 $ cp stripes.config.js stripes.config.js.local
 $ $EDITOR stripes.config.js.local
-$ yarn start
+$ cp .stripesclirc.example .stripesclirc
+$ $EDITOR .stripesclirc
+$ stripescli serve
 ```
 
 
