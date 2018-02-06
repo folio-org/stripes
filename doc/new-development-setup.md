@@ -72,7 +72,7 @@ $ git clone git@github.com:folio-org/stripes-sample-platform.git
 
 ### Install the Stripes CLI
 
-The Stripes CLI, among its other benefits, manages Stripes aliases. These take the place of Yarn links, poviding a much more stable and predictable devleopment environment. To make the Stripes CLI `stripescli` available:
+The Stripes CLI, among its other benefits, manages Stripes aliases. These take the place of Yarn links, providing a much more stable and predictable development environment. To make the Stripes CLI `stripescli` available:
 
 ```
 $ cd stripes-cli
@@ -124,7 +124,7 @@ error An unexpected error occurred:
 
 This is due to a combination of two things: one is that [yarn-linked packages are not used if there is no already-released version](https://github.com/yarnpkg/yarn/issues/5298), a long-standing bug. The other is that, for reasons that are not clear, the Inventory UI module has yet to be released.
 
-Clearly yarn should not care whether or not it's posible to find a release of a linked module. But since it does, the simple work-around is to point to the `folioci` NPM repository instead of the regular `folio` repository. This contains releases of all the UI modules in the `folio-org` GitHub area, and allows yarn to ignore those releases and use the linked module. Before trying to `yarn install`, use:
+Clearly yarn should not care whether or not it's possible to find a release of a linked module. But since it does, the simple work-around is to point to the `folioci` NPM repository instead of the regular `folio` repository. This contains releases of all the UI modules in the `folio-org` GitHub area, and allows yarn to ignore those releases and use the linked module. Before trying to `yarn install`, use:
 
 ```
 $ yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
