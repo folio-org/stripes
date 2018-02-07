@@ -42,19 +42,19 @@ Similarly, consider the serial number rolling over from 99 to 100. If the serial
 
 **Conclusion**: the CI version number must be formed by setting the serial number in a fixed-width zero-padded number, and blindly appending that to the patch-level irrespective of how many digits it has. In Perl, `$patchlevel . sprintf("%05d", $serial)`. This generates the right sequences as both the patch-level and serial-number roll over into an additional digit:
 
-	$ cat generate-ci-version.pl 
+	$ cat generate-ci-version.pl
 	for (my $patchlevel = 9; $patchlevel <= 10; $patchlevel++) {
 	    for (my $serial = 99; $serial <= 100; $serial++) {
 	        my $ci = $patchlevel . sprintf("%05d", $serial);
 	        print "CI version $ci\n";
 	    }
 	}
-	$ perl generate-ci-version.pl 
+	$ perl generate-ci-version.pl
 	CI version 900099
 	CI version 900100
 	CI version 1000099
 	CI version 1000100
-	$ 
+	$
 
 
 ## Open questions
