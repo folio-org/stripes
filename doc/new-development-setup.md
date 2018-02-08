@@ -8,14 +8,13 @@
     * [Make a new source directory](#make-a-new-source-directory)
     * [Clone stripes-core](#clone-stripes-core)
     * [Clone all the stripes modules and apps](#clone-all-the-stripes-modules-and-apps)
+    * [Configure the FOLIO NPM-CI registry](#configure-the-folio-npm-registry)
     * [Yarn install](#yarn-install)
     * [Install the Stripes CLI](#install-the-stripes-cli)
     * [Run your development code!](#run-your-development-code)
 * [Troubleshooting](#troubleshooting)
     * [Inventory (or another module) is missing](#inventory-or-another-module-is-missing)
     * [leveldown](#leveldown)
-    * [stripescli](#stripescli)
-
 * [Summary](#summary)
 
 
@@ -25,13 +24,15 @@ Sometimes, due to the vagaries of NPM and Yarn, it becomes necessary to blow awa
 
 ## TL;DR
 
-In a new working directory, clone `stripes-core`, then run `stripes-core/util/configure` to pull down and configure everything else using yarn workspaces for third-party dependencies and stripescli aliases for local code.
+The following code will create a new working directory named `stripes`, clone the relevant repositories into it, install their dependencies, configure the @folio NPM registry, install the `stripescli` npm package for running stripes, and start that server running at [localhost:8080](http://localhost:8080). Just paste it into your terminal:
 
 ```
-$ mkdir stripes
-$ cd stripes
-$ git clone git@github.com:folio-org/stripes-core.git
-$ ./stripes-core/util/configure
+mkdir stripes
+cd stripes
+git clone git@github.com:folio-org/stripes-core.git
+./stripes-core/util/configure
+cd ./stripes-sample-platform
+stripescli serve
 ```
 
 ## Instructions
@@ -84,33 +85,58 @@ $ rm -rf stripes-sample-platform
 $ git clone git@github.com:folio-org/stripes-sample-platform.git
 ```
 
+### Configure the FOLIO NPM-CI registry
+
+Official releases of FOLIO modules are published to https://repository.folio.org/repository/npm-folio/. Between official releases, tip-of-master builds of each module are published to the continuous-integration registry, https://repository.folio.org/repository/npm-folioci/. In development, it is good practice to use the CI registry in order to replicate this environment for when you're running tests and you want to alias only the repository you've made changes to and you want tip-of-master builds for everything else.
+
+```
+$ npm config set @folio:registry https://repository.folio.org/repository/npm-folioci/
+```
+
 ### Yarn install
 
-You need to do this in each source directory. As before, there's a script for this, and it's our old friend `pull-stripes` with the `-b` ("build") option:
+The ecosystem for getting dependencies installed efficiently and reliably is poor. The best solution seems to be [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/), which stores shared dependencies in a single, higher-level `node_modules` directory and avoids the rat's nest of symlinks we saw with individually `yarn link`ing our locally installed repositories. To use yarn workspaces, create a `package.json` file with entry globs for the cloned repositories, then run `yarn`. You can do this with the "build" option of `pull-stripes`:
 
 ```
 $ ./stripes-core/util/pull-stripes -b
-=== stripes-connect (master) ===
-Already up-to-date.
-yarn install v1.3.2
-info No lockfile found.
-[1/5] 🔍  Validating package.json...
-[...]
 ```
 
-(Note that this pulls recent changes to each package and then builds the result. Perhaps the two operations should be completely separate. Perhaps `pull-stripes -b` should be a completely different script from `pull-stripes`.)
+or run the commands manually:
+
+```
+$ cat "{
+    "private": true,
+    "workspaces": [
+        "stripes-*",
+        "ui-*"
+    ],
+    "dependencies": {
+    }
+}" > package.json
+$ yarn
+yarn install v1.3.2
+info No lockfile found.
+warning Missing name in workspace at "/Users/zburke/projects/foo/stripes-demo-platform", ignoring.
+warning Missing name in workspace at "/Users/zburke/projects/foo/stripes-sample-platform", ignoring.
+[1/4] 🔍  Resolving packages...
+[...]
+[2/4] 🚚  Fetching packages...
+[3/4] 🔗  Linking dependencies...
+[...]
+[4/4] 📃  Building fresh packages...
+success Saved lockfile.
+✨  Done in 139.91s.
+```
 
 ### Install the Stripes CLI
 
-The Stripes CLI, among its other benefits, manages Stripes aliases. These take the place of Yarn links, providing a much more stable and predictable development environment. To make the Stripes CLI `stripescli` available:
+The Stripes CLI, among its other benefits, manages module aliases during the build process, in parallel with how `yarn workspaces` point to locally installed modules during the development process. (`yarn link` tries to do both of these jobs, but it makes a mess of both. Avoid it like the plague.) Note that `stripescli` is not (yet) officially released so it is only available through the `npm-folioci` registry.
 
 ```
-$ cd stripes-cli
-$ npm install -g
-$ cd ..
+$ yarn global add @folio/stripes-cli
 ```
 
-Why are we installing with NPM instead of Yarn? Yarn is generally better (faster and more predictable), but inexplicably lacks a global install command: `yarn global install` does not exist. We we use NPM global install.
+Why are we installing with NPM instead of Yarn? Yarn is generally better (faster and more predictable), but inexplicably lacks a global install command: `yarn global install` does not exist. We use NPM global install.
 
 ### Run your development code!
 
@@ -123,7 +149,6 @@ Then you can serve your development copy of Stripes using the CLI:
 ```
 $ stripescli serve
 ```
-
 
 ## Troubleshooting
 
@@ -160,25 +185,6 @@ We have no idea what causes this, but it seems that `node-gyp`, whatever that is
 $ yarn global add node-gyp
 ```
 
-### stripescli
-
-If stripescli is already installed, running `npm install -g` from within the `stripes-cli` directory will break the current installation AND fail with errors:
-```
-npm ERR! path /usr/local/lib/node_modules/@folio/stripes-cli/node_modules/ansi-regex/package.json.1410820166
-npm ERR! code ENOENT
-npm ERR! errno -2
-npm ERR! syscall open
-npm ERR! enoent ENOENT: no such file or directory, open '/usr/local/lib/node_modules/@folio/stripes-cli/node_modules/ansi-regex/package.json.1410820166'
-npm ERR! enoent This is related to npm not being able to find a file.
-npm ERR! enoent
-```
-Uninstall it, then reinstall it:
-```
-$ cd stripes-cli
-$ npm uninstall -g
-$ npm install -g
-```
-
 ## Summary
 
 ```
@@ -189,12 +195,9 @@ $ git clone git@github.com:folio-org/stripes-core.git
 $ ./stripes-core/util/pull-stripes -c
 $ rm -rf stripes-sample-platform
 $ git clone git@github.com:folio-org/stripes-sample-platform.git
-$ cd ..
-$ yarn global add node-gyp
-$ cd stripes-cli
-$ npm install -g
-	should be `yarn global install` but this does not exist
 $ ./stripes-core/util/pull-stripes -b
+$ yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
+$ yarn global add @folio/stripes-cli
 $ cd stripes-sample-platform
 $ cp stripes.config.js stripes.config.js.local
 $ $EDITOR stripes.config.js.local
@@ -202,5 +205,3 @@ $ cp .stripesclirc.example .stripesclirc
 $ $EDITOR .stripesclirc
 $ stripescli serve
 ```
-
-
