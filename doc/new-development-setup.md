@@ -8,7 +8,7 @@
     * [Make a new source directory](#make-a-new-source-directory)
     * [Clone stripes-core](#clone-stripes-core)
     * [Clone all the stripes modules and apps](#clone-all-the-stripes-modules-and-apps)
-    * [Configure the FOLIO NPM-CI registry](#configure-the-folio-npm-registry)
+    * [Configure the FOLIO NPM-CI registry](#configure-the-folio-npm-ci-registry)
     * [Yarn install](#yarn-install)
     * [Install the Stripes CLI](#install-the-stripes-cli)
     * [Run your development code!](#run-your-development-code)
