@@ -15,6 +15,7 @@
 * [Troubleshooting](#troubleshooting)
     * [Inventory (or another module) is missing](#inventory-or-another-module-is-missing)
     * [leveldown](#leveldown)
+    * [stripescli install is not idempotent](#stripescli-install-is-not-idempotent)
 * [Summary](#summary)
 
 
@@ -181,6 +182,34 @@ We have no idea what causes this, but it seems that `node-gyp`, whatever that is
 
 ```
 $ yarn global add node-gyp
+```
+
+### stripescli install is not idempotent
+
+Updating stripescli sometimes fails with odd errors:
+```
+npm ERR! path /usr/local/lib/node_modules/@folio/stripes-cli/node_modules/ansi-regex/package.json.1410820166
+npm ERR! code ENOENT
+npm ERR! errno -2
+npm ERR! syscall open
+npm ERR! enoent ENOENT: no such file or directory, open '/usr/local/lib/node_modules/@folio/stripes-cli/node_modules/ansi-regex/package.json.1410820166'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent
+```
+or
+```
+Error: Cannot find module 'yargs'
+```
+This can happen if you are installing over the top of an existing installation from source (e.g. running `npm install -g` multiple times) or if you are switching from an install from source using npm to an install from the @npm-folioci registry using yarn. Uninstall, then reinstall. For yarn:
+```
+$ yarn global remove @folio/stripes-cli
+$ yarn global add @folio/stripes-cli
+```
+For npm:
+```
+$ cd stripes-cli
+$ npm uninstall -g
+$ npm install -g
 ```
 
 ## Summary
