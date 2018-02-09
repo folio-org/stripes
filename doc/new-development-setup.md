@@ -136,8 +136,6 @@ The Stripes CLI, among its other benefits, manages module aliases during the bui
 $ yarn global add @folio/stripes-cli
 ```
 
-Why are we installing with NPM instead of Yarn? Yarn is generally better (faster and more predictable), but inexplicably lacks a global install command: `yarn global install` does not exist. We use NPM global install.
-
 ### Run your development code!
 
 In `stripes-sample-platform` (or whatever platform directory of your own you prefer to use), make a `stripes.config.js` file, or taking priority over that if present a `stripes.config.js.local`. (The simplest way to make the latter file is to copy the former from `stripes-sample-platform`, and edit it as required.)
