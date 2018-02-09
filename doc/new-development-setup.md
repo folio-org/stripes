@@ -24,7 +24,7 @@ Sometimes, due to the vagaries of NPM and Yarn, it becomes necessary to blow awa
 
 ## TL;DR
 
-The following code will create a new working directory named `stripes`, clone the relevant repositories into it, install their dependencies, configure the @folio NPM registry, install the `stripescli` npm package for running stripes, and start that server running at [localhost:8080](http://localhost:8080). Just paste it into your terminal:
+The following code will create a new working directory named `stripes`, clone the relevant repositories into it, install their dependencies, configure the @folio NPM registry, install the `stripes` npm package for running stripes, and start that server running at [localhost:8080](http://localhost:8080). Just paste it into your terminal:
 
 ```
 mkdir stripes
@@ -32,7 +32,7 @@ cd stripes
 git clone git@github.com:folio-org/stripes-core.git
 ./stripes-core/util/configure
 cd ./stripes-sample-platform
-stripescli serve
+stripes serve
 ```
 
 ## Instructions
@@ -130,7 +130,7 @@ success Saved lockfile.
 
 ### Install the Stripes CLI
 
-The Stripes CLI, among its other benefits, manages module aliases during the build process, in parallel with how `yarn workspaces` point to locally installed modules during the development process. (`yarn link` tries to do both of these jobs, but it makes a mess of both. Avoid it like the plague.) Note that `stripescli` is not (yet) officially released so it is only available through the `npm-folioci` registry.
+The Stripes CLI, among its other benefits, manages module aliases during the build process, in parallel with how `yarn workspaces` point to locally installed modules during the development process. (`yarn link` tries to do both of these jobs, but it makes a mess of both. Avoid it like the plague.) Note that `stripes` is not (yet) officially released so it is only available through the `npm-folioci` registry.
 
 ```
 $ yarn global add @folio/stripes-cli
@@ -145,7 +145,7 @@ Then make a `.stripesclirc` containing whatever stripes aliases you want. (The s
 Then you can serve your development copy of Stripes using the CLI:
 
 ```
-$ stripescli serve
+$ stripes serve
 ```
 
 ## Troubleshooting
@@ -201,5 +201,5 @@ $ cp stripes.config.js stripes.config.js.local
 $ $EDITOR stripes.config.js.local
 $ cp .stripesclirc.example .stripesclirc
 $ $EDITOR .stripesclirc
-$ stripescli serve
+$ stripes serve
 ```
