@@ -4,6 +4,7 @@
 * [Introduction](#introduction)
 * [TL;DR](#tldr)
 * [Instructions](#instructions)
+    * [Update your VM](#update-your-vm)
     * [Remove your old source directory](#remove-your-old-source-directory)
     * [Make a new source directory](#make-a-new-source-directory)
     * [Clone stripes-core](#clone-stripes-core)
@@ -25,6 +26,8 @@ Sometimes, due to the vagaries of NPM and Yarn, it becomes necessary to blow awa
 
 ## TL;DR
 
+Make sure you are running against the most-recent version of the `testing-backend` box; yes, it's bleeding edge, but anything else is likely out of sync with the front-end modules. You must `vagrant destroy` an existing VM for `vagrant up` to find and install a new version; `vagrant halt; vagrant up` is not sufficient.
+
 The following code will create a new working directory named `stripes`, clone the relevant repositories into it, install their dependencies, configure the @folio NPM registry, install the `stripes` npm package for running stripes, and start that server running at [localhost:8080](http://localhost:8080). Just paste it into your terminal:
 
 ```
@@ -37,6 +40,112 @@ stripes serve
 ```
 
 ## Instructions
+
+## Update your VM
+
+Use the most-recent version of the `testing-backend` Vagrant VM to run Okapi. Other VMs, such as `stable`, are likely out of sync with the front-end modules. If you are starting from scratch, create a directory named `testing-backend` with a `Vagrantfile` inside it and then install the machine:
+
+```
+$ mkdir testing-backend
+$ cd testing-backend
+$ echo "Vagrant.configure("2") do |config|
+  config.vm.box = "folio/testing-backend"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 8192
+  end
+end" >> Vagrantfile
+$ vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Checking if box 'folio/testing-backend' is up to date...
+==> default: Clearing any previously set forwarded ports...
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+   default: Adapter 1: nat
+==> default: Forwarding ports...
+   default: 9130 (guest) => 9130 (host) (adapter 1)
+   default: 22 (guest) => 2222 (host) (adapter 1)
+==> default: Running 'pre-boot' VM customizations...
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+   default: SSH address: 127.0.0.1:2222
+   default: SSH username: vagrant
+   default: SSH auth method: private key
+==> default: Machine booted and ready!
+[default] GuestAdditions versions on your host (5.2.0) and guest (4.3.36) do not match.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+dkms is already the newest version.
+linux-headers-3.16.0-4-amd64 is already the newest version.
+The following packages were automatically installed and are no longer required:
+ comerr-dev gyp javascript-common krb5-multidev libc-ares-dev libc-ares2
+ libjs-jquery libjs-node-uuid libjs-underscore libssl-dev libssl-doc
+ libv8-3.14-dev libv8-3.14.5 zlib1g-dev
+Use 'apt-get autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 70 not upgraded.
+Copy iso file /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso into the box /tmp/VBoxGuestAdditions.iso
+Mounting Virtualbox Guest Additions ISO to: /mnt
+mount: /dev/loop0 is write-protected, mounting read-only
+Installing Virtualbox Guest Additions 5.2.0 - guest version is 4.3.36
+Verifying archive integrity... All good.
+Uncompressing VirtualBox 5.2.0 Guest Additions for Linux........
+VirtualBox Guest Additions installer
+This system appears to have a version of the VirtualBox Guest Additions
+already installed.  If it is part of the operating system and kept up-to-date,
+there is most likely no need to replace it.  If it is not up-to-date, you
+should get a notification when you start the system.  If you wish to replace
+it with this version, please do not continue with this installation now, but
+instead remove the current version first, following the instructions for the
+operating system.
+
+If your system simply has the remains of a version of the Additions you could
+not remove you should probably continue now, and these will be removed during
+installation.
+
+Do you wish to continue? [yes or no]
+
+Cancelling installation.
+An error occurred during installation of VirtualBox Guest Additions 5.2.0. Some functionality may not work as intended.
+In most cases it is OK that the "Window System drivers" installation failed.
+Failed to start vboxadd.service: Unit vboxadd.service failed to load: No such file or directory.
+Unmounting Virtualbox Guest Additions ISO from: /mnt
+==> default: Checking for guest additions in VM...
+   default: The guest additions on this VM do not match the installed version of
+   default: VirtualBox! In most cases this is fine, but in rare cases it can
+   default: prevent things such as shared folders from working properly. If you see
+   default: shared folder errors, please make sure the guest additions within the
+   default: virtual machine match the version of VirtualBox you have installed on
+   default: your host and reload your VM.
+   default:
+   default: Guest Additions Version: 4.3.36
+   default: VirtualBox Version: 5.2
+==> default: Mounting shared folders...
+   default: /vagrant => /Users/zburke/projects/testing-backend
+==> default: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> default: flag to force provisioning. Provisioners marked to run always will still run.
+$ cd ..
+```
+
+If you have an existing VM running and want to update it, you *must* destroy the existing VM in order to pick up the new box. Running `vagrant halt; vagrant box update; vagrant up` will have *no effect*.
+```
+$ cd testing-backend
+$ vagrant destroy -f
+$ vagrant box update
+==> default: Checking for updates to 'folio/testing-backend'
+    default: Latest installed version: 5.0.0-20180212.450
+    default: Version constraints:
+    default: Provider: virtualbox
+==> default: Updating 'folio/testing-backend' with provider 'virtualbox' from version
+==> default: '5.0.0-20180212.450' to '5.0.0-20180215.456'...
+==> default: Loading metadata for box 'https://vagrantcloud.com/folio/testing-backend'
+==> default: Adding box 'folio/testing-backend' (v5.0.0-20180215.456) for provider: virtualbox
+    default: Downloading: https://vagrantcloud.com/folio/boxes/testing-backend/versions/5.0.0-20180215.456/providers/virtualbox.box
+==> default: Successfully added box 'folio/testing-backend' (v5.0.0-20180215.456) for 'virtualbox'!
+$ vagrant up
+[...]
+$ cd ..
+```
+A box file is like a template for a VM, and like a document created from a template, a VM created from a box file will not be affected by future changes to the box file.
 
 ### Remove your old source directory
 
