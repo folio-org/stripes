@@ -84,7 +84,7 @@ Client code will refer to an icon by a nested property consisting of application
 
 Icon variants for high and low-resolution use-cases, are accessible via `high.src` and `low.src` properties within the icons name.  The `high` and `low` variants each map to `icons/[fileName].svg` and `icons/[fileName].png` respectively. Additional variants can be specified as the need arises.  The default variant, `high`, and is accessible directly via `src`.  Therefore, `users.icons.app.src` is the equivalent to `users.icons.app.high.src`.
 
-The icon-name `icon` is special, and is used as the application's own icon (e.g. in the applications bar at the top of the Stripes window).
+The icon-name `app` is special, and is used as the application's own icon (e.g. in the applications bar at the top of the Stripes window).
 
 The icon-name `popover` is also special: for applications such as Notes and Notifications which can appear in popover mode, the icon of this name is used for the button used to invoke the popover.
 
