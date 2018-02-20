@@ -17,7 +17,7 @@
 
 ## Introduction
 
-The Stripes module [`ui-organiszation`](https://github.com/folio-org/ui-organization) provides facilities for maintaining organization-wide settings. Among these is the preferred plugin to use for each defined plugin-type -- for example, which is the preferred Markdown editor. The component that allows the preferred plugin for a single plugin type to be selected is **PluginType**. This component is defined in the source file [`ui-organization/settings/PluginType.js`](https://github.com/folio-org/ui-organization/blob/master/settings/PluginType.js). As is conventional, the filename is the same as that of the component.
+The Stripes module [`ui-organization`](https://github.com/folio-org/ui-organization) provides facilities for maintaining organization-wide settings. Among these is the preferred plugin to use for each defined plugin-type -- for example, which is the preferred Markdown editor. The component that allows the preferred plugin for a single plugin type to be selected is **PluginType**. This component is defined in the source file [`ui-organization/settings/PluginType.js`](https://github.com/folio-org/ui-organization/blob/master/settings/PluginType.js). As is conventional, the filename is the same as that of the component.
 
 The **PluginType** source code is quite short -- 94 lines including blanks and comments; 81 lines excluding them. **PluginType** is a _connected component_, and serves as a simple example for how to create such components. This document will walk through the source code and explain each section.
 
