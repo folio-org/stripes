@@ -78,10 +78,13 @@ Name | `name` | A short name that uniquely identifies the icon within the applic
 Filename | `fileName` | The basename of a set of files representing the icon. See below for details of how this is interpreted.
 Alt | `alt` | A string to be used as alt-text when an icon-image is rendered -- for example, to be read out loud by a screen-reader.
 Title | `title` | An image title that pops up if you hover over the icon.
+Src | `n/a` | The icon's full path generated at build time.
 
-Client code will refer to an icon by a compound name consisting of the application-name (from `name` at the top level, above) combined with the icon name (`name`) -- for example, `'users/edit'`, `'users/cancel'` or `'core/cancel'`. The use of the module-name as a prefix makes it unnecessary to insist on global uniqueness of icon names.
+Client code will refer to an icon by a nested property consisting of application-name (from `name` at the top level, above), followed by `icons`, the icon name (`name`), and then `src` -- for example, `'users.icons.edit.src'`, `'users.icons.cancel.src'` or `'core.icons.cancel.src'`. Grouping icons by application name makes it unnecessary to insist on global uniqueness of icon names.
 
-The icon-name `icon` is special, and is used as the application's own icon (e.g. in the applications bar at the top of the Stripes window).
+Icon variants for high and low-resolution use-cases, are accessible via `high.src` and `low.src` properties within the icons name.  The `high` and `low` variants each map to `icons/[fileName].svg` and `icons/[fileName].png` respectively. Additional variants can be specified as the need arises.  The default variant, `high`, and is accessible directly via `src`.  Therefore, `users.icons.app.src` is the equivalent to `users.icons.app.high.src`.
+
+The icon-name `app` is special, and is used as the application's own icon (e.g. in the applications bar at the top of the Stripes window).
 
 The icon-name `popover` is also special: for applications such as Notes and Notifications which can appear in popover mode, the icon of this name is used for the button used to invoke the popover.
 
@@ -143,6 +146,61 @@ shown here should allow all application-level metadata to be recorded.
       }
     ],
     "libraryCredits": "This application is made possible by ..."
+  }
+}
+```
+
+The above example will generate the following metadata:
+```
+{
+  search: { 
+    name: 'search',
+    version: '1.1.0',
+    description: 'Search across the Codex',
+    license: 'Apache-2.0',
+    feedback: {
+      url: 'https://issues.folio.org/projects/UISE',
+      email: 'mike@indexdata.com'
+    },
+    type: 'app',
+    shortTitle: 'Codex Search',
+    fullTitle: 'Codex Search',
+    defaultPopoverSize: '400px',
+    defaultPreviewWidth: '40%',
+    helpPage: 'https://wiki.folio.org/pages/viewpage.action?pageId=1415393',
+    icons: {
+      'local-source': {
+        alt: 'local inventory',
+        title: 'a local source of items that can be checked out',
+        src: '/path/to/@folio/search/icons/local-source.svg',
+        high: {
+          src: '/path/to/@folio/search/icons/local-source.svg',
+        },
+        low: {
+          src: '/path/to/@folio/search/icons/local-source.png',
+        }
+      },
+      kb: {
+        alt: 'knowledge base',
+        title: 'a knowledge base of e-resources available for viewing',
+        src: '/path/to/@folio/search/icons/generic.svg',
+        high: {
+          src: '/path/to/@folio/search/icons/generic.svg',
+        },
+        low: {
+          src: '/path/to/@folio/search/icons/generic.png',
+        }
+      }
+    },
+    welcomePageEntries: [{
+      iconName: 'happyFace',
+      headline: 'Search local inventory and e-resources together!',
+      description: 'The Codex Search application lets you search across multiple sources of physical and electronic resources ina unified way',
+    }, {
+      iconName: 'exclamation',
+      headline: 'This is a technology preview',
+      description: 'The present version of this application is incomplete, and will subsequently be expanded in a number of ways.',
+    }]
   }
 }
 ```
