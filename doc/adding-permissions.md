@@ -44,7 +44,12 @@ You can look at the generated module descriptor in your editor if you like. It's
 
 ## Add the module descriptor to Okapi
 
-You can POST the descriptor using any HTTP client utility, such as `curl`. But the best-suited tool is the [Okapi CLI](https://github.com/thefrontside/okapi.rb). If you have that installed, you can configure it by setting the OKAPI_URL and OKAPI_TENANT environment variables to match whatever your Stripes installation is using, then use it to feed the descriptor to Okapi:
+You can POST the descriptor using any HTTP client utility, such as `curl`, for example: 
+```
+curl localhost:9130/_/proxy/modules -d @MD.json
+```
+
+Also available is the [Okapi CLI](https://github.com/thefrontside/okapi.rb). If you have that installed, you can configure it by setting the OKAPI_URL and OKAPI_TENANT environment variables to match whatever your Stripes installation is using, then use it to feed the descriptor to Okapi:
 ```
 $ export OKAPI_URL=http://localhost:9130 OKAPI_TENANT=diku
 $ cat MD.json | okapi --no-tenant create /_/proxy/modules
