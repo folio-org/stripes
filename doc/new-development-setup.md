@@ -341,3 +341,49 @@ $ cp .stripesclirc.example .stripesclirc
 $ $EDITOR .stripesclirc
 $ stripes serve
 ```
+
+# An alternative approach to setting up a development environment
+
+## Introduction
+
+When developing an app or two, it's simplest to launch them independently with [stripes-cli](https://github.com/folio-org/stripes-cli/) installed globally via `yarn global add`. However, if you are actively developing multiple apps, platforms, and also working on changes to core packages, it may be easier to manage with a [yarn workspace](https://yarnpkg.com/en/docs/workspaces/). This allows packages to share a common `node_modules` directory for their dependencies and preferentially use other git checkouts you have within the workspace structure, eg. everything in the workspace will use your local copy of `stripes-core`.
+
+## Configure yarn
+
+You'll want to use the CI packages for any Stripes software you're not running from git. These are built regularly from the `master` branch whereas the released packages may be too far behind the git versions. To do this for packages in the `@folio` namespace add this to your `.yarnrc`:
+```
+"@folio:registry" "https://repository.folio.org/repository/npm-folioci/"
+```
+
+I find that yarn tends to rebuild native binaries rather more often that it really needs to. Since this can take some time, I was pleased to see that v1.5.1 has added a new feature to cache the build artifacts. In order to take advantage of it, you'll need to enable the offline cache generally for which you'll need to make a directory (`/some/path/yarn-offline-cache` below, but can be anything). The relevant `.yarnrc` settings are:
+```
+experimental-pack-script-packages-in-mirror true
+pack-built-packages true
+yarn-offline-mirror "/some/path/yarn-offline-cache"
+```
+
+## Create a workspace
+
+A workspace is a directory with a `package.json` specifying which of the directories underneath it are to share a common `node_modules` dir. If you don't use it for anything else, you can indicate this with a wildcard, resulting in `package.json` containing simply:
+```
+{
+  "private": true,
+  "workspaces": [ "*" ],
+  "dependencies": {}
+}
+```
+
+You can then check out any packages you're working on as subdirectories and `yarn install` will arrange their dependencies and ensure they see each other. Dependencies that refer to a specific version that differs from the rest will be placed in `node_modules` under the requesting package's directory but the majority are hopefully shared at the top level. Note that all packages need, at minimum, a name and version or they will be ignored with a warning. Conveniently, `yarn outdated` and `yarn upgrade` also work at the workspace level for all packages.
+
+If you have checked out a platform, `folio-testing-platform` for example, you can `cd` to it and run `yarn start` or `yarn build` as usual (N.B. may require NodeJS 9.x or later).
+
+## Use `stripes-cli` from your workspace
+
+Since `stripes-cli` makes use of `stripes-core` and `ui-testing`, I prefer to install it in my workspace rather than globally so that it sees my local changes to those packages and doesn't need to bring in a bunch of duplicate copies of the dependency tree. To that end I have aliased the `stripes` command in my `~/.bash_aliases` (for shells other than Bash, it'll be similar yet different):
+```
+alias stripes='node /path/to/my/workspace/node_modules/.bin/stripes $*'
+```
+
+Currently I have `stripes-cli` as a dependency on my local development platform so it's brought in via NPM. Were I impatient to try a new feature, I could check `stripes-cli` out into my workspace and `yarn install`. My alias would now be using my local checkout--yarn keeps symlinks in `.bin` for packages in the workspace too.
+
+Speaking of new features, `stripes-cli` will soon be able to pull new changes from the repos in your workspace with `stripes pull`.
