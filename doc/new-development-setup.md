@@ -38,7 +38,7 @@ The following code will create a new working directory named `stripes`, clone th
 ```
 mkdir stripes
 cd stripes
-git clone git@github.com:folio-org/stripes-core.git
+git clone https://github.com/folio-org/stripes-core
 ./stripes-core/util/configure
 cd ./stripes-sample-platform
 stripes serve
@@ -172,7 +172,7 @@ You need this first, so that you can use utility scripts included in it to help 
 
 ```
 $ cd stripes
-$ git clone git@github.com:folio-org/stripes-core.git
+$ git clone https://github.com/folio-org/stripes-core
 Cloning into 'stripes-core'...
 remote: Counting objects: 6199, done.
 remote: Compressing objects: 100% (87/87), done.
@@ -197,7 +197,7 @@ You _may_ find that, for reasons which are completely opaque to me, a `stripes-s
 
 ```
 $ rm -rf stripes-sample-platform
-$ git clone git@github.com:folio-org/stripes-sample-platform.git
+$ git clone https://github.com/folio-org/stripes-sample-platform
 ```
 
 ### Configure the FOLIO NPM-CI registry
@@ -332,10 +332,10 @@ $ npm install -g
 $ rm -rf stripes
 $ mkdir stripes
 $ cd stripes
-$ git clone git@github.com:folio-org/stripes-core.git
+$ git clone https://github.com/folio-org/stripes-core
 $ ./stripes-core/util/pull-stripes -c
 $ rm -rf stripes-sample-platform
-$ git clone git@github.com:folio-org/stripes-sample-platform.git
+$ git clone https://github.com/folio-org/stripes-sample-platform
 $ ./stripes-core/util/pull-stripes -b
 $ yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
 $ yarn global add @folio/stripes-cli
