@@ -684,3 +684,6 @@ class Users extends React.Component {
 
 Note that this code does _not_ access the stripes-connect data within the Redux store: so far, no situation has been found where that is necessary or desirable. Instead, it accesses internal data about the present session. (Arguably, that data should be made available in the Stripes object; but really, module code should not need to use this at all.)
 
+## Appendix B: mandatory back-end services for stripes-core
+
+Stripes-core currently requires certain server side modules to be enabled, i.e. /notify endpoint
