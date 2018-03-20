@@ -33,6 +33,7 @@
         * [Creating module translations](#creating-module-translations)
         * [Using module translations](#using-module-translations)
         * [Using core translations](#using-core-translations)
+        * [Filtering translations at build time](#filtering-translations-at-build-time)
         * [Other uses of the locale](#other-uses-of-the-locale)
     * [Styling HTML](#styling-html)
     * [Network tab in Google Chrome](#network-tab-in-google-chrome)
@@ -44,6 +45,7 @@
     * [Firing actions](#firing-actions)
 * [Component structure in Stripes UI modules](#component-structure-in-stripes-ui-modules)
 * [Appendix A: Escaping to Redux](#appendix-a-escaping-to-redux)
+* [Appendix B: Mandatory back-end services for stripes-core](#appendix-b-mandatory-back-end-services-for-stripes-core)
 
 
 
@@ -684,6 +686,6 @@ class Users extends React.Component {
 
 Note that this code does _not_ access the stripes-connect data within the Redux store: so far, no situation has been found where that is necessary or desirable. Instead, it accesses internal data about the present session. (Arguably, that data should be made available in the Stripes object; but really, module code should not need to use this at all.)
 
-## Appendix B: mandatory back-end services for stripes-core
+## Appendix B: Mandatory back-end services for stripes-core
 
-Stripes-core currently requires certain server side modules to be enabled, i.e. /notify endpoint
+Stripes-core currently requires certain server-side modules to be enabled, i.e. /notify endpoint
