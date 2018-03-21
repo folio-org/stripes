@@ -6,7 +6,7 @@ To run Stripes, you'll need to have [Node.js](https://nodejs.org/) 6.x installed
 
 You'll also need a package manager. We strongly recommend using [yarn](https://yarnpkg.com/). Once Yarn is installed, inform it that packages in the `@folio` scope are found on the FOLIO NPM repository:
 ```
-yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
+yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
 ```
 
 ## Platform
