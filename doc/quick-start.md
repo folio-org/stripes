@@ -35,7 +35,32 @@ The simplest way to achieve that is using one of the provided
 [virtual machines](https://github.com/folio-org/folio-ansible/blob/master/README.md).
 Other ways are also [explained](https://github.com/folio-org/ui-okapi-console/blob/master/doc/running-a-complete-system.md).
 
+
+## Using Stripes CLI
+
+Stripes CLI facilitates Stripes UI development and testing.  It can be used in addition to, or in place of, other manual development steps. Install the CLI with:
+```
+yarn global add @folio/stripes-cli
+```
+
+### Sample commands:
+
+Create a new Stripes UI app module without a platform:
+```
+stripes app create "Hello World"
+```
+
+Create a new Stripes platform:
+```
+stripes platform create
+```
+
+Refer to the [Stripes-CLI user guide](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md) for a complete overview on creating an app or platform with the CLI as well as other useful commands.
+
+
 ## Using local code
+
+**Stripes CLI users:** Please refer to [Including another Stripes module](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md#including-another-stripes-module) of the Stripes CLI user guide.
 
 Module developers and those wanting to use a local checkout of core Stripes components can use the convenient [`yarn link`](https://yarnpkg.com/en/docs/cli/link) command to set their platform to use the local copy. Simply run `yarn link` in your `somemodule` directory and then run `yarn link somemodule` in the platform's directory and repeat for each local dependency you wish to create symlinks for.
 
