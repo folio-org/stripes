@@ -53,12 +53,14 @@ Use the most-recent version of the `testing-backend` Vagrant VM to run Okapi. Ot
 ```
 $ mkdir testing-backend
 $ cd testing-backend
-$ echo "Vagrant.configure("2") do |config|
+$ cat > Vagrantfile <<'EOF'
+Vagrant.configure("2") do |config|
   config.vm.box = "folio/testing-backend"
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 8192
   end
-end" >> Vagrantfile
+end
+EOF
 $ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Checking if box 'folio/testing-backend' is up to date...
