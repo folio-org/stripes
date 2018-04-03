@@ -219,7 +219,7 @@ $ ./stripes-core/util/pull-stripes -b
 or run the commands manually:
 
 ```
-$ cat "{
+$ echo '{
     "private": true,
     "workspaces": [
         "stripes-*",
@@ -227,7 +227,7 @@ $ cat "{
     ],
     "dependencies": {
     }
-}" > package.json
+}' > package.json
 $ yarn
 yarn install v1.3.2
 info No lockfile found.
