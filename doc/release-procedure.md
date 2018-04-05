@@ -83,10 +83,23 @@ Update dependant packages when needed to allow CI to pick up the pre-release ver
 
 XXX to be done. See http://dev.folio.org/doc/automation
 
+## Publishing to NPM via Jenkins
 
-## Note on access to the NPM repository
+1. Add a `Jenkinsfile` to your project with the following contents:
+```
+buildNPM {
+ publishModDescriptor = ‘no’
+ runLint = ‘no’
+ runTest = ‘no’
+}
+```
 
-Before you can do `yarn publish`, you will need access to the Index Data/FOLIO NPM repository at `repository.folio.org`. Get these credentials from an administrator. Once you have them, login as follows:
+2. Scope the project `name` in package.json with `@folio`, e.g. `"name": "@folio/react-intl-safe-html"`
+3. Check your job in Jenkins (https://jenkins-aws.indexdata.com/job/folio-org)
+
+## Direct access to the NPM repository
+
+If you need to manually run `yarn publish`, you will need access to the Index Data/FOLIO NPM repository at `repository.folio.org`. Get these credentials from an administrator. Once you have them, login as follows:
 ```
 $ npm config set @folio:registry https://repository.folio.org/repository/npm-folio/
 $ npm adduser --registry=https://repository.folio.org/repository/npm-folio/
