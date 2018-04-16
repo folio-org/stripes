@@ -8,7 +8,8 @@
 * [Notes on breaking changes](#notes-on-breaking-changes)
 * [Notes on dependencies](#notes-on-dependencies)
 * [Notes on testing](#notes-on-testing)
-* [Note on access to the NPM repository](#note-on-access-to-the-npm-repository)
+* [Publishing to NPM via Jenkins](#publishing-to-npm-via-jenkins)
+* [Direct access to the NPM repository](#direct-access-to-the-npm-repository)
 
 NOTE. This document is subject to revision.
 
