@@ -17,7 +17,7 @@ NOTE. This document is subject to revision.
 ## Version numbers, branches and tags
 
 The libraries that make up Stripes adhere to [the FOLIO
-version-numbering scheme](http://dev.folio.org/community/contrib-code#version-numbers), which is essentially identical to [Semantic Versioning](http://semver.org/). All releases are tagged in git.
+version-numbering scheme](https://dev.folio.org/guidelines/contributing/#version-numbers), which is essentially identical to [Semantic Versioning](http://semver.org/). All releases are tagged in git.
 
 Each release is tagged with a name beginning with `v` and followed by the version number -- for example, `v2.3.5`.
 
@@ -82,7 +82,7 @@ Update dependant packages when needed to allow CI to pick up the pre-release ver
 
 ## Notes on testing
 
-XXX to be done. See http://dev.folio.org/doc/automation
+XXX to be done. See https://dev.folio.org/guides/automation
 
 ## Publishing to NPM via Jenkins
 
