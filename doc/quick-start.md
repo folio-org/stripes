@@ -2,7 +2,7 @@
 
 ## Pre-requisites
 
-To run Stripes, you'll need to have [Node.js](https://nodejs.org/) 6.x installed (check with `node --version`).
+To run Stripes, you'll need to have [Node.js](https://nodejs.org/) >= 8.11.1 installed (check with `node --version`).
 
 You'll also need a package manager. We strongly recommend using [yarn](https://yarnpkg.com/). Once Yarn is installed, inform it that packages in the `@folio` scope are found on the FOLIO NPM repository:
 ```
