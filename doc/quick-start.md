@@ -50,9 +50,9 @@ Create a new Stripes UI app module without a platform:
 stripes app create "Hello World"
 ```
 
-Create a new Stripes platform:
+Create a new Stripes workspace for platform development:
 ```
-stripes platform create
+stripes workspace
 ```
 
 Refer to the [Stripes-CLI user guide](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md) for a complete overview on creating an app or platform with the CLI as well as other useful commands.
