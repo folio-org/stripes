@@ -410,4 +410,4 @@ cd stripes/stripes-sample-platform
 stripes serve stripes.config.js.local
 ```
 
-See the [Stripes CLI User Guide](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md) for more information.
+See the [Stripes CLI User Guide](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md) and `workspace` in the [CLI command reference](https://github.com/folio-org/stripes-cli/blob/master/doc/commands.md#workspace-command) for more information.
