@@ -391,7 +391,7 @@ alias stripes='node /path/to/my/workspace/node_modules/.bin/stripes $*'
 
 Currently I have `stripes-cli` as a dependency on my local development platform so it's brought in via NPM. Were I impatient to try a new feature, I could check `stripes-cli` out into my workspace and `yarn install`. My alias would now be using my local checkout--yarn keeps symlinks in `.bin` for packages in the workspace too.
 
-Speaking of new features, `stripes-cli` will soon be able to pull new changes from the repos in your workspace with `stripes pull`.
+Speaking of new features, `stripes-cli` is able to pull new changes from the repos in your workspace with `stripes platform pull`.
 
 
 ## Setting up a development environment using Stripes CLI
