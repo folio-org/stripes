@@ -23,6 +23,7 @@
     * [Configure yarn](#configure-yarn)
     * [Create a workspace](#create-a-workspace)
     * [Use `stripes-cli` from your workspace](#use-stripes-cli-from-your-workspace)
+* [Setting up a development environment using Stripes CLI](#setting-up-a-development-environment-using-stripes-cli)
 
 
 ## Introduction
