@@ -515,7 +515,7 @@ In JavaScript, the Stripes object furnishes an internationalization object as it
 
 In addition to the translations that it provides itself, a module may use translations provided by stripes-core. In particular, it provides translations for a set of common labels, which modules therefore need not translate for themselves. The keys for these labels all begin with `common.`. The translations provided by stripes-core are provided in [language-specific translation files](https://github.com/folio-org/stripes-core/tree/master/translations).
 
-For example, if the `stripes-core/translations/*.json` files define a property as `"common.search": "Search"`, then the translation can be done like so: 
+For example, if the `stripes-core/translations/*.json` files define a property as `"common.search": "Search"`, then the translation can be done like so:
 ```
 <Button label={stripes.intl.formatMessage({ id: 'stripes-core.common.search' })} />
 ```

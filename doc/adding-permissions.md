@@ -44,7 +44,7 @@ You can look at the generated module descriptor in your editor if you like. It's
 
 ## Add the module descriptor to Okapi
 
-You can POST the descriptor using any HTTP client utility, such as `curl`, for example: 
+You can POST the descriptor using any HTTP client utility, such as `curl`, for example:
 ```
 curl localhost:9130/_/proxy/modules -d @MD.json
 ```
