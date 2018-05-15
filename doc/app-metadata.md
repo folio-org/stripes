@@ -153,7 +153,7 @@ shown here should allow all application-level metadata to be recorded.
 The above example will generate the following metadata:
 ```
 {
-  search: { 
+  search: {
     name: 'search',
     version: '1.1.0',
     description: 'Search across the Codex',
