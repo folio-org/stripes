@@ -40,6 +40,18 @@ You may need to check the git history to ensure that all major changes are cover
 
 Ensure that each of the Jira issues listed in the change-log is tagged to the number of the release that it's going to be a part of. Issues are generally tagged to the minor release following the most recently released versions, but will need to be re-targeted to the next _major_ release if a backwards-incompatible change is to be included.
 
+### Check dependencies
+
+Make sure your `package.json` does not contain any unreleased dependencies.  To check for this, switch back to the `npm-folio` registry, remove your lock file, and attempt to re-install.
+```
+$ yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
+$ rm yarn.lock
+$ yarn install
+```
+
+Messages received during the install such as, "Package [package] not found" or "Couldn't find any versions for [package] that matches [version]", indicate an unreleased dependency.  Please ensure those packages are properly released to `npm-folio` before continuing.
+
+
 ## Release procedure
 
 * Create a branch to contain the release-related changes to `package.json` and `CHANGELOG.md`, e.g. `git checkout -b v2.3.0`.
