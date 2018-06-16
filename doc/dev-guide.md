@@ -320,7 +320,7 @@ However, in order to prevent misleading the user, or provoking inevitable author
 
 The permissions are provided to the top-level component of each module as the `users.perms` element of the `stripes` property; it is the responsibility of that component to make the `stripes` object available to other components -- either by passing it as a property (`<SubComponent ... stripes={this.props.stripes}>` or by installing it in the React context.
 
-The `perms` structure is a JavaScript object whose keys are the names of the permissions that the user has, and whose keys are the corresponding human-readable descriptions. For example, the `users.read` permission might have the descriptions "Can search users and view brief profiles".
+The `perms` structure is a JavaScript object whose keys are the names of the permissions that the user has, and whose values are the corresponding human-readable descriptions. For example, the `users.read` permission might have the descriptions "Can search users and view brief profiles".
 
 
 #### Testing for permission
