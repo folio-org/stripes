@@ -40,7 +40,7 @@ Stripes components extend the functionality of raw React components in several w
 
 * Re-rendering is possible because all relevant state is stored with Stripes or Okapi and managed outside of the component.
 
-* This approach enables us to set up test harnesses where components can be fed stock data from their chosen Okapi web services (we will build on things like [Enzyme](http://airbnb.io/enzyme/) that do this more generically for React components).
+* This approach enables us to set up test harnesses where components can be fed stock data from their chosen Okapi web services.
 
 ## Packages and dependencies
 
