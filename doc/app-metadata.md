@@ -50,7 +50,7 @@ The `stripes` structure contains the following extension fields:
 Field | Location | Description and notes
 :---- | :------- | :--------------------
 Type | `type` | The type of the module: may be `app` for a regular full-page application, `popover` for an application that can run in popover mode as well as in regular full-page mode, or `settings` for modules that only provide an entry in the Settings page.
-Short title | `displayName` | This is needed in the header, where, based on user preference or screen size, the names of the apps may be displayed next to their icons.
+Short title ID | `displayName` | [A translation ID](./i18n.md) to look up to find a brief title. This is needed in the header, where, based on user preference or screen size, the names of the apps may be displayed next to their icons.
 Full title | `fullName` | The full title of the application: for example, when this is "Library Yearly Calendar", the short title might be just "Calendar".
 Default popover size | `defaultPopoverSize` | For applications that can run in popover mode as well as in full-screen, specifies how wide the popover should be when it first appears (subject to subsequent resizing by the user). May be specified as a percentage (e.g. `40%`) or as a pixel width (e.g. `300px`).
 Default preview width | `defaultPreviewWidth` | Specifies how wide the preview pane should be when it first appears (subject to subsequent resizing by the user). May be specified as a percentage (e.g. `40%`) or as a pixel width (e.g. `300px`).
@@ -115,7 +115,7 @@ shown here should allow all application-level metadata to be recorded.
   },
   "stripes": {
     "type": "app",
-    "displayName": "Codex Search",
+    "displayName": "ui-search.title",
     "fullName": "Codex Search",
     "defaultPopoverSize": "400px",
     "defaultPreviewWidth": "40%",

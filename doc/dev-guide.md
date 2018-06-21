@@ -108,7 +108,7 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 
 * `pluginType` (only for modules of type `plugin`) -- an indication of which pluggable surface the module can be mounted on. See [below](#plugins).
 
-* `displayName` -- the name of the module as it should be viewed by human users -- e.g. "Okapi Console".
+* `displayName` -- [a translation ID](./i18n.md) to the name of the module as it should be viewed by human users -- e.g. "ui-search.title".
 
 * `route` -- the route (partial URL) by which an application module is addressed: for example, the Okapi Console module might be addressed at `/console`. The same route is used as a subroute within `/settings` to present the module's settings, if any.
 
