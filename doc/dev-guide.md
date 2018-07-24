@@ -122,6 +122,12 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 
 * `queryResource` -- if defined, this is the name of an anointed stripes-connect resource whose contents always reflect the query parameters of the URL, and which can be mutated to change the URL. See [URL navigation](#url-navigation) below.
 
+* `links` -- object which is collecting module specific links joint by area of addition. For instance `userDropdown` defines the menu under user profile icon.
+  * `userDropdown` -- defines the list of the links under user profile icon.
+    * `caption` -- the label of the item.
+    * `route` -- partial URL where navigate to.
+    * `check` -- if defined, this is the name of a function which checks whether to show item or not.
+
 When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
 
 The class exported by a module may also have a static data member, `actionNames`. If provided, this must be an array of strings, each of them the name of an action that can be invoked by hot-keys (see [below](#enabling-hot-keys)). Stripes will aggregate the action-names exposed by the available modules and provide a combined list as [the `actionNames` member](#actionNames) of the Stripes object.
