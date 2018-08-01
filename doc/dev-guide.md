@@ -122,11 +122,14 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 
 * `queryResource` -- if defined, this is the name of an anointed stripes-connect resource whose contents always reflect the query parameters of the URL, and which can be mutated to change the URL. See [URL navigation](#url-navigation) below.
 
-* `links` -- object which is collecting module specific links joint by area of addition. For instance `userDropdown` defines the menu under user profile icon.
-  * `userDropdown` -- defines the list of the links under user profile icon.
-    * `caption` -- the label of the item.
-    * `route` -- partial URL where navigate to.
-    * `check` -- if defined, this is the name of a function which checks whether to show item or not.
+* `links` -- an optional object which specifies any module-specific links that should be included in the Stripes chrome. The keys of the object are the names of areas in which to add links: presently only `userDropdown` is supported, and indicates the menu under the user-profile icon. The corresponding values are arrays containing a list of items to add to that menu. Each entry in the list is an object with two or three keys:
+  * `caption` -- the label of the menu-item.
+  * `route` -- the route two which clicking on that menu-item naviagtes to.
+  * `check` -- if defined, the name of a function which checks whether or not to show the item, returning true or false. This function name must be chosen from the following list:
+    * `isLocalLogin` -- returns true if and only if the presently user logged in via a local user-register, as opposed to a single-sign-on system.
+    * (More to follow.)
+
+  See [the example in the `ui-myprofile` package file](https://github.com/folio-org/ui-myprofile/blob/acbe369e487cb43a053420e42275433cb97f7a8e/package.json#L35-L42).
 
 When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
 
