@@ -124,7 +124,7 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 
 * `links` -- an optional object which specifies any module-specific links that should be included in the Stripes chrome. The keys of the object are the names of areas in which to add links: presently only `userDropdown` is supported, and indicates the menu under the user-profile icon. The corresponding values are arrays containing a list of items to add to that menu. Each entry in the list is an object with two or three keys:
   * `caption` -- the label of the menu-item.
-  * `route` -- the route to which clicking on that menu-item naviagtes to.
+  * `route` -- the route which clicking on that menu-item navigates to.
   * `check` -- if defined, the name of a function which checks whether or not to show the item, returning true or false. This function name must be chosen from the following list:
     * `isLocalLogin` -- returns true if and only if the presently user logged in via a local user-register, as opposed to a single-sign-on system.
     * (More to follow.)
