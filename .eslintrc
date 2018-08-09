@@ -1,0 +1,3 @@
+{
+  "extends": "@folio/eslint-config-stripes"
+}
