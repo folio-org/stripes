@@ -12,7 +12,7 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "test": "No tests implemented",
+    "test": "echo 'No tests implemented'",
     "lint": "eslint ./"
   },
   "dependencies": {
