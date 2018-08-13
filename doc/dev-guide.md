@@ -16,6 +16,7 @@
 * [Development](#development)
     * [The Stripes object](#the-stripes-object)
     * [Connecting a component](#connecting-a-component)
+        * [Specfying parameters, including limits](#specfying-parameters-including-limits)
     * [URL navigation](#url-navigation)
     * [Enforcing permissions](#enforcing-permissions)
         * [The permissions structure](#the-permissions-structure)
@@ -279,6 +280,24 @@ export default Parent;
 
 ```
 
+#### Specfying parameters, including limits
+
+Along with the `path` of an Okapi-type resource, it is also possible to specify `params`, which are built into a complete URL. For example, consider s manifest like the following:
+
+```
+    patronGroups: {
+      type: 'okapi',
+      path: 'groups',
+      params: {
+        query: 'cql.allRecords=1 sortby group',
+        limit: '40',
+      },
+    },
+```
+
+This will be compiled into an access URL like `/groups?query=cql.allRecords=1+sortby+group&limit=40`. Specifying params individually is more flexible and less error-prone than constructing such URLs by hand.
+
+Note that whenever a client is fetching a list of records -- for example, to populate a dropdown for editing a record -- it should explicitly specify the limit of how many are required, rather then leaving it to the server's unpredictable default.
 
 
 ### URL navigation
