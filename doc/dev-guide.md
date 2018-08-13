@@ -282,7 +282,7 @@ export default Parent;
 
 #### Specfying parameters, including limits
 
-Along with the `path` of an Okapi-type resource, it is also possible to specify `params`, which are built into a complete URL. For example, consider s manifest like the following:
+Along with the `path` of an Okapi-type resource, it is also possible to specify `params`, which are built into a complete URL. For example, consider a manifest like the following:
 
 ```
     patronGroups: {
