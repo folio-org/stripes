@@ -16,7 +16,7 @@
 * [Development](#development)
     * [The Stripes object](#the-stripes-object)
     * [Connecting a component](#connecting-a-component)
-        * [Specfying parameters, including limits](#specfying-parameters-including-limits)
+        * [Specifying parameters, including limits](#specifying-parameters-including-limits)
     * [URL navigation](#url-navigation)
     * [Enforcing permissions](#enforcing-permissions)
         * [The permissions structure](#the-permissions-structure)
@@ -280,7 +280,7 @@ export default Parent;
 
 ```
 
-#### Specfying parameters, including limits
+#### Specifying parameters, including limits
 
 Along with the `path` of an Okapi-type resource, it is also possible to specify `params`, which are built into a complete URL. For example, consider a manifest like the following:
 
