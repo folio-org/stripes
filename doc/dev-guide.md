@@ -106,6 +106,7 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
   * `app` -- a regular application, which is listed among those available and which when activated uses essentially the whole screen.
   * `settings` -- a settings pane that is listed in the settings menu but does not present a full-page application.
   * `plugin` -- a plugin module that can be included by a component any other module, whether app, settings or another plugin. See [below](#plugins).
+  * `handler` -- a handler module which will be initialized and rendered when certain FOLIO events (`login`, `logout`) occur in the system.
 
 * `pluginType` (only for modules of type `plugin`) -- an indication of which pluggable surface the module can be mounted on. See [below](#plugins).
 
