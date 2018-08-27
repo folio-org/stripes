@@ -6,6 +6,7 @@
     * [How Stripes fits together](#how-stripes-fits-together)
     * [Underlying technology](#underlying-technology)
     * [Modules](#modules)
+        * [The package-file `stripes` entry](#the-package-file-stripes-entry)
         * [Skeleton module](#skeleton-module)
     * [Code quality](#code-quality)
         * [ESLint](#eslint)
@@ -30,6 +31,8 @@
         * [Using the logger](#using-the-logger)
         * [Redux-DevTools-Extension](#redux-devtools-extension)
     * [Plugins](#plugins)
+    * [Handlers and events](#handlers-and-events)
+    * [Links](#links)
     * [Internationalization](#internationalization)
         * [Creating module translations](#creating-module-translations)
         * [Using module translations](#using-module-translations)
@@ -100,13 +103,20 @@ As a module author, you need to know JavaScript (specifically ES6), React and id
 
 The unit of UI development is the _module_. A Stripes UI module is a self-contained chunk of UI that can be loaded into Stripes, and which therefore must conform to various requirements. The source-code for a module is generally held in a git project whose name begins `ui-`.
 
-A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(software)). In addition to [the usual information in its `package.json`](https://docs.npmjs.com/files/package.json), a Stripes module must provide a `stripes` entry containing the following information:
+A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(software)). In addition to [the usual information in its `package.json`](https://docs.npmjs.com/files/package.json), a Stripes module must provide a `stripes` entry containing metadata describing the module and providing information that stripes-core can use to implement aspects of its functionality.
+
+When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
+
+
+#### The package-file `stripes` entry
+
+Within the `stripes` top-level key of a Stripes module's package file, the following information must be provided:
 
 * `type` -- a short string indicating what the type of the module is, and how it therefore behaves within the Stripes application. Acceptable values are:
   * `app` -- a regular application, which is listed among those available and which when activated uses essentially the whole screen.
   * `settings` -- a settings pane that is listed in the settings menu but does not present a full-page application.
   * `plugin` -- a plugin module that can be included by a component any other module, whether app, settings or another plugin. See [below](#plugins).
-  * `handler` -- a handler module which will be initialized and rendered when certain FOLIO events (`login`, `logout`) occur in the system.
+  * `handler` -- a handler module which will be initialized and rendered when certain FOLIO events (`login`, `logout`) occur in the system. See [below](#handlers-and-events).
 
 * `pluginType` (only for modules of type `plugin`) -- an indication of which pluggable surface the module can be mounted on. See [below](#plugins).
 
@@ -124,16 +134,9 @@ A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(sof
 
 * `queryResource` -- if defined, this is the name of an anointed stripes-connect resource whose contents always reflect the query parameters of the URL, and which can be mutated to change the URL. See [URL navigation](#url-navigation) below.
 
-* `links` -- an optional object which specifies any module-specific links that should be included in the Stripes chrome. The keys of the object are the names of areas in which to add links: presently only `userDropdown` is supported, and indicates the menu under the user-profile icon. The corresponding values are arrays containing a list of items to add to that menu. Each entry in the list is an object with two or three keys:
-  * `caption` -- the label of the menu-item.
-  * `route` -- the route which clicking on that menu-item navigates to.
-  * `check` -- if defined, the name of a function which checks whether or not to show the item, returning true or false. This function name must be chosen from the following list:
-    * `isLocalLogin` -- returns true if and only if the presently user logged in via a local user-register, as opposed to a single-sign-on system.
-    * (More to follow.)
+* `links` -- an optional object which specifies any module-specific links that should be included in the Stripes chrome. See [Links](#links) below.
 
-  See [the example in the `ui-myprofile` package file](https://github.com/folio-org/ui-myprofile/blob/acbe369e487cb43a053420e42275433cb97f7a8e/package.json#L35-L42).
-
-When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
+* `handlerName` -- an optional string indicating the name of a static function that is part of the class exported by the module. If provided, this is used to handle various kinds of events as discussed [below](#handlers-and-events).
 
 The class exported by a module may also have a static data member, `actionNames`. If provided, this must be an array of strings, each of them the name of an action that can be invoked by hot-keys (see [below](#enabling-hot-keys)). Stripes will aggregate the action-names exposed by the available modules and provide a combined list as [the `actionNames` member](#actionNames) of the Stripes object.
 
@@ -491,6 +494,57 @@ This is done by means of the `<Pluggable>` component. It must be passed a single
 This renders the red "Markdown editor goes here" message by default; but if there is an available plugin module whose plugin-type is `markdown-Editor` then its top-level component is rendered instead.
 
 There may be multiple plugins of the same plugin type; in this case, a setting in the database indicates which of the extant plugins is to be used. (The Preferred Plugins section of the Organization settings allows this to be configured.)
+
+
+
+### Handlers and events
+
+The principal means for modules to contribute functionality to the running Stripes application is by means of the components that they provide -- as a main application, as a settings sections, or both. However, sometimes it's necessary for the Stripes core code to notify modules of some event so that they can react in an appropriate way. In order to support this, there is the notion of a handler function.
+
+A module provides a handler as a static function within the component class that it exports at the top level, and advertises its existence by specifying its name as the `handlerName` property of the package-file's `stripes` area. There can be only one handler in a module: this is used for all events, though of course different events may be handed off to further functions.
+
+Stripes modules of any type can provide a handler; the `handler` module type is provided for the case where the handler is the _only_ thing the module provides, i.e. there is no main-screen app and no settings.
+
+Handlers are invoked in two situations: when core events occur, and when module-specified links are rendered:
+
+* These is a small, defined set of core events, which can be imported as `coreEvents` from `@folio/stripes-core/src/events`. This file exports an object with numeric constant members named `LOGIN`, `LOGOUT`, etc. When a relevant event occurs within Stripes, the handler is invoked with the relevant constant.
+* When Stripes is rendering an area that contains links -- for example, the user-dropdown menu at top right -- it can include links specified by the module, as described [below](#links). Links may be specified to invoke an event, in which case clicking the link invokes the handler with the event-name as a string.
+
+The handler is defined as:
+
+```
+static eventHandler(event, stripes, data) { ... }
+
+```
+
+The first argument is the event to be handled, which is either one of the core events defined in `@folio/stripes-core/src/events` or one of the link events defined by the module itself. (Since the former are integers and the latter are strings, there is no possibility of an inadvertent collision between event-names.)
+
+The second argument is [the Stripes object](#the-stripes-object), exactly as passed to the module's application and settings components.
+
+The third argument is an object containing additional information pertaining to the event. The keys of the object and their corresponding values are dependent on the specific event. For module-defined events used to create links, the object is the one describing the module itself. For the core events, it varies as follows:
+
+* `LOGIN` (invoked when a user logs in): no additional data.
+* `LOGOUT` (currently never invoked): no additional data.
+* (There will no doubt be more to follow.)
+
+The handler may return either `null`, if has completed its work, or a component which Stripes will render as a modal.
+
+
+### Links
+
+A module may need to insert links into various parts of the Stripes web-application -- for example, the My Profile module needs to add a "change password" link to the user dropdown menu at top right. To do this, a module should include specifications of its links in a `links` section in the `stripes` area of its package file.
+
+If specified, `stripes.links` is an object whose keys are the names are the areas in which to add links: presently only `userDropdown` is supported, indicating the menu under the user-profile icon; support for additional areas will be added as needed.
+
+The corresponding values are arrays containing a list of items to add to the specified area. Each entry in the list is an object with at least two of the following keys: `caption` and one or other of `route` and `event`:
+  * `caption` -- the translation key used to find the human-readable label of the menu-item.
+  * `route` -- the route which clicking on that menu-item navigates to. This can be used in the simple case when the link is merely a shortcut to a page provided by the manual.
+  * `event` -- if provided in place of `route`, specifies an event that is delivered to the module's handler function (see above), which the module must have defined. That handler can take whatever action is wishes, and may return a component which is displayed as a popup.
+  * `check` -- if defined, the name of a function which checks whether or not to show the link, returning true or false. This function must be provided as a static method of the class exported by the module.
+
+Examples:
+* [The "change password" link in the `ui-myprofile` package](https://github.com/folio-org/ui-myprofile/blob/acbe369e487cb43a053420e42275433cb97f7a8e/package.json#L35-L42).
+* [The "change service-point" popup in the `ui-servicepoint` package](https://github.com/folio-org/ui-servicepoints/blob/7846e3c5a65578b530ebc18849809c25cd334e2e/package.json#L17-L23)
 
 
 
