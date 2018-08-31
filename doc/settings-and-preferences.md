@@ -6,7 +6,8 @@ This document lays out requirements for settings and preferences, as discussed i
 ## Table of contents
 
 <!-- md2toc -l 2 -s 1 settings-and-preferences.md -->
-* [Tenant-level and user-level congiguration](#tenant-level-and-user-level-congiguration)
+* [Tenant-level and user-level configuration](#tenant-level-and-user-level-configuration)
+    * [Tenant defaults for user preferences](#tenant-defaults-for-user-preferences)
 * [UX concerns](#ux-concerns)
 * [Software requirements](#software-requirements)
     * [How should a module supply a preferences component?](#how-should-a-module-supply-a-preferences-component)
@@ -16,7 +17,7 @@ This document lays out requirements for settings and preferences, as discussed i
     * [Settings and Preferences as actual modules](#settings-and-preferences-as-actual-modules)
 
 
-## Tenant-level and user-level congiguration
+## Tenant-level and user-level configuration
 
 Stripes provides means for users to configure FOLIO. Such configuration can be either global across an entire tenant, or local to specific user.
 
@@ -29,6 +30,10 @@ Stripes provides means for users to configure FOLIO. Such configuration can be e
 In many cases, the two levels of configuation are disjoint: there is no such thing as a user-level preference for which loan policies are in user, or a tenant-level setting of a user's avatar.
 
 However, some configuration makes sense at both levels: for example, consider the choice of localization. A university in Texas may set the locale to `en-US` (English, United States), since it is primarily Anglophone; but many individual users maybe primarily Spanish-speaking, and will want to set a user-level preference for the `es` locale. In such cases, the user-level preference should always override the tenant-level setting.
+
+### Tenant defaults for user preferences
+
+Many institutions will want to prepare the default preferences of users before the users first log in. The simplest way to do, both from implementation and UX perspectives, is to have a specuak user called “Default Preferences” or similar, which administrators can log in as, and set the preferences as desired. Whenever a new user is created, the initial set of preferences would be copied from this user. Note, then, that default preferences really are preferences rather than settings -- even though they are in some sense a property of the tenant.
 
 
 ## UX concerns
