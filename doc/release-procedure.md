@@ -45,9 +45,11 @@ Ensure that each of the Jira issues listed in the change-log is tagged to the nu
 
 Make sure your `package.json` does not contain any unreleased dependencies -- for example, a bugfix version of stripes-core that adds a new facility, available via the CI repository `folioci` but not from an actual release. To check for this, make a brand new checkout of the module you're working on, outside of any Yarn workspace, switch back to the `npm-folio` registry, and try to install.
 ```
-$ 
+$ mkdir /tmp/fresh-build
+$ cd /tmp/fresh-build
+$ git clone git@github.com:folio-org/ui-developer.git
+$ cd ui-developer
 $ yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
-$ rm yarn.lock
 $ yarn install
 ```
 
