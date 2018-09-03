@@ -1,8 +1,9 @@
 # Stripes release procedure
 
-<!-- ../../okapi/doc/md2toc -l 2 release-procedure.md -->
+<!-- md2toc -l 2 release-procedure.md -->
 * [Version numbers, branches and tags](#version-numbers-branches-and-tags)
 * [Before you release](#before-you-release)
+    * [Check dependencies](#check-dependencies)
 * [Release procedure](#release-procedure)
 * [Working towards the next release](#working-towards-the-next-release)
 * [Notes on breaking changes](#notes-on-breaking-changes)
@@ -42,14 +43,16 @@ Ensure that each of the Jira issues listed in the change-log is tagged to the nu
 
 ### Check dependencies
 
-Make sure your `package.json` does not contain any unreleased dependencies.  To check for this, switch back to the `npm-folio` registry, remove your lock file, and attempt to re-install.
+Make sure your `package.json` does not contain any unreleased dependencies -- for example, a bugfix version of stripes-core that adds a new facility, available via the CI repository `folioci` but not from an actual release. To check for this, make a brand new checkout of the module you're working on, outside of any Yarn workspace, switch back to the `npm-folio` registry, and try to install.
 ```
+$ 
 $ yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
 $ rm yarn.lock
 $ yarn install
 ```
 
-Messages received during the install such as, "Package [package] not found" or "Couldn't find any versions for [package] that matches [version]", indicate an unreleased dependency.  Please ensure those packages are properly released to `npm-folio` before continuing.
+Messages received during the install such as, "Package [package] not found" or 
+"Couldn't find any versions for [package] that matches [version]", indicate an unreleased dependency. Please ensure those dependencies are properly released to `npm-folio` before continuing.
 
 
 ## Release procedure
