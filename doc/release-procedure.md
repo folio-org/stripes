@@ -69,8 +69,6 @@ Messages received during the install such as, "Package [package] not found" or
 * Push the release tag to git, e.g. `git push origin tag v2.3.0`.
 * Build and publish release artifacts.  Log into https://jenkins-aws.indexdata.com with your folio-org Github credentials.  Select the project you want to release under the GitHub 'folio-org' folder and select the 'Tags' tab.    Select the Git tag you want to release and then run 'Build Now' to build the release artifacts.  (Note: You may require additional permissions to build the release.  Contact a FOLIO DevOps administrator if needed.) 
 
-* Publish the package to the npm repository using `npm publish`. (You will need credentials to do this: see note below.)
-
 
 ## Working towards the next release
 
