@@ -67,6 +67,8 @@ Messages received during the install such as, "Package [package] not found" or
 * Push the branch to GitHub, e.g. `git push -u origin v2.3.0`, create a Pull Request for it, and merge it.
 * After the merge, checkout the master branch and create a tag for the specific version to be released, e.g. `git checkout master; git pull; git tag v2.3.0`. If there have been other changes to master since the merge commit, supply the checksum of the merge commit to make sure the tag is applied to the correct commit, e.g. `git tag v2.3.0 c0ffee`.
 * Push the release tag to git, e.g. `git push origin tag v2.3.0`.
+* Build and publish release artifacts.  Log into https://jenkins-aws.indexdata.com with your folio-org Github credentials.  Select the project you want to release under the GitHub 'folio-org' folder and select the 'Tags' tab.    Select the Git tag you want to release and then run 'Build Now' to build the release artifacts.  (Note: You may require additional permissions to build the release.  Contact a FOLIO DevOps administrator if needed.) 
+
 * Publish the package to the npm repository using `npm publish`. (You will need credentials to do this: see note below.)
 
 
@@ -114,22 +116,3 @@ buildNPM {
 
 2. Scope the project `name` in package.json with `@folio`, e.g. `"name": "@folio/react-intl-safe-html"`
 3. Check your job in Jenkins (https://jenkins-aws.indexdata.com/job/folio-org)
-
-## Direct access to the NPM repository
-
-If you need to manually run `yarn publish`, you will need access to the Index Data/FOLIO NPM repository at `repository.folio.org`. Get these credentials from an administrator. Once you have them, login as follows:
-```
-$ npm config set @folio:registry https://repository.folio.org/repository/npm-folio/
-$ npm adduser --registry=https://repository.folio.org/repository/npm-folio/
-Username: mike
-Password: ********
-Email: (this IS public) mike@indexdata.com
-Logged in as mike on https://repository.folio.org/repository/npm-folio/.
-$
-```
-You will then be able to release packages in the relevant repository:
-```
-$ npm publish
-+ @folio/stripes-components@0.0.2
-$
-```
