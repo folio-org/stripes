@@ -507,7 +507,7 @@ Stripes modules of any type can provide a handler; the `handler` module type is 
 
 Handlers are invoked in two situations: when core events occur, and when module-specified links are rendered:
 
-* These are a small, defined set of core events, which can be imported as `coreEvents` from `@folio/stripes-core/src/events`. This file exports an object with constant string members named `LOGIN`, `LOGOUT`, etc. When a relevant event occurs within Stripes, the handler is invoked with the relevant constant.
+* There is a small, defined set of core events, which can be imported as `coreEvents` from `@folio/stripes-core/src/events`. This file exports an object with constant string members named `LOGIN`, `LOGOUT`, etc. When a relevant event occurs within Stripes, the handler is invoked with the relevant constant.
 * When Stripes is rendering an area that contains links -- for example, the user-dropdown menu at top right -- it can include links specified by the module, as described [below](#links). Links may be specified to invoke an event, in which case clicking the link invokes the handler with the event-name as a string.
 
 The handler is defined as:
