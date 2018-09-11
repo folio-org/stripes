@@ -21,19 +21,19 @@ This document lays out requirements for settings and preferences, as discussed i
 
 Stripes provides means for users to configure FOLIO. Such configuration can be either global across an entire tenant, or local to specific user.
 
-* _Settings_ refer to tenant-level configuration, such as the the loan policies in use, the resource-types available for cataloging, and the patron groups to which users can belong.
+* _Settings_ refer to tenant-level configuration, such as the loan policies in use, the resource-types available for cataloging, and the patron groups to which users can belong.
 
 * _Preferences_ refer to user-level configuration, such as the avatar to be displayed, notification preferences, and the password in use.
 
 * We use _configuration_ as a general term that encompasses both settings and preferences.
 
-In many cases, the two levels of configuation are disjoint: there is no such thing as a user-level preference for which loan policies are in user, or a tenant-level setting of a user's avatar.
+In many cases, the two levels of configuration are disjoint: there is no such thing as a user-level preference for which loan policies are in user, or a tenant-level setting of a user's avatar.
 
-However, some configuration makes sense at both levels: for example, consider the choice of localization. A university in Texas may set the locale to `en-US` (English, United States), since it is primarily Anglophone; but many individual users maybe primarily Spanish-speaking, and will want to set a user-level preference for the `es` locale. In such cases, the user-level preference should always override the tenant-level setting.
+However, some configuration makes sense at both levels: for example, consider the choice of localization. A university in Texas may set the locale to `en-US` (English, United States), since it is primarily Anglophone; but many individual users may be primarily Spanish-speaking, and will want to set a user-level preference for the `es` locale. In such cases, the user-level preference should always override the tenant-level setting.
 
 ### Tenant defaults for user preferences
 
-Many institutions will want to prepare the default preferences of users before the users first log in. The simplest way to do, both from implementation and UX perspectives, is to have a specuak user called “Default Preferences” or similar, which administrators can log in as, and set the preferences as desired. Whenever a new user is created, the initial set of preferences would be copied from this user. Note, then, that default preferences really are preferences rather than settings -- even though they are in some sense a property of the tenant.
+Many institutions will want to prepare the default preferences of users before the users first log in. The simplest way to do, both from implementation and UX perspectives, is to have a special user called “Default Preferences” or similar, which administrators can log in as, and set the preferences as desired. Whenever a new user is created, the initial set of preferences would be copied from this user. Note, then, that default preferences really are preferences rather than settings -- even though they are in some sense a property of the tenant.
 
 
 ## UX concerns
@@ -49,13 +49,13 @@ Instead, we will introduce a new top-level icon for Preferences, analogous to th
 
 The only immediate requirement on the part of Stripes modules is that they be able to supply a preferences component, much as they presently have the option of supplying a settings component. Some modules will supply settings, some will supply preferences, some will supply both and some will supply neither.
 
-Much code will likely be shared between the existing settings components and the new preferences compoments -- in particular, [the `<Settings>` component from stripes-components](https://github.com/folio-org/stripes-components/tree/master/lib/Settings), though this will need minor tweaking: it presently includes the hardwired caption "Module Settings" and the hardwired path `/settings`, both of which will need to be modified when used in a preferences context.
+Much code will likely be shared between the existing settings components and the new preferences components -- in particular, [the `<Settings>` component from stripes-components](https://github.com/folio-org/stripes-components/tree/master/lib/Settings), though this will need minor tweaking: it presently includes the hardwired caption "Module Settings" and the hardwired path `/settings`, both of which will need to be modified when used in a preferences context.
 
 Stripes-core will need extending to pick up preferences components from the modules it loads, as well as settings components, and to furnish a top-level preferences page. Again, much code will likely be re-used from the existing settings support.
 
 ### How should a module supply a preferences component?
 
-At present, Stripes modules export a single component. This component is used as the main-page application; but when stripes-core needs the module's settings it renders the same component with the `showSettings` property set true. The top-level component then delegates to settings component, as for example in [this code from the Users app](https://github.com/folio-org/ui-users/blob/b2fd005df27f58630c4b0651729b719b1fd33e0b/index.js#L36-L38).
+At present, Stripes modules export a single component. This component is used as the main-page application; but when stripes-core needs the module's settings it renders the same component with the `showSettings` property set true. The top-level component then delegates to the settings component, as for example in [this code from the Users app](https://github.com/folio-org/ui-users/blob/b2fd005df27f58630c4b0651729b719b1fd33e0b/index.js#L36-L38).
 
 The simplest way to extend this schema to support a preferences component would be to have stripes-core pass an analogous `showPreferences` property. This would work just fine.
 
@@ -96,7 +96,7 @@ It has previous been suggested that modules should instead have multiple types. 
 
 This is a good moment to consider whether that is the right route to take.
 
-However, from another perspective, it can be argued that the only part of a module's type that matters is whether or not it's an application. Modules of type `app` have a top-bar icon an a main-page application, but may also contribute any of the other functional facets that other module-types do: settings, preferences, a handler function. All other module types do not appear in the top-bar and do not provide a main-page application, but may contribute any or all of the other functional facets. So perhaps the only distinction we need between module types is between `app` and "other"?
+However, from another perspective, it can be argued that the only part of a module's type that matters is whether or not it's an application. Modules of type `app` have a top-bar icon and a main-page application, but may also contribute any of the other functional facets that other module-types do: settings, preferences, a handler function. All other module types do not appear in the top-bar and do not provide a main-page application, but may contribute any or all of the other functional facets. So perhaps the only distinction we need between module types is between `app` and "other"?
 
 
 ### Settings and Preferences as actual modules
