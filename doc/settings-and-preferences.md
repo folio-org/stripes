@@ -49,7 +49,7 @@ Instead, we will introduce a new top-level icon for Preferences, analogous to th
 
 The only immediate requirement on the part of Stripes modules is that they be able to supply a preferences component, much as they presently have the option of supplying a settings component. Some modules will supply settings, some will supply preferences, some will supply both and some will supply neither.
 
-Much code will likely be shared between the existing settings components and the new preferences components -- in particular, [the `<Settings>` component from stripes-components](https://github.com/folio-org/stripes-components/tree/master/lib/Settings), though this will need minor tweaking: it presently includes the hardwired caption "Module Settings" and the hardwired path `/settings`, both of which will need to be modified when used in a preferences context.
+Much code will likely be shared between the existing settings components and the new preferences components -- in particular, [the `<Settings>` component from stripes-smart-components](https://github.com/folio-org/stripes-smart-components/tree/master/lib/Settings), though this will need minor tweaking: it presently includes the hardwired caption "Module Settings" and the hardwired path `/settings`, both of which will need to be modified when used in a preferences context.
 
 Stripes-core will need extending to pick up preferences components from the modules it loads, as well as settings components, and to furnish a top-level preferences page. Again, much code will likely be re-used from the existing settings support.
 
@@ -104,5 +104,3 @@ However, from another perspective, it can be argued that the only part of a modu
 Finally, we should give some thought to whether it makes sense to try to refactor the settings support out of stripes-core and into an actual module, ui-settings. If we did this, we would of course implement preferences in the same way, as another module.
 
 Doing this would make the internal architecture of Stripes a better match for the UX, in which settings _looks like_ an application. Whether that is worth the work it would take is open to discussion -- especially as a putative ui-settings and ui-preferences would likely need access to parts of the Stripes internals that are currently hidden.
-
-
