@@ -24,6 +24,7 @@ Each release is tagged with a name beginning with `v` and followed by the versio
 
 Patch releases can be done on a branch whose name begins with `b` and is followed by the major and minor version -- for example, `b2.3`. From this branch, we will make some number of tagged releases, each with a different trivial version number (one for each patch release: bug-fixes and security patch, for example, `v2.3.1`). If no such branch exists for the minor version you're seeking to patch and `master` has since moved on with commits you prefer not to include, please create a branch from the tag.
 
+New modules should start at version `1.0.0` rather than `0.1.0` to avoid confusion with caret dependencies on 0.x.y releases. Although NPM's [semver rules for caret ranges](https://docs.npmjs.com/misc/semver#caret-ranges-123-025-004) clearly state the caret "allows changes that do not modify the left-most non-zero digit", in practice folks tend to think of caret dependencies as "only the major version is fixed" because that is what it means for any version without a 0-major version. Avoiding 0-major version just avoids a heap of confusion.
 
 ## Before you release
 
