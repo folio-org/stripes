@@ -774,4 +774,4 @@ Note that this code does _not_ access the stripes-connect data within the Redux 
 
 ## Appendix B: Mandatory back-end services for stripes-core
 
-Stripes-core currently requires certain server-side modules to be enabled, i.e. /notify endpoint
+Stripes-core currently requires certain server-side modules to be enabled
