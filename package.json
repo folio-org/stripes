@@ -22,7 +22,7 @@
     "@folio/stripes-form": "^1.0.0",
     "@folio/stripes-logger": "^1.0.0",
     "@folio/stripes-smart-components": "^1.8.3",
-    "@folio/stripes-util": "^1.0.0",
+    "@folio/stripes-util": "^1.1.0",
     "react": "^16.3.0"
   },
   "devDependencies": {
