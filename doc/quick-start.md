@@ -1,5 +1,8 @@
 # Stripes: quick start
 
+**NOTE:** 2018-10-10: This document is out-of-date.
+See [STCOR-151](https://issues.folio.org/browse/STCOR-151).
+
 ## Pre-requisites
 
 To run Stripes, you'll need to have [Node.js](https://nodejs.org/) with an [active LTS version](https://github.com/nodejs/Release#release-schedule) installed (check with `node --version`).
