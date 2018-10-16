@@ -1,7 +1,11 @@
 # Stripes: quick start
 
-**NOTE:** 2018-10-10: This document is out-of-date.
-See [STCOR-151](https://issues.folio.org/browse/STCOR-151).
+<!-- md2toc -l 2 quick-start.md -->
+* [Pre-requisites](#pre-requisites)
+* [App development](#app-development)
+* [Workspace development](#workspace-development)
+* [Using local code](#using-local-code)
+* [More information](#more-information)
 
 ## Pre-requisites
 
