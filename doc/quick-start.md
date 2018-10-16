@@ -3,7 +3,7 @@
 <!-- md2toc -l 2 quick-start.md -->
 * [Pre-requisites](#pre-requisites)
 * [App development](#app-development)
-* [Workspace development](#workspace-development)
+* [Platform development](#platform-development)
 * [Using local code](#using-local-code)
 * [More information](#more-information)
 
