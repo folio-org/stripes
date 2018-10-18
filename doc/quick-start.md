@@ -39,7 +39,7 @@ Refer to the [Stripes-CLI user guide](https://github.com/folio-org/stripes-cli/b
 
 ## Platform development
 
-The easiest way to work on multiple applications simultaneously is with a Yarn workspace.  Create a new workspace with the stripes-cli `workspace` commmand.  This command is interactive and will prompt for the `ui-*` modules you would like to include.  Be sure to select a platform such as `stripes-sample-platform` as well.  Selected modules will be git-cloned and installed automatically.
+The easiest way to work on multiple applications simultaneously is with a Yarn workspace.  Create a new workspace with the stripes-cli `workspace` command.  This command is interactive and will prompt for the `ui-*` modules you would like to include.  Be sure to select a platform such as `stripes-sample-platform` as well.  Selected modules will be git-cloned and installed automatically.
 
 ```
 $ stripes workspace
@@ -89,7 +89,7 @@ Platforms available: "stripes-sample-platform"
 
 UI modules available: "ui-users", "ui-inventory"
   "cd" into the above dir(s) and run "stripes serve" to start a module in isolation.
-$ 
+$
 
 ```
 
@@ -117,7 +117,7 @@ When using a Yarn workspace, module developers and those wanting to use a local 
 
 ```
 $ stripes workspace
-? Stripes modules to include 
+? Stripes modules to include
  --- Stripes Modules ---
  ◉ stripes-connect
  ◉ stripes-components
