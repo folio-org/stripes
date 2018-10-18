@@ -54,7 +54,7 @@ $ stripes workspace
 (Move up and down to reveal more choices)
 ```
 
-Refer to the [workspace command reference](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md#app-development) for all available workspace options.
+Refer to the [workspace command reference](https://github.com/folio-org/stripes-cli/blob/master/doc/commands.md#workspace-command) for all available workspace options.
 
 ```
 $ stripes workspace --dir stripes2
