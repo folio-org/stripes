@@ -45,7 +45,7 @@
 There are two main approaches to FOLIO front-end development: stand-alone app development and multiple module development using a platform. This guide will walk you through both.
 
 * App: Development of a single application can be performed entirely stand-alone.  Simply clone the repository, install dependencies, and run `yarn start`.
-* Platform: Development of multiple applications or modules simultaneously, best accomplished through the use of a Yarn workspace.  
+* Platform: Development of multiple applications or modules simultaneously, best accomplished through the use of a Yarn workspace.
 
 _Which approach should I take?_
 
@@ -204,7 +204,7 @@ A box file is like a template for a VM, and like a document created from a templ
 
 Official releases of FOLIO modules are published to https://repository.folio.org/repository/npm-folio/. Between official releases, tip-of-master builds of each module are published to the continuous-integration registry, https://repository.folio.org/repository/npm-folioci/.  The recommended choice of registry is influenced by your development needs.
 
-For FOLIO app developers, the `npm-folio` registry is preferred for more stable releases: 
+For FOLIO app developers, the `npm-folio` registry is preferred for more stable releases:
 ```
 $ yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
 ```
@@ -265,7 +265,7 @@ $ yarn install
 ```
 
 ### Run your app
-With the use of the CLI, an app can be served up on its own for development in isolation. Start a development server by invoking `stripes serve` from within the app's directory.  
+With the use of the CLI, an app can be served up on its own for development in isolation. Start a development server by invoking `stripes serve` from within the app's directory.
 ```
 $ stripes serve
 ```
@@ -356,7 +356,7 @@ Platforms available: "stripes-sample-platform"
 
 UI modules available: "ui-users", "ui-inventory"
   "cd" into the above dir(s) and run "stripes serve" to start a module in isolation.
-$ 
+$
 ```
 
 > Tip:  You can always have more than one workspace!  Supply the `--dir` option to create a workspace with a directory other than `stripes`.  Refer to the [workspace command](https://github.com/folio-org/stripes-cli/blob/master/doc/commands.md#workspace-command) for more options.
