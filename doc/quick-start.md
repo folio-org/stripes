@@ -1,24 +1,26 @@
 # Stripes: quick start
 
 <!-- md2toc -l 2 quick-start.md -->
-* [Pre-requisites](#pre-requisites)
+* [Prerequisites](#prerequisites)
 * [App development](#app-development)
 * [Platform development](#platform-development)
 * [Using local code](#using-local-code)
 * [More information](#more-information)
 
-## Pre-requisites
+## Prerequisites
 
-To run Stripes, you'll need to have [Node.js](https://nodejs.org/) with an [active LTS version](https://github.com/nodejs/Release#release-schedule) installed (check with `node --version`).
+* [Node.js](https://nodejs.org/) with an [active LTS version](https://github.com/nodejs/Release#release-schedule)
+* [Yarn](https://yarnpkg.com/) package manager
+* [Vagrant](https://www.vagrantup.com/downloads.html) for optionally hosting a local [pre-built back-end] environment(https://github.com/folio-org/folio-ansible/blob/master/doc/index.md)
 
-You'll also need a package manager. We strongly recommend using [yarn](https://yarnpkg.com/). Once Yarn is installed, inform it that packages in the `@folio` scope are found on the FOLIO NPM repository:
+Inform Yarn that packages in the `@folio` scope are found on the FOLIO NPM repository:
 ```
-yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
+$ yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
 ```
 
 Install the Stripes CLI:
 ```
-yarn global add @folio/stripes-cli
+$ yarn global add @folio/stripes-cli
 ```
 
 ## App development
@@ -54,48 +56,10 @@ $ stripes workspace
 (Move up and down to reveal more choices)
 ```
 
-Refer to the [workspace command reference](https://github.com/folio-org/stripes-cli/blob/master/doc/commands.md#workspace-command) for all available workspace options.
-
-```
-$ stripes workspace --dir stripes2
-? Stripes modules to include ui-users, ui-inventory, stripes-sample-platform
-  Directory "/Users/employee/projects/folio/stripes2" created.
-
-Cloning modules...
- Clone complete.
-
-Installing dependencies...
- Directory "/Users/employee/projects/folio/stripes2"
-  yarn install v1.9.4
-  info No lockfile found.
-  [1/4] Resolving packages...
-  [2/4] Fetching packages...
-  [3/4] Linking dependencies...
-  [4/4] Building fresh packages...
-  success Saved lockfile.
-  Done in 29.91s.
- Install complete.
-
-Initializing Stripes configuration...
- Configuration complete.
-
-Done.
-
-Edit "stripes2/.stripesclirc.json" to modify CLI configuration including aliases for this workspace.
-
-Platforms available: "stripes-sample-platform"
-  "cd" into the above dir(s) and run "stripes serve stripes.config.js.local" to start.
-  Edit "stripes.config.js.local" to turn modules on or off.
-
-UI modules available: "ui-users", "ui-inventory"
-  "cd" into the above dir(s) and run "stripes serve" to start a module in isolation.
-$
-
-```
-
 At this point, the modules you selected with the workspace command will be added to your `stripes.config.js.local` configuration for any platform(s) selected.  Change to the platform directory and run the development server with:
 
 ```
+$ cd stripes/stripes-sample-platform
 $ stripes serve stripes.config.js.local
 ```
 

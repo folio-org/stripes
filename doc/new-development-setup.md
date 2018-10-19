@@ -2,25 +2,22 @@
 
 <!-- md2toc -l 2 new-development-setup.md -->
 * [Introduction](#introduction)
-* [Prerequisites](#prerequisites)
 * [Summary (TL;DR)](#summary-tldr)
-    * [App development summary](#app-development-summary)
-    * [Platform development summary](#platform-development-summary)
-* [Instructions](#instructions)
-    * [Update your VM](#update-your-vm)
+* [Prerequisites](#prerequisites)
+    * [Update your Vagrant box](#update-your-vagrant-box)
     * [Configure the FOLIO registry](#configure-the-folio-registry)
     * [Install Stripes CLI](#install-stripes-cli)
     * [Remove any aliased modules](#remove-any-aliased-modules)
-* [Instructions for app development](#instructions-for-app-development)
+* [App development instructions](#app-development-instructions)
     * [Remove your old app](#remove-your-old-app)
     * [Clone and install your app](#clone-and-install-your-app)
     * [Run your app](#run-your-app)
-* [Instructions for platform development](#instructions-for-platform-development)
+* [Platform development instructions](#platform-development-instructions)
     * [Remove your old workspace directory](#remove-your-old-workspace-directory)
     * [Create your workspace](#create-your-workspace)
     * [Run your platform](#run-your-platform)
-    * [Maintaining your platform](#maintaining-your-platform)
-* [Instructions for platform development (manual)](#instructions-for-platform-development-manual)
+    * [Maintain your platform](#maintain-your-platform)
+* [Platform development instructions (manual)](#platform-development-instructions-manual)
     * [Remove your old source directory](#remove-your-old-source-directory)
     * [Make a new source directory](#make-a-new-source-directory)
     * [Create a workspace package.json](#create-a-workspace-packagejson)
@@ -34,7 +31,7 @@
     * [leveldown](#leveldown)
     * [stripescli install is not idempotent](#stripescli-install-is-not-idempotent)
 * [Additional information and suggestions](#additional-information-and-suggestions)
-    * [Using an offline Yarn cache](#using-an-offline-yarn-cache)
+    * [Use an offline Yarn cache](#use-an-offline-yarn-cache)
     * [More about workspaces](#more-about-workspaces)
     * [Use `stripes-cli` from your workspace](#use-stripes-cli-from-your-workspace)
     * [Further reading](#further-reading)
@@ -51,16 +48,12 @@ _Which approach should I take?_
 
 For developers or teams working exclusively within the scope of one or two apps (or one or two apps _at a time_), follow the simpler app development instructions.  If you find you need to occasionally loop in another app or stripes module, you can do so ad-hoc or permanently with [aliases](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md#aliases).  However, developers working extensively with multiple core `stripes-*` modules and/or multiple ui-apps may find platform development to be preferable.
 
-## Prerequisites
-
-> TODO: Document
 
 ## Summary (TL;DR)
 
-Make sure you are running against the most-recent version of the `testing-backend` box; yes, it's bleeding edge, but anything else is likely out of sync with the front-end modules. You must `vagrant destroy` an existing VM for `vagrant up` to find and install a new version; `vagrant halt; vagrant up` is not sufficient.
+See the [Quick Start Guide](./quick-start.md) for brief overview.
 
-### App development summary
-The following code will clone a single app repository, install dependencies, and start the development server.
+App development:
 ```
 $ git clone https://github.com/folio-org/ui-users.git
 $ cd ui-users
@@ -68,28 +61,24 @@ $ yarn install
 $ yarn start
 ```
 
-### Platform development summary
-The following code will create a new working directory named `stripes`, clone the relevant repositories into it, install their dependencies, configure the platform, and start the development server.
-
+Platform development:
 ```
 $ yarn global add @folio/stripes-cli
 $ stripes workspace --modules ui-users ui-inventory stripes-sample-platform
 $ cd stripes/stripes-sample-platform
-$ stripes serve stripes.config.js
+$ stripes serve stripes.config.js.local
 ```
 
-Additional commands are available to assist with maintenance of multiple repositories.
-```
-$ stripes platform pull
-$ stripes platform clean
-```
-
-
-## Instructions
+## Prerequisites
 
 Review the following instructions followed by [app development](#instructions-for-app-development) or [platform development](#instructions-for-platform-development) sections as applicable.
 
-### Update your VM
+* [Node.js](https://nodejs.org/) with an [active LTS version](https://github.com/nodejs/Release#release-schedule) installed (check with `node --version`).
+* [Yarn](https://yarnpkg.com/) package manager
+* [Vagrant](https://www.vagrantup.com/downloads.html) for optionally hosting a local [pre-built back-end] environment(https://github.com/folio-org/folio-ansible/blob/master/doc/index.md)
+
+
+### Update your Vagrant box
 
 > TODO: Review these steps
 
@@ -245,7 +234,7 @@ If you previously defined any [aliases with the CLI](https://github.com/folio-or
 $ stripes alias clear
 ```
 
-## Instructions for app development
+## App development instructions
 
 > Note: This section describes standing-up an existing ui-app repository.  For instructions on creating a brand new app, please see the [app development section of the Stripes CLI User Guide](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md#app-development) and the [Stripes Module Developer Guide](./dev-guide.md)
 
@@ -275,7 +264,7 @@ Alternatively, use the `start` package script.  This points to `stripes serve` a
 $ yarn start
 ```
 
-## Instructions for platform development
+## Platform development instructions
 
 When working with multiple apps simultaneously, you will need a platform defined to host the apps. To work with the source code of multiple apps, we recommend using a [Yarn workspace](https://yarnpkg.com/lang/en/docs/workspaces/).  Stripes CLI automates the following steps in one command:
 
@@ -373,7 +362,7 @@ $ cd stripes/stripes-sample-platform
 $ stripes serve stripes.config.js.local
 ```
 
-### Maintaining your platform
+### Maintain your platform
 
 To pull the latest code for all cloned repositories in your platform or workspace, use `platform pull`.  When run from within a workspace, all the available repositories will be pulled.
 
@@ -426,7 +415,7 @@ Done.
 ```
 
 
-## Instructions for platform development (manual)
+## Platform development instructions (manual)
 
 The following instructions describe creating a platform by hand without the CLI. They are provided as a means to better understand the process.
 
@@ -625,7 +614,7 @@ $ npm install -g
 
 ## Additional information and suggestions
 
-### Using an offline Yarn cache
+### Use an offline Yarn cache
 
 Yarn tends to rebuild native binaries rather more often that it really needs to. Since this can take some time, Yarn v1.5.1 has added a new feature to cache the build artifacts. In order to take advantage of it, you'll need to enable the offline cache generally for which you'll need to make a directory (`/some/path/yarn-offline-cache` below, but can be anything). The relevant `.yarnrc` settings are:
 ```
