@@ -257,7 +257,7 @@ $ rm -rf ui-users
 ```
 
 ### Clone and install your app
-Using `git`, clone the your repository.  Then perform a `yarn install` from within the app's directory to install dependencies.
+Using `git`, clone the repository.  Then perform a `yarn install` from within the app's directory to install dependencies.
 ```
 $ git clone https://github.com/folio-org/ui-users.git
 $ cd ui-users
@@ -375,7 +375,7 @@ $ stripes serve stripes.config.js.local
 
 ### Maintaining your platform
 
-To pull the latest code for all cloned repositories in your platform or workspace, use `platform pull`.  When run run from within a workspace, all the available repositories will be pulled.
+To pull the latest code for all cloned repositories in your platform or workspace, use `platform pull`.  When run from within a workspace, all the available repositories will be pulled.
 
 ```
 $ stripes platform pull
@@ -385,7 +385,7 @@ Pulled "/Users/employee/projects/folio/stripes2/ui-users" { changes: 0, insertio
 Done.
 ```
 
-This command will warn when you have uncommited changes:
+This command will warn when you have uncommitted changes:
 ```
 $ stripes platform pull
 Pulled "/Users/employee/projects/folio/stripes2/stripes-sample-platform" { changes: 0, insertions: 0, deletions: 0 }
