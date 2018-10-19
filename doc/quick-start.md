@@ -11,7 +11,7 @@
 
 * [Node.js](https://nodejs.org/) with an [active LTS version](https://github.com/nodejs/Release#release-schedule)
 * [Yarn](https://yarnpkg.com/) package manager
-* [Vagrant](https://www.vagrantup.com/downloads.html) for optionally hosting a local [pre-built back-end] environment(https://github.com/folio-org/folio-ansible/blob/master/doc/index.md)
+* [Vagrant](https://www.vagrantup.com/downloads.html) for optionally hosting a local [pre-built back-end](https://github.com/folio-org/folio-ansible/blob/master/doc/index.md) environment
 
 Inform Yarn that packages in the `@folio` scope are found on the FOLIO NPM repository:
 ```

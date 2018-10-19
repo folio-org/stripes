@@ -71,11 +71,11 @@ $ stripes serve stripes.config.js.local
 
 ## Prerequisites
 
-Review the following instructions followed by [app development](#instructions-for-app-development) or [platform development](#instructions-for-platform-development) sections as applicable.
+Review the following instructions followed by [app development](#app-development-instructions) or [platform development](#platform-development-instructions) sections as applicable.
 
 * [Node.js](https://nodejs.org/) with an [active LTS version](https://github.com/nodejs/Release#release-schedule) installed (check with `node --version`).
 * [Yarn](https://yarnpkg.com/) package manager
-* [Vagrant](https://www.vagrantup.com/downloads.html) for optionally hosting a local [pre-built back-end] environment(https://github.com/folio-org/folio-ansible/blob/master/doc/index.md)
+* [Vagrant](https://www.vagrantup.com/downloads.html) for optionally hosting a local [pre-built back-end](https://github.com/folio-org/folio-ansible/blob/master/doc/index.md) environment
 
 
 ### Update your Vagrant box
@@ -282,7 +282,7 @@ First, of course, be sure that you have no uncommitted or unpushed changes. Once
 $ rm -rf stripes
 ```
 
-> Tip: You may not need to remove your entire workspace.  Consider cleaning before starting completely over.  Refer to the `platform clean` command described in [maintaining your platform](#maintaining-your-platform) below.
+> Tip: You may not need to remove your entire workspace.  Consider cleaning before starting completely over.  Refer to the `platform clean` command described in [maintaining your platform](#maintain-your-platform) below.
 
 
 ### Create your workspace
