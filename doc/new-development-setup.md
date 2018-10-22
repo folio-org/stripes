@@ -4,6 +4,7 @@
 * [Introduction](#introduction)
 * [Summary (TL;DR)](#summary-tldr)
 * [Prerequisites](#prerequisites)
+    * [Create your Vagrant box](#create-your-vagrant-box)
     * [Update your Vagrant box](#update-your-vagrant-box)
     * [Configure the FOLIO registry](#configure-the-folio-registry)
     * [Install Stripes CLI](#install-stripes-cli)
@@ -78,15 +79,22 @@ Review the following instructions followed by [app development](#app-development
 * [Vagrant](https://www.vagrantup.com/downloads.html) for optionally hosting a local [pre-built back-end](https://github.com/folio-org/folio-ansible/blob/master/doc/index.md) environment
 
 
-### Update your Vagrant box
+### Create your Vagrant box
 
-> TODO: Review these steps
-
-Use the most-recent version of the `testing-backend` Vagrant VM to run Okapi. Other VMs, such as `stable`, are likely out of sync with the front-end modules. If you are starting from scratch, create a directory named `testing-backend` with a `Vagrantfile` inside it and then install the machine:
+Use the most-recent version of the `testing-backend` Vagrant VM to run Okapi. Other VMs, such as `stable`, are likely out of sync with the front-end modules. If you are starting from scratch, create a directory named `testing-backend` with a `Vagrantfile` inside it:
 
 ```
 $ mkdir testing-backend
 $ cd testing-backend
+```
+
+Create a vagrant file with `vagrant init`:
+```
+$ vagrant init folio/testing-backend
+```
+
+Alternatively, create a vagrant file by hand:
+```
 $ cat > Vagrantfile <<'EOF'
 Vagrant.configure("2") do |config|
   config.vm.box = "folio/testing-backend"
@@ -95,6 +103,10 @@ Vagrant.configure("2") do |config|
   end
 end
 EOF
+```
+
+Then use the `vagrant up` command to create the environment and bring it online:
+```
 $ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Checking if box 'folio/testing-backend' is up to date...
@@ -167,7 +179,10 @@ Unmounting Virtualbox Guest Additions ISO from: /mnt
 $ cd ..
 ```
 
+### Update your Vagrant box
+
 If you have an existing VM running and want to update it, you *must* destroy the existing VM in order to pick up the new box. Running `vagrant halt; vagrant box update; vagrant up` will have *no effect*.
+
 ```
 $ cd testing-backend
 $ vagrant destroy -f
