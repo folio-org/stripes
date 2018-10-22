@@ -14,6 +14,7 @@ Please refer to the following documents for more information:
 * [Stripes CLI user guide](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md) for getting started with setting up your development environment
 * [Stripes-core documentation](https://github.com/folio-org/stripes-core#documentation-roadmap) for details on Stripes features and architecture
 * [Stripes-components](https://github.com/folio-org/stripes-components#introduction) for information on the Stripes UI component library
+* [Stripes framework](doc/stripes-framework.md) for a brief overview of stripes framework
 
 ## Additional information
 
