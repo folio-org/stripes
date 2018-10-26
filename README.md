@@ -7,7 +7,7 @@ Version 2.0. See the file "[LICENSE](LICENSE)" for more information.
 
 ## Introduction
 
-Stripes is a toolkit for building single-page web applications that FOLIO UI modules can run in.  In addition being the home of Stripes [framework](doc/stripes-framework.md), this repository serves as a hub for shared Stripes documentation.
+Stripes is a toolkit for building single-page web applications that FOLIO UI modules can run in.  In addition to being the home of Stripes [framework](doc/stripes-framework.md), this repository serves as a hub for shared Stripes documentation.
 
 ## Background
 
