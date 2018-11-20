@@ -87,10 +87,10 @@ To upgrade a ui-module, define any peerDependencies you may have on `react`, `re
 "devDependencies": {
   "@folio/stripes": "^1.1.0",
   "@folio/stripes-cli": "^1.6.0",
-  "react": "^16.6.3",
-  "react-dom": "^16.6.3",
-  "react-redux": "^5.1.1",
-  "redux": "^3.7.2"
+  "react": "~16.6.3",
+  "react-dom": "~16.6.3",
+  "react-redux": "~5.1.1",
+  "redux": "~3.7.2"
 },
 "peerDependencies": {
   "@folio/stripes": "^1.1.0",
@@ -108,10 +108,10 @@ To upgrade a platform, add dependencies for `react`, `react-dom`, `react-redux`,
 "dependencies": {
   "@folio/stripes": "^1.1.0",
   "@folio/stripes-cli": "^1.6.0",
-  "react": "^16.6.3",
-  "react-dom": "^16.6.3",
-  "react-redux": "^5.1.1",
-  "redux": "^3.7.2"
+  "react": "~16.6.3",
+  "react-dom": "~16.6.3",
+  "react-redux": "~5.1.1",
+  "redux": "~3.7.2"
 },
 ```
 
