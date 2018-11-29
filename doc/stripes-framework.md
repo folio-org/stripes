@@ -4,6 +4,7 @@
 * [Modules](#modules)
 * [Usage](#usage)
 * [Migrating](#migrating)
+* [Upgrading to v1.1](#upgrading-to-v11)
 
 
 ## Introduction
@@ -73,3 +74,45 @@ Take care to remove any path-based imports you may have in the process:
 Review the [stripes-components 4.x changelog](https://github.com/folio-org/stripes-components/blob/master/CHANGELOG.md#400-2018-10-02) for any breaking changes and moved components.  Update affected imports to reflect their new component locations.
 
 Finally remove all individual `stripes-*` dependencies from your app's package.json.  Re-run your app to verify everything is working properly.
+
+
+## Upgrading to v1.1
+
+Upgrading to `stripes` version `1.1.0`, requires some minor adjustments to package.json.  The process varies slightly for ui-modules and platforms.
+
+To upgrade a ui-module, define any peerDependencies you may have on `react`, `react-dom`, `react-redux`, and `redux` also as _devDependencies_. This will ensure that these packages are properly fulfilled for isolated development and testing of your ui-module. Then upgrade your version of `@folio/stripes` to `1.1.0` in both devDependencies and peerDependencies.
+
+```
+"name": "@folio/ui-example",
+"devDependencies": {
+  "@folio/stripes": "^1.1.0",
+  "@folio/stripes-cli": "^1.6.0",
+  "react": "~16.6.3",
+  "react-dom": "~16.6.3",
+  "react-redux": "~5.1.1",
+  "redux": "~3.7.2"
+},
+"peerDependencies": {
+  "@folio/stripes": "^1.1.0",
+  "react": "*",
+  "react-dom": "*",
+  "react-redux": "*",
+  "redux": "*"
+},
+```
+
+To upgrade a platform, add dependencies for `react`, `react-dom`, `react-redux`, and `redux`. This will ensure that these packages, defined as peerDependencies within ui-modules, are properly fulfilled at the platform level. Then upgrade your version of `@folio/stripes` to `1.1.0`.
+
+```
+"name": "@folio/platform-example",
+"dependencies": {
+  "@folio/stripes": "^1.1.0",
+  "@folio/stripes-cli": "^1.6.0",
+  "react": "~16.6.3",
+  "react-dom": "~16.6.3",
+  "react-redux": "~5.1.1",
+  "redux": "~3.7.2"
+},
+```
+
+Finally, for both ui-modules and platforms, regenerate your `yarn.lock` file, if applicable.
