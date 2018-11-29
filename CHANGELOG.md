@@ -1,6 +1,6 @@
 # Change history for stripes
 
-## [1.1.0] (IN PROGRESS)
+## [1.1.0](https://github.com/folio-org/stripes/tree/v1.1.0) (2018-11-29)
 * Specify dependencies for `react-dom`, `react-redux`, and `redux`, STRIPES-563
 * Lock `stripes-*` dependencies to their minor versions, STRIPES-582
 
