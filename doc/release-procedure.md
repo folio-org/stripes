@@ -65,7 +65,8 @@ Messages received during the install such as, "Package [package] not found" or
 * Make any necessary additions to the project's `CHANGELOG.md` describing how the new release differs from the previous one. The purpose of the change-log is to allow a module developer to answer the question "Do I need to upgrade to the new version of this package?", so aim for a high-level overview rather than enumerating every change, and concentrate on API-visible rather than internal changes.
 * Set the date of the release in `CHANGELOG.md`, adding a link to the tag and another to the full set of differences from the previous release as tracked on GitHub: follow the formatting of earlier change-log entries.
 * Commit the `package.json` and `CHANGELOG.md` changes with the message "Release vVERSION". For example, `git commit -m "Release v2.3.0" .`
-* Push the branch to GitHub, e.g. `git push -u origin v2.3.0`, create a Pull Request for it, and merge it.
+* Push the branch to GitHub, e.g. `git push -u origin v2.3.0`.
+* Create a Pull Request for it, and merge it.
 * After the merge, checkout the master branch and create a tag for the specific version to be released, e.g. `git checkout master; git pull; git tag v2.3.0`. If there have been other changes to master since the merge commit, supply the checksum of the merge commit to make sure the tag is applied to the correct commit, e.g. `git tag v2.3.0 c0ffee`.
 * Push the release tag to git, e.g. `git push origin tag v2.3.0`.
 * Build and publish release artifacts.  Log into https://jenkins-aws.indexdata.com with your folio-org Github credentials.  Select the project you want to release under the GitHub 'folio-org' folder and select the 'Tags' tab.    Select the Git tag you want to release and then run 'Build Now' to build the release artifacts.  (Note: You may require additional permissions to build the release.  Contact a FOLIO DevOps administrator if needed.)
