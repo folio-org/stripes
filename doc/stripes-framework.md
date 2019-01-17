@@ -129,3 +129,5 @@ Review STRIPES-577 and the following changelogs for any breaking changes with yo
 For `ui-*` modules, upgrade your version of `@folio/stripes` from `^1.1.0` to `^2.0.0` in both _devDependencies_ and _peerDependencies_.
 
 For platforms, upgrade your version of `@folio/stripes` from `^1.1.0` to `^2.0.0` in _dependencies_.
+
+For both `ui-*` modules and platforms, upgrade your devDependency of `stripes-cli` to `^1.8.0`.
