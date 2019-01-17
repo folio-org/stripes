@@ -126,6 +126,6 @@ Review STRIPES-577 and the following changelogs for any breaking changes with yo
 * [stripes-components v5.0.x](https://github.com/folio-org/stripes-components/blob/master/CHANGELOG.md#500-2019-01-15)
 * [stripes-smart-components v2.0.x](https://github.com/folio-org/stripes-smart-components/blob/master/CHANGELOG.md#200-2019-01-16)
 
-For `ui-*` modules, upgrade your version of `@folio/stripes` from `^1.1.0` to `^2.0.1` in both _devDependencies_ and _peerDependencies_.
+For `ui-*` modules, upgrade your version of `@folio/stripes` from `^1.1.0` to `^2.0.0` in both _devDependencies_ and _peerDependencies_.
 
-For platforms, upgrade your version of `@folio/stripes` from `^1.1.0` to `^2.0.1` in _dependencies_.
+For platforms, upgrade your version of `@folio/stripes` from `^1.1.0` to `^2.0.0` in _dependencies_.
