@@ -3,9 +3,11 @@
 * [Introduction](#introduction)
 * [Modules](#modules)
 * [Usage](#usage)
-* [Migrating](#migrating)
-* [Upgrading to v1.1](#upgrading-to-v11)
-* [Upgrading to v2.0](#upgrading-to-v20)
+* [Release procedure](#release-procedure)
+* [Upgrade notes](#upgrade-notes)
+    * [Migrating to v1.0](#migrating-to-v10)
+    * [Upgrading to v1.1](#upgrading-to-v11)
+    * [Upgrading to v2.0](#upgrading-to-v20)
 
 
 ## Introduction
@@ -56,7 +58,32 @@ import { AddressEditList } from '@folio/stripes/smart-components';
 Note: Beginning with version 1.6, [stripes-cli](https://github.com/folio-org/stripes-cli) generates new apps using `stripes` framework.
 
 
-## Migrating
+## Release procedure
+
+When releasing a new version of `stripes` framework, follow the general [release procedure](./release-procedure.md) for each of the individual `stripes-*` modules contained within `stripes` and for `stripes` itself.  The following describes additional steps that should be taken into consideration when upgrading the framework and rolling it out to ui-modules and platforms.
+
+> Note: Until STRIPES-588 is addressed, if any one `stripes-*` module requires a major or minor version bump, then all `stripes-*` modules should receive a major or minor version bump.  This avoids leaking dependencies from the new release into the old release which can lead to duplicate instances of `stripes-components`.
+
+* Update and release individual `stripes-*` modules.
+  * Remember to update version numbers of any inter-stripes dependencies.
+* Update and release `stripes` framework.
+  * Include links to `stripes-*` module changelogs in the `stripes` [changelog](https://github.com/folio-org/stripes/blob/master/CHANGELOG.md).
+* Document `ui-*`/`platform-*` update procedure in the [upgrade notes](#upgrade-notes).
+* Update `platform-*` snapshot branches locally (peerDependency install warnings expected) and review any errors.
+  * For an early check, do this before releasing `stripes` by pointing your local platform to the release branch of `stripes`.
+  * Commit changes and release snapshot version when things look good.
+  * Note: `platform-complete` snapshot depends on the snapshot release of `platform-core`.
+* Update and release `ui-*` module versions (if applicable, will be necessary for breaking changes).
+* Update and release other relevant `platform-*` branches (quarterly/master/next-release).
+* Update Stripes-CLI's ui-module blueprint to reference the new stripes-framework version, update the stripes-core version (if applicable), and release stripes-cli.
+
+
+## Upgrade notes
+
+The following captures the general upgrade notes from one version of `stripes` framework to another.  Take into account notes between your current version and the version to upgrade to.  For instance, if upgrading from `1.0` to `2.0`, review the steps for `1.1` and `2.0`.
+
+
+### Migrating to v1.0
 
 To migrate existing apps developed prior to the introduction of stripes framework, begin by adding `stripes` to your package.json as noted [above](#usage).
 
@@ -77,7 +104,7 @@ Review the [stripes-components 4.x changelog](https://github.com/folio-org/strip
 Finally remove all individual `stripes-*` dependencies from your app's package.json.  Re-run your app to verify everything is working properly.
 
 
-## Upgrading to v1.1
+### Upgrading to v1.1
 
 Upgrading to `stripes` version `1.1.0`, requires some minor adjustments to package.json.  The process varies slightly for ui-modules and platforms.
 
@@ -119,7 +146,7 @@ To upgrade a platform, add dependencies for `react`, `react-dom`, `react-redux`,
 Finally, for both ui-modules and platforms, regenerate your `yarn.lock` file, if applicable.
 
 
-## Upgrading to v2.0
+### Upgrading to v2.0
 
 Review STRIPES-577 and the following changelogs for any breaking changes with your use of `stripes-*` dependencies.  Breaking changes have been throwing deprecation warnings for some time, so these should not be new.  Update usage of affected components if you haven't done so already.
 * [stripes-core v3.0.x](https://github.com/folio-org/stripes-core/blob/master/CHANGELOG.md#300-2019-01-15)
