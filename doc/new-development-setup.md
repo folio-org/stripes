@@ -665,7 +665,7 @@ alias stripes='node /path/to/my/workspace/node_modules/.bin/stripes $*'
 
 Additional information can be found in the Stripes CLI [User Guide](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md). This includes an overview on using the CLI to [interact with Okapi](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md#interacting-with-okapi), [create UI permissions](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md#managing-ui-permissions), and [generate a production build](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md#generating-a-production-build).
 
-Review the [Stripes Module Developer Guide](https://github.com/folio-org/stripes-core/blob/master/doc/dev-guide.md) and [Stripes Components README](https://github.com/folio-org/stripes-components/blob/master/README.md) for information on developing your apps.
+Review the [Stripes Module Developer Guide](./dev-guide.md) and [Stripes Components README](https://github.com/folio-org/stripes-components/blob/master/README.md) for information on developing your apps.
 
 The stripes-cli [command reference](https://github.com/folio-org/stripes-cli/blob/master/doc/commands.md) includes additional options for all commands used above.  You can also obtain the same information at your terminal with the `--help` option for any command.
 ```
