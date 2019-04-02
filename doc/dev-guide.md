@@ -48,7 +48,6 @@
         * [Note on sharing resources between components](#note-on-sharing-resources-between-components)
     * [Modifiable local state](#modifiable-local-state)
     * [Firing actions](#firing-actions)
-* [Component structure in Stripes UI modules](#component-structure-in-stripes-ui-modules)
 * [Appendix A: Escaping to Redux](#appendix-a-escaping-to-redux)
 * [Appendix B: Mandatory back-end services for stripes-core](#appendix-b-mandatory-back-end-services-for-stripes-core)
 
