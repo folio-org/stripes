@@ -4,6 +4,6 @@ buildNPM {
   publishModDescriptor = 'no'
   runLint = 'yes'
   runTest = 'yes'
-  checkStripesDupes = true
+  runDupeCheck = true
   runSonarqube = true
 }
