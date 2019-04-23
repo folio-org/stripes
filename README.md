@@ -1,6 +1,6 @@
 # Stripes
 
-Copyright (C) 2017-2018 The Open Library Foundation
+Copyright (C) 2017-2019 The Open Library Foundation
 
 This software is distributed under the terms of the Apache License,
 Version 2.0. See the file "[LICENSE](LICENSE)" for more information.
@@ -28,7 +28,7 @@ Guides for development and testing
 
 * [Stripes module developer's guide](doc/dev-guide.md)
 * [Stripes CLI user guide](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md)
-* [Migrate to Stripes framework](doc/stripes-framework.md#migrating) - How to migrate an existing app to Stripes framework v1.0 
+* [Migrate to Stripes framework](doc/stripes-framework.md#migrating) - How to migrate an existing app to Stripes framework v1.0
 * [Stripes-core](https://github.com/folio-org/stripes-core/blob/master/README.md)  - Details on Stripes core features including permissions and settings
 * [Stripes-components](https://github.com/folio-org/stripes-components/blob/master/README.md) - The UI component library for Stripes
 * Unit test guide - Test Stripes apps with BigTest (placeholder)
