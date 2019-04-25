@@ -14,6 +14,7 @@
         * [Unit-testing](#unit-testing)
         * [Code-review](#code-review)
     * [Specifying dependencies](#specifying-dependencies)
+* [Guidelines for structuring your Stripes module](#guidelines-for-structuring-your-stripes-module)
 * [Development](#development)
     * [The Stripes object](#the-stripes-object)
     * [Connecting a component](#connecting-a-component)
@@ -47,7 +48,6 @@
         * [Note on sharing resources between components](#note-on-sharing-resources-between-components)
     * [Modifiable local state](#modifiable-local-state)
     * [Firing actions](#firing-actions)
-* [Component structure in Stripes UI modules](#component-structure-in-stripes-ui-modules)
 * [Appendix A: Escaping to Redux](#appendix-a-escaping-to-redux)
 * [Appendix B: Mandatory back-end services for stripes-core](#appendix-b-mandatory-back-end-services-for-stripes-core)
 
@@ -181,6 +181,65 @@ Specifically:
 * Every package that a module imports (`react`, `react-router`, `stripes-components`, etc.) should be declared as a dependency in `package.json` -- most easily added using `yarn add` _packageName_.
 
 * When `stripes-connect` is used -- even when it's not imported, but the curried `connect` function from the props of the top-level component is used -- it should be declared as a peer-dependency. (This is essentially specifying what version of the stripes-connect API we are relying on.)
+
+
+
+
+## Guidelines for structuring your Stripes module
+
+
+
+### Define all your routes at the top
+
+Although `react-router` encourages it, nesting `<Route>` components throughout the module and dependencies can complicate refactoring. Instead, prefer to contain all routes in the top-level `index.js`. Beyond making it easier to move things around, this serves to quickly orient any developers new to the codebase. Also helpful for those who haven't seen it in a while.
+
+To help facilitate, `stripes-core` exports a wrapper for `<Route>` which will pass children of a route into the component responsible for rendering it. For example, in this JSX, `<SettingsLayout>` would be passed the children of the the `<Route>` that points to it which it could then into an appropriate part of the layout it provides:
+
+```
+<Route path="/settings" component={SettingsLayout}>
+  <Switch>
+    <Route path="/settings/foo" component={FooSettings}/>
+    <Route path="/settings/bar" component={BarSettings}/>
+  </Switch>
+</Route>
+```
+
+NB. This only passes children into a component specified via the `component` prop.
+
+
+### Fetch data in the route component
+
+Similarly, it helps to group all data access in the component handling the route. Not only remote data, but data persisted in state management tools and browser storage. Most data needs will be implied by the URL, beyond a few exceptions like autocomplete fields and intentional lazy-loading of collapsed components not toggled in the URL. For the rest, choosing to get all the data up front in the component handling the route and pass it down from there provides several benefits:
+
+* reduces coupling to the service APIs and makes it easier to maintain as our tools for accessing them evolve
+* prevents unnecessary flickering as nested components are progressively populated
+* a page transition is a natural time for users to expect a delay for fetching
+* naturally encourages good practice
+  * separation of business logic and presentation
+  * "data down, events up"
+
+To help people find their way around the module, group these components together in `src/routes`. While you might name the folder something else, this pattern can still apply to modules without routes (such as plugins) where data access can be floated as high as it will reasonably go in the component hierarchy and these container components grouped together.
+
+
+### Be wary of reusing glue
+
+In Stripes, and component-based design more generally, the goal is to build self-contained abstractions of some specific functionality. Components are thus largely concerned only with what is passed in as props. "Glue" is everything else that strings them together to form a cohesive app. For example:
+
+* persisting state locally or to a remote service
+* <Route> components, updates to the URL
+* managing focus as users move through the app
+
+It was considered that Stripes should simply avoid reusing this type of code. Some repetition would allow us the flexibility to refactor applications quickly on a case by case basis as they would not be coupled to a big abstraction where making use of it is an all-or-nothing proposition. However, inevitably there are patterns in our application and data model where it'd be expedient if we could reuse a large swath of code, glue and all. So it makes sense to plan for that:
+
+1. build reusable functionality without glue code
+1. layer reusable glue on top of that
+
+The goal is that consuming applications are able to gracefully back out of the abstraction you provide and the expectation is that what they will most likely want to change is in the glue code. It helps to work along similar lines to what we propose for apps -- all the routes in one place, data is fetched in the components that handle the routes. This way most of your shared code can still be used in an app that is being refactored to persist the data somewhere else, name the routes differently, or lay things out in a different structure.
+
+
+### The URL should reflect what's on the screen
+
+In past we'd persist some state in the URL for parts of the interface that were hidden behind one or more full page overlays. This became difficult to manage and resulted in delay when linking directly to the overlay as the underlying page often needed to fetch data. In order to avoid this situation, prefer instead to use a new route and have the close button link back to the previous page.
 
 
 
@@ -711,32 +770,6 @@ For remote resource (of type `rest` and `okapi`) there are three functions, name
 * `DELETE` -- deletes an old record on the remote service.
 
 For these mutator functions, the argument represents a record being CRUDded to the service. Note that by design _there is no GET mutator_: applications should never need to fetch their own data, but always get it implicitly, passed into props.
-
-
-
-
-## Component structure in Stripes UI modules
-
-At least two "styles" are possible when designing the set of components that will make up a Stripes UI module. It's possible to build modules where one big component does most or all of the stripes-connecting, and drives many much simpler unconnected subcomponents; or a module may consist of many small components that are each stripes-connected to obtain the data they display. Which is better?
-
-The Redux community leans towards fewer connected components where possible, as components that are purely functions of their props are easiest to debug, test and maintain. This is a good rule of thumb for stripes-connected components, too: aim for fewer connected components except where doing that means going more than a little bit out of the way and creating convoluted code.
-
-However, when using connected components, another consideration comes into play. A connected component will fetch data when it's instantiated as specified by its manifest -- and if the user does not have the necessary permissions, this will result in a WSAPI error. A good strategy to avoid this is to break a large component with several stripes-connect resources into several smaller components with one resource each; and have a master component include each of them only if the relevant permission is in place:
-
-```js
-class ViewUser extends Component {
-  // ...
-  render() {
-    return (
-      <IfPermission perm="perms.users.get">
-        <this.connectedUserPermissions {...this.props} />
-      </IfPermission>
-    }
-  }
-}
-```
-
-So our experience at this stage is that it may be better to err on the side of many small components than a few large ones. But "There are no 'cookbook' methods that can replace intelligence, experience and good taste in design and programming" -- Bjarne Stroustrup.
 
 
 
