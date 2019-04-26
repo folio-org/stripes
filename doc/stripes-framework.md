@@ -9,7 +9,7 @@
 		- [Migrating to v1.0](#migrating-to-v10)
 		- [Upgrading to v1.1](#upgrading-to-v11)
 		- [Upgrading to v2.0](#upgrading-to-v20)
-		- [Upgrading to v2.5](#upgrading-to-v25)
+		- [Upgrading to v2.6](#upgrading-to-v26)
 
 
 ## Introduction
@@ -162,10 +162,10 @@ For platforms, upgrade your version of `@folio/stripes` from `^1.1.0` to `^2.0.0
 For both `ui-*` modules and platforms, upgrade your devDependency of `stripes-cli` to `^1.8.0`.
 
 
-### Upgrading to v2.5
+### Upgrading to v2.6
 
 For `ui-*` modules: 
-  - Upgrade your version of `@folio/stripes` from `^2.0.0` to `^2.5.0` in both _devDependencies_ and _peerDependencies_. 
+  - Upgrade your version of `@folio/stripes` from `^2.0.0` to `^2.6.0` in both _devDependencies_ and _peerDependencies_. 
   - Remove both path-based imports from `@stripes-core`:
 ```
 - import setupStripesCore from '@folio/stripes-core/test/bigtest/helpers/setup-application';
