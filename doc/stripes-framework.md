@@ -1,13 +1,15 @@
 # Stripes Framework
 
-* [Introduction](#introduction)
-* [Modules](#modules)
-* [Usage](#usage)
-* [Release procedure](#release-procedure)
-* [Upgrade notes](#upgrade-notes)
-    * [Migrating to v1.0](#migrating-to-v10)
-    * [Upgrading to v1.1](#upgrading-to-v11)
-    * [Upgrading to v2.0](#upgrading-to-v20)
+- [Stripes Framework](#stripes-framework)
+	- [Introduction](#introduction)
+	- [Modules](#modules)
+	- [Usage](#usage)
+	- [Release procedure](#release-procedure)
+	- [Upgrade notes](#upgrade-notes)
+		- [Migrating to v1.0](#migrating-to-v10)
+		- [Upgrading to v1.1](#upgrading-to-v11)
+		- [Upgrading to v2.0](#upgrading-to-v20)
+		- [Upgrading to v2.6](#upgrading-to-v26)
 
 
 ## Introduction
@@ -158,3 +160,20 @@ For `ui-*` modules, upgrade your version of `@folio/stripes` from `^1.1.0` to `^
 For platforms, upgrade your version of `@folio/stripes` from `^1.1.0` to `^2.0.0` in _dependencies_.
 
 For both `ui-*` modules and platforms, upgrade your devDependency of `stripes-cli` to `^1.8.0`.
+
+
+### Upgrading to v2.6
+
+For `ui-*` modules: 
+  - Upgrade your version of `@folio/stripes` from `^2.0.0` to `^2.6.0` in both _devDependencies_ and _peerDependencies_. 
+  - Remove both path-based imports from `@stripes-core`:
+```
+- import setupStripesCore from '@folio/stripes-core/test/bigtest/helpers/setup-application';
++ import { setupStripesCore } from '@folio/stripes/core/test';
+```
+and
+```
+- import startMirage from '@folio/stripes-core/test/bigtest/network/start';
++ import { startMirage } from '@folio/stripes/core/test';
+```
+  - Remove `@folio/stripes-core` from _devDependencies_.
