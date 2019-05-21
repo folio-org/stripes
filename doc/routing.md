@@ -1,4 +1,15 @@
 # Routing guide
+* [Routing Components](#routing-components)
+** [Route](#route)
+** [Switch](#switch)
+** [Link](#link)
+* [Routing Strategy](#routing-strategy)
+* [Routing Params](#routing-params)
+* ["Route" or container components and "view" components](#route-components-or-containers-and-view-components)
+* [Navigation](#navigation)
+* [Back buttons](#back-buttons)
+* [Application structure](#application-structure)
+* [Converting from layer-based routes](#converting-from-layer-based-routes)
 
 Routing in FOLIO apps is handled via React-router, which conditionally renders components based on the content of the browser's address bar.
 ```
@@ -7,12 +18,12 @@ import { Route } from '@folio/stripes/core';
 ```
 When the address bar contains the path "/users", the `UsersContainer` component will be rendered - whether the address was reached from a clicked link from an internal or external source, or if the user entered it into the address bar manually.
 
-# Routing Components
+## Routing Components
 `stripes-core` provides exports of `react-router` components. The primary ones that you will make use of are `<Route/>`, `<Switch/>`, and `<Link/>`.
 
-## `<Route>`
+### `<Route>`
 As mentioned before, `<Route>` accepts a `path` prop and a `component` prop. When the browsers' location path matches the `path` prop, the React component provided in the `component` prop will render. This component will be passed certain react-router props of `location`, `history`, and `match` which will be discussed later.
-## `<Switch>`
+### `<Switch>`
 Contains a list of `<Routes` as children and will render **the first** in the list that matches its `path` prop.
 ```
 <Switch>
@@ -22,7 +33,7 @@ Contains a list of `<Routes` as children and will render **the first** in the li
 ```
 In this example, the location `/users/loans/loanid` would match both `<Route>` paths, but since the first one matches, it will be the only one rendered.
 
-## `<Link>`
+### `<Link>`
 These components render anchor tags. They are passed a `to` prop that can either be a string url, or a `location` object containing a `pathname`, `search`, `hash`, and `state`  keys. The first 3 relate to parts of the URL, and state is an object that will persist and be passed through to the next route-rendered component for its possible consumption via its `location` prop.
 ```
 const id = '123456';
@@ -196,7 +207,7 @@ Routing set up can impact folder structure, so this is a suggested layout to kee
 ---- /views // top-level presentational components
 ---- ...other presentational component folders...
 ```
-## Notes on converting from layer-based routes
+## Converting from layer-based routes
 - query.layer is no longer necessary, so the associated event handlers/conditional rendering can be removed. This can result in dramatic code reduction and better maintainability.
 - Routes of your application should be independent. Either house prop values/handlers in a separate file, or move them to the view components themselves.
 - View components should handle their own 'loading' state. Simple conditional rendering can greatly improve the user experience. 
