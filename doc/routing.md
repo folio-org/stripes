@@ -1,8 +1,8 @@
 # Routing guide
 * [Routing Components](#routing-components)
-** [Route](#route)
-** [Switch](#switch)
-** [Link](#link)
+    * [Route](#route)
+    * [Switch](#switch)
+    * [Link](#link)
 * [Routing Strategy](#routing-strategy)
 * [Routing Params](#routing-params)
 * ["Route" or container components and "view" components](#route-components-or-containers-and-view-components)
