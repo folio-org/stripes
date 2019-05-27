@@ -33,7 +33,8 @@ Guides for development and testing
 * [Stripes-components](https://github.com/folio-org/stripes-components/blob/master/README.md) - The UI component library for Stripes
 * Unit test guide - Test Stripes apps with BigTest (placeholder)
 * Integration test guide - Integration tests with Nightmare (placeholder) _Note: The [old documentation](https://github.com/folio-org/ui-testing/blob/master/README.md) is still mostly relevant, but tests are now invoked by the CLI_
-* [i18n best practices](doc/i18n.md) - Overview and examples
+* [Accessibility (a11y) in Stripes](https://github.com/folio-org/stripes-components/blob/master/docs/Accessibility.md)
+* [Internationalization (i18n) best practices](doc/i18n.md) - Overview and examples
 * [Release procedure](doc/release-procedure.md) - For all front-end `ui-*` and `stripes-*` modules
 * [Depending on unreleased features](doc/depending-on-unreleased-features.md)
 * [Troubleshooting guide](doc/troubleshooting.md) - An evolving troubleshooting guide
