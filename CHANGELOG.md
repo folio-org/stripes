@@ -1,5 +1,9 @@
 # Change history for stripes
 
+## 2.7.0 (IN PROGRESS)
+
+* Don't export `default` from repos that don't include it. Fixes STRIPES-631.
+
 ## [2.6.1](https://github.com/folio-org/stripes/tree/v2.6.1) (2019-05-13)
 
 * `stripes-core` `3.5.1` https://github.com/folio-org/stripes-core/releases/tag/v3.5.1
