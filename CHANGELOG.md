@@ -3,6 +3,10 @@
 ## 2.7.0 (IN PROGRESS)
 
 * Don't export `default` from repos that don't include it. Fixes STRIPES-631.
+* `stripes-components` `5.6.0`
+* `stripes-core` `3.6.0`
+* `stripes-smart-components` `2.7.0`
+* `stripes-form` `2.6.0`
 
 ## [2.6.1](https://github.com/folio-org/stripes/tree/v2.6.1) (2019-05-13)
 
