@@ -105,16 +105,16 @@ The unit of UI development is the _module_. A Stripes UI module is a self-contai
 
 A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(software)). In addition to [the usual information in its `package.json`](https://docs.npmjs.com/files/package.json), a Stripes module must provide a `stripes` entry containing metadata describing the module and providing information that stripes-core can use to implement aspects of its functionality.
 
-When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now with the special `showSettings` property set true.
+When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now the `actAs` prop will be set to "settings".
 
 
 #### The package-file `stripes` entry
 
 Within the `stripes` top-level key of a Stripes module's package file, the following information must be provided:
 
-* `type` -- a short string indicating what the type of the module is, and how it therefore behaves within the Stripes application. Acceptable values are:
+* `actsAs` -- a short string (or array of them) indicating how Stripes should consume the module. Acceptable values are one or more of:
   * `app` -- a regular application, which is listed among those available and which when activated uses essentially the whole screen.
-  * `settings` -- a settings pane that is listed in the settings menu but does not present a full-page application.
+  * `settings` -- a settings pane that is listed in the settings menu.
   * `plugin` -- a plugin module that can be included by a component any other module, whether app, settings or another plugin. See [below](#plugins).
   * `handler` -- a handler module which will be initialized and rendered when certain FOLIO events (`login`, `logout`) occur in the system. See [below](#handlers-and-events).
 
@@ -125,8 +125,6 @@ Within the `stripes` top-level key of a Stripes module's package file, the follo
 * `route` -- the route (partial URL) by which an application module is addressed: for example, the Okapi Console module might be addressed at `/console`. The same route is used as a subroute within `/settings` to present the module's settings, if any.
 
 * `home` -- the first page of the module that should be presented to users, if this is different from the `route`. (It may be different because of default options being selected: for example, the Users module might be set up so that by default it limits its user-list to active users: this could be expressed with a `home` setting of `/users?filters=active.Active`.)
-
-* `hasSettings` -- for "app" modules, if this is true then a settings pane is also provided, and a link will be listed in the Settings area. If this is false (the default) no settings are shown for the module. This is ignored for "settings" modules.
 
 * `okapiInterfaces` -- an optional object containing dependencies on back-end modules provided via Okapi. Each dependency is expressed by an entry whose key is a FOLIO interface name such as `users` or `circulation`, and whose corresponding value is a two-faceted [interface-version number](https://github.com/folio-org/okapi/blob/master/doc/guide.md#versioning-and-dependencies). Each entry expresses a dependency on the specified Okapi interface at the indicated version or higher (but within the same major version).
 
