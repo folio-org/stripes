@@ -105,7 +105,7 @@ The unit of UI development is the _module_. A Stripes UI module is a self-contai
 
 A module is presented as an [NPM package](https://en.wikipedia.org/wiki/Npm_(software)). In addition to [the usual information in its `package.json`](https://docs.npmjs.com/files/package.json), a Stripes module must provide a `stripes` entry containing metadata describing the module and providing information that stripes-core can use to implement aspects of its functionality.
 
-When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component. When a user enters a settings module or the settings of an application module, that same component is invoked, but now the `actAs` prop will be set to "settings".
+When a user enters an application module, its top-level component -- usually `index.js` is executed, and whatever it exports is invoked as a React component with the `actAs` prop set to "app". When a user enters a settings module or the settings of an application module, that same component is invoked, but now the `actAs` prop will be set to "settings". Other module types are similarly reflected in `actAs`.
 
 
 #### The package-file `stripes` entry
@@ -128,7 +128,7 @@ Within the `stripes` top-level key of a Stripes module's package file, the follo
 
 * `okapiInterfaces` -- an optional object containing dependencies on back-end modules provided via Okapi. Each dependency is expressed by an entry whose key is a FOLIO interface name such as `users` or `circulation`, and whose corresponding value is a two-faceted [interface-version number](https://github.com/folio-org/okapi/blob/master/doc/guide.md#versioning-and-dependencies). Each entry expresses a dependency on the specified Okapi interface at the indicated version or higher (but within the same major version).
 
-* `permissionsets` -- an optional list of permission-sets describing access to parts of the user-facing application that the module implements. These will typically be very high-level permissions, most likely defined as the union of several high-level permissions provided by back-end modules. They are provided in exactly the same format as those in [a back-end module's `ModuleDescriptor.json`](https://github.com/folio-org/okapi/blob/master/doc/guide.md#example-4-complete-moduledescriptor).
+* `permissionSets` -- an optional list of permission-sets describing access to parts of the user-facing application that the module implements. These will typically be very high-level permissions, most likely defined as the union of several high-level permissions provided by back-end modules. They are provided in exactly the same format as those in [a back-end module's `ModuleDescriptor.json`](https://github.com/folio-org/okapi/blob/master/doc/guide.md#example-4-complete-moduledescriptor).
 
 * `queryResource` -- if defined, this is the name of an anointed stripes-connect resource whose contents always reflect the query parameters of the URL, and which can be mutated to change the URL. See [URL navigation](#url-navigation) below.
 
