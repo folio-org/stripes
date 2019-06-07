@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@folio/stripes-components": "~5.4.0",
-    "@folio/stripes-connect": "~5.2.0",
+    "@folio/stripes-connect": "~5.2.1",
     "@folio/stripes-core": "~3.6.0",
     "@folio/stripes-form": "~2.6.0",
     "@folio/stripes-logger": "~1.0.0",
