@@ -1,12 +1,13 @@
 # Change history for stripes
 
-## 2.7.0 (IN PROGRESS)
+## [2.7.0](https://github.com/folio-org/stripes/tree/v2.7.0) (2019-06-07)
 
 * Don't export `default` from repos that don't include it. Fixes STRIPES-631.
-* `stripes-components` `5.6.0`
-* `stripes-core` `3.6.0`
-* `stripes-smart-components` `2.7.0`
-* `stripes-form` `2.6.0`
+* `stripes-components` `5.4.0` https://github.com/folio-org/stripes-components/releases/tag/v5.4.0
+* `stripes-connect` `5.2.1` https://github.com/folio-org/stripes-connect/releases/tag/v5.2.1
+* `stripes-core` `3.6.0` https://github.com/folio-org/stripes-core/releases/tag/v3.6.0
+* `stripes-smart-components` `2.7.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v2.7.0
+* `stripes-form` `2.6.0` https://github.com/folio-org/stripes-form/releases/tag/v2.6.0
 
 ## [2.6.1](https://github.com/folio-org/stripes/tree/v2.6.1) (2019-05-13)
 
