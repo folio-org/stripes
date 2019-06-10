@@ -1,5 +1,9 @@
 # Change history for stripes
 
+## [2.7.1](https://github.com/folio-org/stripes/tree/v2.7.1) (2019-06-10)
+
+* `stripes-smart-components` `2.7.1` https://github.com/folio-org/stripes-smart-components/releases/tag/v2.7.1
+
 ## [2.7.0](https://github.com/folio-org/stripes/tree/v2.7.0) (2019-06-07)
 
 * Don't export `default` from repos that don't include it. Fixes STRIPES-631.
