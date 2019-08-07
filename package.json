@@ -16,13 +16,13 @@
     "lint": "eslint ./"
   },
   "dependencies": {
-    "@folio/stripes-components": "~5.5.0",
+    "@folio/stripes-components": "~5.6.0",
     "@folio/stripes-connect": "~5.3.0",
-    "@folio/stripes-core": "~3.7.0",
-    "@folio/stripes-form": "~2.7.0",
-    "@folio/stripes-final-form": "~1.0.0",
+    "@folio/stripes-core": "~3.8.0",
+    "@folio/stripes-form": "~2.8.0",
+    "@folio/stripes-final-form": "~1.1.0",
     "@folio/stripes-logger": "~1.0.0",
-    "@folio/stripes-smart-components": "~2.8.0",
+    "@folio/stripes-smart-components": "~2.9.0",
     "@folio/stripes-util": "~1.5.0",
     "react": "~16.8.6",
     "react-dom": "~16.8.6",
