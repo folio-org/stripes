@@ -2,7 +2,11 @@
 
 ## [2.9.0](https://github.com/folio-org/stripes/tree/v2.9.0) (2019-08-01)
 
-* `stripes-final-form` `1.0.0` https://github.com/folio-org/stripes-final-form/releases/tag/v1.0.0
+* `stripes-components` `5.6.0` https://github.com/folio-org/stripes-components/releases/tag/v5.6.0
+* `stripes-core` `3.8.0` https://github.com/folio-org/stripes-core/releases/tag/v3.8.0
+* `stripes-form` `2.8.0` https://github.com/folio-org/stripes-form/releases/tag/v2.8.0
+* `stripes-final-form` `1.1.0` https://github.com/folio-org/stripes-final-form/releases/tag/v1.1.0
+* `stripes-smart-components` `2.9.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v2.9.0
 
 ## [2.8.0](https://github.com/folio-org/stripes/tree/v2.8.0) (2019-07-24)
 
