@@ -310,6 +310,12 @@ The Stripes object contains the following elements:
 
   * `hasAllPerms` -- a boolean indicating whether to assume that the user has all permissions. Obviously this should usually be false (the default); setting it to true can be useful in development, but does not grant any real escalation in privilege, since server-side permission checks cannot be bypassed.
 
+  * `welcomeMessage` -- the name of a translation key, such as `ui-rs.front.welcome`, which is looked up in the prevailing locale to obtain the welcome message shown on the FOLIO app's home page. If not specified, defaults to `stripes-core.front.welcome`.
+
+  * `platformName` -- a short string naming the application platform, which is used in the window title and in the home page's main caption. If not specified, defaults to `FOLIO`.
+
+  * `platformDescription` -- a longer string describing the application platform, which is not currently used but could for example be hover text for the home page icon. If not specified, defaults to `FOLIO platform`.
+
 For convenience in declaring the property-type of the Stripes object, a `stripesShape` object is provided, and can be imported from `@folio/stripes-core/src/Stripes`.
 
 
