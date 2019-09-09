@@ -1,5 +1,14 @@
 # Change history for stripes
 
+## [2.10.0](https://github.com/folio-org/stripes/tree/v2.10.0) (2019-09-09)
+
+* `stripes-components` `5.7.0` https://github.com/folio-org/stripes-components/releases/tag/v5.7.0
+* `stripes-connect` `5.4.0` https://github.com/folio-org/stripes-connect/releases/tag/v5.4.0
+* `stripes-core` `3.9.0` https://github.com/folio-org/stripes-core/releases/tag/v3.9.0
+* `stripes-form` `2.9.0` https://github.com/folio-org/stripes-form/releases/tag/v2.9.0
+* `stripes-final-form` `1.2.0` https://github.com/folio-org/stripes-final-form/releases/tag/v1.2.0
+* `stripes-smart-components` `2.10.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v2.10.0
+
 ## [2.9.0](https://github.com/folio-org/stripes/tree/v2.9.0) (2019-08-01)
 
 * `stripes-components` `5.6.0` https://github.com/folio-org/stripes-components/releases/tag/v5.6.0
