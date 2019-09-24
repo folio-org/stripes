@@ -184,8 +184,10 @@ yarn add --peer _packageName_
 The following packages must be included as peerDependencies only. They will be provided to the bundle by the platform's `package.json` where they will be specified as dependencies:
 * react
 * react-dom
+* react-redux
 * react-router
 * react-router-dom
+* redux
 * @folio/stripes
 
 ## Guidelines for structuring your Stripes module
