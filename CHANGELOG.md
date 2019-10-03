@@ -1,5 +1,9 @@
 # Change history for stripes
 
+## 2.12.0 (IN PROGRESS)
+
+* Accept react, react-dom, react-redux, and redux as peerDependencies. (Refs STCOM-581)
+
 ## [2.11.1](https://github.com/folio-org/stripes/tree/v2.11.1) (2019-09-27)
 
 * `stripes-core` `3.10.1` https://github.com/folio-org/stripes-core/releases/tag/v3.10.1
