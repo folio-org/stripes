@@ -1,5 +1,9 @@
 # Change history for stripes
 
+## [2.11.2](https://github.com/folio-org/stripes/tree/v2.11.2) (2019-10-08)
+
+* No changes since 2.11.1, but we need a new `latest` to trick yarn; see STCOR-393.
+
 ## [2.11.1](https://github.com/folio-org/stripes/tree/v2.11.1) (2019-09-27)
 
 * `stripes-core` `3.10.1` https://github.com/folio-org/stripes-core/releases/tag/v3.10.1
