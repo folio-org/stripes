@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes",
-  "version": "2.11.1",
+  "version": "2.11.2",
   "description": "Stripes framework",
   "repository": "https://github.com/folio-org/stripes",
   "publishConfig": {
