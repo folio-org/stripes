@@ -30,7 +30,7 @@
     "redux": "~3.7.2"
   },
   "devDependencies": {
-    "@folio/eslint-config-stripes": "^3.2.1",
-    "eslint": "^5.0.0"
+    "@folio/eslint-config-stripes": "^5.0.0",
+    "eslint": "^6.2.1"
   }
 }
