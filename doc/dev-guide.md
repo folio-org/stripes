@@ -172,16 +172,24 @@ If you are not sure about some code you have written, ask for a code review from
 
 ### Specifying dependencies
 
-ESLint cleanliness means, among other things, that every package that a module uses must be listed as a dependency in its `package.json`. Modules may not blindly rely on the provision of facilities such as React and Redux via Stripes Core, but must specify for themselves what they use, and what version they require.
+ESLint cleanliness means, among other things, that every package a module uses must be listed as a dependency in its `package.json`. Packages containing components that will be shared across module boundaries must be included as peerDependencies. Even API-compatible versions of a package (i.e. with a difference only in the minor or patch version) will cause React to crash if multiple versions are included in the bundle and their components are exchanged across modules, e.g. a `Route` in an app is rendered within the `Router` context provided by stripes-core and the app and stripes-core have different versions of react-router.
 
-Specifically:
+Let `yarn` help you manage your packages. It's better at alphabetizing things than you are:
 
-* Every package that a module imports (`react`, `react-router`, `stripes-components`, etc.) should be declared as a dependency in `package.json` -- most easily added using `yarn add` _packageName_.
+```
+yarn add _packageName_
+yarn add --peer _packageName_
+```
 
-* When `stripes-connect` is used -- even when it's not imported, but the curried `connect` function from the props of the top-level component is used -- it should be declared as a peer-dependency. (This is essentially specifying what version of the stripes-connect API we are relying on.)
-
-
-
+The following packages must be included as peerDependencies only. They will be provided to the bundle by the platform's `package.json` where they will be specified as dependencies:
+* react
+* react-dom
+* react-redux
+* react-router
+* react-router-dom
+* redux
+* rxjs
+* @folio/stripes
 
 ## Guidelines for structuring your Stripes module
 
