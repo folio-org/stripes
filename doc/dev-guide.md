@@ -188,6 +188,7 @@ The following packages must be included as peerDependencies only. They will be p
 * react-router
 * react-router-dom
 * redux
+* rxjs
 * @folio/stripes
 
 ## Guidelines for structuring your Stripes module
