@@ -6,6 +6,7 @@
     * [Check dependencies](#check-dependencies)
 * [Release procedure](#release-procedure)
 * [Working towards the next release](#working-towards-the-next-release)
+* [Backporting bug-fix releases](#backporting-bug-fix-releases)
 * [Notes on breaking changes](#notes-on-breaking-changes)
 * [Notes on dependencies](#notes-on-dependencies)
 * [Notes on testing](#notes-on-testing)
@@ -81,6 +82,12 @@ Decide what the version number of the next release is likely to be -- almost alw
 In the Jira project, create a new version with this number, so that issues can be associated with it.
 
 Create a new entry at the top of the change-log for the forthcoming version, so there is somewhere to add entries. But do not include a date for the entry: instead, mark it as "IN PROGRESS", as in [the in-progress `stripes-core` change-log from before v0.5.0](https://github.com/folio-org/stripes-core/blob/e058702cb19b32f607f7fb40b15ddf00cd6b45ad/CHANGELOG.md).
+
+## Backporting bug-fix releases
+
+If you are asked to (a) publish a bug-fix release and (b) backport the fix and publish a release to an earlier minor-version. YOU MUST release the backported version _first_. The `npm` command `npm publish` _automatically_ adds the dist-tag `latest` to every release. `yarn install` _ignores_ semantically later versions if the `latest` dist-tag will satisfy the version range. The practical consequence of this is that if multiple versions of a package are available, say `v3.7.1` and `3.10.1`, and `v3.7.1` has the `latest` dist-tag (because it was published most recently), and you have a dependency like `^3.5.0`, yarn will choose `v3.7.1`. If elsewhere in your platform you have a dependency like `~3.10.0`, yarn will install that version _in addition_, and now your build will contains two copies of said package.
+
+Many app packages have a devDependency on `@folio/stripes-core` such as `"^3.5.0"` (to import certain components related to testing), in addition to a peerDependency on `@folio/stripes` such as `"^2.10.0"` which itself contains the dependency `"@folio/stripes-core": "~3.10.0"`. This collection of dependencies is susceptible to the problem above: duplicate copies of stripes-core will be included in the build, causing unit tests to fail during automated testing by Jenkins.
 
 
 ## Notes on breaking changes
