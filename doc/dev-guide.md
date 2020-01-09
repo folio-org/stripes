@@ -324,6 +324,8 @@ The Stripes object contains the following elements:
 
   * `platformDescription` -- a longer string describing the application platform, which is not currently used but could for example be hover text for the home page icon. If not specified, defaults to `FOLIO platform`.
 
+  * `showDevInfo` -- not used internally by Stripes itself, but conventionally used by applications to determine whether or not they should display information of interest only to developers, such as JSON dumps of record objects.
+
 For convenience in declaring the property-type of the Stripes object, a `stripesShape` object is provided, and can be imported from `@folio/stripes-core/src/Stripes`.
 
 
