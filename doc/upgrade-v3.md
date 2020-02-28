@@ -42,6 +42,6 @@ paths, meaning these libraries need to be listed as devDependencies. `@folio/str
 * stripes-core 4.0.0
 * stripes-form 3.0.0
 * stripes-final-form 2.0.0
-* *stripes-logger 1.0.0
-* *stripes-smart-components 3.0.0
-* *stripes-util 2.0.0
+* stripes-logger 1.0.0
+* stripes-smart-components 3.0.0
+* stripes-util 2.0.0
