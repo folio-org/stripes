@@ -3,7 +3,7 @@
 Updating an app from `@folio/stripes` `^2.0.0` to `^3.0.0` should be relatively
 straightforward as most of the changes revolve around reorganizing dependencies.
 A few things were removed in `stripes-components` and `stripes-connect`, but those
-components were deprecated months (or years!) ago.
+things were deprecated months (or years!) ago.
 
 ## Move some dependencies to peerDependencies
 
@@ -20,15 +20,17 @@ yarn add -P react-intl@^2.2.9.0
 yarn add -P react-router@^4.3.1
 yarn add -P react-router-dom@^4.3.1
 ```
+Note `yarn add -P ...` merely adds a new peerDependency; you still need to
+remove the values from dependencies.
 
 ## Add some devDependencies
 
 `yarn` will not include peerDependencies when creating a development build, which
-effectively means that every peerDependency must also be added as a devDependency
+effectively means that most peerDependencies must also be added as devDependencies
 in order for tests to run. You can do this manually or with help from yarn:
 
 ```
-yarn add -P react-router-dom@^4.3.1
+yarn add -D react-router-dom@^4.3.1
 ```
 
 ## Update devDependencies for stripes-* libraries
