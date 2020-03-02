@@ -258,7 +258,7 @@ In past we'd persist some state in the URL for parts of the interface that were 
 
 Programming in Stripes is essentially [programming in React](https://facebook.github.io/react/docs/thinking-in-react.html), with one big difference: the provision of the Stripes object. As with regular React, data flows down through components (as props) and actions flow up.
 
-The Stripes object is provided as the `stripes` property to the top-level component of each module. For convenience, it is also placed in the React context. It is up to each component to choose whether to get it from the property or the context; and, if necessary, to pass the prop down to its children.
+The Stripes object is provided as the `stripes` property to the top-level component of each module. For convenience, it is also placed in the React context where it can be readily retrieved via the `withStripes` wrapper or `useStripes` hook both exported from stripes-core. It is up to each component to choose whether to get it from the property or the context; and, if necessary, to pass the prop down to its children.
 
 The Stripes object contains the following elements:
 
