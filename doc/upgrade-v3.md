@@ -16,10 +16,9 @@ The following libraries should be moved from dependencies to peerDependencies:
 You can do this manually or with help from yarn with commands like this:
 
 ```
-yarn add -P react-intl@^2.2.9.0
+yarn add -P react-intl@^2.9.0
 yarn add -P react-router@^4.3.1
 yarn add -P react-router-dom@^4.3.1
-yarn add -P react-intl@^2.9.0
 ```
 Note `yarn add -P ...` merely adds a new peerDependency; you still need to
 remove the values from dependencies.
