@@ -1,5 +1,13 @@
 # Change history for stripes
 
+## [3.1.0](https://github.com/folio-org/stripes/tree/v3.1.0) (2020-03-16)
+
+* `stripes-components` `6.1.0` https://github.com/folio-org/stripes-components/releases/tag/v6.1.0
+* `stripes-core` `4.1.0` https://github.com/folio-org/stripes-core/releases/tag/v4.1.0
+* `stripes-form` `3.1.0` https://github.com/folio-org/stripes-form/releases/tag/v3.1.0
+* `stripes-final-form` `2.1.0` https://github.com/folio-org/stripes-final-form/releases/tag/v2.1.0
+* `stripes-smart-components` `3.1.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v3.1.0
+
 ## [3.0.0](https://github.com/folio-org/stripes/tree/v3.0.0) (2020-03-04)
 
 * `stripes-components` `6.0.0` https://github.com/folio-org/stripes-components/releases/tag/v6.0.0
