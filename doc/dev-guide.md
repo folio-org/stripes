@@ -678,6 +678,15 @@ For example, if the `stripes-core/translations/stripes-core/*.json` files define
 <Button label={stripes.intl.formatMessage({ id: 'stripes-core.common.search' })} />
 ```
 
+#### Translating permission names
+
+The `permissionSets` defined in an app's package.json each contain a `permissionName` which serves as an ID (eg, `ui-users.create`). These IDs should not be used in user-facing displays. Instead, the `permissionName` is changed to create an translation key which is then passed to react-intl which looks up the localized string. Some examples of this change would be:
+
+- `ui-users.create` -> `ui-users.permission.create`
+- `ui-agreements.agreement.view` -> `ui-agreements.permission.agreement.view`
+
+Note the only change is inserting `permission.` after the first period. This means that because the generated translation key needs to begin with the module providing the translation, permissions that are intended to be shown in the UI (ie, have `visible: true` set), should always have a `permissionName` that begins with the app's ID (eg, `ui-users`).
+
 #### Filtering translations at build time
 
 By default, the build process will collect translations for all languages found in each module.  Sometimes it is desireable to build a tenant with only a specific set of languages.  To filter the languages for a tenant, set the `languages` property in the `config` section of the tenant's `stripes.config.js` file.  The value should be an array of desired two-letter codes.  For example:
