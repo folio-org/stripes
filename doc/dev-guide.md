@@ -38,6 +38,7 @@
         * [Creating module translations](#creating-module-translations)
         * [Using module translations](#using-module-translations)
         * [Using core translations](#using-core-translations)
+	* [Translating permission names](#translating-permission-names)
         * [Filtering translations at build time](#filtering-translations-at-build-time)
         * [Other uses of the locale](#other-uses-of-the-locale)
     * [Styling HTML](#styling-html)
