@@ -139,6 +139,8 @@ Within the `stripes` top-level key of a Stripes module's package file, the follo
 
 * `handlerName` -- an optional string indicating the name of a static function that is part of the class exported by the module. If provided, this is used to handle various kinds of events as discussed [below](#handlers-and-events).
 
+* `stripesDeps` -- an array declaring any dependencies of this module that Stripes needs to gather resources from. Currently these include: icons and translations.
+
 The class exported by a module may also have a static data member, `actionNames`. If provided, this must be an array of strings, each of them the name of an action that can be invoked by hot-keys (see [below](#enabling-hot-keys)). Stripes will aggregate the action-names exposed by the available modules and provide a combined list as [the `actionNames` member](#actionNames) of the Stripes object.
 
 
@@ -193,6 +195,8 @@ The following packages must be included as peerDependencies only. They will be p
 * redux
 * rxjs
 * @folio/stripes
+
+Don't forget to include dependencies where Stripes needs to gather translations as `stripesDeps` (for example: `stripes-erm-components`).
 
 ## Guidelines for structuring your Stripes module
 
