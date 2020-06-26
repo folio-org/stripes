@@ -121,6 +121,7 @@ On GitHub, create a PR from the `UIU-666-patch` branch with a merge target of `b
 (b3.4): git pull
 (b3.4): vi package.json # ... continue as above
 ```
+Once the release is published, copy the release details from the `CHANGELOG.md` (which are now only present on the `b3.4` branch) into the `master` branch version. There is no formal process for this step; just open and merge a PR like any other.
 
 ## Backporting bug-fix releases
 
