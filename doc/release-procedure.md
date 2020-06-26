@@ -83,6 +83,33 @@ In the Jira project, create a new version with this number, so that issues can b
 
 Create a new entry at the top of the change-log for the forthcoming version, so there is somewhere to add entries. But do not include a date for the entry: instead, mark it as "IN PROGRESS", as in [the in-progress `stripes-core` change-log from before v0.5.0](https://github.com/folio-org/stripes-core/blob/e058702cb19b32f607f7fb40b15ddf00cd6b45ad/CHANGELOG.md).
 
+## Patch release procedures
+
+In short, making a patch release is not any different than making a regular release, except that you create a new branch from the last-release's commit and everything happens relative to that branch, rather than relative to `master`. For example, if you are making the first patch to the `v3.4.0`, to be published as `v3.4.1`, create a `b3.4` branch and do everything relative to that:
+```
+git checkout -b b3.4 <release-commit-hash-of-v3.4.0>
+git push -u origin HEAD
+```
+For each ticket you want to include in the patch release, create a branch (as you normally would) and then use [`git cherry-pick`](https://git-scm.com/docs/git-cherry-pick) to copy those commits onto the branch. (Alternatively, you can `rebase` the original branch onto this patch branch if there are many commits and they were not squashed. `cherry-pick` is really just a manual `rebase`; in fact this is what Git does under the hood.) For example, if you are adding UIU-666 to the release:
+```
+git checkout -b UIU-666-patch
+git cherry-pick <hash-of-commit-to-add>
+```
+Now you can proceed with the standard PR process: push the changes up to GitHub, create a pull request, and merge it. The only difference is that the target branch for the PR will be the release branch, `b3.4`, instead of `master`. When you are finished adding changes to the branch, make sure you pull the changes onto the release-branch, then split off a new patch-release branch `release-v3.4.1`:
+```
+git checkout b3.4
+git pull
+git checkout -b release-v3.4.1
+```
+At this point it's a normal release, as above: in `package.json` update the `version` to `3.4.1` and add the release date information to `CHANGELOG.md`. Again, proceed with the standard PR process to merge this branch to `b3.4`. When the PR is merged, tag and publish the release:
+```
+git checkout b3.4
+git pull
+git tag v3.4.1
+git push origin tag v3.4.1
+```
+Finally, visit Jenkins for the repo and start a build from this `v3.4.1` tag to publish the release to NPM.
+
 ## Backporting bug-fix releases
 
 If you are asked to (a) publish a bug-fix release and (b) backport the fix and publish a release to an earlier minor-version. YOU MUST release the backported version _first_. The `npm` command `npm publish` _automatically_ adds the dist-tag `latest` to every release. `yarn install` _ignores_ semantically later versions if the `latest` dist-tag will satisfy the version range. The practical consequence of this is that if multiple versions of a package are available, say `v3.7.1` and `3.10.1`, and `v3.7.1` has the `latest` dist-tag (because it was published most recently), and you have a dependency like `^3.5.0`, yarn will choose `v3.7.1`. If elsewhere in your platform you have a dependency like `~3.10.0`, yarn will install that version _in addition_, and now your build will contains two copies of said package.
