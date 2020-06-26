@@ -85,30 +85,42 @@ Create a new entry at the top of the change-log for the forthcoming version, so 
 
 ## Patch release procedures
 
-In short, making a patch release is not any different than making a regular release, except that you create a new branch from the last-release's commit and everything happens relative to that branch, rather than relative to `master`. For example, if you are making the first patch to the `v3.4.0`, to be published as `v3.4.1`, create a `b3.4` branch and do everything relative to that:
+Making a patch release is not any different than making an ordinary release, except you begin by splitting a new branch from the last-release's tag and everything happens relative to that branch, rather than relative to `master`. For example, if you are making the first patch to `v3.4.0`, to be published as `v3.4.1`, split a `b3.4` branch from the `v3.4.0` tag and copy the commits you want to include in `v3.4.1` with [`git cherry-pick`](https://git-scm.com/docs/git-cherry-pick):
 ```
-git checkout -b b3.4 <release-commit-hash-of-v3.4.0>
-git push -u origin HEAD
+(master): git checkout -b b3.4 v3.4.0
+(b3.4): git cherry-pick <commit-sha-1>
+(b3.4): git cherry-pick <commit-sha-2>
+...
+(b3.4): git cherry-pick <commit-sha-n>
 ```
-For each ticket you want to include in the patch release, create a branch (as you normally would) and then use [`git cherry-pick`](https://git-scm.com/docs/git-cherry-pick) to copy those commits onto the branch. (Alternatively, you can `rebase` the original branch onto this patch branch if there are many commits and they were not squashed. `cherry-pick` is really just a manual `rebase`; in fact this is what Git does under the hood.) For example, if you are adding UIU-666 to the release:
+At this point, do the same things on `b3.4` you would for an ordinary release: in the `package.json`, update the version to 3.4.1 and add the new version information to `CHANGELOG.md`, stage the files, create a release commit, tag the commit, and push everything up to GitHub:
 ```
-git checkout -b UIU-666-patch
-git cherry-pick <hash-of-commit-to-add>
+(b3.4): vi package.json
+(b3.4): vi CHANGELOG.md
+(b3.4): git add package.json CHANGELOG.md
+(b3.4): git commit -m "Release 3.4.1"
+(b3.4): git tag v3.4.1
+(b3.4): git push origin b3.4
+(b3.4): git push --tags
 ```
-Now you can proceed with the standard PR process: push the changes up to GitHub, create a pull request, and merge it. The only difference is that the target branch for the PR will be the release branch, `b3.4`, instead of `master`. When you are finished adding changes to the branch, make sure you pull the changes onto the release-branch, then split off a new patch-release branch `release-v3.4.1`:
+Finally, visit Jenkins for the repo and start a build from the `v3.4.1` tag to publish the release to NPM.
+
+If the work you want to include in the patch release is not concisely held in a few terse commits, you can open PRs against your patch branch to give you the opportunity to squash those commits and simplify the history:
 ```
-git checkout b3.4
-git pull
-git checkout -b release-v3.4.1
+(master): git checkout -b b3.4 v3.4.0
+(b3.4): git co -b UIU-666-patch
+(UIU-666-patch): git cherry-pick <commit-sha-1>
+(UIU-666-patch): git cherry-pick <commit-sha-2>
+...
+(UIU-666-patch): git cherry-pick <commit-sha-n>
+(UIU-666-patch): git push origin HEAD
 ```
-At this point it's a normal release, as above: in `package.json` update the `version` to `3.4.1` and add the release date information to `CHANGELOG.md`. Again, proceed with the standard PR process to merge this branch to `b3.4`. When the PR is merged, tag and publish the release:
+On GitHub, create a PR from the `UIU-666-patch` branch with a merge target of `b3.4` (instead of merging to master) and squash when you merge. It is up to you whether to cherry-pick commits directly onto your release branch or create branches and PRs for them. The end result is the same: the commits are copied from `master` onto `b3.4`. Once the PR is merged, pull the change down locally and continue as above:
 ```
-git checkout b3.4
-git pull
-git tag v3.4.1
-git push origin tag v3.4.1
+(UIU-666-patch): git checkout b3.4
+(b3.4): git pull
+(b3.4): vi package.json # ... continue as above
 ```
-Finally, visit Jenkins for the repo and start a build from this `v3.4.1` tag to publish the release to NPM.
 
 ## Backporting bug-fix releases
 
