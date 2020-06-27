@@ -6,12 +6,12 @@
     * [Check dependencies](#check-dependencies)
 * [Release procedure](#release-procedure)
 * [Working towards the next release](#working-towards-the-next-release)
+* [Patch release procedures](#patch-release-procedures)
 * [Backporting bug-fix releases](#backporting-bug-fix-releases)
 * [Notes on breaking changes](#notes-on-breaking-changes)
 * [Notes on dependencies](#notes-on-dependencies)
 * [Notes on testing](#notes-on-testing)
 * [Publishing to NPM via Jenkins](#publishing-to-npm-via-jenkins)
-* [Direct access to the NPM repository](#direct-access-to-the-npm-repository)
 
 NOTE. This document is subject to revision.
 
@@ -82,6 +82,46 @@ Decide what the version number of the next release is likely to be -- almost alw
 In the Jira project, create a new version with this number, so that issues can be associated with it.
 
 Create a new entry at the top of the change-log for the forthcoming version, so there is somewhere to add entries. But do not include a date for the entry: instead, mark it as "IN PROGRESS", as in [the in-progress `stripes-core` change-log from before v0.5.0](https://github.com/folio-org/stripes-core/blob/e058702cb19b32f607f7fb40b15ddf00cd6b45ad/CHANGELOG.md).
+
+## Patch release procedures
+
+Making a patch release is not any different than making an ordinary release, except you begin by splitting a new branch from the last-release's tag and everything happens relative to that branch, rather than relative to `master`. For example, if you are making the first patch to `v3.4.0`, to be published as `v3.4.1`, split a `b3.4` branch from the `v3.4.0` tag and copy the commits you want to include in `v3.4.1` with [`git cherry-pick`](https://git-scm.com/docs/git-cherry-pick):
+```
+(master): git checkout -b b3.4 v3.4.0
+(b3.4): git cherry-pick <commit-sha-1>
+(b3.4): git cherry-pick <commit-sha-2>
+...
+(b3.4): git cherry-pick <commit-sha-n>
+```
+At this point, do the same things on `b3.4` you would for an ordinary release: in the `package.json`, update the version to 3.4.1 and add the new version information to `CHANGELOG.md`, stage the files, create a release commit, tag the commit, and push everything up to GitHub:
+```
+(b3.4): vi package.json
+(b3.4): vi CHANGELOG.md
+(b3.4): git add package.json CHANGELOG.md
+(b3.4): git commit -m "Release 3.4.1"
+(b3.4): git tag v3.4.1
+(b3.4): git push origin b3.4
+(b3.4): git push --tags
+```
+Finally, visit Jenkins for the repo and start a build from the `v3.4.1` tag to publish the release to NPM.
+
+If the work you want to include in the patch release is not concisely held in a few terse commits, you can open PRs against your patch branch to give you the opportunity to squash those commits and simplify the history:
+```
+(master): git checkout -b b3.4 v3.4.0
+(b3.4): git co -b UIU-666-patch
+(UIU-666-patch): git cherry-pick <commit-sha-1>
+(UIU-666-patch): git cherry-pick <commit-sha-2>
+...
+(UIU-666-patch): git cherry-pick <commit-sha-n>
+(UIU-666-patch): git push origin HEAD
+```
+On GitHub, create a PR from the `UIU-666-patch` branch with a merge target of `b3.4` (instead of merging to master) and squash when you merge. It is up to you whether to cherry-pick commits directly onto your release branch or create branches and PRs for them. The end result is the same: the commits are copied from `master` onto `b3.4`. Once the PR is merged, pull the change down locally and continue as above:
+```
+(UIU-666-patch): git checkout b3.4
+(b3.4): git pull
+(b3.4): vi package.json # ... continue as above
+```
+Once the release is published, copy the release details from the `CHANGELOG.md` (which are now only present on the `b3.4` branch) into the `master` branch version. There is no formal process for this step; just open and merge a PR like any other.
 
 ## Backporting bug-fix releases
 
