@@ -6,12 +6,12 @@
     * [Check dependencies](#check-dependencies)
 * [Release procedure](#release-procedure)
 * [Working towards the next release](#working-towards-the-next-release)
+* [Patch release procedures](#patch-release-procedures)
 * [Backporting bug-fix releases](#backporting-bug-fix-releases)
 * [Notes on breaking changes](#notes-on-breaking-changes)
 * [Notes on dependencies](#notes-on-dependencies)
 * [Notes on testing](#notes-on-testing)
 * [Publishing to NPM via Jenkins](#publishing-to-npm-via-jenkins)
-* [Direct access to the NPM repository](#direct-access-to-the-npm-repository)
 
 NOTE. This document is subject to revision.
 
