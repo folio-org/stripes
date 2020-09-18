@@ -333,6 +333,8 @@ The Stripes object contains the following elements:
 
   * `showDevInfo` -- not used internally by Stripes itself, but conventionally used by applications to determine whether or not they should display information of interest only to developers, such as JSON dumps of record objects.
 
+  * `suppressIntlErrors` -- a boolean which, when true, will suppress errors from react-intl including those complaining of a translation key missing its translation.
+
 For convenience in declaring the property-type of the Stripes object, a `stripesShape` object is provided, and can be imported from `@folio/stripes-core/src/Stripes`.
 
 
