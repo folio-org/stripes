@@ -4,6 +4,14 @@
 
 * Update `react-intl` links for `v4` changes.
 * Increment `react-router` to `^5.2`. Refs STRIPES-674.
+* Increment `react-intl` to `^5.7`. Refs STRIPES-694.
+* `stripes-components` `8.0.0` https://github.com/folio-org/stripes-components/releases/tag/v8.0.0
+* `stripes-connect` `6.0.0` https://github.com/folio-org/stripes-connect/releases/tag/v6.0.0
+* `stripes-core` `6.0.0` https://github.com/folio-org/stripes-core/releases/tag/v6.0.0
+* `stripes-form` `5.0.0` https://github.com/folio-org/stripes-form/releases/tag/v5.0.0
+* `stripes-final-form` `4.0.0` https://github.com/folio-org/stripes-final-form/releases/tag/v4.0.0
+* `stripes-smart-components` `5.0.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v5.0.0
+* `stripes-util` `4.0.0` https://github.com/folio-org/stripes-util/releases/tag/v4.0.0
 
 ## [4.1.0](https://github.com/folio-org/stripes/tree/v4.1.0) (2020-06-08)
 
