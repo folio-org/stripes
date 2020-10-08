@@ -1,6 +1,8 @@
 # Change history for stripes
 
-## 5.0.0 (IN PROGRESS)
+## 5.1.0 IN PROGRESS
+
+## [5.0.0](https://github.com/folio-org/stripes/tree/v5.0.0) (2020-10-06)
 
 * Update `react-intl` links for `v4` changes.
 * Increment `react-router` to `^5.2`. Refs STRIPES-674.
