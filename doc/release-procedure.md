@@ -45,7 +45,7 @@ Ensure that each of the Jira issues listed in the change-log is tagged to the nu
 
 ### Check dependencies
 
-Make sure your `package.json` does not contain any unreleased dependencies -- for example, a bugfix version of stripes-core that adds a new facility, available via the CI repository `folioci` but not from an actual release. To check for this, make a brand new checkout of the module you're working on, outside of any Yarn workspace, switch back to the `npm-folio` registry, and try to install.
+Make sure your `package.json` does not contain any unreleased dependencies -- for example, a bugfix version of `@folio/stripes` that adds a new facility, available via the CI repository `folioci` but not from an actual release. To check for this, make a brand new checkout of the module you're working on, outside of any Yarn workspace, switch back to the `npm-folio` registry, and try to install.
 ```
 $ mkdir /tmp/fresh-build
 $ cd /tmp/fresh-build
@@ -55,8 +55,7 @@ $ yarn config set @folio:registry https://repository.folio.org/repository/npm-fo
 $ yarn install
 ```
 
-Messages received during the install such as, "Package [package] not found" or
-"Couldn't find any versions for [package] that matches [version]", indicate an unreleased dependency. Please ensure those dependencies are properly released to `npm-folio` before continuing.
+Messages received during the install such as, "Package [package] not found" or "Couldn't find any versions for [package] that matches [version]", indicate an unreleased dependency. You will not be able to publish your release (a Jenkins check will fail, preventing the release PR from being merged) until all dependencies are properly released.
 
 
 ## Release procedure
@@ -136,21 +135,13 @@ When breaking changes have been introduced, but are not stable enough to officia
 
 For example, given a current release of `1.2.3` in which breaking changes must be introduced, release these changes as `2.0.0-pre.1`.  If necessary, repeat with `2.0.0-pre.2` and so on until code is deemed stable enough to release `2.0.0`.
 
-Update dependant packages when needed to allow CI to pick up the pre-release version for integration testing.  A pre-release should be used in place of alternative references such as `latest` or a specific commit hash.  Once the final version has been released, any packages depending on the pre-release version should be updated.
-
-
-
-## Notes on dependencies
-
-* Each stripes platform (`stripes-sample-platform`, etc.) depends directly on `stripes-core` and a set of application modules.
-* Each application module (`users`, `items`, etc.) has `stripes-core` as a peer-dependency.
-* `stripes-core` depends directly on `stripes-connect`, `stripes-components`, etc.
-* [**Optional.** Guerilla dependencies. Application modules, such as Users and Items, that consume the released module's API and need the new facility should update the relevant peer-dependency to their `package.json`, specifying the new version. In general, Stripes modules should use the widest possible range of version compatibility for the packages they depend on.]
-
+Update dependent packages when needed to allow CI to pick up the pre-release version for integration testing. A pre-release should be used in place of alternative references such as `latest` or a specific commit hash. Once the final version has been released, any packages depending on the pre-release version should be updated.
 
 ## Notes on testing
 
-XXX to be done. See https://dev.folio.org/guides/automation
+When you open a PR, GitHub will wait for to two Jenkins "checks" to complete before allowing the PR to be merged. These checks involve installing the package to make sure its dependencies can be satisfied and running the package's unit test to make sure they pass. If the tests do not pass, the PR cannot be merged.
+
+For additional details, see https://dev.folio.org/guides/automation
 
 ## Publishing to NPM via Jenkins
 
