@@ -6,11 +6,12 @@
     * [Check dependencies](#check-dependencies)
 * [Release procedure](#release-procedure)
 * [Working towards the next release](#working-towards-the-next-release)
+* [Patch release procedures](#patch-release-procedures)
+* [Backporting bug-fix releases](#backporting-bug-fix-releases)
 * [Notes on breaking changes](#notes-on-breaking-changes)
 * [Notes on dependencies](#notes-on-dependencies)
 * [Notes on testing](#notes-on-testing)
 * [Publishing to NPM via Jenkins](#publishing-to-npm-via-jenkins)
-* [Direct access to the NPM repository](#direct-access-to-the-npm-repository)
 
 NOTE. This document is subject to revision.
 
@@ -59,12 +60,12 @@ Messages received during the install such as, "Package [package] not found" or "
 
 ## Release procedure
 
-* Create a branch to contain the release-related changes to `package.json` and `CHANGELOG.md`, e.g. `git checkout -b v2.3.0`.
+* Create a branch to contain the release-related changes to `package.json` and `CHANGELOG.md`, e.g. `git checkout -b b2.3`.
 * Increment the version number in `package.json`, if this has not already been done -- bumping the major version if there are backwards-incompatible changes, and the minor version if all changes are backwards-compatible.
 * Make any necessary additions to the project's `CHANGELOG.md` describing how the new release differs from the previous one. The purpose of the change-log is to allow a module developer to answer the question "Do I need to upgrade to the new version of this package?", so aim for a high-level overview rather than enumerating every change, and concentrate on API-visible rather than internal changes.
 * Set the date of the release in `CHANGELOG.md`, adding a link to the tag and another to the full set of differences from the previous release as tracked on GitHub: follow the formatting of earlier change-log entries.
 * Commit the `package.json` and `CHANGELOG.md` changes with the message "Release vVERSION". For example, `git commit -m "Release v2.3.0" .`
-* Push the branch to GitHub, e.g. `git push -u origin v2.3.0`.
+* Push the branch to GitHub, e.g. `git push -u origin b2.3`.
 * Create a Pull Request for it, and merge it.
 * After the merge, checkout the master branch and create a tag for the specific version to be released, e.g. `git checkout master; git pull; git tag v2.3.0`. If there have been other changes to master since the merge commit, supply the checksum of the merge commit to make sure the tag is applied to the correct commit, e.g. `git tag v2.3.0 c0ffee`.
 * Push the release tag to git, e.g. `git push origin tag v2.3.0`.
@@ -80,6 +81,52 @@ Decide what the version number of the next release is likely to be -- almost alw
 In the Jira project, create a new version with this number, so that issues can be associated with it.
 
 Create a new entry at the top of the change-log for the forthcoming version, so there is somewhere to add entries. But do not include a date for the entry: instead, mark it as "IN PROGRESS", as in [the in-progress `stripes-core` change-log from before v0.5.0](https://github.com/folio-org/stripes-core/blob/e058702cb19b32f607f7fb40b15ddf00cd6b45ad/CHANGELOG.md).
+
+## Patch release procedures
+
+Making a patch release is not any different than making an ordinary release, except you begin by splitting a new branch from the last-release's tag and everything happens relative to that branch, rather than relative to `master`. For example, if you are making the first patch to `v3.4.0`, to be published as `v3.4.1`, split a `b3.4` branch from the `v3.4.0` tag and copy the commits you want to include in `v3.4.1` with [`git cherry-pick`](https://git-scm.com/docs/git-cherry-pick):
+```
+(master): git checkout -b b3.4 v3.4.0
+(b3.4): git cherry-pick <commit-sha-1>
+(b3.4): git cherry-pick <commit-sha-2>
+...
+(b3.4): git cherry-pick <commit-sha-n>
+```
+At this point, do the same things on `b3.4` you would for an ordinary release: in the `package.json`, update the version to 3.4.1 and add the new version information to `CHANGELOG.md`, stage the files, create a release commit, tag the commit, and push everything up to GitHub:
+```
+(b3.4): vi package.json
+(b3.4): vi CHANGELOG.md
+(b3.4): git add package.json CHANGELOG.md
+(b3.4): git commit -m "Release 3.4.1"
+(b3.4): git tag v3.4.1
+(b3.4): git push origin b3.4
+(b3.4): git push --tags
+```
+Finally, visit Jenkins for the repo and start a build from the `v3.4.1` tag to publish the release to NPM.
+
+If the work you want to include in the patch release is not concisely held in a few terse commits, you can open PRs against your patch branch to give you the opportunity to squash those commits and simplify the history:
+```
+(master): git checkout -b b3.4 v3.4.0
+(b3.4): git co -b UIU-666-patch
+(UIU-666-patch): git cherry-pick <commit-sha-1>
+(UIU-666-patch): git cherry-pick <commit-sha-2>
+...
+(UIU-666-patch): git cherry-pick <commit-sha-n>
+(UIU-666-patch): git push origin HEAD
+```
+On GitHub, create a PR from the `UIU-666-patch` branch with a merge target of `b3.4` (instead of merging to master) and squash when you merge. It is up to you whether to cherry-pick commits directly onto your release branch or create branches and PRs for them. The end result is the same: the commits are copied from `master` onto `b3.4`. Once the PR is merged, pull the change down locally and continue as above:
+```
+(UIU-666-patch): git checkout b3.4
+(b3.4): git pull
+(b3.4): vi package.json # ... continue as above
+```
+Once the release is published, copy the release details from the `CHANGELOG.md` (which are now only present on the `b3.4` branch) into the `master` branch version. There is no formal process for this step; just open and merge a PR like any other.
+
+## Backporting bug-fix releases
+
+If you are asked to (a) publish a bug-fix release and (b) backport the fix and publish a release to an earlier minor-version. YOU MUST release the backported version _first_. The `npm` command `npm publish` _automatically_ adds the dist-tag `latest` to every release. `yarn install` _ignores_ semantically later versions if the `latest` dist-tag will satisfy the version range. The practical consequence of this is that if multiple versions of a package are available, say `v3.7.1` and `3.10.1`, and `v3.7.1` has the `latest` dist-tag (because it was published most recently), and you have a dependency like `^3.5.0`, yarn will choose `v3.7.1`. If elsewhere in your platform you have a dependency like `~3.10.0`, yarn will install that version _in addition_, and now your build will contains two copies of said package.
+
+Many app packages have a devDependency on `@folio/stripes-core` such as `"^3.5.0"` (to import certain components related to testing), in addition to a peerDependency on `@folio/stripes` such as `"^2.10.0"` which itself contains the dependency `"@folio/stripes-core": "~3.10.0"`. This collection of dependencies is susceptible to the problem above: duplicate copies of stripes-core will be included in the build, causing unit tests to fail during automated testing by Jenkins.
 
 
 ## Notes on breaking changes

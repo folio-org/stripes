@@ -38,6 +38,7 @@
         * [Creating module translations](#creating-module-translations)
         * [Using module translations](#using-module-translations)
         * [Using core translations](#using-core-translations)
+        * [Translating permission names](#translating-permission-names)
         * [Filtering translations at build time](#filtering-translations-at-build-time)
         * [Other uses of the locale](#other-uses-of-the-locale)
     * [Styling HTML](#styling-html)
@@ -128,6 +129,8 @@ Within the `stripes` top-level key of a Stripes module's package file, the follo
 
 * `okapiInterfaces` -- an optional object containing dependencies on back-end modules provided via Okapi. Each dependency is expressed by an entry whose key is a FOLIO interface name such as `users` or `circulation`, and whose corresponding value is a two-faceted [interface-version number](https://github.com/folio-org/okapi/blob/master/doc/guide.md#versioning-and-dependencies). Each entry expresses a dependency on the specified Okapi interface at the indicated version or higher (but within the same major version).
 
+* `optionalOkapiInterfaces` -- an optional object specifying back-end modules that Okapi _may_ provide, and whose presence the current module responds to, but whose absence does not impede the current module's functioning: for example, the Users app may declare an optional interface for `circulation`, and its UI may provide information about users' loans when that interface is present. The format is the same as that of `okapiInterfaces`.
+
 * `permissionSets` -- an optional list of permission-sets describing access to parts of the user-facing application that the module implements. These will typically be very high-level permissions, most likely defined as the union of several high-level permissions provided by back-end modules. They are provided in exactly the same format as those in [a back-end module's `ModuleDescriptor.json`](https://github.com/folio-org/okapi/blob/master/doc/guide.md#example-4-complete-moduledescriptor).
 
 * `queryResource` -- if defined, this is the name of an anointed stripes-connect resource whose contents always reflect the query parameters of the URL, and which can be mutated to change the URL. See [URL navigation](#url-navigation) below.
@@ -135,6 +138,8 @@ Within the `stripes` top-level key of a Stripes module's package file, the follo
 * `links` -- an optional object which specifies any module-specific links that should be included in the Stripes chrome. See [Links](#links) below.
 
 * `handlerName` -- an optional string indicating the name of a static function that is part of the class exported by the module. If provided, this is used to handle various kinds of events as discussed [below](#handlers-and-events).
+
+* `stripesDeps` -- an array declaring any NPM dependencies of this module that Stripes needs to gather resources from. Currently these include: icons and translations. Eg, `stripesDeps: ["@folio/stripes-erm-components", "@opentown/opentown-components"]`
 
 The class exported by a module may also have a static data member, `actionNames`. If provided, this must be an array of strings, each of them the name of an action that can be invoked by hot-keys (see [below](#enabling-hot-keys)). Stripes will aggregate the action-names exposed by the available modules and provide a combined list as [the `actionNames` member](#actionNames) of the Stripes object.
 
@@ -172,16 +177,26 @@ If you are not sure about some code you have written, ask for a code review from
 
 ### Specifying dependencies
 
-ESLint cleanliness means, among other things, that every package that a module uses must be listed as a dependency in its `package.json`. Modules may not blindly rely on the provision of facilities such as React and Redux via Stripes Core, but must specify for themselves what they use, and what version they require.
+ESLint cleanliness means, among other things, that every package a module uses must be listed as a dependency in its `package.json`. Packages containing components that will be shared across module boundaries must be included as peerDependencies. Even API-compatible versions of a package (i.e. with a difference only in the minor or patch version) will cause React to crash if multiple versions are included in the bundle and their components are exchanged across modules, e.g. a `Route` in an app is rendered within the `Router` context provided by stripes-core and the app and stripes-core have different versions of react-router.
 
-Specifically:
+Let `yarn` help you manage your packages. It's better at alphabetizing things than you are:
 
-* Every package that a module imports (`react`, `react-router`, `stripes-components`, etc.) should be declared as a dependency in `package.json` -- most easily added using `yarn add` _packageName_.
+```
+yarn add _packageName_
+yarn add --peer _packageName_
+```
 
-* When `stripes-connect` is used -- even when it's not imported, but the curried `connect` function from the props of the top-level component is used -- it should be declared as a peer-dependency. (This is essentially specifying what version of the stripes-connect API we are relying on.)
+The following packages must be included as peerDependencies only. They will be provided to the bundle by the platform's `package.json` where they will be specified as dependencies:
+* react
+* react-dom
+* react-redux
+* react-router
+* react-router-dom
+* redux
+* rxjs
+* @folio/stripes
 
-
-
+Don't forget to include dependencies where Stripes needs to gather translations as `stripesDeps` (for example: `stripes-erm-components`).
 
 ## Guidelines for structuring your Stripes module
 
@@ -250,7 +265,7 @@ In past we'd persist some state in the URL for parts of the interface that were 
 
 Programming in Stripes is essentially [programming in React](https://facebook.github.io/react/docs/thinking-in-react.html), with one big difference: the provision of the Stripes object. As with regular React, data flows down through components (as props) and actions flow up.
 
-The Stripes object is provided as the `stripes` property to the top-level component of each module. For convenience, it is also placed in the React context. It is up to each component to choose whether to get it from the property or the context; and, if necessary, to pass the prop down to its children.
+The Stripes object is provided as the `stripes` property to the top-level component of each module. For convenience, it is also placed in the React context where it can be readily retrieved via the `withStripes` wrapper or `useStripes` hook both exported from stripes-core. It is up to each component to choose whether to get it from the property or the context; and, if necessary, to pass the prop down to its children.
 
 The Stripes object contains the following elements:
 
@@ -315,6 +330,10 @@ The Stripes object contains the following elements:
   * `platformName` -- a short string naming the application platform, which is used in the window title and in the home page's main caption. If not specified, defaults to `FOLIO`.
 
   * `platformDescription` -- a longer string describing the application platform, which is not currently used but could for example be hover text for the home page icon. If not specified, defaults to `FOLIO platform`.
+
+  * `showDevInfo` -- not used internally by Stripes itself, but conventionally used by applications to determine whether or not they should display information of interest only to developers, such as JSON dumps of record objects.
+
+  * `suppressIntlErrors` -- a boolean which, when true, will suppress errors from react-intl including those complaining of a translation key missing its translation.
 
 For convenience in declaring the property-type of the Stripes object, a `stripesShape` object is provided, and can be imported from `@folio/stripes-core/src/Stripes`.
 
@@ -665,6 +684,15 @@ For example, if the `stripes-core/translations/stripes-core/*.json` files define
 ```
 <Button label={stripes.intl.formatMessage({ id: 'stripes-core.common.search' })} />
 ```
+
+#### Translating permission names
+
+The `permissionSets` defined in an app's package.json each contain a `permissionName` which serves as an ID (eg, `ui-users.create`). These IDs should not be used in user-facing displays. Instead, the `permissionName` is changed to create an translation key which is then passed to react-intl which looks up the localized string. Some examples of this change would be:
+
+- `ui-users.create` -> `ui-users.permission.create`
+- `ui-agreements.agreement.view` -> `ui-agreements.permission.agreement.view`
+
+Note the only change is inserting `permission.` after the first period. This means that because the generated translation key needs to begin with the module providing the translation, permissions that are intended to be shown in the UI (ie, have `visible: true` set), should always have a `permissionName` that begins with the app's ID (eg, `ui-users`).
 
 #### Filtering translations at build time
 
