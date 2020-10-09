@@ -44,7 +44,7 @@ Ensure that each of the Jira issues listed in the change-log is tagged to the nu
 
 ### Check dependencies
 
-Make sure your `package.json` does not contain any unreleased dependencies -- for example, a bugfix version of stripes that adds a new facility, available via the CI repository `folioci` but not from an actual release. To check for this, make a brand new checkout of the module you're working on, outside of any Yarn workspace, switch back to the `npm-folio` registry, and try to install.
+Make sure your `package.json` does not contain any unreleased dependencies -- for example, a bugfix version of `@folio/stripes` that adds a new facility, available via the CI repository `folioci` but not from an actual release. To check for this, make a brand new checkout of the module you're working on, outside of any Yarn workspace, switch back to the `npm-folio` registry, and try to install.
 ```
 $ mkdir /tmp/fresh-build
 $ cd /tmp/fresh-build
@@ -88,8 +88,7 @@ When breaking changes have been introduced, but are not stable enough to officia
 
 For example, given a current release of `1.2.3` in which breaking changes must be introduced, release these changes as `2.0.0-pre.1`.  If necessary, repeat with `2.0.0-pre.2` and so on until code is deemed stable enough to release `2.0.0`.
 
-Update dependent packages when needed to allow CI to pick up the pre-release version for integration testing.  Once the final version has been released, any packages depending on the pre-release version should be updated.
-
+Update dependent packages when needed to allow CI to pick up the pre-release version for integration testing. A pre-release should be used in place of alternative references such as `latest` or a specific commit hash. Once the final version has been released, any packages depending on the pre-release version should be updated.
 
 ## Notes on testing
 
