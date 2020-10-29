@@ -1,6 +1,12 @@
 # Change history for stripes
 
-## 5.0.0 (IN PROGRESS)
+## [5.0.1](https://github.com/folio-org/stripes/tree/v5.0.1) (2020-10-29)
+
+* `stripes-connect` `6.0.1` https://github.com/folio-org/stripes-connect/releases/tag/v6.0.1
+* `stripes-form` `5.0.1` https://github.com/folio-org/stripes-form/releases/tag/v5.0.1
+* `stripes-final-form` `4.0.1` https://github.com/folio-org/stripes-final-form/releases/tag/v4.0.1
+
+## [5.0.0](https://github.com/folio-org/stripes/tree/v5.0.0) (2020-10-06)
 
 * Update `react-intl` links for `v4` changes.
 * Increment `react-router` to `^5.2`. Refs STRIPES-674.
