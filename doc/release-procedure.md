@@ -71,6 +71,7 @@ Messages received during the install such as, "Package [package] not found" or "
 * Push the release tag to git, e.g. `git push origin tag v2.3.0`.
 * Build and publish release artifacts.  Log into https://jenkins-aws.indexdata.com with your folio-org Github credentials. Select the project you want to release under the GitHub 'folio-org' folder and select the 'Tags' tab. Select the Git tag you want to release and then run 'Build Now' to build the release artifacts. If the Git tag you want to release is not present, run the 'Scan Repository Now' task and reload the page when the scan is complete. (Note: You may require additional permissions to build the release. Contact a FOLIO DevOps administrator if needed.)
 * Adjust configuration for this module in Stripes Platforms. Follow [Add to platforms](https://dev.folio.org/guidelines/release-procedures/#add-to-platforms) documentation.
+* Describe the release in GitHub 'Releases' section of your module repsitory.
 * Send a release announcement to the `#releases` Slack [channel](https://dev.folio.org/guidelines/which-forum/#slack) if relevant.
 
 
