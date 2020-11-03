@@ -1,5 +1,10 @@
 # Change history for stripes
 
+## [5.0.2](https://github.com/folio-org/stripes/tree/v5.0.2) (2020-11-03)
+
+* `stripes-smart-components` `5.0.1` https://github.com/folio-org/stripes-smart-components/releases/tag/v5.0.1
+* It's election day in the USA. VOTE!
+
 ## [5.0.1](https://github.com/folio-org/stripes/tree/v5.0.1) (2020-10-29)
 
 * `stripes-connect` `6.0.1` https://github.com/folio-org/stripes-connect/releases/tag/v6.0.1
