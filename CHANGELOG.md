@@ -1,5 +1,9 @@
 # Change history for stripes
 
+## [5.0.8](https://github.com/folio-org/stripes/tree/v5.0.8) (2020-12-18)
+
+* `stripes-core` `6.0.1` https://github.com/folio-org/stripes-core/releases/tag/v6.0.1
+
 ## [5.0.7](https://github.com/folio-org/stripes/tree/v5.0.7) (2020-11-20)
 
 * `stripes-form` `5.0.2` https://github.com/folio-org/stripes-form/releases/tag/v5.0.2
