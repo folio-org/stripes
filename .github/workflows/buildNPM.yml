@@ -1,18 +1,20 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Nodejs CI
+name: buildNPM stripes CI
 
 on:
   push:
     branches: [ FOLIO-2913 ]
-  pull_request:
-    branches: [ FOLIO-2913 ]
 
 jobs:
+  
   build:
 
     runs-on: ubuntu-latest
     steps:
-    - run: yarn lint
-    - run: yarn test
+    - run: echo "Running CI..."
+    - run: mkdir -p ci
+    - run: echo "<html><body><pre>" > ci/lint.html
+    - run: yarn lint 2>&1 >>  ci/lint.html
+    - run: rm -rf ci
