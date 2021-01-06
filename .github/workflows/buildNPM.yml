@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js
+    - name: Use Nodejs
       uses: actions/setup-node@v1
     - run: npm ci
     - run: yarn lint
