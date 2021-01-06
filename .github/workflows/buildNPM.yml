@@ -13,6 +13,9 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+      with: 
+        ref: FOLIO-2913
     - run: echo "Running CI..."
     - run: mkdir -p ci
     - run: echo "<html><body><pre>" ci/lint.html
