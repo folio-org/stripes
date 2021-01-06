@@ -14,6 +14,5 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - run: npm ci
     - run: yarn lint
     - run: yarn test
