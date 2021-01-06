@@ -13,7 +13,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: folio-org/checkout@v2
       with: 
         ref: FOLIO-2913
     - run: echo "Running CI..."
