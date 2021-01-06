@@ -17,6 +17,7 @@ jobs:
       with: 
         ref: FOLIO-2913
     - run: echo "Running CI..."
+    - run: npm install
     - run: mkdir -p ci
     - run: echo "<html><body><pre>" ci/lint.html
     - run: yarn lint ci/lint.html
