@@ -15,6 +15,6 @@ jobs:
     steps:
     - run: echo "Running CI..."
     - run: mkdir -p ci
-    - run: echo "<html><body><pre>" > ci/lint.html
-    - run: yarn lint 2>&1 >>  ci/lint.html
+    - run: echo "<html><body><pre>" ci/lint.html
+    - run: yarn lint ci/lint.html
     - run: rm -rf ci
