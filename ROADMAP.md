@@ -9,6 +9,7 @@
 ## v6.0.0; Iris (API freeze 2021-01-15; release 2021-02-19)
 
 * [STCOM-791](https://issues.folio.org/browse/STCOM-791) Remove deprecated Dropdown logic and Tether logic paths
+* [STRIPES-721](https://issues.folio.org/browse/STRIPES-721) increment to react-redux v7, redux-form v8, redux v4
 
 ## Juniper (API freeze 2021)
 
