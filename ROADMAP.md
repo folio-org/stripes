@@ -12,4 +12,6 @@
 
 ## Juniper (API freeze 2021)
 
+* [UXPROD-2266](https://issues.folio.org/browse/UXPROD-2266) Refactor from redux-form to final-form
+
 ##
