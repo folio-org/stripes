@@ -17,6 +17,7 @@ jobs:
       - run: echo "Set up folio registry..."
       - run: yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
       - run: echo "Installing dependencies..."
+      - run: yarn cache clean
       - run: yarn install
       - run: yarn list --pattern @folio
       - run: mkdir -p artifacts/yarn/
