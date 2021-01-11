@@ -17,6 +17,7 @@ jobs:
       - run: echo "Set up folio registry..."
       - run: yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
   build:
+    needs: set-up
     runs-on: ubuntu-latest
     steps:
       - uses: folio-org/checkout@v2
