@@ -14,7 +14,20 @@ jobs:
       - uses: folio-org/checkout@v2
         with:
           ref: FOLIO-2913
-      - run: echo "Running CI..."
+      - run: echo "Installing dependencies..."
+      - run: yarn install
+      - run: yarn list --pattern @folio
+      - run: mkdir -p artifacts/yarn/
+      - run: cp yarn.lock artifacts/yarn/yarn.lock
+      - run: bzip2 artifacts/yarn/yarn.lock
+  lint:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: folio-org/checkout@v2
+        with:
+          ref: FOLIO-2913
+      - run: echo "Running Lint..."
       - run: mkdir -p ci
       - run: echo "<html><body><pre>" ci/lint.html
       - run: yarn lint 2>&1 >>  ci/lint.html
@@ -26,4 +39,16 @@ jobs:
       - uses: folio-org/checkout@v2
         with:
           ref: FOLIO-2913
+      - run: echo "Running Test..."
       - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test
+  dupeCheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: folio-org/checkout@v2
+        with:
+          ref: FOLIO-2913
+      - run: echo "Running Dupe Check..."
+      - run: mkdir -p dupes
+      - run: grep -oP "^\\"\\K@folio\\/stripes-[^@]*" yarn.lock > dupes/stripes_deps.txt
+      - run: cat dupes/stripes_deps.txt | sort | uniq -d > dupes/stripes_duplicates.txt
+      - run: echo "TODO..."
