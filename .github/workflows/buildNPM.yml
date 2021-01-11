@@ -5,20 +5,18 @@ name: buildNPM stripes CI
 
 on:
   push:
-    branches: [ FOLIO-2913 ]
+    branches: [FOLIO-2913]
 
 jobs:
-  
   build:
-
     runs-on: ubuntu-latest
     steps:
-    - uses: folio-org/checkout@v2
-      with: 
-        ref: FOLIO-2913
-    - run: echo "Running CI..."
-    - run: npm install
-    - run: mkdir -p ci
-    - run: echo "<html><body><pre>" ci/lint.html
-    - run: yarn lint ci/lint.html
-    - run: rm -rf ci
+      - uses: folio-org/checkout@v2
+        with:
+          ref: FOLIO-2913
+      - run: echo "Running CI..."
+      - run: mkdir -p ci
+      - run: echo "<html><body><pre>" ci/lint.html
+      - run: yarn lint ci/lint.html
+      - run: echo "</pre><body></html>" >> ci/lint.html
+      - run: rm -rf ci
