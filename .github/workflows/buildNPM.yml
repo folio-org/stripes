@@ -8,6 +8,14 @@ on:
     branches: [FOLIO-2913]
 
 jobs:
+  set-up:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: folio-org/checkout@v2
+        with:
+          ref: FOLIO-2913
+      - run: "Set up folio registry..."
+      - run: yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
   build:
     runs-on: ubuntu-latest
     steps:
@@ -21,7 +29,7 @@ jobs:
       - run: cp yarn.lock artifacts/yarn/yarn.lock
       - run: bzip2 artifacts/yarn/yarn.lock
   lint:
-    needs: build
+    needs: [set-up, build]
     runs-on: ubuntu-latest
     steps:
       - uses: folio-org/checkout@v2

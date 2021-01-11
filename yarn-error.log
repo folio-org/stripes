@@ -1,0 +1,73 @@
+Arguments: 
+  /usr/local/Cellar/node/14.12.0/bin/node /usr/local/Cellar/yarn/1.22.5/libexec/bin/yarn.js install
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/ankita/ros2_foxy/ros2-osx/bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  14.12.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@folio%2fstripes-components: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.5/libexec/lib/cli.js:66988:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.22.5/libexec/lib/cli.js:140749:22)
+      at Request.emit (events.js:314:20)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.5/libexec/lib/cli.js:141721:10)
+      at Request.emit (events.js:314:20)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.5/libexec/lib/cli.js:141643:12)
+      at Object.onceWrapper (events.js:420:28)
+      at IncomingMessage.emit (events.js:326:22)
+      at endReadableNT (_stream_readable.js:1252:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "@folio/stripes",
+    "version": "6.0.0",
+    "description": "Stripes framework",
+    "repository": "https://github.com/folio-org/stripes",
+    "publishConfig": {
+      "registry": "https://repository.folio.org/repository/npm-folio/"
+    },
+    "license": "Apache-2.0",
+    "engines": {
+      "node": ">=8.9.0"
+    },
+    "main": "src/index.js",
+    "scripts": {
+      "test": "echo 'No tests implemented'",
+      "lint": "eslint ./"
+    },
+    "dependencies": {
+      "@folio/stripes-components": "~9.0.0",
+      "@folio/stripes-connect": "~6.1.0",
+      "@folio/stripes-core": "~7.0.0",
+      "@folio/stripes-form": "~6.0.0",
+      "@folio/stripes-final-form": "~5.0.0",
+      "@folio/stripes-logger": "~1.0.0",
+      "@folio/stripes-smart-components": "~6.0.0",
+      "@folio/stripes-util": "~4.1.0",
+      "react-redux": "~5.1.1",
+      "redux": "~3.7.2"
+    },
+    "devDependencies": {
+      "@folio/eslint-config-stripes": "^5.0.0",
+      "eslint": "^6.2.1"
+    },
+    "peerDependencies": {
+      "react": "^16.8.6",
+      "react-dom": "^16.8.6"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
