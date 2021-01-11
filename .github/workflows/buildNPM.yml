@@ -16,7 +16,14 @@ jobs:
           ref: FOLIO-2913
       - run: echo "Running CI..."
       - run: mkdir -p ci
-      - run: echo "<html><body><pre>" > ci/lint.html
-      - run: yarn lint
+      - run: echo "<html><body><pre>" ci/lint.html
+      - run: yarn lint 2>&1 >>  ci/lint.html
       - run: echo "</pre><body></html>" >> ci/lint.html
       - run: rm -rf ci
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: folio-org/checkout@v2
+        with:
+          ref: FOLIO-2913
+      - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test
