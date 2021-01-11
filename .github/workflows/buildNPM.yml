@@ -16,13 +16,6 @@ jobs:
           ref: FOLIO-2913
       - run: echo "Set up folio registry..."
       - run: yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
-  build:
-    needs: set-up
-    runs-on: ubuntu-latest
-    steps:
-      - uses: folio-org/checkout@v2
-        with:
-          ref: FOLIO-2913
       - run: echo "Installing dependencies..."
       - run: yarn install
       - run: yarn list --pattern @folio
@@ -30,7 +23,7 @@ jobs:
       - run: cp yarn.lock artifacts/yarn/yarn.lock
       - run: bzip2 artifacts/yarn/yarn.lock
   lint:
-    needs: [set-up, build]
+    needs: set-up
     runs-on: ubuntu-latest
     steps:
       - uses: folio-org/checkout@v2
@@ -50,14 +43,3 @@ jobs:
           ref: FOLIO-2913
       - run: echo "Running Test..."
       - run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test
-  dupeCheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: folio-org/checkout@v2
-        with:
-          ref: FOLIO-2913
-      - run: echo "Running Dupe Check..."
-      - run: mkdir -p dupes
-      - run: grep -oP "^\\"\\K@folio\\/stripes-[^@]*" yarn.lock > dupes/stripes_deps.txt
-      - run: cat dupes/stripes_deps.txt | sort | uniq -d > dupes/stripes_duplicates.txt
-      - run: echo "TODO..."
