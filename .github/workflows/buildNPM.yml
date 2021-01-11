@@ -16,7 +16,7 @@ jobs:
           ref: FOLIO-2913
       - run: echo "Running CI..."
       - run: mkdir -p ci
-      - run: echo "<html><body><pre>" ci/lint.html
-      - run: yarn lint ci/lint.html
+      - run: echo "<html><body><pre>" > ci/lint.html
+      - run: yarn lint
       - run: echo "</pre><body></html>" >> ci/lint.html
       - run: rm -rf ci
