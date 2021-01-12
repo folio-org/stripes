@@ -12,4 +12,6 @@
 
 ## Juniper (API freeze 2021)
 
+* Switch to [`@babel/eslint-parser`](https://babeljs.io/blog/2020/07/13/the-state-of-babel-eslint) instead of `babel-eslint`
+
 ##
