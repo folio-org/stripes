@@ -15,10 +15,11 @@ jobs:
         with:
           ref: FOLIO-2913
       - run: echo "Set up folio registry..."
-      - run: yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
+      - run: yarn config set @folio:registry $FOLIO_REGISTRY
+        env:
+          FOLIO_REGISTRY: http://folio-registry.aws.indexdata.com
       - run: yarn global add @folio/stripes-cli
       - run: echo "Installing dependencies..."
-      - run: yarn cache clean
       - run: yarn install
       - run: yarn list --pattern @folio
       - run: mkdir -p artifacts/yarn/
