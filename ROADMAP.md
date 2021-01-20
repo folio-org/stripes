@@ -11,6 +11,7 @@
 * [STCOM-791](https://issues.folio.org/browse/STCOM-791) Remove deprecated Dropdown logic and Tether logic paths
 * [STRIPES-722](https://issues.folio.org/browse/STRIPES-722) increment to react v17
 * [STRIPES-721](https://issues.folio.org/browse/STRIPES-721) increment to react-redux v7, redux-form v8, redux v4
+* [STRIPES-728](https://issues.folio.org/browse/STRIPES-728) move redux-form to a peer-dep for apps, supplied by platforms
 
 ## Juniper (API freeze 2021)
 
