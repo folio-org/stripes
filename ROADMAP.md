@@ -9,11 +9,11 @@
 ## v6.0.0; Iris (API freeze 2021-01-15; release 2021-02-19)
 
 * [STCOM-791](https://issues.folio.org/browse/STCOM-791) Remove deprecated Dropdown logic and Tether logic paths
-* [STRIPES-722](https://issues.folio.org/browse/STRIPES-722) increment to react v17
 * [STRIPES-721](https://issues.folio.org/browse/STRIPES-721) increment to react-redux v7, redux-form v8, redux v4
 
 ## Juniper (API freeze 2021)
 
+* [STRIPES-722](https://issues.folio.org/browse/STRIPES-722) increment to react v17
 * [STRIPES-723](https://issues.folio.org/browse/STRIPES-723) Upgrade RxJS to v6
 * Switch to [`@babel/eslint-parser`](https://babeljs.io/blog/2020/07/13/the-state-of-babel-eslint) instead of `babel-eslint`
 
