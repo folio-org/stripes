@@ -24,8 +24,8 @@
     "@folio/stripes-logger": "~1.0.0",
     "@folio/stripes-smart-components": "~6.0.0",
     "@folio/stripes-util": "~4.1.0",
-    "react-redux": "~5.1.1",
-    "redux": "~3.7.2"
+    "react-redux": "~7.2.0",
+    "redux": "~4.0.0"
   },
   "devDependencies": {
     "@folio/eslint-config-stripes": "^5.0.0",
