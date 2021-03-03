@@ -23,13 +23,13 @@ version-numbering scheme](https://dev.folio.org/guidelines/contributing/#version
 
 Each release is tagged with a name beginning with `v` and followed by the version number -- for example, `v2.3.5`.
 
-Patch releases can be done on a branch whose name begins with `b` and is followed by the major and minor version -- for example, `b2.3`. From this branch, we will make some number of tagged releases, each with a different trivial version number (one for each patch release: bug-fixes and security patch, for example, `v2.3.1`). If no such branch exists for the minor version you're seeking to patch and `master` has since moved on with commits you prefer not to include, please create a branch from the tag.
+Patch releases can be done on a branch whose name begins with `b` and is followed by the major and minor version -- for example, `b2.3`. From this branch, we will make some number of tagged releases, each with a different trivial version number (one for each patch release: bug-fixes and security patch, for example, `v2.3.1`). If no such branch exists for the minor version you're seeking to patch and `master` has since moved on with commits you prefer not to include, create a branch from the tag.
 
 New modules should start at version `1.0.0` rather than `0.1.0` to avoid confusion with caret dependencies on 0.x.y releases. Although NPM's [semver rules for caret ranges](https://docs.npmjs.com/misc/semver#caret-ranges-123-025-004) clearly state the caret "allows changes that do not modify the left-most non-zero digit", in practice folks tend to think of caret dependencies as "only the major version is fixed" because that is what it means for any version without a 0-major version. Avoiding 0-major version just avoids a heap of confusion.
 
 ## Before you release
 
-Please make sure that your code runs clean. Specifically:
+Make sure that your code runs clean. Specifically:
 
 * It should pass `yarn lint` with no errors.
 * It should not emit any warnings on the JavaScript console.
@@ -70,6 +70,7 @@ Messages received during the install such as, "Package [package] not found" or "
 * After the merge, checkout the master branch and create a tag for the specific version to be released, e.g. `git checkout master; git pull; git tag v2.3.0`. If there have been other changes to master since the merge commit, supply the checksum of the merge commit to make sure the tag is applied to the correct commit, e.g. `git tag v2.3.0 c0ffee`.
 * Push the release tag to git, e.g. `git push origin tag v2.3.0`.
 * Build and publish release artifacts.  Log into https://jenkins-aws.indexdata.com with your folio-org Github credentials. Select the project you want to release under the GitHub 'folio-org' folder and select the 'Tags' tab. Select the Git tag you want to release and then run 'Build Now' to build the release artifacts. If the Git tag you want to release is not present, run the 'Scan Repository Now' task and reload the page when the scan is complete. (Note: You may require additional permissions to build the release. Contact a FOLIO DevOps administrator if needed.)
+* After the Jenkins build completes successfully, update the GitHub release by copying the relevant `CHANGELOG.md` entries to the GitHub release. On the GitHub repository home page, click "Releases", then click the relevant tag, then the "Edit release" button. Set the "Release title" field to match the tag, paste the changelog entries into the "Describe this release" field, and save your changes. Strictly speaking, this is just a documentation step. The "real" release is published to the folio npm repository; this is courtesy to developers browsing GitHub that indicates "this commit corresponds to that version and contains these changes".
 * Adjust configuration for this module in Stripes Platforms. Follow [Add to platforms](https://dev.folio.org/guidelines/release-procedures/#add-to-platforms) documentation.
 * Send a release announcement to the `#releases` Slack [channel](https://dev.folio.org/guidelines/which-forum/#slack) if relevant.
 
