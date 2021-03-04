@@ -616,7 +616,7 @@ The handler may return either `null`, if has completed its work, or a component 
 
 A module may need to insert links into various parts of the Stripes web-application -- for example, the My Profile module needs to add a "change password" link to the user dropdown menu at top right. To do this, a module should include specifications of its links in a `links` section in the `stripes` area of its package file.
 
-If specified, `stripes.links` is an object whose keys are the names are the areas in which to add links: presently only `userDropdown` is supported, indicating the menu under the user-profile icon; support for additional areas will be added as needed.
+If specified, `stripes.links` is an object whose keys are the names of the areas in which to add links: presently only `userDropdown` is supported, indicating the menu under the user-profile icon; support for additional areas will be added as needed.
 
 The corresponding values are arrays containing a list of items to add to the specified area. Each entry in the list is an object with at least two of the following keys: `caption` and one or other of `route` and `event`:
   * `caption` -- the translation key used to find the human-readable label of the menu-item.
