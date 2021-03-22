@@ -6,7 +6,7 @@ Most stripes modules support hot-module reloading (changes you make in your edit
 
 ### TL;DR
 
-* Create a yarn workspace containing git-clones of `platform-core#snapshot` and the modules where you will make commits. It is generally not necessary to clone any `stripes-*` libraries in your platform. Configure the platform to use a publicly available okapi instance. Install dependencies using the `npm-folioci` (development) registry and launch stripes in a browser:
+* Create a yarn workspace containing git-clones of `platform-core#snapshot` and the modules where you will make commits. It's not necessary to clone any `stripes-*` libraries in your platform unless you need to make changes to them as well. Configure the platform to use a publicly available okapi instance. Install dependencies using the `npm-folioci` (development) registry and launch stripes in a browser:
 ```
 cat > package.json <<EOT
 {
