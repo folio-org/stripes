@@ -701,7 +701,7 @@ Using the [formatjs CLI](https://formatjs.io/docs/tooling/cli), we can pre-compi
 
 To add pre-compiling support to a module:
 1. Run `yarn add -D @formatjs/cli` to add the formatjs cli as a dev dependency.
-2. add the following line to the `package.json` `scripts` replacing <ui-module-name> with your module name: `"formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/<ui-module-name> ./translations/<ui-module-name>/compiled"`.
+2. Add the following line to the `package.json` `scripts` replacing <ui-module-name> with your module name: `"formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/<ui-module-name> ./translations/<ui-module-name>/compiled"`.
 3. Run the command `yarn formatjs-compile`. If there are any errors, [contact Lokalise](https://wiki.folio.org/display/I18N/How+To+translate+FOLIO) to let them know of the error and they will work with them to get the files corrected and merged to master.
 4. Modify `Jenkinsfile` to run `formatjs-compile` under the `runScripts` section:
 ```
