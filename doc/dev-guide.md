@@ -694,6 +694,21 @@ The `permissionSets` defined in an app's package.json each contain a `permission
 
 Note the only change is inserting `permission.` after the first period. This means that because the generated translation key needs to begin with the module providing the translation, permissions that are intended to be shown in the UI (ie, have `visible: true` set), should always have a `permissionName` that begins with the app's ID (eg, `ui-users`).
 
+#### Pre-compiling translations into AST format
+
+Using the [formatjs CLI](https://formatjs.io/docs/tooling/cli), we can pre-compile translation files to optimize run-time performance and also to remove a console warning that `formatjs` throws if uncompiled translations are present that must be parsed at runtime. Pre-compiling also has the benefit of catching any syntax errors that exist and could appear malformed in the UI at runtime.
+
+To add pre-compiling support to a module:
+1. Run `yarn add -D @formatjs/cli` to add the formatjs cli as a dev dependency.
+2. add the following line to the `package.json` `scripts` replacing <ui-module-name> with your module name: `"formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/<ui-module-name> ./translations/<ui-module-name>/compiled"`.
+3. Run the command `yarn formatjs-compile`. If there are any errors, [contact Lokalise](https://wiki.folio.org/display/I18N/How+To+translate+FOLIO) to let them know of the error and they will work with them to get the files corrected and merged to master.
+4. Modify `Jenkinsfile` to run `formatjs-compile` under the `runScripts` section:
+```
+runScripts = [
+   ['formatjs-compile': ''],
+  ]
+```
+
 #### Filtering translations at build time
 
 By default, the build process will collect translations for all languages found in each module.  Sometimes it is desireable to build a tenant with only a specific set of languages.  To filter the languages for a tenant, set the `languages` property in the `config` section of the tenant's `stripes.config.js` file.  The value should be an array of desired two-letter codes.  For example:
