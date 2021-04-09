@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "Stripes framework",
   "repository": "https://github.com/folio-org/stripes",
   "publishConfig": {
@@ -16,9 +16,9 @@
     "lint": "eslint ./"
   },
   "dependencies": {
-    "@folio/stripes-components": "~9.0.0",
+    "@folio/stripes-components": "~9.1.0",
     "@folio/stripes-connect": "~6.1.0",
-    "@folio/stripes-core": "~7.0.0",
+    "@folio/stripes-core": "~7.1.0",
     "@folio/stripes-form": "~6.0.0",
     "@folio/stripes-final-form": "~5.0.0",
     "@folio/stripes-logger": "~1.0.0",
