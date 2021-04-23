@@ -1,5 +1,10 @@
 # Change history for stripes
 
+## [6.1.2](https://github.com/folio-org/stripes/tree/v6.1.2) (2021-04-22)
+
+* `stripes-smart-components` `6.0.3` https://github.com/folio-org/stripes-smart-components/releases/tag/v6.0.3
+* `stripes-core` `7.1.1` https://github.com/folio-org/stripes-core/releases/tag/v7.1.1
+
 ## [6.1.1](https://github.com/folio-org/stripes/tree/v6.1.1) (2021-04-16)
 
 * `stripes-smart-components` `6.0.2` https://github.com/folio-org/stripes-smart-components/releases/tag/v6.0.2
