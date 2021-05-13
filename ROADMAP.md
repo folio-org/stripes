@@ -17,4 +17,6 @@
 * [STRIPES-723](https://issues.folio.org/browse/STRIPES-723) Upgrade RxJS to v6
 * Switch to [`@babel/eslint-parser`](https://babeljs.io/blog/2020/07/13/the-state-of-babel-eslint) instead of `babel-eslint`
 
-##
+## Kiwi
+
+* [STRIPES-676](https://issues.folio.org/browse/STRIPES-676) move to NPM 7 (from Yarn 1.0)
