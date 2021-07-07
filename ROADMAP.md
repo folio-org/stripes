@@ -13,6 +13,7 @@
 
 ## Juniper (API freeze 2021)
 
+* [UXPROD-2266](https://issues.folio.org/browse/UXPROD-2266) Refactor from redux-form to final-form
 * [STRIPES-722](https://issues.folio.org/browse/STRIPES-722) increment to react v17
 * [STRIPES-723](https://issues.folio.org/browse/STRIPES-723) Upgrade RxJS to v6
 * Switch to [`@babel/eslint-parser`](https://babeljs.io/blog/2020/07/13/the-state-of-babel-eslint) instead of `babel-eslint`
