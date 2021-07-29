@@ -1,5 +1,9 @@
 # Change history for stripes
 
+## 7.0.0
+
+* BREAKING: React 17
+
 ## [6.2.1](https://github.com/folio-org/stripes/tree/v6.2.1) (2021-07-15)
 
 * `stripes-components` `9.2.1` https://github.com/folio-org/stripes-components/releases/tag/v9.2.1

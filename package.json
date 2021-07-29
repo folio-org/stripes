@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes",
-  "version": "6.2.1",
+  "version": "7.0.0",
   "description": "Stripes framework",
   "repository": "https://github.com/folio-org/stripes",
   "publishConfig": {
@@ -16,14 +16,14 @@
     "lint": "eslint ./"
   },
   "dependencies": {
-    "@folio/stripes-components": "~9.2.1",
-    "@folio/stripes-connect": "~6.2.0",
-    "@folio/stripes-core": "~7.2.0",
-    "@folio/stripes-form": "~6.1.0",
-    "@folio/stripes-final-form": "~5.1.0",
+    "@folio/stripes-components": "folio-org/stripes-components#stripes-v7",
+    "@folio/stripes-connect": "folio-org/stripes-connect#stripes-v7",
+    "@folio/stripes-core": "folio-org/stripes-core#stripes-v7",
+    "@folio/stripes-final-form": "folio-org/stripes-final-form#stripes-v7",
+    "@folio/stripes-form": "folio-org/stripes-form#stripes-v7",
     "@folio/stripes-logger": "~1.0.0",
-    "@folio/stripes-smart-components": "~6.1.1",
-    "@folio/stripes-util": "~4.2.0",
+    "@folio/stripes-smart-components": "folio-org/stripes-smart-components#stripes-v7",
+    "@folio/stripes-util": "folio-org/stripes-util#stripes-v7",
     "react-redux": "~7.2.0",
     "redux": "~4.0.0"
   },
@@ -32,7 +32,7 @@
     "eslint": "^6.2.1"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
