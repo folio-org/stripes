@@ -22,7 +22,7 @@
     "@folio/stripes-form": "~6.1.0",
     "@folio/stripes-final-form": "~5.1.0",
     "@folio/stripes-logger": "~1.0.0",
-    "@folio/stripes-smart-components": "~6.1.1",
+    "@folio/stripes-smart-components": "~6.1.2",
     "@folio/stripes-util": "~4.2.0",
     "react-redux": "~7.2.0",
     "redux": "~4.0.0"
