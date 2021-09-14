@@ -13,7 +13,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo 'No tests implemented'",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json "
   },
   "dependencies": {
     "@folio/stripes-components": "~10.0.0",
