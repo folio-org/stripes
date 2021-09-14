@@ -16,14 +16,14 @@
     "lint": "eslint ./"
   },
   "dependencies": {
-    "@folio/stripes-components": "folio-org/stripes-components#stripes-v7",
-    "@folio/stripes-connect": "folio-org/stripes-connect#stripes-v7",
-    "@folio/stripes-core": "folio-org/stripes-core#stripes-v7",
-    "@folio/stripes-final-form": "folio-org/stripes-final-form#stripes-v7",
-    "@folio/stripes-form": "folio-org/stripes-form#stripes-v7",
+    "@folio/stripes-components": "^10.0.0",
+    "@folio/stripes-connect": "^7.0.0",
+    "@folio/stripes-core": "^8.0.0",
+    "@folio/stripes-final-form": "^6.0.0",
+    "@folio/stripes-form": "^7.0.0",
     "@folio/stripes-logger": "~1.0.0",
-    "@folio/stripes-smart-components": "folio-org/stripes-smart-components#stripes-v7",
-    "@folio/stripes-util": "folio-org/stripes-util#stripes-v7",
+    "@folio/stripes-smart-components": "^7.0.0",
+    "@folio/stripes-util": "^5.0.0",
     "react-redux": "~7.2.0",
     "redux": "~4.0.0"
   },
