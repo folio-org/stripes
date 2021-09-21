@@ -74,7 +74,7 @@ This document is aimed at those writing UI modules for Stripes -- such as the Us
 
 The Stripes toolkit aims to make it as easy as possible to write UI modules that communicate with RESTful Web services. Most importantly, it is the toolkit used to write UI modules for [the FOLIO library services platform](https://www.folio.org/).
 
-This document aims to bring new UI module developers up to speed with the concepts behind Stripes (especially stripes-connect), so that they are have a context in which to understand [The Stripes Connect API](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md) reference guide.
+This document aims to bring new UI module developers up to speed with the concepts behind Stripes (especially stripes-connect), so that they have a context in which to understand [The Stripes Connect API](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md) reference guide.
 
 
 
