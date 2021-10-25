@@ -1,6 +1,11 @@
 # Change history for stripes
 
-## 7.0.0
+## [7.0.1](https://github.com/folio-org/stripes/tree/v7.0.1) (2021-10-24)
+
+* `stripes-components` `10.0.1` https://github.com/folio-org/stripes-components/releases/tag/v10.0.1
+* `stripes-core` `8.0.1` https://github.com/folio-org/stripes-core/releases/tag/v8.0.1
+
+## [7.0.0](https://github.com/folio-org/stripes/tree/v7.0.0) (2021-09-28)
 
 * BREAKING: React 17
 * BREAKING: RxJS 6
