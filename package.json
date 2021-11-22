@@ -17,7 +17,7 @@
     "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json "
   },
   "dependencies": {
-    "@folio/stripes-components": "~10.0.2",
+    "@folio/stripes-components": "~10.0.3",
     "@folio/stripes-connect": "~7.0.0",
     "@folio/stripes-core": "~8.0.1",
     "@folio/stripes-final-form": "~6.0.0",
