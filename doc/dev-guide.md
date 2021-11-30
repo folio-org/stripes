@@ -204,6 +204,24 @@ The following packages must be included as peerDependencies only. They will be p
 
 Don't forget to include dependencies where Stripes needs to gather translations as `stripesDeps` (for example: `stripes-erm-components`).
 
+### Upgrading third-party dependencies
+
+There are several third-party dependencies that are foundational to `stripes` and should be periodically updated so that other minor third-party libraries can be updated (as their updates generally pair with major library versions). They are as follows:
+
+* node (New LTS version 1-2 times per year. See: https://nodejs.org/en/about/releases/)
+* react (Major versions released sparingly, but announced well ahead of time. See: https://reactjs.org/docs/faq-versioning.html)
+* react-dom (Releases every few years, [new major version 18 is in beta](https://www.npmjs.com/package/react-dom?activeTab=versions))
+* react-redux
+* react-router
+* react-router-dom
+
+Other major dependencies in `stripes` that haven't seen a major release in a long time may be viewed as more stable and likely won't need allocated time to upgrade. 
+
+* redux (Several years between releases, [new major version 5 is in alpha](https://www.npmjs.com/package/react-dom?activeTab=versions))
+* rxjs
+
+Given that at least a few of our dependencies will have a major releasse each year, in order to not fall too far behind, it is recommended to perform an update of one (or more if required) of our dependencies EVERY OTHER major release of FOLIO.
+
 ## Guidelines for structuring your Stripes module
 
 
