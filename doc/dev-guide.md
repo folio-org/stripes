@@ -14,6 +14,7 @@
         * [Unit-testing](#unit-testing)
         * [Code-review](#code-review)
     * [Specifying dependencies](#specifying-dependencies)
+      * [Upgrading third-party dependencies](#upgrading-third-party-dependencies)
 * [Guidelines for structuring your Stripes module](#guidelines-for-structuring-your-stripes-module)
     * [Define all your routes at the top](#define-all-your-routes-at-the-top)
     * [Fetch data in the route component](#fetch-data-in-the-route-component)
@@ -193,34 +194,27 @@ yarn add --peer _packageName_
 ```
 
 The following packages must be included as peerDependencies only. They will be provided to the bundle by the platform's `package.json` where they will be specified as dependencies:
+* moment
 * react
 * react-dom
+* react-intl
 * react-redux
 * react-router
 * react-router-dom
+* react-query
 * redux
 * rxjs
 * @folio/stripes
 
 Don't forget to include dependencies where Stripes needs to gather translations as `stripesDeps` (for example: `stripes-erm-components`).
 
-### Upgrading third-party dependencies
+#### Upgrading third-party dependencies
 
-There are several third-party dependencies that are foundational to `stripes` and should be periodically updated so that other minor third-party libraries can be updated (as their updates generally pair with major library versions). They are as follows:
+There are several third-party dependencies that are foundational to `stripes` and should be periodically updated to increase stability, security, and allow access to any features that may improve our codebase. They are listed above in `peerDependecies`.
 
-* node (New LTS version 1-2 times per year. See: https://nodejs.org/en/about/releases/)
-* react (Major versions released sparingly, but announced well ahead of time. See: https://reactjs.org/docs/faq-versioning.html)
-* react-dom (Releases every few years, [new major version 18 is in beta](https://www.npmjs.com/package/react-dom?activeTab=versions))
-* react-redux
-* react-router
-* react-router-dom
+Given that at least a few of our dependencies will have a major release each year, in order to not fall too far behind, it is recommended to perform an update of one (or more if needed) of our dependencies EVERY OTHER major [FOLIO flower release](https://wiki.folio.org/display/RPT/FOLIO+Reporting+Roadmap). For example, since `React v17` was released in `Kiwi`, then another major update should be attempted for `Morning Glory` release.
 
-Other major dependencies in `stripes` that haven't seen a major release in a long time may be viewed as more stable and likely won't need allocated time to upgrade. 
-
-* redux (Several years between releases, [new major version 5 is in alpha](https://www.npmjs.com/package/react-dom?activeTab=versions))
-* rxjs
-
-Given that at least a few of our dependencies will have a major releasse each year, in order to not fall too far behind, it is recommended to perform an update of one (or more if required) of our dependencies EVERY OTHER major release of FOLIO.
+In addition, each team should upgrade their owned module's minor dependencies with each major FOLIO flower release. Any upgrade that requires significant development work to address breaking changes should have a JIRA ticket created to be addressed in the subsequent major flower release. Any upgrade that is blocked by requiring a not-yet-completed upgrade of any `peerDependencies` should be reported on the `#stripes-architecture` Slack channel.
 
 ## Guidelines for structuring your Stripes module
 
