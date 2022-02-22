@@ -1,5 +1,13 @@
 # Change history for stripes
 
+## [7.1.0](https://github.com/folio-org/stripes/tree/v7.1.0) (2022-02-22)
+
+* `stripes-components` `10.1.0` https://github.com/folio-org/stripes-components/releases/tag/v10.1.0
+* `stripes-core` `8.0.1` https://github.com/folio-org/stripes-core/releases/tag/v8.1.0
+* `stripes-smart-components` `7.1.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v7.1.0
+* `stripes-util` `5.1.0` https://github.com/folio-org/stripes-util/releases/tag/v5.1.0
+* `eslint-config-stripes` `6.1.0` https://github.com/folio-org/eslint-config-stripes/releases/tag/v6.1.0
+
 ## [7.0.1](https://github.com/folio-org/stripes/tree/v7.0.1) (2021-10-24)
 
 * `stripes-components` `10.0.1` https://github.com/folio-org/stripes-components/releases/tag/v10.0.1
