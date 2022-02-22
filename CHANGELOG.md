@@ -1,5 +1,7 @@
 # Change history for stripes
 
+## 7.2.0 IN PROGRESS
+
 ## [7.1.0](https://github.com/folio-org/stripes/tree/v7.1.0) (2022-02-22)
 
 * `stripes-components` `10.1.0` https://github.com/folio-org/stripes-components/releases/tag/v10.1.0
