@@ -14,6 +14,7 @@
         * [Unit-testing](#unit-testing)
         * [Code-review](#code-review)
     * [Specifying dependencies](#specifying-dependencies)
+      * [Upgrading third-party dependencies](#upgrading-third-party-dependencies)
 * [Guidelines for structuring your Stripes module](#guidelines-for-structuring-your-stripes-module)
     * [Define all your routes at the top](#define-all-your-routes-at-the-top)
     * [Fetch data in the route component](#fetch-data-in-the-route-component)
@@ -74,7 +75,7 @@ This document is aimed at those writing UI modules for Stripes -- such as the Us
 
 The Stripes toolkit aims to make it as easy as possible to write UI modules that communicate with RESTful Web services. Most importantly, it is the toolkit used to write UI modules for [the FOLIO library services platform](https://www.folio.org/).
 
-This document aims to bring new UI module developers up to speed with the concepts behind Stripes (especially stripes-connect), so that they are have a context in which to understand [The Stripes Connect API](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md) reference guide.
+This document aims to bring new UI module developers up to speed with the concepts behind Stripes (especially stripes-connect), so that they have a context in which to understand [The Stripes Connect API](https://github.com/folio-org/stripes-connect/blob/master/doc/api.md) reference guide.
 
 
 
@@ -193,16 +194,27 @@ yarn add --peer _packageName_
 ```
 
 The following packages must be included as peerDependencies only. They will be provided to the bundle by the platform's `package.json` where they will be specified as dependencies:
+* moment
 * react
 * react-dom
+* react-intl
 * react-redux
 * react-router
 * react-router-dom
+* react-query
 * redux
 * rxjs
 * @folio/stripes
 
 Don't forget to include dependencies where Stripes needs to gather translations as `stripesDeps` (for example: `stripes-erm-components`).
+
+#### Upgrading third-party dependencies
+
+There are several third-party dependencies that are foundational to `stripes` and should be periodically updated to increase stability, security, and allow access to any features that may improve our codebase. They are listed above in `peerDependecies`.
+
+Given that at least a few of our dependencies will have a major release each year, in order to not fall too far behind, it is recommended to perform an update of one (or more if needed) of our dependencies EVERY OTHER major [FOLIO flower release](https://wiki.folio.org/display/RPT/FOLIO+Reporting+Roadmap). For example, since `React v17` was released in `Kiwi`, then another major update should be attempted for `Morning Glory` release.
+
+In addition, each team should upgrade their owned module's minor dependencies with each major FOLIO flower release. Any upgrade that requires significant development work to address breaking changes should have a JIRA ticket created to be addressed in the subsequent major flower release. Any upgrade that is blocked by requiring a not-yet-completed upgrade of any `peerDependencies` should be reported on the `#stripes-architecture` Slack channel.
 
 ## Guidelines for structuring your Stripes module
 

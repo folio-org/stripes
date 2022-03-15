@@ -1,5 +1,32 @@
 # Change history for stripes
 
+## 7.2.0 IN PROGRESS
+
+## [7.1.0](https://github.com/folio-org/stripes/tree/v7.1.0) (2022-02-22)
+
+* `stripes-components` `10.1.0` https://github.com/folio-org/stripes-components/releases/tag/v10.1.0
+* `stripes-core` `8.0.1` https://github.com/folio-org/stripes-core/releases/tag/v8.1.0
+* `stripes-smart-components` `7.1.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v7.1.0
+* `stripes-util` `5.1.0` https://github.com/folio-org/stripes-util/releases/tag/v5.1.0
+* `eslint-config-stripes` `6.1.0` https://github.com/folio-org/eslint-config-stripes/releases/tag/v6.1.0
+
+## [7.0.1](https://github.com/folio-org/stripes/tree/v7.0.1) (2021-10-24)
+
+* `stripes-components` `10.0.1` https://github.com/folio-org/stripes-components/releases/tag/v10.0.1
+* `stripes-core` `8.0.1` https://github.com/folio-org/stripes-core/releases/tag/v8.0.1
+
+## [7.0.0](https://github.com/folio-org/stripes/tree/v7.0.0) (2021-09-28)
+
+* BREAKING: React 17
+* BREAKING: RxJS 6
+* `stripes-components` `10.0.0` https://github.com/folio-org/stripes-components/releases/tag/v10.0.0
+* `stripes-connect` `7.0.0` https://github.com/folio-org/stripes-connect/releases/tag/v7.0.0
+* `stripes-core` `8.0.0` https://github.com/folio-org/stripes-core/releases/tag/v8.0.0
+* `stripes-form` `7.0.0` https://github.com/folio-org/stripes-form/releases/tag/v7.0.0
+* `stripes-final-form` `6.0.0` https://github.com/folio-org/stripes-final-form/releases/tag/v6.0.0
+* `stripes-smart-components` `7.0.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v7.0.0
+* `stripes-util` `5.0.0` https://github.com/folio-org/stripes-util/releases/tag/v5.0.0
+
 ## [6.2.2](https://github.com/folio-org/stripes/tree/v6.2.2) (2021-07-30)
 
 * `stripes-smart-components` `6.1.2` https://github.com/folio-org/stripes-smart-components/releases/tag/v6.1.2
