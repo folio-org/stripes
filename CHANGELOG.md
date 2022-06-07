@@ -33,6 +33,8 @@
 * `stripes-components` `10.1.1` https://github.com/folio-org/stripes-components/releases/tag/v10.1.1
 * `stripes-smart-components` `7.1.1` https://github.com/folio-org/stripes-smart-components/releases/tag/v7.1.1
 
+* Bump CI to Node v16. Refs STRIPES-802.
+
 ## [7.1.0](https://github.com/folio-org/stripes/tree/v7.1.0) (2022-02-22)
 
 * `stripes-components` `10.1.0` https://github.com/folio-org/stripes-components/releases/tag/v10.1.0
