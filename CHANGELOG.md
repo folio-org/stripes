@@ -1,5 +1,11 @@
 # Change history for stripes
 
+## [7.1.7](https://github.com/folio-org/stripes/tree/v7.1.7) (2022-06-06)
+
+* `stripes-components` `10.1.5` https://github.com/folio-org/stripes-components/releases/tag/v10.1.5
+* `stripes-core` `8.1.2` https://github.com/folio-org/stripes-core/releases/tag/v8.1.2
+* Release 717: Hello Harrisburg, PA!
+
 ## [7.1.6](https://github.com/folio-org/stripes/tree/v7.1.6) (2022-06-01)
 
 * `stripes-components` `10.1.4` https://github.com/folio-org/stripes-components/releases/tag/v10.1.4
