@@ -2,6 +2,14 @@
 
 ## 7.2.0 IN PROGRESS
 
+* `stripes-components` `10.2.0` https://github.com/folio-org/stripes-components/releases/tag/v10.2.0
+* `stripes-connect` `7.1.0` https://github.com/folio-org/stripes-connect/releases/tag/v7.1.0
+* `stripes-core` `8.2.0` https://github.com/folio-org/stripes-core/releases/tag/v8.2.0
+* `stripes-form` `7.1.0` https://github.com/folio-org/stripes-form/releases/tag/v7.1.0
+* `stripes-final-form` `6.1.0` https://github.com/folio-org/stripes-final-form/releases/tag/v6.1.0
+* `stripes-smart-components` `7.2.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v7.2.0
+* `stripes-util` `5.1.0` https://github.com/folio-org/stripes-util/releases/tag/v5.1.0
+
 * Bump CI to Node v16. Refs STRIPES-802.
 
 ## [7.1.0](https://github.com/folio-org/stripes/tree/v7.1.0) (2022-02-22)
