@@ -8,7 +8,7 @@
   },
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=14.0.0"
   },
   "main": "src/index.js",
   "scripts": {
@@ -20,11 +20,11 @@
     "@folio/stripes-components": "~10.2.0",
     "@folio/stripes-connect": "~7.1.0",
     "@folio/stripes-core": "~8.2.0",
-    "@folio/stripes-final-form": "~6.0.0",
-    "@folio/stripes-form": "~7.0.0",
+    "@folio/stripes-final-form": "~6.1.0",
+    "@folio/stripes-form": "~7.1.0",
     "@folio/stripes-logger": "~1.0.0",
     "@folio/stripes-smart-components": "~7.2.0",
-    "@folio/stripes-util": "~5.1.0",
+    "@folio/stripes-util": "~5.2.0",
     "react-redux": "~7.2.0",
     "redux": "~4.0.0"
   },
