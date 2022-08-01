@@ -9,7 +9,7 @@
 #   - SQ_ROOT_DIR (root SQ directory to scan relative to top-level directory)
 #   - PUBLISH_MOD_DESCRIPTOR (boolean 'true' or 'false')
 #   - COMPILE_TRANSLATION_FILES (boolean 'true' or 'false')
-#   
+#
 
 name: buildNPM Release
 on:
@@ -27,8 +27,9 @@ jobs:
       COMPILE_TRANSLATION_FILES: 'false'
       PUBLISH_MOD_DESCRIPTOR: 'false'
       FOLIO_NPM_REGISTRY: 'https://repository.folio.org/repository/npm-folio/'
+      FOLIO_NPM_REGISTRY_AUTH: '//repository.folio.org/repository/npm-folio/'
       FOLIO_MD_REGISTRY: 'https://folio-registry.dev.folio.org'
-      NODEJS_VERSION: '12'
+      NODEJS_VERSION: '16'
       JEST_JUNIT_OUTPUT_DIR: 'artifacts/jest-junit'
       JEST_COVERAGE_REPORT_DIR: 'artifacts/coverage-jest/lcov-report/'
       BIGTEST_JUNIT_OUTPUT_DIR: 'artifacts/runTest'
@@ -68,7 +69,7 @@ jobs:
       - name: Setup kernel for react native, increase watchers
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODEJS_VERSION }}
           check-latest: true
@@ -207,7 +208,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Set up NPM environment for publishing
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODEJS_VERSION }}
           check-latest: true
@@ -216,7 +217,7 @@ jobs:
       - name: Set _auth in .npmrc
         run: |
           npm config set @folio:registry $FOLIO_NPM_REGISTRY
-          npm config set _auth $NODE_AUTH_TOKEN
+          npm config set $FOLIO_NPM_REGISTRY_AUTH:_auth $NODE_AUTH_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

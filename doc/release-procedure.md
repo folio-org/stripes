@@ -55,7 +55,7 @@ $ yarn config set @folio:registry https://repository.folio.org/repository/npm-fo
 $ yarn install
 ```
 
-Messages received during the install such as, "Package [package] not found" or "Couldn't find any versions for [package] that matches [version]", indicate an unreleased dependency. You will not be able to publish your release (a Jenkins check will fail, preventing the release PR from being merged) until all dependencies are properly released.
+Messages received during the install such as, "Package [package] not found" or "Couldn't find any versions for [package] that matches [version]", indicate an unreleased dependency. You will not be able to publish your release (a Jenkins/GitHub Actions check will fail, preventing the release PR from being merged) until all dependencies are properly released.
 
 
 ## Release procedure
@@ -69,11 +69,12 @@ Messages received during the install such as, "Package [package] not found" or "
 * Create a Pull Request for it, and merge it.
 * After the merge, checkout the master branch and create a tag for the specific version to be released, e.g. `git checkout master; git pull; git tag v2.3.0`. If there have been other changes to master since the merge commit, supply the checksum of the merge commit to make sure the tag is applied to the correct commit, e.g. `git tag v2.3.0 c0ffee`.
 * Push the release tag to git, e.g. `git push origin tag v2.3.0`.
-* Build and publish release artifacts.  Log into https://jenkins-aws.indexdata.com with your folio-org Github credentials. Select the project you want to release under the GitHub 'folio-org' folder and select the 'Tags' tab. Select the Git tag you want to release and then run 'Build Now' to build the release artifacts. If the Git tag you want to release is not present, run the 'Scan Repository Now' task and reload the page when the scan is complete. (Note: You may require additional permissions to build the release. Contact a FOLIO DevOps administrator if needed.)
-* After the Jenkins build completes successfully, update the GitHub release by copying the relevant `CHANGELOG.md` entries to the GitHub release. On the GitHub repository home page, click "Releases", then click the relevant tag, then the "Edit release" button. Set the "Release title" field to match the tag, paste the changelog entries into the "Describe this release" field, and save your changes. Strictly speaking, this is just a documentation step. The "real" release is published to the folio npm repository; this is courtesy to developers browsing GitHub that indicates "this commit corresponds to that version and contains these changes".
+* Build and publish release artifacts.
+  * If your module uses Jenkins (contains a `Jenkinsfile`): Log into https://jenkins-aws.indexdata.com with your folio-org Github credentials. Select the project you want to release under the GitHub 'folio-org' folder and select the 'Tags' tab. Select the Git tag you want to release and then run 'Build Now' to build the release artifacts. If the Git tag you want to release is not present, run the 'Scan Repository Now' task and reload the page when the scan is complete. (Note: You may require additional permissions to build the release. Contact a FOLIO DevOps administrator if needed.)
+  * Otherwise, your repository uses GitHub Actions and this skip should be skipped.
+* After the build completes successfully, update the GitHub release by copying the relevant `CHANGELOG.md` entries to the GitHub release. On the GitHub repository home page, click "Releases", then click the relevant tag, then the "Edit release" button. Set the "Release title" field to match the tag, paste the changelog entries into the "Describe this release" field, and save your changes. Strictly speaking, this is just a documentation step. The "real" release is published to the folio npm repository; this is courtesy to developers browsing GitHub that indicates "this commit corresponds to that version and contains these changes".
 * Adjust configuration for this module in Stripes Platforms. Follow [Add to platforms](https://dev.folio.org/guidelines/release-procedures/#add-to-platforms) documentation.
 * Send a release announcement to the `#releases` Slack [channel](https://dev.folio.org/guidelines/which-forum/#slack) if relevant.
-
 
 ## Working towards the next release
 
@@ -140,7 +141,7 @@ Update dependent packages when needed to allow CI to pick up the pre-release ver
 
 ## Notes on testing
 
-When you open a PR, GitHub will wait for to two Jenkins "checks" to complete before allowing the PR to be merged. These checks involve installing the package to make sure its dependencies can be satisfied and running the package's unit test to make sure they pass. If the tests do not pass, the PR cannot be merged.
+When you open a PR, GitHub will wait for to two Jenkins or GitHub Actions "checks" to complete before allowing the PR to be merged. These checks involve installing the package to make sure its dependencies can be satisfied and running the package's unit test to make sure they pass. If the tests do not pass, the PR cannot be merged.
 
 For additional details, see https://dev.folio.org/guides/automation
 

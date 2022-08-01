@@ -31,7 +31,7 @@ Guides for development and testing
 * [Migrate to Stripes framework](doc/stripes-framework.md#migrating) - How to migrate an existing app to Stripes framework v1.0
 * [Stripes-core](https://github.com/folio-org/stripes-core/blob/master/README.md)  - Details on Stripes core features including permissions and settings
 * [Stripes-components](https://github.com/folio-org/stripes-components/blob/master/README.md) - The UI component library for Stripes
-* Unit test guide - Test Stripes apps with BigTest (placeholder)
+* [Unit Testing with Jest and RTL](doc/unit-testing-with-jest-and-rtl.md)
 * Integration test guide - Integration tests with Nightmare (placeholder) _Note: The [old documentation](https://github.com/folio-org/ui-testing/blob/master/README.md) is still mostly relevant, but tests are now invoked by the CLI_
 * [Accessibility (a11y) in Stripes](https://github.com/folio-org/stripes-components/blob/master/docs/AccessibilityOverview.md)
 * [Internationalization (i18n) best practices](doc/i18n.md) - Overview and examples
