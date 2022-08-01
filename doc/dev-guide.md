@@ -214,7 +214,7 @@ There are several third-party dependencies that are foundational to `stripes` an
 
 Given that at least a few of our dependencies will have a major release each year, in order to not fall too far behind, it is recommended to perform an update of one (or more if needed) of our dependencies EVERY OTHER major [FOLIO flower release](https://wiki.folio.org/display/RPT/FOLIO+Reporting+Roadmap). For example, since `React v17` was released in `Kiwi`, then another major update should be attempted for `Morning Glory` release.
 
-In addition, each team should upgrade their owned module's minor dependencies with each major FOLIO flower release. Any upgrade that requires significant development work to address breaking changes should have a JIRA ticket created to be addressed in the subsequent major flower release. Any upgrade that is blocked by requiring a not-yet-completed upgrade of any `peerDependencies` should be reported on the `#stripes-architecture` Slack channel.
+In addition, each team should upgrade their own module's direct `devDependencies` and `dependencies` to the most recent major version with each major FOLIO flower release. Any upgrade that requires significant development work to address breaking changes should have a JIRA ticket created to be addressed in the subsequent major flower release. Any upgrade that is blocked by requiring a not-yet-completed upgrade of any `peerDependencies` should be reported on the `#stripes-architecture` Slack channel.
 
 ## Guidelines for structuring your Stripes module
 
