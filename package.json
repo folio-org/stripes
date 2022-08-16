@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes",
-  "version": "7.2.2",
+  "version": "7.2.3",
   "description": "Stripes framework",
   "repository": "https://github.com/folio-org/stripes",
   "publishConfig": {
@@ -23,7 +23,7 @@
     "@folio/stripes-final-form": "~6.1.0",
     "@folio/stripes-form": "~7.1.0",
     "@folio/stripes-logger": "~1.0.0",
-    "@folio/stripes-smart-components": "~7.2.2",
+    "@folio/stripes-smart-components": "~7.2.3",
     "@folio/stripes-util": "~5.2.0",
     "react-redux": "~7.2.0",
     "redux": "~4.0.0"
