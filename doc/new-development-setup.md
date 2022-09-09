@@ -31,6 +31,7 @@
     * [Inventory (or another module) is missing](#inventory-or-another-module-is-missing)
     * [leveldown](#leveldown)
     * [stripescli install is not idempotent](#stripescli-install-is-not-idempotent)
+    * [Adding a stripes module with custom namespace to a platform](#adding-a-stripes-module-with-custom-namespace-to-a-platform)
 * [Additional information and suggestions](#additional-information-and-suggestions)
     * [Use an offline Yarn cache](#use-an-offline-yarn-cache)
     * [More about workspaces](#more-about-workspaces)
@@ -626,6 +627,27 @@ $ cd stripes-cli
 $ npm uninstall -g
 $ npm install -g
 ```
+
+### Adding a stripes module with custom namespace to a platform
+
+Usually, UI modules reside in the `@folio` namespace for npm packages. 
+Modules outside this namespace will not be built correctly with `stripes build|serve` unless you set the environment variable `STRIPES_TRANSPILE_TOKENS="@<namespaces-separated-by-space>"` so that it contains all namespaces of your custom stripes modules.
+If not set, you may encounter an error such as
+```
+ERROR in ./node_modules/@other-namespace/stack-requests/src/index.js 33:6
+Module parse failed: Unexpected token (33:6)
+You may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders
+|
+|     return (
+>       <Switch>
+|         <Route exact path={path} component={this.connectedRequestList} />
+|         <Route path={`${path}/:sp?`} component={this.connectedRequestList}>
+ @ ./node_modules/stripes-config.js 27:7-50
+ @ ./node_modules/@folio/stripes-core/src/App.js 46:0-62 68:24-35 68:65-76 68:91-102 74:35-41 102:16-22 104:21-27 104:31-49
+ @ ./node_modules/@folio/stripes-core/src/index.js 9:0-24 11:26-29
+```
+
+This workaround may be fixed in near future, cf. [STRWEB-49](https://issues.folio.org/browse/STRWEB-49).
 
 ## Additional information and suggestions
 
