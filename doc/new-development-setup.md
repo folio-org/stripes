@@ -210,12 +210,12 @@ Official releases of FOLIO modules are published to https://repository.folio.org
 
 For FOLIO app developers, the `npm-folio` registry is preferred for more stable releases:
 ```
-$ yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
+$ yarn config set "@folio:registry" https://repository.folio.org/repository/npm-folio/
 ```
 
 Core `stripes-*` module developers may prefer the CI registry in order to replicate this environment when running tests and you want to alias only the repository you've made changes to and you want tip-of-master builds for everything else.
 ```
-$ yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
+$ yarn config set "@folio:registry" https://repository.folio.org/repository/npm-folioci/
 ```
 
 > Note: When present, Yarn will prefer the equivalent `npm` registry value.  Use `yarn config list` to check for any conflicts and update or clear the `npm` value if necessary: _(output abbreviated for clarity)_
