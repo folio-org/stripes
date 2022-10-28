@@ -74,10 +74,11 @@ $ stripes serve stripes.config.js.local
 
 Review the following instructions followed by [app development](#app-development-instructions) or [platform development](#platform-development-instructions) sections as applicable.
 
-* [Node.js](https://nodejs.org/) with an [active LTS version](https://github.com/nodejs/Release#release-schedule) installed (check with `node --version`).
+* [Node.js](https://nodejs.org/) with an [active LTS version](https://github.com/nodejs/Release#release-schedule)[^1] installed (check with `node --version`).
 * [Yarn](https://yarnpkg.com/) package manager
 * [Vagrant](https://www.vagrantup.com/downloads.html) for optionally hosting a local [pre-built back-end](https://github.com/folio-org/folio-ansible/blob/master/doc/index.md) environment
 
+[^1]: As of October 2022, some of our dependencies are not yet compatible with v18, so even though it is the active LTS release you must build with v16 at this time.
 
 ### Create your Vagrant box
 
