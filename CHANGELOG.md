@@ -1,6 +1,10 @@
 # Change history for stripes
 
-## [7.3.2](https://github.com/folio-org/stripes/tree/v7.3.1) (2022-10-13)
+## [7.3.3](https://github.com/folio-org/stripes/tree/v7.3.3) (2022-11-23)
+
+* Dummy release to move the `latest` dist-tag back to the 7.3.x branch due to https://issues.sonatype.org/browse/NEXUS-22915.
+
+## [7.3.2](https://github.com/folio-org/stripes/tree/v7.3.2) (2022-11-16)
 
 * `stripes-components` `10.3.1` https://github.com/folio-org/stripes-components/releases/tag/v10.3.1
 * `stripes-smart-components` `7.3.1` https://github.com/folio-org/stripes-smart-components/releases/tag/v7.3.1
