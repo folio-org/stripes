@@ -7,7 +7,8 @@ Each bundle can be configured with tenant-specific assets for branding purposes.
 
 * Logo and alt text
 * Favicon
-
+* Main navigation bar CSS
+* Login page CSS
 
 ## Configuration
 
@@ -26,6 +27,14 @@ module.exports = {
     },
     favicon: {
       src: './tenant-assets/my-favicon.ico',
+    },
+    style: {
+      mainNav: {
+        backgroundColor: "#036"
+      },
+      login: {
+        backgroundColor: "#fcb"
+      },
     },
   },
 };
