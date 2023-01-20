@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@folio/stripes-components": "~11.0.0",
-    "@folio/stripes-connect": "~7.1.0",
+    "@folio/stripes-connect": "~8.1.0",
     "@folio/stripes-core": "~9.0.0",
     "@folio/stripes-final-form": "~7.0.0",
     "@folio/stripes-form": "~8.0.0",
@@ -26,16 +26,17 @@
     "@folio/stripes-smart-components": "~8.0.0",
     "@folio/stripes-ui": "~1.0.0",
     "@folio/stripes-util": "~5.2.0",
-    "react-redux": "~7.2.0",
     "redux": "~4.0.0"
   },
   "devDependencies": {
     "@folio/eslint-config-stripes": "^6.1.0",
-    "eslint": "^7.32.0"
+    "eslint": "^7.32.0",
+    "react-redux": "~8.0.5"
   },
   "peerDependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-redux": "~8.0.5"
   }
 }
 
