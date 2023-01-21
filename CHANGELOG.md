@@ -7,6 +7,8 @@
 * `stripes-form` `8.0.0` https://github.com/folio-org/stripes-form/releases/tag/v8.0.0
 * `stripes-final-form` `7.0.0` https://github.com/folio-org/stripes-final-form/releases/tag/v7.0.0
 * `stripes-smart-components` `8.0.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v8.0.0
+* `stripes-connect` `8.1.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v8.1.0
+* BREAKING: react-redux 8
 
 ## [7.3.1](https://github.com/folio-org/stripes/tree/v7.3.1) (2022-10-13)
 
