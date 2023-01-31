@@ -25,7 +25,7 @@
     "@folio/stripes-logger": "~1.0.0",
     "@folio/stripes-smart-components": "~8.0.0",
     "@folio/stripes-ui": "~1.0.0",
-    "@folio/stripes-util": "~5.2.0",
+    "@folio/stripes-util": "~5.2.1",
     "redux": "~4.0.0"
   },
   "devDependencies": {
@@ -39,4 +39,3 @@
     "react-redux": "~8.0.5"
   }
 }
-
