@@ -6,6 +6,7 @@
 * `stripes-core` `9.1.0` https://github.com/folio-org/stripes-core/releases/tag/v9.1.0
 * `stripes-smart-components` `8.1.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v8.1.0
 * `stripes-ui` `1.1.0` https://github.com/folio-org/stripes-ui/releases/tag/v1.1.0
+* Increment `redux` to `~4.2`. Refs STRIPES-860.
 
 ## [8.0.0](https://github.com/folio-org/stripes/tree/v8.0.0) (2023-01-31)
 
