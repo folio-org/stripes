@@ -1,13 +1,33 @@
 # Change history for stripes
 
+## 8.1.0 IN PROGRESS
+
+* `stripes-components` `11.1.0` https://github.com/folio-org/stripes-components/releases/tag/v11.1.0
+* `stripes-core` `9.1.0` https://github.com/folio-org/stripes-core/releases/tag/v9.1.0
+* `stripes-smart-components` `8.1.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v8.1.0
+* `stripes-ui` `1.1.0` https://github.com/folio-org/stripes-ui/releases/tag/v1.1.0
+* Loosen `redux` dependency to `^4.2.1`, aligning it across repos. Refs STRIPES-860.
+
+## [8.0.0](https://github.com/folio-org/stripes/tree/v8.0.0) (2023-01-31)
+
+* *BREAKING:* `stripes-components` `11.0.0` https://github.com/folio-org/stripes-components/releases/tag/v11.0.0
+* *BREAKING:* `stripes-core` `9.0.0` https://github.com/folio-org/stripes-core/releases/tag/v9.0.0
+* *BREAKING:* `stripes-form` `8.0.0` https://github.com/folio-org/stripes-form/releases/tag/v8.0.0
+* *BREAKING:* `stripes-final-form` `7.0.0` https://github.com/folio-org/stripes-final-form/releases/tag/v7.0.0
+* *BREAKING:* `stripes-smart-components` `8.0.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v8.0.0
+* *BREAKING:* `stripes-connect` `8.1.0` https://github.com/folio-org/stripes-connect/releases/tag/v8.1.0
+* `stripes-ui` `1.0.0` https://github.com/folio-org/stripes-ui/releases/tag/v1.0.0
+* `stripes-util` `5.2.1` https://github.com/folio-org/stripes-util/releases/tag/v5.2.1
+* *BREAKING:* react-redux 8
+
 ## [7.3.1](https://github.com/folio-org/stripes/tree/v7.3.1) (2022-10-13)
 
 * _Actually update_ the minor versions of these packages:
-  * `stripes-components` `10.3.0` https://github.com/folio-org/stripes-components/releases/tag/v10.3.0
-  * `stripes-core` `8.3.0` https://github.com/folio-org/stripes-core/releases/tag/v8.3.0
-  * `stripes-form` `7.1.1` https://github.com/folio-org/stripes-form/releases/tag/v7.1.1
-  * `stripes-final-form` `6.1.1` https://github.com/folio-org/stripes-final-form/releases/tag/v6.1.1
-  * `stripes-smart-components` `7.3.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v7.3.0
+* `stripes-components` `10.3.0` https://github.com/folio-org/stripes-components/releases/tag/v10.3.0
+* `stripes-core` `8.3.0` https://github.com/folio-org/stripes-core/releases/tag/v8.3.0
+* `stripes-form` `7.1.1` https://github.com/folio-org/stripes-form/releases/tag/v7.1.1
+* `stripes-final-form` `6.1.1` https://github.com/folio-org/stripes-final-form/releases/tag/v6.1.1
+* `stripes-smart-components` `7.3.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v7.3.0
 
 ## [7.3.0](https://github.com/folio-org/stripes/tree/v7.3.0) (2022-10-13)
 
