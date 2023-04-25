@@ -27,7 +27,7 @@
     "@folio/stripes-types": "^1.0.1",
     "@folio/stripes-ui": "~1.1.0",
     "@folio/stripes-util": "~5.2.1",
-    "redux": "~4.0.0"
+    "redux": "^4.2.1"
   },
   "devDependencies": {
     "@folio/eslint-config-stripes": "^6.1.0",
