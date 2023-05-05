@@ -32,6 +32,7 @@ New modules should start at version `1.0.0` rather than `0.1.0` to avoid confusi
 Make sure that your code runs clean. Specifically:
 
 * It should pass `yarn lint` with no errors.
+* It should run `yarn formatjs-compile` successfully. This is important, as translators can introduce errors by incorporating malformed XML fragments, and these will prevent the release-build from completing.
 * It should not emit any warnings on the JavaScript console.
 
 Make sure that your repository's `CHANGELOG.md` is up to date:
