@@ -1,6 +1,6 @@
 # Change history for stripes
 
-## 8.1.0 IN PROGRESS
+## 9.0.0 IN PROGRESS
 
 * `stripes-components` `11.1.0` https://github.com/folio-org/stripes-components/releases/tag/v11.1.0
 * `stripes-core` `9.1.0` https://github.com/folio-org/stripes-core/releases/tag/v9.1.0
