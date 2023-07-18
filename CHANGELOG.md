@@ -2,6 +2,7 @@
 
 ## 9.0.0 IN PROGRESS
 
+* Loosen `redux` dependency to `^4.2.1`, aligning it across repos. Refs STRIPES-860.
 * *BREAKING* `stripes-components` `12.0.0`
 * *BREAKING* `stripes-connect` `9.0.0`
 * *BREAKING* `stripes-core` `10.0.0`
