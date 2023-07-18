@@ -2,11 +2,15 @@
 
 ## 9.0.0 IN PROGRESS
 
-* `stripes-components` `11.1.0` https://github.com/folio-org/stripes-components/releases/tag/v11.1.0
-* `stripes-core` `9.1.0` https://github.com/folio-org/stripes-core/releases/tag/v9.1.0
-* `stripes-smart-components` `8.1.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v8.1.0
-* `stripes-ui` `1.1.0` https://github.com/folio-org/stripes-ui/releases/tag/v1.1.0
-* Loosen `redux` dependency to `^4.2.1`, aligning it across repos. Refs STRIPES-860.
+* *BREAKING* `stripes-components` `12.0.0`
+* *BREAKING* `stripes-connect` `9.0.0`
+* *BREAKING* `stripes-core` `10.0.0`
+* *BREAKING* `stripes-util` `6.0.0`
+* *BREAKING* `stripes-form` `9.0.0`
+* *BREAKING* `stripes-final-form` `8.0.0`
+* *BREAKING* `stripes-smart-components` `9.0`
+* *BREAKING* `stripes-ui` `2.0.0`
+* *BREAKING* `react` `v18`
 
 ## [8.0.0](https://github.com/folio-org/stripes/tree/v8.0.0) (2023-01-31)
 
