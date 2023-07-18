@@ -29,7 +29,7 @@
     "redux": "^4.2.1"
   },
   "devDependencies": {
-    "@folio/eslint-config-stripes": "^7.0-.0",
+    "@folio/eslint-config-stripes": "^7.0.0",
     "eslint": "^7.32.0",
     "react-redux": "~8.0.5"
   },
