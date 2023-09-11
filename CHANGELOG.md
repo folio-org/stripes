@@ -12,6 +12,7 @@
 * *BREAKING* `stripes-smart-components` `9.0`
 * *BREAKING* `stripes-ui` `2.0.0`
 * *BREAKING* `react` `v18`
+* *BREAKING* `react-intl` `v6`
 
 ## [8.0.0](https://github.com/folio-org/stripes/tree/v8.0.0) (2023-01-31)
 
