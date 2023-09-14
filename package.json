@@ -24,7 +24,7 @@
     "@folio/stripes-form": "~9.0.0",
     "@folio/stripes-logger": "~1.0.0",
     "@folio/stripes-smart-components": "~9.0.0",
-    "@folio/stripes-types": "^1.0.1",
+    "@folio/stripes-types": "^2.0.0",
     "@folio/stripes-ui": "~2.0.0",
     "@folio/stripes-util": "~6.0.0",
     "redux": "^4.2.1"
