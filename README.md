@@ -15,7 +15,6 @@ Stripes is a toolkit for building single-page web applications that FOLIO UI mod
 * [Overview of Stripes](doc/overview.md) - Concepts that guided the design of Stripes
 * [Stripes entities](doc/modules-apps-etc.md) - Terminology of things pertaining to Stripes
 
-
 ## Developing with Stripes
 
 Getting started and new environment setup
@@ -38,6 +37,10 @@ Guides for development and testing
 * [Release procedure](doc/release-procedure.md) - For all front-end `ui-*` and `stripes-*` modules
 * [Depending on unreleased features](doc/depending-on-unreleased-features.md)
 * [Troubleshooting guide](doc/troubleshooting.md) - An evolving troubleshooting guide
+
+## TypeScript support
+
+Typings for the Stripes framework may be found in [stripes-types](https://github.com/folio-org/stripes-types)
 
 ## Implementing Stripes
 

@@ -1,3 +1,12 @@
 {
-  "extends": "@folio/eslint-config-stripes"
+  "extends": "@folio/eslint-config-stripes",
+  "overrides": [
+    {
+      "files": ["**/*.d.ts"],
+      "rules": {
+        // eslint does not like .d.ts files without a corresponding .js file
+        "import/no-unresolved": "off"
+      }
+    }
+  ]
 }
