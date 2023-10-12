@@ -1,19 +1,31 @@
 # Change history for stripes
 
-## 9.0.0 IN PROGRESS
+## 9.1.0 IN PROGRESS
+
+* `stripes-components` `12.1.0`
+* `stripes-connect` `9.1.0`
+* `stripes-core` `10.1.0`
+* `stripes-util` `6.1.0`
+* `stripes-form` `9.1.0`
+* `stripes-final-form`
+* `stripes-smart-components`
+* `stripes-ui` `2.1.0`
+* `stripes-types` `v2.1.0`
+
+## [9.0.0](https://github.com/folio-org/stripes/tree/v9.0.0) (2023-10-11)
 
 * Loosen `redux` dependency to `^4.2.1`, aligning it across repos. Refs STRIPES-860.
-* *BREAKING* `stripes-components` `12.0.0`
-* *BREAKING* `stripes-connect` `9.0.0`
-* *BREAKING* `stripes-core` `10.0.0`
-* *BREAKING* `stripes-util` `6.0.0`
-* *BREAKING* `stripes-form` `9.0.0`
-* *BREAKING* `stripes-final-form` `8.0.0`
-* *BREAKING* `stripes-smart-components` `9.0`
-* *BREAKING* `stripes-ui` `2.0.0`
+* *BREAKING* `stripes-components` `12.0.1` https://github.com/folio-org/stripes-components/releases/tag/v12.0.1
+* *BREAKING* `stripes-connect` `9.0.0` https://github.com/folio-org/stripes-connect/releases/tag/v9.0.0
+* *BREAKING* `stripes-core` `10.0.0` https://github.com/folio-org/stripes-core/releases/tag/v10.0.0
+* *BREAKING* `stripes-util` `6.0.0` https://github.com/folio-org/stripes-util/releases/tag/v6.0.0
+* *BREAKING* `stripes-form` `9.0.0` https://github.com/folio-org/stripes-form/releases/tag/v9.0.0
+* *BREAKING* `stripes-final-form` `8.0.0` https://github.com/folio-org/stripes-final-form/releases/tag/v8.0.0
+* *BREAKING* `stripes-smart-components` `9.0.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v9.0.0
+* *BREAKING* `stripes-ui` `2.0.0` https://github.com/folio-org/stripes-ui/releases/tag/v2.0.0
 * *BREAKING* `react` `v18`
 * *BREAKING* `react-intl` `v6`
-* `stripes-types` `v2`
+* `stripes-types` `v2.0.0` https://github.com/folio-org/stripes-types/releases/tag/v2.0.0
 
 ## [8.0.0](https://github.com/folio-org/stripes/tree/v8.0.0) (2023-01-31)
 
