@@ -1,6 +1,10 @@
 # Change history for stripes
 
-## 9.0.0 IN PROGRESS
+## [9.0.1](https://github.com/folio-org/stripes/tree/v9.0.0) (2023-10-11)
+
+* `stripes-components` `12.0.2` https://github.com/folio-org/stripes-components/releases/tag/v12.0.2
+
+## [9.0.0](https://github.com/folio-org/stripes/tree/v9.0.0) (2023-10-11)
 
 * Loosen `redux` dependency to `^4.2.1`, aligning it across repos. Refs STRIPES-860.
 * *BREAKING* `stripes-components` `12.0.1` https://github.com/folio-org/stripes-components/releases/tag/v12.0.1
