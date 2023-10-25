@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "description": "Stripes framework",
   "repository": "https://github.com/folio-org/stripes",
   "publishConfig": {
@@ -19,11 +19,11 @@
   "dependencies": {
     "@folio/stripes-components": "~12.0.2",
     "@folio/stripes-connect": "~9.0.0",
-    "@folio/stripes-core": "~10.0.0",
+    "@folio/stripes-core": "~10.0.1",
     "@folio/stripes-final-form": "~8.0.0",
     "@folio/stripes-form": "~9.0.0",
     "@folio/stripes-logger": "~1.0.0",
-    "@folio/stripes-smart-components": "~9.0.0",
+    "@folio/stripes-smart-components": "~9.0.1",
     "@folio/stripes-types": "^2.0.0",
     "@folio/stripes-ui": "~2.0.0",
     "@folio/stripes-util": "~6.0.0",
