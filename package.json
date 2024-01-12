@@ -18,15 +18,15 @@
   },
   "dependencies": {
     "@folio/stripes-components": "https://github.com/folio-org/stripes-components#dayjs-refresh",
-    "@folio/stripes-connect": "~9.1.0",
-    "@folio/stripes-core": "~10.1.0",
-    "@folio/stripes-final-form": "~8.1.0",
-    "@folio/stripes-form": "~9.1.0",
+    "@folio/stripes-connect": "~9.0.0",
+    "@folio/stripes-core": "https://github.com/folio-org/stripes-core#STCOR-771",
+    "@folio/stripes-final-form": "~8.0.0",
+    "@folio/stripes-form": "~9.0.0",
     "@folio/stripes-logger": "~1.0.0",
-    "@folio/stripes-smart-components": "~9.1.0",
-    "@folio/stripes-types": "^2.1.0",
-    "@folio/stripes-ui": "~2.1.0",
-    "@folio/stripes-util": "~6.1.0",
+    "@folio/stripes-smart-components": "http://github.com/folio-org/stripes-smart-components#STSMACOM-724",
+    "@folio/stripes-types": "^2.0.0",
+    "@folio/stripes-ui": "~2.0.0",
+    "@folio/stripes-util": "~6.0.0",
     "redux": "^4.2.1"
   },
   "devDependencies": {
