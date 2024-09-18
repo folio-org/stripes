@@ -1,0 +1,16 @@
+name: Centralized workflow
+on:
+  - push
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+  ui:
+    uses: folio-org/.github/.github/workflows/ui.yml@v1.1
+    secrets: inherit
+    with:
+      jest-enabled: false
+      sonar-sources: .
+      compile-translations: false
+
+
