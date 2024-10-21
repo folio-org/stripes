@@ -153,7 +153,7 @@ jobs:
           comment_title: Jest Unit Test Statistics
 
       - name: Publish Jest coverage report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: jest-coverage-report
@@ -171,7 +171,7 @@ jobs:
           comment_title: BigTest Unit Test Statistics
 
       - name: Publish BigTest coverage report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: bigtest-coverage-report
@@ -179,7 +179,7 @@ jobs:
           retention-days: 30
 
       - name: Publish yarn.lock
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: yarn.lock
