@@ -1,6 +1,6 @@
 # Change history for stripes
 
-## 9.3.0 IN PROGRESS
+## 10.0.0 IN PROGRESS
 
 ## [9.2.0](https://github.com/folio-org/stripes/tree/v9.2.0) (2024-10-11)
 
