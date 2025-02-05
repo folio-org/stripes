@@ -2,6 +2,16 @@
 
 ## 10.0.0 IN PROGRESS
 
+* *BREAKING* `stripes-components` `13.0.0` https://github.com/folio-org/stripes-components/releases/tag/v13.0.0
+* *BREAKING* `stripes-connect` `10.0.0` https://github.com/folio-org/stripes-connect/releases/tag/v10.0.0
+* *BREAKING* `stripes-core` `11.0.0` https://github.com/folio-org/stripes-core/releases/tag/v11.0.0
+* *BREAKING* `stripes-util` `7.0.0` https://github.com/folio-org/stripes-util/releases/tag/v7.0.0
+* *BREAKING* `stripes-form` `10.0.0` https://github.com/folio-org/stripes-form/releases/tag/v10.0.0
+* *BREAKING* `stripes-final-form` `9.0.0` https://github.com/folio-org/stripes-final-form/releases/tag/v9.0.0
+* *BREAKING* `stripes-smart-components` `10.0.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v10.0.0
+* *BREAKING* `stripes-types` `3.0.0` https://github.com/folio-org/stripes-types/releases/tag/v3.0.0
+* *BREAKING* `stripes-ui` `3.0.0` https://github.com/folio-org/stripes-ui/releases/tag/v3.0.0
+
 ## [9.2.0](https://github.com/folio-org/stripes/tree/v9.2.0) (2024-10-11)
 
 * `stripes-components` `12.2.0` https://github.com/folio-org/stripes-components/releases/tag/v12.2.0
