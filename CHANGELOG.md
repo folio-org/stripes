@@ -1,6 +1,8 @@
 # Change history for stripes
 
-## 10.0.0 IN PROGRESS
+## 10.1.0 IN PROGRESS
+
+## [10.0.0](https://github.com/folio-org/stripes/tree/v10.0.0) (2025-02-24)
 
 * *BREAKING* `stripes-components` `13.0.0` https://github.com/folio-org/stripes-components/releases/tag/v13.0.0
 * *BREAKING* `stripes-connect` `10.0.0` https://github.com/folio-org/stripes-connect/releases/tag/v10.0.0
@@ -11,6 +13,59 @@
 * *BREAKING* `stripes-smart-components` `10.0.0` https://github.com/folio-org/stripes-smart-components/releases/tag/v10.0.0
 * *BREAKING* `stripes-types` `3.0.0` https://github.com/folio-org/stripes-types/releases/tag/v3.0.0
 * *BREAKING* `stripes-ui` `3.0.0` https://github.com/folio-org/stripes-ui/releases/tag/v3.0.0
+
+## [9.2.11](https://github.com/folio-org/stripes/tree/v9.2.11) (2025-01-16)
+
+* `stripes-core` `10.2.5` https://github.com/folio-org/stripes-core/releases/tag/v10.2.5
+
+## [9.2.10](https://github.com/folio-org/stripes/tree/v9.2.10) (2024-12-17)
+
+* `stripes-components` `12.2.8` https://github.com/folio-org/stripes-components/releases/tag/v12.2.8
+* `stripes-util` `6.2.1` https://github.com/folio-org/stripes-util/releases/tag/v6.2.1
+
+## [9.2.9](https://github.com/folio-org/stripes/tree/v9.2.9) (2024-12-10)
+
+* `stripes-smart-components` `9.2.6` https://github.com/folio-org/stripes-smart-components/releases/tag/v9.2.6
+
+## [9.2.8](https://github.com/folio-org/stripes/tree/v9.2.8) (2024-12-05)
+
+* `stripes-smart-components` `9.2.5` https://github.com/folio-org/stripes-smart-components/releases/tag/v9.2.5
+
+## [9.2.7](https://github.com/folio-org/stripes/tree/v9.2.7) (2024-12-02)
+
+* `stripes-components` `12.2.7` https://github.com/folio-org/stripes-components/releases/tag/v12.2.7
+* `stripes-core` `10.2.4` https://github.com/folio-org/stripes-core/releases/tag/v10.2.4
+* `stripes-smart-components` `9.2.4` https://github.com/folio-org/stripes-smart-components/releases/tag/v9.2.4
+
+## [9.2.6](https://github.com/folio-org/stripes/tree/v9.2.6) (2024-11-19)
+
+* `stripes-components` `12.2.6` https://github.com/folio-org/stripes-components/releases/tag/v12.2.6
+
+## [9.2.5](https://github.com/folio-org/stripes/tree/v9.2.5) (2024-11-15)
+
+* `stripes-components` `12.2.5` https://github.com/folio-org/stripes-components/releases/tag/v12.2.5
+* `stripes-core` `10.2.3` https://github.com/folio-org/stripes-core/releases/tag/v10.2.3
+* `stripes-smart-components` `9.2.3` https://github.com/folio-org/stripes-smart-components/releases/tag/v9.2.3
+
+## [9.2.4](https://github.com/folio-org/stripes/tree/v9.2.4) (2024-11-08)
+
+* `stripes-components` `12.2.4` https://github.com/folio-org/stripes-components/releases/tag/v12.2.4
+
+## [9.2.3](https://github.com/folio-org/stripes/tree/v9.2.3) (2024-10-31)
+
+* `stripes-components` `12.2.3` https://github.com/folio-org/stripes-components/releases/tag/v12.2.3
+* `stripes-core` `10.2.2` https://github.com/folio-org/stripes-core/releases/tag/v10.2.2
+* `stripes-smart-components` `9.2.2` https://github.com/folio-org/stripes-smart-components/releases/tag/v9.2.2
+
+## [9.2.2](https://github.com/folio-org/stripes/tree/v9.2.2) (2024-10-30)
+
+* `stripes-components` `12.2.2` https://github.com/folio-org/stripes-components/releases/tag/v12.2.2
+* `stripes-core` `10.2.1` https://github.com/folio-org/stripes-core/releases/tag/v10.2.1
+* `stripes-smart-components` `9.2.1` https://github.com/folio-org/stripes-smart-components/releases/tag/v9.2.1
+
+## [9.2.1](https://github.com/folio-org/stripes/tree/v9.2.1) (2024-10-29)
+
+* `stripes-ui` `2.0.0` https://github.com/folio-org/stripes-ui/releases/tag/v2.0.0
 
 ## [9.2.0](https://github.com/folio-org/stripes/tree/v9.2.0) (2024-10-11)
 

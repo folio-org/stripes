@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes",
-  "version": "10.0.0",
+  "version": "10.1.0",
   "description": "Stripes framework",
   "repository": "https://github.com/folio-org/stripes",
   "publishConfig": {
@@ -17,16 +17,16 @@
     "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json "
   },
   "dependencies": {
-    "@folio/stripes-components": "~13.0.0",
-    "@folio/stripes-connect": "~10.0.0",
-    "@folio/stripes-core": "~11.0.0",
-    "@folio/stripes-final-form": "~9.0.0",
-    "@folio/stripes-form": "~10.0.0",
-    "@folio/stripes-logger": "~1.0.0",
-    "@folio/stripes-smart-components": "~10.0.0",
+    "@folio/stripes-components": "^13.0.0",
+    "@folio/stripes-connect": "^10.0.0",
+    "@folio/stripes-core": "^11.0.0",
+    "@folio/stripes-final-form": "^9.0.0",
+    "@folio/stripes-form": "^10.0.0",
+    "@folio/stripes-logger": "^1.0.0",
+    "@folio/stripes-smart-components": "^10.0.0",
     "@folio/stripes-types": "^3.0.0",
-    "@folio/stripes-ui": "~3.0.0",
-    "@folio/stripes-util": "~7.0.0",
+    "@folio/stripes-ui": "^3.0.0",
+    "@folio/stripes-util": "^7.0.0",
     "redux": "^4.2.1"
   },
   "devDependencies": {
