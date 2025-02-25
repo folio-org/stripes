@@ -1,6 +1,6 @@
 # Change history for stripes
 
-## 10.0.0 IN PROGRESS
+## [10.0.0](https://github.com/folio-org/stripes/tree/v10.0.0) (2025-02-24)
 
 * *BREAKING* `stripes-components` `13.0.0` https://github.com/folio-org/stripes-components/releases/tag/v13.0.0
 * *BREAKING* `stripes-connect` `10.0.0` https://github.com/folio-org/stripes-connect/releases/tag/v10.0.0
