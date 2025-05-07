@@ -75,7 +75,10 @@ Messages received during the install such as, "Package [package] not found" or "
   * Otherwise, your repository uses GitHub Actions and this skip should be skipped.
 * After the build completes successfully, update the GitHub release by copying the relevant `CHANGELOG.md` entries to the GitHub release. On the GitHub repository home page, click "Releases", then click the relevant tag, then the "Edit release" button. Set the "Release title" field to match the tag, paste the changelog entries into the "Describe this release" field, and save your changes. Strictly speaking, this is just a documentation step. The "real" release is published to the folio npm repository; this is courtesy to developers browsing GitHub that indicates "this commit corresponds to that version and contains these changes".
 * Adjust configuration for this module in Stripes Platforms. Follow [Add to platforms](https://dev.folio.org/guidelines/release-procedures/#add-to-platforms) documentation.
-* Send a release announcement to the `#releases` Slack [channel](https://dev.folio.org/guidelines/which-forum/#slack) if relevant.
+* Send a release announcement to the `#folio-releases` Slack [channel](https://dev.folio.org/guidelines/which-forum/#slack) if relevant.
+* If there's an applicable JIRA ticket for an issue resolved in the release -
+  *  Set the `fix version` to the released version ex: `2.3.0`, creating a new one if necessary.
+  *  Set the ticket status to `awaiting deployment` so that applicable parties can see the ticket.
 
 ## Working towards the next release
 
