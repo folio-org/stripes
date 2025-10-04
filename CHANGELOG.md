@@ -1,5 +1,9 @@
 # Change history for stripes
 
+## [9.2.18](https://github.com/folio-org/stripes/tree/v9.2.18) (2025-10-04)
+
+* `stripes-core` `10.2.9` https://github.com/folio-org/stripes-core/releases/tag/v10.2.9
+
 ## [9.2.17](https://github.com/folio-org/stripes/tree/v9.2.17) (2025-08-22)
 
 * `stripes-core` `10.2.8` https://github.com/folio-org/stripes-core/releases/tag/v10.2.8
