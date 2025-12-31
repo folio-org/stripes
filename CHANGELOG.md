@@ -1,5 +1,10 @@
 # Change history for stripes
 
+## [10.0.20](https://github.com/folio-org/stripes/tree/v10.0.20) (2025-12-31)
+* `stripes-components` `13.0.9` https://github.com/folio-org/stripes-components/releases/tag/v13.0.9
+* `stripes-smart-components` `10.0.3` https://github.com/folio-org/stripes-smart-components/releases/tag/v10.0.3
+* Happy New Year!
+
 ## [10.0.19](https://github.com/folio-org/stripes/tree/v10.0.19) (2025-12-24)
 * `stripes-core` `11.0.13` https://github.com/folio-org/stripes-core/releases/tag/v11.0.13
 
