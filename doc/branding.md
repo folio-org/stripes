@@ -49,13 +49,17 @@ At build time, the branding assets will be picked up by the file loader and incl
 
 ## Use within Stripes UI components
 
-To access branding values within the UI, import `branding` from the `stripes-config` module.  For example:
+To access branding values within the UI, destructure `branding` from the `stripes` object.  For example:
 
 ```
-import { branding } from 'stripes-config';
+import { useStripes } from '@folio/stripes/core';
+
+const stripes = useStripes();
+const { branding } = stripes;
 ```
 
 Then apply the desired values to your image or component:
 ```
 <img src={branding.logo.src} alt={branding.logo.alt} />
 ```
+
