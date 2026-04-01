@@ -2,6 +2,8 @@
 
 ## 10.1.0 IN PROGRESS
 
+* Commit `yarn.lock` to avoid future supply chain attacks. Refs STRIPES-1015.
+
 ## [10.0.0](https://github.com/folio-org/stripes/tree/v10.0.0) (2025-02-24)
 
 * *BREAKING* `stripes-components` `13.0.0` https://github.com/folio-org/stripes-components/releases/tag/v13.0.0
