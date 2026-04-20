@@ -1,5 +1,9 @@
 # Change history for stripes
 
+## IN PROGRESS
+
+* Supply Personal Data Disclosure form. Refs STRIPES-979.
+
 ## 10.1.0 IN PROGRESS
 
 * Commit `yarn.lock` to avoid future supply chain attacks. Refs STRIPES-1015.
