@@ -46,13 +46,14 @@ Ensure that each of the Jira issues listed in the change-log is tagged to the nu
 
 ### Check dependencies
 
-Make sure your `package.json` does not contain any unreleased dependencies -- for example, a bugfix version of `@folio/stripes` that adds a new facility, available via the CI repository `folioci` but not from an actual release. To check for this, make a brand new checkout of the module you're working on, outside of any Yarn workspace, switch back to the `npm-folio` registry, and try to install.
+Make sure your `package.json` does not contain any unreleased dependencies -- for example, a bugfix version of `@folio/stripes` that adds a new facility, available via the CI repository `folioci` but not from an actual release. To check for this, make a brand new checkout of the module you're working on, outside of any Yarn workspace, switch to the `npm-folio` registry, and try to install. Removing `yarn.lock` before installing ensures dependencies are re-resolved against `npm-folio` rather than reusing snapshot versions pinned in the lockfile.
 ```
 $ mkdir /tmp/fresh-build
 $ cd /tmp/fresh-build
 $ git clone git@github.com:folio-org/ui-developer.git
 $ cd ui-developer
 $ yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
+$ rm -f yarn.lock
 $ yarn install
 ```
 
@@ -65,7 +66,14 @@ Messages received during the install such as, "Package [package] not found" or "
 * Increment the version number in `package.json`, if this has not already been done -- bumping the major version if there are backwards-incompatible changes, and the minor version if all changes are backwards-compatible.
 * Make any necessary additions to the project's `CHANGELOG.md` describing how the new release differs from the previous one. The purpose of the change-log is to allow a module developer to answer the question "Do I need to upgrade to the new version of this package?", so aim for a high-level overview rather than enumerating every change, and concentrate on API-visible rather than internal changes.
 * Set the date of the release in `CHANGELOG.md`, adding a link to the tag and another to the full set of differences from the previous release as tracked on GitHub: follow the formatting of earlier change-log entries.
-* Commit the `package.json` and `CHANGELOG.md` changes with the message "Release vVERSION". For example, `git commit -m "Release v2.3.0" .`
+* If the repository tracks `yarn.lock`, regenerate it against the `npm-folio` registry so that the shipped lockfile does not pin `npm-folioci` snapshot URLs:
+    ```
+    $ yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
+    $ rm -f yarn.lock
+    $ yarn install
+    ```
+    Include the regenerated `yarn.lock` in the release commit.
+* Commit the `package.json`, `CHANGELOG.md`, and (if applicable) `yarn.lock` changes with the message "Release vVERSION". For example, `git commit -m "Release v2.3.0" .`
 * Push the branch to GitHub, e.g. `git push -u origin b2.3`.
 * Create a Pull Request for it, and merge it.
 * After the merge, checkout the master branch and create a tag for the specific version to be released, e.g. `git checkout master; git pull; git tag v2.3.0`. If there have been other changes to master since the merge commit, supply the checksum of the merge commit to make sure the tag is applied to the correct commit, e.g. `git tag v2.3.0 c0ffee`.
@@ -90,7 +98,11 @@ Create a new entry at the top of the change-log for the forthcoming version, so 
 
 ## Patch release procedures
 
-Making a patch release is not any different than making an ordinary release, except you begin by splitting a new branch from the last-release's tag and everything happens relative to that branch, rather than relative to `master`. For example, if you are making the first patch to `v3.4.0`, to be published as `v3.4.1`, split a `b3.4` branch from the `v3.4.0` tag and copy the commits you want to include in `v3.4.1` with [`git cherry-pick`](https://git-scm.com/docs/git-cherry-pick):
+Making a patch release is not any different than making an ordinary release, except you begin by splitting a new branch from the last-release's tag and everything happens relative to that branch, rather than relative to `master`.
+
+Note on `yarn.lock`: the main release procedure recommends regenerating the lockfile against `npm-folio`. For a patch release this is usually **not** desired -- the goal is a minimal, targeted change, and regeneration can silently pull in newer dependencies that were not part of the base release's tested surface. Leave `yarn.lock` untouched unless the patch itself requires a dependency change, in which case update only the necessary entries (e.g. `yarn upgrade <package>`).
+
+For example, if you are making the first patch to `v3.4.0`, to be published as `v3.4.1`, split a `b3.4` branch from the `v3.4.0` tag and copy the commits you want to include in `v3.4.1` with [`git cherry-pick`](https://git-scm.com/docs/git-cherry-pick):
 ```
 (master): git checkout -b b3.4 v3.4.0
 (b3.4): git cherry-pick <commit-sha-1>

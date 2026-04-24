@@ -3,6 +3,7 @@
 ## IN PROGRESS
 
 * Supply Personal Data Disclosure form. Refs STRIPES-979.
+* Document regenerating `yarn.lock` against `npm-folio` in the release procedure to avoid shipping snapshot resolutions.
 
 ## 10.1.0 IN PROGRESS
 
