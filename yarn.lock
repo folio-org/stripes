@@ -1413,10 +1413,10 @@
     redux-form "^8.3.0"
     uuid "^9.0.0"
 
-"@folio/stripes-types@~3.1.0":
-  version "3.1.0"
-  resolved "https://repository.folio.org/repository/npm-folio/@folio/stripes-types/-/stripes-types-3.1.0.tgz#f8ca1f0eb11760deaeca4b2c05534cf8b4820492"
-  integrity sha512-qr3O4+xqEIkcpc2UUtcWomCy7oPZ1xGH6ir+SaV5M1ywMkDCORWQz4Ym8sh4QXwmJxK5S1s+9TzHARVjH+SrJg==
+"@folio/stripes-types@~3.1.1":
+  version "3.1.1"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/stripes-types/-/stripes-types-3.1.1.tgz#12c29ada18618eed9ce7042583e8bfc8dcf64b43"
+  integrity sha512-lhRp9xisZ46JWasZdtiT/6HzvTbwaKvIfpOWKX+AKwzE5SN92/tbLLnJ25uvfRW1gNWPO/zrmh34FtacVrhDPA==
   dependencies:
     "@folio/stripes-react-hotkeys" "^3.0.0"
     dayjs "^1.11.10"
