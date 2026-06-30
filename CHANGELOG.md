@@ -4,6 +4,9 @@
 
 * Supply Personal Data Disclosure form. Refs STRIPES-979.
 * Document regenerating `yarn.lock` against `npm-folio` in the release procedure to avoid shipping snapshot resolutions.
+* `stripes-core` `11.2.0` https://github.com/folio-org/stripes-core/releases/tag/v11.2.0
+* `stripes-form` `11.0.0` https://github.com/folio-org/stripes-form/releases/tag/v11.0.0
+* `stripes-final-form` `10.0.0` https://github.com/folio-org/stripes-final-form/releases/tag/v10.0.0
 
 ## 10.1.0 IN PROGRESS
 
