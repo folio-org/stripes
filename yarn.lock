@@ -1274,8 +1274,10 @@
     eslint-plugin-testing-library "^5.6.0"
     webpack "^5.80.0"
 
-"@folio/stripes-build@../stripes-build":
-  version "2.0.0"
+"@folio/stripes-build@^2.1.0":
+  version "2.1.1099000000000089"
+  resolved "https://repository.folio.org/repository/npm-folioci/@folio/stripes-build/-/stripes-build-2.1.1099000000000089.tgz#fd6cc4f12d3c1e4b9fe2febd863165013c2a1fea"
+  integrity sha512-If0nQFh6krQ/ClTd+PxyVaC989GTW0r6XF10KCTdVxvcftswPmhUdK2SaKt0B22IcG0Vb9FjQO5Q+REYttZrsw==
   dependencies:
     "@folio/stripes-webpack" "^7.0.0"
     configstore "^3.1.1"
