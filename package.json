@@ -14,7 +14,7 @@
   "scripts": {
     "test": "echo 'No tests implemented'",
     "lint": "eslint ./",
-    "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json "
+    "build-mod-descriptor": "stripes-build mod descriptor --full --single > module-descriptor.json "
   },
   "dependencies": {
     "@folio/stripes-components": "^13.0.0",
@@ -30,8 +30,10 @@
     "redux": "^4.2.1"
   },
   "devDependencies": {
-    "@folio/eslint-config-stripes": "^8.0.0",
+    "@folio/eslint-config-stripes": "^9.0.0",
+    "@folio/stripes-build": "^2.1.0",
     "eslint": "^7.32.0",
+    "react": "^18.3",
     "react-redux": "^8.0.5"
   },
   "peerDependencies": {
