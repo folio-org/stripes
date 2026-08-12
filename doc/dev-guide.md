@@ -501,6 +501,7 @@ The easiest way to check that an interface is supported, is by using the `stripe
 if (this.props.stripes.hasInterface('loan-storage', '1.0')) ...
 ```
 If the interface is supported at a compatible level (same major version number, same or higher minor version number), then it returns the supported version number. The required-version number may be omitted from the call (`hasInterface('loan-storage')`). In this case, it returns `true` if the named interface is supported at any level.
+If the interface is missing altogether - it returns `undefined`.
 
 
 When guarding small elements, such as the invocation of a component that will display user loans that should appear only when when the loans interface is present, the helper component [`<IfInterface>`](https://github.com/folio-org/stripes-components/blob/master/lib/IfInterface/readme.md) can be used:
