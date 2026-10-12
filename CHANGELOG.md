@@ -1,5 +1,8 @@
 # Change history for stripes
 
+## [10.0.23](https://github.com/folio-org/stripes/tree/v10.0.23) (2026-10-12)
+* `stripes-components` `13.0.11` https://github.com/folio-org/stripes-components/releases/tag/v13.0.11
+
 ## [10.0.22](https://github.com/folio-org/stripes/tree/v10.0.22) (2026-01-19)
 * `stripes-core` `11.0.15` https://github.com/folio-org/stripes-core/releases/tag/v11.0.15
 * MLK Day today. Have you read https://www.africa.upenn.edu/Articles_Gen/Letter_Birmingham.html lately?
