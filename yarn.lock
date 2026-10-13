@@ -1311,10 +1311,10 @@
     redux "^4.2.1"
     uuid "^9.0.0"
 
-"@folio/stripes-core@~11.1.6":
-  version "11.1.6"
-  resolved "https://repository.folio.org/repository/npm-folio/@folio/stripes-core/-/stripes-core-11.1.6.tgz#685a9ad79de2cac24b471a8a2d5e6bc25b23432f"
-  integrity sha512-pCDx+85CRZoTWwbEIfyjq+ZLXkmXdiC6XaSNSfzEC0/kLLWAINQSuV6tZaAXuPEAjUfi98Qo+SrqFoN4WyNB3A==
+"@folio/stripes-core@~11.1.7":
+  version "11.1.7"
+  resolved "https://repository.folio.org/repository/npm-folio/@folio/stripes-core/-/stripes-core-11.1.7.tgz#44bc86a62fadc8084c7d9ead3e068e2b4f84a559"
+  integrity sha512-m8/slMg3W7j39FOf1Y9hHa7G7eQazrFcZSetgDIM+GsklqgQjoZS3aPlaczccQHh0/fftE0tGakCyAJYemZwEg==
   dependencies:
     "@apollo/client" "^3.2.1"
     "@module-federation/runtime" "^2.0.0"
