@@ -1,2 +1,2 @@
-export { default } from '@folio/stripes-logger';
-export * from '@folio/stripes-logger';
+export { default } from 'categorical-logger';
+export * from 'categorical-logger';

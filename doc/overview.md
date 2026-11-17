@@ -58,8 +58,8 @@ The whole Stripes framework consists of the following set of git modules -- all 
                     ___________/      |    \___________
                    /                  |                \
                   /                   |                 \
-        stripes-components     stripes-connect     stripes-logger
+        stripes-components     stripes-connect     categorical-logger
 
 ```
 `stripes-components` has a peer-dependency on `stripes-core`, because it depends on part of the `stripes-core` API -- specifically, the provision of [the Stripes object](dev-guide.md#the-stripes-object).
-`stripes-connect`, and `stripes-logger` do not have a similar peer-dependency: `stripes-core` consumes their APIs rather than vice versa.
+`stripes-connect`, and `categorical-logger` do not have a similar peer-dependency: `stripes-core` consumes their APIs rather than vice versa.

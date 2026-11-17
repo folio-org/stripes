@@ -22,11 +22,11 @@
     "@folio/stripes-core": "^11.2.0",
     "@folio/stripes-final-form": "^10.0.0",
     "@folio/stripes-form": "^11.0.0",
-    "@folio/stripes-logger": "^1.0.0",
     "@folio/stripes-smart-components": "^10.0.0",
     "@folio/stripes-types": "^3.0.0",
     "@folio/stripes-ui": "^3.0.0",
     "@folio/stripes-util": "^7.0.0",
+    "categorical-logger": "^1.0.0",
     "redux": "^4.2.1"
   },
   "devDependencies": {

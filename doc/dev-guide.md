@@ -85,7 +85,7 @@ Stripes consists of several separate JavaScript libraries that work together. Th
 
 * [**stripes-connect**](https://github.com/folio-org/stripes-connect) -- provides the connection to FOLIO's services.
 * [**stripes-components**](https://github.com/folio-org/stripes-components) -- provides re-usable UI components such as checkboxes, search forms and multi-pane layouts.
-* [**stripes-logger**](https://github.com/folio-org/stripes-logger) -- simple facilities logging.
+* [**categorical-logger**](https://github.com/openlibraryenvironment/categorical-logger) -- simple facilities logging.
 * [**stripes-core**](https://github.com/folio-org/stripes-core) -- a web application that controls a set of UI modules and helps them to work together.
 
 In general, stripes-core is configured by a list of UI modules to include, and it uses a webpack plugin to pull them all into a

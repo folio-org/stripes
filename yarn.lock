@@ -1400,11 +1400,6 @@
     prop-types "^15.5.10"
     redux-form "^8.3.0"
 
-"@folio/stripes-logger@^1.0.0":
-  version "1.0.100012"
-  resolved "https://repository.folio.org/repository/npm-folioci/@folio/stripes-logger/-/stripes-logger-1.0.100012.tgz#1362cceff6aa31af4687604f6fc3fd8ba33bde67"
-  integrity sha512-MDJaynBk+5c+Cu5EPnAbQBb+ja8zphSeOSTqAsaY3Ghh4YewYgNW4U243jdeaO85wYqMVK3R7Tqq2kJvRNS4xA==
-
 "@folio/stripes-react-hotkeys@^3.0.0", "@folio/stripes-react-hotkeys@^3.2.1":
   version "3.2.10990000000048"
   resolved "https://repository.folio.org/repository/npm-folioci/@folio/stripes-react-hotkeys/-/stripes-react-hotkeys-3.2.10990000000048.tgz#18b16fffbf9bbc278034308c667aff17a8b52291"
@@ -3442,6 +3437,11 @@ caniuse-lite@^1.0.30001774, caniuse-lite@^1.0.30001782:
   version "1.0.30001784"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001784.tgz#bdf9733a0813ccfb5ab4d02f2127e62ee4c6b718"
   integrity sha512-WU346nBTklUV9YfUl60fqRbU5ZqyXlqvo1SgigE1OAXK5bFL8LL9q1K7aap3N739l4BvNqnkm3YrGHiY9sfUQw==
+
+categorical-logger@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/categorical-logger/-/categorical-logger-1.0.0.tgz#dc93d3f3cc1a281261ab63d5698ddd646ae45cd2"
+  integrity sha512-/7547NN23px6XFVVs+gtpkWZYuy8JlI6O9sy9G37m8qiuMpbn6dGECKb/QEk0UVFmN7S8Ynl0kQadPzs65+G3Q==
 
 chalk@3.0.0:
   version "3.0.0"
